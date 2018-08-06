@@ -5,12 +5,24 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.android.synthetic.main.activity_main.*
+import com.google.firebase.firestore.DocumentSnapshot
+import android.support.annotation.NonNull
+import com.google.android.gms.tasks.OnFailureListener
+
+
+
+
 
 class MainActivity : AppCompatActivity(), LogoutListener {
 
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +31,14 @@ class MainActivity : AppCompatActivity(), LogoutListener {
         (application as MyApp).registerSessionListener(this)
         (application as MyApp).startUserSession()
 
+        db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
+
+        db.collection("Users").document(mAuth.uid.toString()).get()
+                .addOnSuccessListener { documentSnapshot ->
+                    tvUsername.text = documentSnapshot.getString("username")
+                }
+
     }
 
     override fun onResume() {
@@ -41,7 +60,7 @@ class MainActivity : AppCompatActivity(), LogoutListener {
 
     private fun sendToLogin() {
         val loginIntent = Intent(this, LoginActivity::class.java)
-        loginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(loginIntent)
         finish()
     }
