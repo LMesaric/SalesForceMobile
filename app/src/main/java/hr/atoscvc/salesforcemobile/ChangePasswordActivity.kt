@@ -23,7 +23,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         /* Listener reporting password constraints errors on every change of password field */
-        etUsernameInvisible.setText(mAuth.currentUser?.email)
+        etUsernameInvisible.setText(mAuth.currentUser?.email)   //FILIP - ovdje treba ici username a ne email
         etPasswordNew.addTextChangedListener(PasswordTextWatcher(etUsernameInvisible, etPasswordNew))
 
         /* Listeners that change icon color */
@@ -57,7 +57,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         val passwordNew = etPasswordNew.text.toString()
 
         val passwordNewStatus = CheckPasswordConstraints.checkPasswordConstraints(
-                mAuth.currentUser?.email.toString(),
+                mAuth.currentUser?.email.toString(),    //FILIP - pobogu opet ista stvar SMH
                 passwordNew
         )
 
