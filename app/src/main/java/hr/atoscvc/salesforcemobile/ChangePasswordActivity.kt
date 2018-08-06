@@ -75,7 +75,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         }
 
         if (thereAreNoErrors) {
-            //val passwordOldHashed = HashSHA3.getHashedValue(passwordOld)
+            val passwordOldHashed = HashSHA3.getHashedValue(passwordOld)
             btnChangePassOk.visibility = View.INVISIBLE
             btnChangePassCancel.visibility = View.INVISIBLE
             changePassProgress.visibility = View.VISIBLE

@@ -85,7 +85,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         if (thereAreNoErrors) {
             btnLogin.visibility = View.INVISIBLE
             loginProgress.visibility = View.VISIBLE
-            mAuth.signInWithEmailAndPassword(email, tempPassword)
+            mAuth.signInWithEmailAndPassword(email, HashSHA3.getHashedValue(tempPassword))
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             sendToMain()

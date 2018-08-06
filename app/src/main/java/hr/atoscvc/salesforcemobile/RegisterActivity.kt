@@ -17,7 +17,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
 
     lateinit var username: String
-    private lateinit var passwordHashed: String
     lateinit var firstName: String
     lateinit var lastName: String
     lateinit var email: String
@@ -143,7 +142,7 @@ class RegisterActivity : AppCompatActivity() {
         if (thereAreNoErrors) {
             btnRegister.visibility = View.INVISIBLE
             registerProgress.visibility = View.VISIBLE
-            mAuth.createUserWithEmailAndPassword(email, password)
+            mAuth.createUserWithEmailAndPassword(email, HashSHA3.getHashedValue(password))
                     .addOnCompleteListener(this) { task1 ->
                         if (task1.isSuccessful) {
                             addUserToDatabase()
