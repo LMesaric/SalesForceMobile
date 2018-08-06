@@ -5,18 +5,10 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.activity_main.*
-import com.google.firebase.firestore.DocumentSnapshot
-import android.support.annotation.NonNull
-import com.google.android.gms.tasks.OnFailureListener
-
-
-
 
 
 class MainActivity : AppCompatActivity(), LogoutListener {
