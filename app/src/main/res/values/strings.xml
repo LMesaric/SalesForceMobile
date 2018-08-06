@@ -1,0 +1,104 @@
+<resources>
+
+    <!-- SEEN BY USERS (for layouts) -->
+
+    <string name="app_name">Sales Force Mobile</string>
+
+    <string name="serverNoResponse">No response from server</string>
+    <string name="malformedURL">Malformed URL exception!</string>
+    <string name="exceptionIO">IO exception</string>
+    <string name="typeNotRecognized">Type not recognized</string>
+
+    <string name="rememberMe">Remember me</string>
+    <string name="clickHereToRegister"><a href="">Don\'t have an account?</a></string>
+    <string name="forgotPassword"><a href="">Forgot your password?</a></string>
+
+    <string name="login">Login</string>
+    <string name="registration">Registration</string>
+    <string name="Register">Register</string>
+
+    <string name="logout">Logout</string>
+
+    <string name="FirstName">First Name</string>
+    <string name="LastName">Last Name</string>
+    <string name="Username">Username</string>
+    <string name="PhoneNumber">Phone Number</string>
+    <string name="Email">E-mail</string>
+    <string name="Details">Details</string>
+    <string name="Password">Password</string>
+    <string name="ConfirmPassword">Confirm Password</string>
+
+    <string name="firstNameEmptyMessage">First name cannot be empty.</string>
+    <string name="lastNameEmptyMessage">Last name cannot be empty.</string>
+    <string name="usernameEmptyMessage">Username cannot be empty.</string>
+    <string name="emailEmptyMessage">E-mail cannot be empty.</string>
+    <string name="passwordEmptyMessage">Password cannot be empty.</string>
+    <string name="wrongConfirmPassword">Specified passwords do not match.</string>
+
+    <string name="addContact">Add a new contact</string>
+    <string name="viewContacts">View all contacts</string>
+    <string name="addCompany">Add a new company</string>
+    <string name="viewCompanies">View all companies</string>
+    <string name="allContacts">All Contacts</string>
+    <string name="allCompanies">All Companies</string>
+    <string name="newContact">New Contact</string>
+    <string name="newCompany">New Company</string>
+    <string name="editContact">Edit Contact</string>
+    <string name="editCompany">Edit Company</string>
+
+    <string name="resetPassword">Reset Password</string>
+    <string name="reset">Reset</string>
+    <string name="resetPasswordDescriptionLabel">We will send you an email with a link to reset your password. Please check your Spam folder.</string>
+
+    <string name="changePassword">Change Password</string>
+    <string name="oldPassword">Old Password</string>
+    <string name="newPassword">New Password</string>
+    <string name="wrongPassword">Wrong password.</string>
+    <string name="change">Change</string>
+    <string name="passChangeSuccess">Password changed successfully!</string>
+
+    <string-array name="contactTitle_array">
+        <item>Mr.</item>
+        <item>Mrs.</item>
+        <item>Ms.</item>
+        <item>Miss</item>
+    </string-array>
+
+    <string-array name="contactStatus_array">
+        <item>ACTIVE</item>
+        <item>INACTIVE</item>
+    </string-array>
+
+
+    <!-- HIDDEN FROM USERS (for development) -->
+
+    <string name="loginURL">http://atoscvc.000webhostapp.com/login.php</string>
+    <string name="registerURL">http://atoscvc.000webhostapp.com/register.php</string>
+    <string name="resetPasswordURL">http://atoscvc.000webhostapp.com/resetPassword.php</string>
+
+    <string name="UTF8">UTF-8</string>
+
+    <string name="typeLogin">Login</string>
+    <string name="typeRegister">Register</string>
+    <string name="typePasswordReset">PasswordReset</string>
+
+    <string name="loginStatus">Login status</string>
+    <string name="registrationStatus">Registration status</string>
+
+    <string name="firstName">firstName</string>
+    <string name="lastName">lastName</string>
+    <string name="username">username</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+
+    <string name="EXTRA_IS_EDITOR_FOR_NEW_ITEM">hr.atoscvc.salesforcemobile.EXTRA_IS_EDITOR_FOR_NEW_ITEM</string>
+    <string name="EXTRA_CONTACT_TITLE_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_TITLE_SPINNER_INDEX</string>
+    <string name="EXTRA_CONTACT_STATUS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_STATUS_SPINNER_INDEX</string>
+    <string name="EXTRA_CONTACT_FIRST_NAME">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_FIRST_NAME</string>
+    <string name="EXTRA_CONTACT_LAST_NAME">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_LAST_NAME</string>
+    <string name="EXTRA_CONTACT_COMPANY">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_COMPANY</string>
+    <string name="EXTRA_CONTACT_PHONE">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_PHONE</string>
+    <string name="EXTRA_CONTACT_EMAIL">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_EMAIL</string>
+    <string name="EXTRA_CONTACT_DETAILS">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DETAILS</string>
+
+</resources>

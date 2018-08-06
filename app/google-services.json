@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "847752485885",
+    "firebase_url": "https://salesforcemobile-f769a.firebaseio.com",
+    "project_id": "salesforcemobile-f769a",
+    "storage_bucket": "salesforcemobile-f769a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847752485885:android:b111c99818c616be",
+        "android_client_info": {
+          "package_name": "hr.atoscvc.salesforcemobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847752485885-6ekofrgkkmq968q0nutcqhca7gc66snc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hr.atoscvc.salesforcemobile",
+            "certificate_hash": "e3ea759e381781ca58e91540b68b66b3d09199a7"
+          }
+        },
+        {
+          "client_id": "847752485885-rv503i8fm4pdrqmb73j58rtvlr62r3aq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsT1mLePqfLY6GyJR5wIwTETA0jcops3E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847752485885-rv503i8fm4pdrqmb73j58rtvlr62r3aq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
