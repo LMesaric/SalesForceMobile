@@ -70,8 +70,8 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
 
     fun onLogin(@Suppress("UNUSED_PARAMETER") view: View) {
         disableAllButtons()
-        email = etEmail.text.toString()
-        val tempPassword = etPassword.text.toString()
+        email = etEmail.text.toString().trim()
+        val tempPassword = etPassword.text.toString()       // Do NOT trim the password
         var thereAreNoErrors = true
 
         if (email.isBlank()) {
