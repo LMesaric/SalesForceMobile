@@ -29,7 +29,6 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     private lateinit var mAuth: FirebaseAuth
 
     private lateinit var email: String
-    private lateinit var passwordHash: String
     private lateinit var alertDialogBuilder: AlertDialog.Builder
     private lateinit var alertDialog: AlertDialog
     private lateinit var resetPasswordView: View
