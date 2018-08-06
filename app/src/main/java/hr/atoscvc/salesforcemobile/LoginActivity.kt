@@ -94,9 +94,9 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                         }
                         loginProgress.visibility = View.INVISIBLE
                         btnLogin.visibility = View.VISIBLE
-                        enableAllButtons()
                     }
         }
+        enableAllButtons()
     }
 
     @SuppressLint("InflateParams")
@@ -192,7 +192,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
 
     private fun sendToMain() {
         val mainIntent = Intent(this, MainActivity::class.java)
-        mainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(mainIntent)
         finish()
     }
