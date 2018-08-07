@@ -1,9 +1,9 @@
 package hr.atoscvc.salesforcemobile
 
 object ActiveUserSingleton {
-    var user: User? = null
+    private var user: User? = null
 
-    fun setActiveUser(user: User) {
+    fun setActiveUser(user: User?) {
         this.user = user
     }
 

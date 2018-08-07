@@ -91,7 +91,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
             mAuth.signInWithEmailAndPassword(email, HashSHA3.getHashedValue(tempPassword))
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            db.collection("Users").document(mAuth.currentUser!!.uid.toString()).get()
+                            db.collection("Users").document(mAuth.uid.toString()).get()
                                     .addOnSuccessListener { documentSnapshot ->
                                         if (documentSnapshot.exists()) {
                                             val activeUser = User(documentSnapshot.getString("firstName").toString(), documentSnapshot.getString("lastName").toString(), documentSnapshot.getString("username").toString(), mAuth.currentUser!!.email.toString())

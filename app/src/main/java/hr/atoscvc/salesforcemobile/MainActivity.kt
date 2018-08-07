@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -26,9 +28,6 @@ class MainActivity : AppCompatActivity(), LogoutListener {
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
 
-        tvUsername.text = ActiveUserSingleton.getActiveUser()?.username ?: ""
-
-
     }
 
     override fun onResume() {
@@ -43,12 +42,9 @@ class MainActivity : AppCompatActivity(), LogoutListener {
         }
     }
 
-    fun onLogout(@Suppress("UNUSED_PARAMETER") view: View) {
-        mAuth.signOut()
-        sendToLogin()
-    }
-
     private fun sendToLogin() {
+        ActiveUserSingleton.setActiveUser(null)
+        mAuth.signOut()
         val loginIntent = Intent(this, LoginActivity::class.java)
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(loginIntent)
@@ -79,21 +75,32 @@ class MainActivity : AppCompatActivity(), LogoutListener {
         startActivity(intent)
     }
 
-
-    //FIXME Method should be moved elsewhere
-    //FIXME In Manifest: android:parentActivityName=".MainMenuActivity" should be changed accordingly
-    fun onChangePassword(@Suppress("UNUSED_PARAMETER") view: View) {
-        val intent = Intent(this, ChangePasswordActivity::class.java)
-        startActivity(intent)
-    }
-
     override fun onSessionTimeout() {
-        mAuth.signOut()
         sendToLogin()
     }
 
     override fun onUserInteraction() {
         (application as MyApp).onUserInteracted()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item != null) {
+            if (item.itemId == R.id.action_logout) {
+                sendToLogin()
+            } else if (item.itemId == R.id.action_account_settings) {
+                //FIXME Method should be moved elsewhere
+                //FIXME In Manifest: android:parentActivityName=".MainMenuActivity" should be changed accordingly
+                val intent = Intent(this, ChangePasswordActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        return true
     }
 
 }

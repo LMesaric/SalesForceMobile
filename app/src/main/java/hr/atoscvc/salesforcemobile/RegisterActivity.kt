@@ -162,8 +162,18 @@ class RegisterActivity : AppCompatActivity() {
             db.collection("Users").document(it).set(user)
                     .addOnCompleteListener(this) { task2 ->
                         if (task2.isSuccessful) {
-                            sendToMain()
+                            db.collection("Users").document(mAuth.uid.toString()).get()
+                                    .addOnSuccessListener { documentSnapshot ->
+                                        if (documentSnapshot.exists()) {
+                                            val activeUser = User(documentSnapshot.getString("firstName").toString(), documentSnapshot.getString("lastName").toString(), documentSnapshot.getString("username").toString(), mAuth.currentUser!!.email.toString())
+                                            ActiveUserSingleton.setActiveUser(activeUser)
+                                            sendToMain()
+                                        } else {
+                                            Toast.makeText(this, "No user found", Toast.LENGTH_LONG).show()
+                                        }
+                                    }
                         } else {
+                            ActiveUserSingleton.setActiveUser(null)
                             mAuth.signOut()
                             Toast.makeText(this, "Error: " + task2.exception?.message.toString(), Toast.LENGTH_LONG).show()
                         }
