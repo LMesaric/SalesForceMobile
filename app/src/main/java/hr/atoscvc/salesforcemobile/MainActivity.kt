@@ -26,10 +26,8 @@ class MainActivity : AppCompatActivity(), LogoutListener {
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
 
-        db.collection("Users").document(mAuth.uid.toString()).get()
-                .addOnSuccessListener { documentSnapshot ->
-                    tvUsername.text = documentSnapshot.getString("username")
-                }
+        tvUsername.text = ActiveUserSingleton.getActiveUser()?.username ?: ""
+
 
     }
 
@@ -77,8 +75,8 @@ class MainActivity : AppCompatActivity(), LogoutListener {
     }
 
     fun onViewCompanies(@Suppress("UNUSED_PARAMETER") view: View) {
-        /*val intent = Intent(this, CompanyListActivity::class.java)
-        startActivity(intent)**/
+        val intent = Intent(this, CompanyListActivity::class.java)
+        startActivity(intent)
     }
 
 

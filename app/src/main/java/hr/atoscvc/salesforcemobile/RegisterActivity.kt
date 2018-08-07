@@ -157,7 +157,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun addUserToDatabase() {
-        val user = User(firstName, lastName, username)
+        val user = User(firstName, lastName, username, email)
         mAuth.currentUser?.uid?.let {
             db.collection("Users").document(it).set(user)
                     .addOnCompleteListener(this) { task2 ->

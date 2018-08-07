@@ -1,6 +1,14 @@
 package hr.atoscvc.salesforcemobile
 
 object ActiveUserSingleton {
-    lateinit var username: String
-    //FILIP - dodaj ostalo, ili uzmi User() objekt
+    var user: User? = null
+
+    fun setActiveUser(user: User) {
+        this.user = user
+    }
+
+    fun getActiveUser(): User? {
+        return this.user
+    }
+
 }

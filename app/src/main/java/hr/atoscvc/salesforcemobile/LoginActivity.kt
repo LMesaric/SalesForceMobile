@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.reset_password.view.*
 import java.lang.ref.WeakReference
@@ -26,6 +27,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     //FILIP - forgot password loader indicator se trenutno vrti iza prozora pa se ne vidi
     //FILIP - EventLog SQL tablica (EventID primary key + String) - "User $userID forgot his password", "User $userID set a new password", "User $userID changed his password", "User $userID logged in/out"
 
+    private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
 
     private lateinit var email: String
@@ -39,6 +41,8 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         setContentView(R.layout.activity_login)
 
         (application as MyApp).cancelTimer()
+
+        db = FirebaseFirestore.getInstance()
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -87,7 +91,16 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
             mAuth.signInWithEmailAndPassword(email, HashSHA3.getHashedValue(tempPassword))
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            sendToMain()
+                            db.collection("Users").document(mAuth.currentUser!!.uid.toString()).get()
+                                    .addOnSuccessListener { documentSnapshot ->
+                                        if (documentSnapshot.exists()) {
+                                            val activeUser = User(documentSnapshot.getString("firstName").toString(), documentSnapshot.getString("lastName").toString(), documentSnapshot.getString("username").toString(), mAuth.currentUser!!.email.toString())
+                                            ActiveUserSingleton.setActiveUser(activeUser)
+                                            sendToMain()
+                                        } else {
+                                            Toast.makeText(this, "No user found", Toast.LENGTH_LONG).show()
+                                        }
+                                    }
                         } else {
                             Toast.makeText(this, "Wrong email or password", Toast.LENGTH_LONG).show()
                         }
