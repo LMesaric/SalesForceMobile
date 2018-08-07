@@ -57,7 +57,7 @@ class BackgroundWorker(
 
     override fun onPostExecute(result: String) {
         super.onPostExecute(result)
-        progressBar.get()?.visibility = View.INVISIBLE
+        //progressBar.get()?.visibility = View.INVISIBLE
         response.processFinish(result)
     }
 }

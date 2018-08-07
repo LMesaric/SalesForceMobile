@@ -177,8 +177,9 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                     WeakReference(applicationContext),
                     getString(R.string.loginStatus),
                     this,
-                    WeakReference(loginProgress)
+                    WeakReference(resetPasswordView.mailProgress)
             )
+            resetPasswordView.btnSendPassReset.visibility = View.INVISIBLE
             backgroundWorker.execute(operation, username, email)
         }
     }
@@ -224,9 +225,13 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     }
 
     override fun processFinish(output: String) {
-        resetPasswordView.btnSendPassReset.visibility = View.INVISIBLE
-        Toast.makeText(this, "Check your email", Toast.LENGTH_LONG).show()
-        alertDialog.dismiss()
+        resetPasswordView.btnSendPassReset.visibility = View.VISIBLE
+        if (output.contains("Success")) {
+            resetPasswordView.btnSendPassReset.visibility = View.INVISIBLE
+            Toast.makeText(this, "Check your email", Toast.LENGTH_LONG).show()
+            alertDialog.dismiss()
+        }
+
     }
 
 }
