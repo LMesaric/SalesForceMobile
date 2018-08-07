@@ -2,13 +2,15 @@ package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_change_password.*
+
 
 class ChangePasswordActivity : AppCompatActivity() {
 
@@ -80,20 +82,19 @@ class ChangePasswordActivity : AppCompatActivity() {
             btnChangePassCancel.visibility = View.INVISIBLE
             changePassProgress.visibility = View.VISIBLE
 
-            //FILIP - testirati je li passwordOldHashed isti kao u bazi (isto kao za login)
-            //Ovisno o tome postaviti passwordOldIsCorrect na true ili false
-            val passwordOldIsCorrect = true
-
-            if (!passwordOldIsCorrect) {
-                etPasswordOld.error = getString(R.string.wrongPassword)
-                btnChangePassOk.visibility = View.VISIBLE
-                btnChangePassCancel.visibility = View.VISIBLE
-                changePassProgress.visibility = View.INVISIBLE
-            } else {
-                //FILIP - zapisati novi password u bazu
-                Toast.makeText(this, getString(R.string.passChangeSuccess), Toast.LENGTH_SHORT).show()
-                finish()
-            }
+            mAuth.currentUser?.reauthenticate(EmailAuthProvider.getCredential(mAuth.currentUser?.email.toString(), passwordOldHashed))
+                    ?.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            mAuth.currentUser?.updatePassword(HashSHA3.getHashedValue(passwordNew))
+                            Toast.makeText(this, getString(R.string.passChangeSuccess), Toast.LENGTH_SHORT).show()
+                            finish()
+                        } else {
+                            etPasswordOld.error = task.exception?.message.toString()
+                            btnChangePassOk.visibility = View.VISIBLE
+                            btnChangePassCancel.visibility = View.VISIBLE
+                            changePassProgress.visibility = View.INVISIBLE
+                        }
+                    }
         }
     }
 
