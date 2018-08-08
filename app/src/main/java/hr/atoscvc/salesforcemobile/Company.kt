@@ -7,7 +7,7 @@ data class Company(
         var name: String,
         var webPage: String,
         var cvsSegment: Int,
-        var description: String,
+        var details: String,
         var phone: String,
         var communicationType: Int,  //TODO String-array: ne znam sto da stavim tamo osim Phone (email nemamo u bazi pa to ne mozemo)
         var employees: Int,
