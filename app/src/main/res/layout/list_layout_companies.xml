@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingEnd="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingStart="8dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardViewCompanies"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayoutCompaniesMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvCardCompaniesName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Atos CVC"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvCardCompaniesCvsSegment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Platinum"
+                app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesName"
+                app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesName" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraintLayoutCompaniesExpandable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:animateLayoutChanges="true"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCardCompaniesCvsSegment">
+
+                <TextView
+                    android:id="@+id/tvCardCompaniesStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="ACTIVE"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvCardCompaniesOIB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="0123456789"
+                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesStatus"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesStatus" />
+
+                <TextView
+                    android:id="@+id/tvCardCompaniesWebPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="gmail@chucknorris.com"
+                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesOIB"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesOIB" />
+
+                <TextView
+                    android:id="@+id/tvCardCompaniesPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="0917893456"
+                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesWebPage"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesWebPage" />
+
+                <TextView
+                    android:id="@+id/tvCardCompaniesIncome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="100000"
+                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesPhone"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesPhone" />
+
+                <TextView
+                    android:id="@+id/tvCardCompaniesCommunicationType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Phone"
+                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesIncome"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesIncome" />
+
+                <TextView
+                    android:id="@+id/tvCardCompaniesEmployees"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="10-24"
+                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesCommunicationType"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesCommunicationType" />
+
+                <TextView
+                    android:id="@+id/tvCardCompaniesDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Best Company Ever!"
+                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesEmployees"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesEmployees" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

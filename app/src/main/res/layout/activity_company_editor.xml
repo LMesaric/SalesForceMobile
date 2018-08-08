@@ -13,7 +13,136 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <Spinner
+            android:id="@+id/spCompanyStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/spCompanyCvsSegment"
+            app:layout_constraintEnd_toEndOf="parent" />
 
+        <Spinner
+            android:id="@+id/spCompanyCvsSegment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="@+id/etCompanyOIB"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etCompanyName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="65dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Company Name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spCompanyCvsSegment" />
+
+        <EditText
+            android:id="@+id/etCompanyOIB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="65dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="OIB"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyName" />
+
+        <EditText
+            android:id="@+id/etCompanyWebPage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="65dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Web Page"
+            android:inputType="textWebEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyOIB" />
+
+        <EditText
+            android:id="@+id/etCompanyPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="65dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_action_phone"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/ic_action_phone"
+            android:ems="10"
+            android:hint="@string/PhoneNumber"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyWebPage" />
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/etCompanyDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="65dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/Details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyPhone" />
+
+        <EditText
+            android:id="@+id/etCompanyIncome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="65dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Income"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyDetails" />
+
+        <Spinner
+            android:id="@+id/spCompanyCommunicationType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/etCompanyIncome"
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyIncome" />
+
+        <Spinner
+            android:id="@+id/spCompanyEmployees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/spCompanyCommunicationType"
+            app:layout_constraintStart_toEndOf="@+id/spCompanyCommunicationType" />
 
     </android.support.constraint.ConstraintLayout>
 
