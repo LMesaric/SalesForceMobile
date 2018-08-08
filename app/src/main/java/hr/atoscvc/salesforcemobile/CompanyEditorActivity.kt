@@ -9,7 +9,6 @@ import com.google.firebase.auth.FirebaseUser
 
 class CompanyEditorActivity : AppCompatActivity() {
 
-    //LUKA - Add ScrollView
     //TODO Ovako se dobiva string iz indeksa u bazi:  resources.getStringArray(R.array.contactTitle_array)[i]
     //TODO Ovako se dobiva indeks selektiranog u spinneru:  spTitleContact.selectedItemPosition.toString()
 
