@@ -17,6 +17,7 @@
     <string name="registration">Registration</string>
     <string name="Register">Register</string>
 
+    <string name="AccountSettings">Account Settings</string>
     <string name="logout">Logout</string>
 
     <string name="FirstName">First Name</string>
