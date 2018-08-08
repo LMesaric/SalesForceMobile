@@ -58,6 +58,11 @@
     <string name="change">Change</string>
     <string name="passChangeSuccess">Password changed successfully!</string>
 
+    <string-array name="status_array">
+        <item>ACTIVE</item>
+        <item>INACTIVE</item>
+    </string-array>
+
     <string-array name="contactTitle_array">
         <item>Mr.</item>
         <item>Mrs.</item>
@@ -65,9 +70,33 @@
         <item>Miss</item>
     </string-array>
 
-    <string-array name="contactStatus_array">
-        <item>ACTIVE</item>
-        <item>INACTIVE</item>
+    <string-array name="contactPreferredTime_array">
+        <item>Morning</item>
+        <item>Afternoon</item>
+    </string-array>
+
+    <string-array name="companyCVS_array">
+        <item>Platinum</item>
+        <item>Gold</item>
+        <item>Silver</item>
+        <item>Bronze</item>
+    </string-array>
+
+    <string-array name="companyCommunicationType_array">
+        <item>Phone</item>
+    </string-array>
+
+    <string-array name="companyEmployees_array">
+        <item>&lt;10</item>
+        <item>10–24</item>
+        <item>25–49</item>
+        <item>50–99</item>
+        <item>100–199</item>
+        <item>200–499</item>
+        <item>500–999</item>
+        <item>1000–4999</item>
+        <item>5000–10000</item>
+        <item>&gt;10000</item>
     </string-array>
 
 
