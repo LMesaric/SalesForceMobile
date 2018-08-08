@@ -171,7 +171,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         }
 
         if (thereAreNoErrors) {
-            resetPasswordView.btnSendPassReset.visibility = View.INVISIBLE
+            resetPasswordView.btnSendPassReset.visibility = View.GONE
             operation = "PasswordReset"
             val backgroundWorker = BackgroundWorker(
                     WeakReference(applicationContext),
@@ -179,7 +179,6 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                     this,
                     WeakReference(resetPasswordView.mailProgress)
             )
-            resetPasswordView.btnSendPassReset.visibility = View.INVISIBLE
             backgroundWorker.execute(operation, username, email)
         }
     }
@@ -226,12 +225,15 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
 
     override fun processFinish(output: String) {
         resetPasswordView.btnSendPassReset.visibility = View.VISIBLE
+        resetPasswordView.mailProgress.visibility = View.GONE
         if (output.contains("Success")) {
-            resetPasswordView.btnSendPassReset.visibility = View.INVISIBLE
+            resetPasswordView.btnSendPassReset.visibility = View.GONE
             Toast.makeText(this, "Check your email", Toast.LENGTH_LONG).show()
             alertDialog.dismiss()
         }
-
+        //FILIP - Za apsolutno sve greske osim successful password changea nema poruke useru
+        //FILIP - Moguce da cak ne radi za ispravan username i email (probao sam i nisam dobio Toast ni email)
+        //FILIP - Kada je username bio za login, email je bio ekstra confirmation. Sad mozda vise ne treba username za reset (ne koristi se pa se zaboravi - cemu uopce imati usernameove?)
     }
 
 }
