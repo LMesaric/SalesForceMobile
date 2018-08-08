@@ -33,6 +33,7 @@ class ContactListActivity : AppCompatActivity() {
                 "Atos",
                 "091251244",
                 "email@email.com",
+                1,
                 "asdjbajhbdsnadjhas asda sda safsd fasdgasdg asdga sdgasdg asdg sdgasd ggasdg asdg asdgas dgasdg sadg sdg asdgg asdg sadg"
         ))
         contactList.add(Contact(
@@ -44,6 +45,7 @@ class ContactListActivity : AppCompatActivity() {
                 "Siemens",
                 "087654567899",
                 "email@gmail.com",
+                0,
                 "alksnbdabnsd"
         ))
         contactList.add(Contact(
@@ -55,6 +57,7 @@ class ContactListActivity : AppCompatActivity() {
                 "Google",
                 "56456789867",
                 "yahoo@gmail.com",
+                1,
                 "masjdban asdaisd"
         ))
 

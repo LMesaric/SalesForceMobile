@@ -40,6 +40,13 @@ class ContactEditorActivity : AppCompatActivity() {
         )
         spContactStatus.adapter = adapterStatus
 
+        val adapterPreferredTime = ArrayAdapter.createFromResource(
+                this,
+                R.array.contactPreferredTime_array,
+                R.layout.simple_spinner_dropdown_item
+        )
+        spContactPreferredTime.adapter = adapterPreferredTime
+
         etContactFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 etContactFirstName.setText(etContactFirstName.text.toString().trim())
@@ -84,6 +91,7 @@ class ContactEditorActivity : AppCompatActivity() {
 
         spContactTitle.setSelection(intent.getIntExtra(getString(R.string.EXTRA_CONTACT_TITLE_SPINNER_INDEX), 0))
         spContactStatus.setSelection(intent.getIntExtra(getString(R.string.EXTRA_CONTACT_STATUS_SPINNER_INDEX), 0))
+        spContactPreferredTime.setSelection(intent.getIntExtra(getString(R.string.EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX), 0))
         etContactFirstName.setText(intent.getStringExtra(getString(R.string.EXTRA_CONTACT_FIRST_NAME)))
         etContactLastName.setText(intent.getStringExtra(getString(R.string.EXTRA_CONTACT_LAST_NAME)))
         //FIXME Ovo ne bi trebao biti string (ovisi o tome sto ce se dogoditi s tim poljem)

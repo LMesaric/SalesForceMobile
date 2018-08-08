@@ -9,5 +9,6 @@ data class Contact(
         var company: String,   //TODO - Company type?
         var phone: String,
         var email: String,
-        var details: String     //TODO - vrijeme komunikacije
+        var preferredTime: Int,
+        var details: String
 )
