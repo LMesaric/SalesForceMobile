@@ -10,7 +10,8 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_contacts.view.*
 
 class ContactAdapter(private val contactList: ArrayList<Contact>, val context: Context) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
-
+    //LUKA - prvi se ne smije otvoriti
+    //LUKA - Add Contact i Edit gumbi
     private var currentPosition = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -65,5 +66,4 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: C
         val constraintLayoutContactsMain: ConstraintLayout = itemView.constraintLayoutContactsMain
         val constraintLayoutContactsExpandable: ConstraintLayout = itemView.constraintLayoutContactsExpandable
     }
-
 }
