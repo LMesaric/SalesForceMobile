@@ -35,7 +35,7 @@ class ContactEditorActivity : AppCompatActivity() {
 
         val adapterStatus = ArrayAdapter.createFromResource(
                 this,
-                R.array.contactStatus_array,
+                R.array.status_array,
                 R.layout.simple_spinner_dropdown_item
         )
         spContactStatus.adapter = adapterStatus

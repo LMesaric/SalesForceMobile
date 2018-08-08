@@ -23,7 +23,7 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: C
         val tvCardContactsNameText = "${context.resources.getStringArray(R.array.contactTitle_array)[contact.title]} ${contact.firstName} ${contact.lastName}"
         holder.tvCardContactsName.text = tvCardContactsNameText
         holder.tvCardContactCompany.text = contact.company
-        holder.tvCardContactsStatus.text = context.resources.getStringArray(R.array.contactStatus_array)[contact.status]
+        holder.tvCardContactsStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
         holder.tvCardContactsPhone.text = contact.phone
         holder.tvCardContactsEmail.text = contact.email
         holder.tvCardContactsDetails.text = contact.details
