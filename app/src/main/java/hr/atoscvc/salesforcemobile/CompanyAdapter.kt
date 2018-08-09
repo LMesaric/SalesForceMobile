@@ -1,11 +1,13 @@
 package hr.atoscvc.salesforcemobile
 
 import android.content.Context
+import android.content.Intent
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
@@ -54,6 +56,18 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: C
             currentPosition = holder.adapterPosition
             notifyDataSetChanged()
         }
+
+        holder.btnCardCompaniesAddContact.setOnClickListener {
+            val intent = Intent(context, ContactEditorActivity::class.java).apply {
+                putExtra(context.resources.getString(R.string.EXTRA_CONTACT_COMPANY), company.name)
+            }
+            context.startActivity(intent)   //LUKA for result? - OVDJE SE RUSI
+        }
+
+        holder.btnCardCompaniesEditCompany.setOnClickListener {
+            //LUKA potrpati sve u intent (true/false !) - napraviti posebnu metodu
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -75,5 +89,8 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: C
 
         val constraintLayoutCompaniesMain: ConstraintLayout = itemView.constraintLayoutCompaniesMain
         val constraintLayoutCompaniesExpandable: ConstraintLayout = itemView.constraintLayoutCompaniesExpandable
+
+        val btnCardCompaniesAddContact: Button = itemView.btnCardCompaniesAddContact
+        val btnCardCompaniesEditCompany: Button = itemView.btnCardCompaniesEditCompany
     }
 }
