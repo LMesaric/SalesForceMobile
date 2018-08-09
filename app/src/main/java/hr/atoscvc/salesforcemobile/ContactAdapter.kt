@@ -10,7 +10,8 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_contacts.view.*
 
 class ContactAdapter(private val contactList: ArrayList<Contact>, val context: Context) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
-
+    //LUKA - prvi se ne smije otvoriti
+    //LUKA - Add Contact i Edit gumbi
     private var currentPosition = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -21,9 +22,11 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: C
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contact = contactList[position]
         val tvCardContactsNameText = "${context.resources.getStringArray(R.array.contactTitle_array)[contact.title]} ${contact.firstName} ${contact.lastName}"
+
         holder.tvCardContactsName.text = tvCardContactsNameText
         holder.tvCardContactCompany.text = contact.company
-        holder.tvCardContactsStatus.text = context.resources.getStringArray(R.array.contactStatus_array)[contact.status]
+        holder.tvCardContactsStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
+        holder.tvCardContactsPrefTime.text = context.resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
         holder.tvCardContactsPhone.text = contact.phone
         holder.tvCardContactsEmail.text = contact.email
         holder.tvCardContactsDetails.text = contact.details
@@ -55,6 +58,7 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: C
         val tvCardContactCompany: TextView = itemView.tvCardContactCompany
 
         val tvCardContactsStatus: TextView = itemView.tvCardContactsStatus
+        val tvCardContactsPrefTime: TextView = itemView.tvCardContactsPrefTime
         val tvCardContactsPhone: TextView = itemView.tvCardContactsPhone
         val tvCardContactsEmail: TextView = itemView.tvCardContactsEmail
         val tvCardContactsDetails: TextView = itemView.tvCardContactsDetails
@@ -62,5 +66,4 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: C
         val constraintLayoutContactsMain: ConstraintLayout = itemView.constraintLayoutContactsMain
         val constraintLayoutContactsExpandable: ConstraintLayout = itemView.constraintLayoutContactsExpandable
     }
-
 }

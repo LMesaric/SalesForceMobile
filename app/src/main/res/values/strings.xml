@@ -58,6 +58,11 @@
     <string name="change">Change</string>
     <string name="passChangeSuccess">Password changed successfully!</string>
 
+    <string-array name="status_array">
+        <item>ACTIVE</item>
+        <item>INACTIVE</item>
+    </string-array>
+
     <string-array name="contactTitle_array">
         <item>Mr.</item>
         <item>Mrs.</item>
@@ -65,9 +70,33 @@
         <item>Miss</item>
     </string-array>
 
-    <string-array name="contactStatus_array">
-        <item>ACTIVE</item>
-        <item>INACTIVE</item>
+    <string-array name="contactPreferredTime_array">
+        <item>Morning</item>
+        <item>Afternoon</item>
+    </string-array>
+
+    <string-array name="companyCVS_array">
+        <item>Platinum</item>
+        <item>Gold</item>
+        <item>Silver</item>
+        <item>Bronze</item>
+    </string-array>
+
+    <string-array name="companyCommunicationType_array">
+        <item>Phone</item>
+    </string-array>
+
+    <string-array name="companyEmployees_array">
+        <item>&lt;10</item>
+        <item>10–24</item>
+        <item>25–49</item>
+        <item>50–99</item>
+        <item>100–199</item>
+        <item>200–499</item>
+        <item>500–999</item>
+        <item>1000–4999</item>
+        <item>5000–10000</item>
+        <item>&gt;10000</item>
     </string-array>
 
 
@@ -93,13 +122,26 @@
     <string name="password">password</string>
 
     <string name="EXTRA_IS_EDITOR_FOR_NEW_ITEM">hr.atoscvc.salesforcemobile.EXTRA_IS_EDITOR_FOR_NEW_ITEM</string>
-    <string name="EXTRA_CONTACT_TITLE_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_TITLE_SPINNER_INDEX</string>
+
     <string name="EXTRA_CONTACT_STATUS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_STATUS_SPINNER_INDEX</string>
+    <string name="EXTRA_CONTACT_TITLE_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_TITLE_SPINNER_INDEX</string>
+    <string name="EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX</string>
     <string name="EXTRA_CONTACT_FIRST_NAME">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_FIRST_NAME</string>
     <string name="EXTRA_CONTACT_LAST_NAME">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_LAST_NAME</string>
     <string name="EXTRA_CONTACT_COMPANY">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_COMPANY</string>
     <string name="EXTRA_CONTACT_PHONE">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_PHONE</string>
     <string name="EXTRA_CONTACT_EMAIL">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_EMAIL</string>
     <string name="EXTRA_CONTACT_DETAILS">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DETAILS</string>
+
+    <string name="EXTRA_COMPANY_STATUS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_STATUS_SPINNER_INDEX</string>
+    <string name="EXTRA_COMPANY_CVS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_CVS_SPINNER_INDEX</string>
+    <string name="EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX</string>
+    <string name="EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX</string>
+    <string name="EXTRA_COMPANY_NAME">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_NAME</string>
+    <string name="EXTRA_COMPANY_OIB">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_OIB</string>
+    <string name="EXTRA_COMPANY_WEB_PAGE">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_WEB_PAGE</string>
+    <string name="EXTRA_COMPANY_PHONE">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_PHONE</string>
+    <string name="EXTRA_COMPANY_INCOME">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_INCOME</string>
+    <string name="EXTRA_COMPANY_DETAILS">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DETAILS</string>
 
 </resources>
