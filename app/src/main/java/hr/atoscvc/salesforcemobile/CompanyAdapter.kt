@@ -10,11 +10,15 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
 class CompanyAdapter(private val companyList: ArrayList<Company>, val context: Context) : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
-    //LUKA - prvi se ne smije otvoriti
-    private var currentPosition = 0
+
+    private var currentPosition = -1    // If -1 is replaced with 0 then the first card will automatically be expanded
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompanyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_layout_companies, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(
+                R.layout.list_layout_companies,
+                parent,
+                false
+        )
         return CompanyViewHolder(view)
     }
 
@@ -42,6 +46,8 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: C
                 holder.constraintLayoutCompaniesExpandable.visibility = View.GONE
 //                holder.constraintLayoutCompaniesExpandable.startAnimation(slideUp)
             }
+        } else {    // Remove this else statement and the other cards will not automatically collapse
+            holder.constraintLayoutCompaniesExpandable.visibility = View.GONE
         }
 
         holder.constraintLayoutCompaniesMain.setOnClickListener {

@@ -10,12 +10,15 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_contacts.view.*
 
 class ContactAdapter(private val contactList: ArrayList<Contact>, val context: Context) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
-    //LUKA - prvi se ne smije otvoriti
     //LUKA - Add Contact i Edit gumbi
-    private var currentPosition = 0
+    private var currentPosition = -1    // If -1 is replaced with 0 then the first card will automatically be expanded
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_layout_contacts, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(
+                R.layout.list_layout_contacts,
+                parent,
+                false
+        )
         return ContactViewHolder(view)
     }
 
@@ -41,6 +44,8 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: C
                 holder.constraintLayoutContactsExpandable.visibility = View.GONE
 //                holder.constraintLayoutContactsExpandable.startAnimation(slideUp)
             }
+        } else {    // Remove this else statement and the other cards will not automatically collapse
+            holder.constraintLayoutContactsExpandable.visibility = View.GONE
         }
 
         holder.constraintLayoutContactsMain.setOnClickListener {
