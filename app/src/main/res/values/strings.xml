@@ -123,6 +123,8 @@
 
     <string name="EXTRA_IS_EDITOR_FOR_NEW_ITEM">hr.atoscvc.salesforcemobile.EXTRA_IS_EDITOR_FOR_NEW_ITEM</string>
 
+    <string name="EXTRA_CONTACT_ENTIRE_OBJECT">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_ENTIRE_OBJECT</string>
+    <string name="EXTRA_CONTACT_DOCUMENT_ID">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DOCUMENT_ID</string>
     <string name="EXTRA_CONTACT_STATUS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_STATUS_SPINNER_INDEX</string>
     <string name="EXTRA_CONTACT_TITLE_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_TITLE_SPINNER_INDEX</string>
     <string name="EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX</string>
@@ -133,6 +135,8 @@
     <string name="EXTRA_CONTACT_EMAIL">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_EMAIL</string>
     <string name="EXTRA_CONTACT_DETAILS">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DETAILS</string>
 
+    <string name="EXTRA_COMPANY_ENTIRE_OBJECT">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_ENTIRE_OBJECT</string>
+    <string name="EXTRA_COMPANY_DOCUMENT_ID">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DOCUMENT_ID</string>
     <string name="EXTRA_COMPANY_STATUS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_STATUS_SPINNER_INDEX</string>
     <string name="EXTRA_COMPANY_CVS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_CVS_SPINNER_INDEX</string>
     <string name="EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX</string>

@@ -1,5 +1,6 @@
 package hr.atoscvc.salesforcemobile
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.constraint.ConstraintLayout
@@ -33,7 +34,7 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: C
         holder.tvCardCompaniesOIB.text = company.OIB
         holder.tvCardCompaniesWebPage.text = company.webPage
         holder.tvCardCompaniesPhone.text = company.phone
-        holder.tvCardCompaniesIncome.text = company.income.toString()
+        holder.tvCardCompaniesIncome.text = company.income
         holder.tvCardCompaniesCommunicationType.text = context.resources.getStringArray(R.array.companyCommunicationType_array)[company.communicationType]
         holder.tvCardCompaniesEmployees.text = context.resources.getStringArray(R.array.companyEmployees_array)[company.employees]
         holder.tvCardCompaniesDetails.text = company.details
@@ -59,15 +60,32 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: C
 
         holder.btnCardCompaniesAddContact.setOnClickListener {
             val intent = Intent(context, ContactEditorActivity::class.java).apply {
-                putExtra(context.resources.getString(R.string.EXTRA_CONTACT_COMPANY), company.name)
+                putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
             }
-            context.startActivity(intent)   //LUKA for result? - OVDJE SE RUSI
+            context.startActivity(intent)
         }
 
         holder.btnCardCompaniesEditCompany.setOnClickListener {
-            //LUKA potrpati sve u intent (true/false !) - napraviti posebnu metodu
-        }
+            val intent = Intent(context, CompanyEditorActivity::class.java).apply {
+                putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
 
+                /*putExtra(context.getString(R.string.EXTRA_COMPANY_DOCUMENT_ID), company.documentID)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_STATUS_SPINNER_INDEX), company.status)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_CVS_SPINNER_INDEX), company.cvsSegment)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX), company.communicationType)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX), company.employees)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_NAME), company.name)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_OIB), company.OIB)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_WEB_PAGE), company.webPage)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_PHONE), company.phone)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_DETAILS), company.details)
+                putExtra(context.getString(R.string.EXTRA_COMPANY_INCOME), company.income)*/
+            }
+            (context as Activity).startActivityForResult(intent, CompanyListActivity.requestCode)
+            //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
+        }
     }
 
     override fun getItemCount(): Int {
