@@ -10,7 +10,7 @@
     <string name="typeNotRecognized">Type not recognized</string>
 
     <string name="rememberMe">Remember me</string>
-    <string name="clickHereToRegister"><a href="">Don\'t have an account?</a></string>
+    <string name="clickHereToRegister"><a href="">Register</a></string>
     <string name="forgotPassword"><a href="">Forgot your password?</a></string>
 
     <string name="login">Login</string>
@@ -143,5 +143,8 @@
     <string name="EXTRA_COMPANY_PHONE">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_PHONE</string>
     <string name="EXTRA_COMPANY_INCOME">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_INCOME</string>
     <string name="EXTRA_COMPANY_DETAILS">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DETAILS</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

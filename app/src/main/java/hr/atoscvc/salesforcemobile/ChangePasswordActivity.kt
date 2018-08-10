@@ -26,7 +26,7 @@ class ChangePasswordActivity : AppCompatActivity() {
 
         /* Listener reporting password constraints errors on every change of password field */
         etUsernameInvisible.setText(mAuth.currentUser?.email)   //FILIP - ovdje treba ici username a ne email
-        etPasswordNew.addTextChangedListener(PasswordTextWatcher(etUsernameInvisible, etPasswordNew))
+        etPasswordNew.addTextChangedListener(PasswordTextWatcher(etUsernameInvisible.text.toString(), etPasswordNew))
 
         /* Listeners that change icon color */
         etPasswordOld.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->

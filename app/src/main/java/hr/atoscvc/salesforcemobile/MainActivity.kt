@@ -10,6 +10,7 @@ import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), LogoutListener {
@@ -24,6 +25,9 @@ class MainActivity : AppCompatActivity(), LogoutListener {
         (application as MyApp).registerSessionListener(this)
         (application as MyApp).startUserSession()
 
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "Sales Force Mobile"
+
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
 
@@ -31,10 +35,6 @@ class MainActivity : AppCompatActivity(), LogoutListener {
 
     override fun onResume() {
         super.onResume()
-        window.setBackgroundDrawable(BitmapDrawable(
-                applicationContext.resources,
-                (application as MyApp).getInstance(applicationContext.resources)
-        ))
         val user: FirebaseUser? = mAuth.currentUser
         if (user == null) {
             sendToLogin()
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), LogoutListener {
     }
 
     private fun sendToLogin() {
-        ActiveUserSingleton.setActiveUser(null)
+        ActiveUserSingleton.user = null
         mAuth.signOut()
         val loginIntent = Intent(this, LoginActivity::class.java)
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)

@@ -2,7 +2,6 @@ package hr.atoscvc.salesforcemobile
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -50,23 +49,17 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
             if (!hasFocus) {
                 val email = etEmail.text.toString().trim()
                 etEmail.setText(email)
-                etEmail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_email_outline, 0, 0, 0)
 
                 if (email.isBlank()) {
                     etEmail.error = getString(R.string.emailEmptyMessage)
                 }
-            } else {
-                etEmail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_email_outline_accent, 0, 0, 0)
             }
         }
         etPassword.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                etPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_password_outline, 0, 0, 0)
                 if (etPassword.text.isBlank()) {
                     etPassword.error = getString(R.string.passwordEmptyMessage)
                 }
-            } else {
-                etPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_password_outline_accent, 0, 0, 0)
             }
         }
     }
@@ -87,15 +80,15 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         }
         if (thereAreNoErrors) {
             btnLogin.visibility = View.INVISIBLE
-            loginProgress.visibility = View.VISIBLE
+
             mAuth.signInWithEmailAndPassword(email, HashSHA3.getHashedValue(tempPassword))
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             db.collection("Users").document(mAuth.uid.toString()).get()
                                     .addOnSuccessListener { documentSnapshot ->
                                         if (documentSnapshot.exists()) {
-                                            val activeUser = User(documentSnapshot.getString("firstName").toString(), documentSnapshot.getString("lastName").toString(), documentSnapshot.getString("username").toString(), mAuth.currentUser!!.email.toString())
-                                            ActiveUserSingleton.setActiveUser(activeUser)
+                                            val activeUser = User(documentSnapshot.getString("firstName").toString(), documentSnapshot.getString("lastName").toString(), mAuth.currentUser!!.email.toString())
+                                            ActiveUserSingleton.user = activeUser
                                             sendToMain()
                                         } else {
                                             Toast.makeText(this, "No user found", Toast.LENGTH_LONG).show()
@@ -104,7 +97,6 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                         } else {
                             Toast.makeText(this, "Wrong email or password", Toast.LENGTH_LONG).show()
                         }
-                        loginProgress.visibility = View.INVISIBLE
                         btnLogin.visibility = View.VISIBLE
                     }
         }
@@ -183,7 +175,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         }
     }
 
-    fun onRegister(@Suppress("UNUSED_PARAMETER") view: View) {
+    fun onCreateNewAccount(@Suppress("UNUSED_PARAMETER") view: View) {
         disableAllButtons()
         val intent = Intent(this, RegisterActivity::class.java)
         startActivityForResult(intent, 0)
@@ -192,10 +184,6 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     override fun onResume() {
         super.onResume()
         enableAllButtons()
-        window.setBackgroundDrawable(BitmapDrawable(
-                applicationContext.resources,
-                (application as MyApp).getInstance(applicationContext.resources)
-        ))
         val user: FirebaseUser? = mAuth.currentUser
         if (user != null) {
             sendToMain()
@@ -213,14 +201,12 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         tvRegister.isEnabled = true
         tvForgotPassword.isEnabled = true
         btnLogin.isEnabled = true
-        cbSave.isEnabled = true
     }
 
     private fun disableAllButtons() {
         tvRegister.isEnabled = false
         tvForgotPassword.isEnabled = false
         btnLogin.isEnabled = false
-        cbSave.isEnabled = false
     }
 
     override fun processFinish(output: String) {
