@@ -30,7 +30,19 @@ class ContactListActivity : AppCompatActivity() {
                 1,
                 "Ana",
                 "Peric",
-                "Atos",
+                Company(
+                        "asdbnasd",
+                        0,
+                        "976754689",
+                        "Atos CVC",
+                        "atos.net",
+                        0,
+                        "Very good company",
+                        "012475479",
+                        0,
+                        2,
+                        "150000"
+                ),
                 "091251244",
                 "email@email.com",
                 1,
@@ -42,7 +54,19 @@ class ContactListActivity : AppCompatActivity() {
                 0,
                 "Matej",
                 "Bubic",
-                "Siemens",
+                Company(
+                        "knksgnf",
+                        1,
+                        "45678934",
+                        "Siemens",
+                        "siemens.hr",
+                        1,
+                        "Very great company",
+                        "01484567",
+                        0,
+                        4,
+                        "100000"
+                ),
                 "087654567899",
                 "email@gmail.com",
                 0,
@@ -54,14 +78,26 @@ class ContactListActivity : AppCompatActivity() {
                 3,
                 "Tea",
                 "Bubic",
-                "Google",
+                Company(
+                        "asdbnasd",
+                        0,
+                        "976754689",
+                        "Atos CVC",
+                        "atos.net",
+                        0,
+                        "Very good company",
+                        "012475479",
+                        0,
+                        2,
+                        "150000"
+                ),
                 "56456789867",
                 "yahoo@gmail.com",
                 1,
                 "masjdban asdaisd"
         ))
 
-        val adapter = ContactAdapter(contactList, applicationContext)
+        val adapter = ContactAdapter(contactList, this)
         recyclerViewContacts.adapter = adapter
     }
 

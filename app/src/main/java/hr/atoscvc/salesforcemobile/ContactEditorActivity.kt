@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_contact_editor.*
@@ -89,7 +90,19 @@ class ContactEditorActivity : AppCompatActivity() {
             }
         }
 
-        spContactTitle.setSelection(intent.getIntExtra(getString(R.string.EXTRA_CONTACT_TITLE_SPINNER_INDEX), 0))
+        val contact: Contact? = intent.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as? Contact
+        //LUKA - EXTRA_COMPANY_ENTIRE_OBJECT u intentu?
+        spContactTitle.setSelection(contact?.title ?: 0)
+        spContactStatus.setSelection(contact?.status ?: 0)
+        spContactPreferredTime.setSelection(contact?.preferredTime ?: 0)
+        etContactFirstName.setText(contact?.firstName)
+        etContactLastName.setText(contact?.lastName)
+        etContactCompanyName.setText(contact?.company?.name)
+        etContactPhone.setText(contact?.phone)
+        etContactEmail.setText(contact?.email)
+        etContactDetails.setText(contact?.details)
+
+        /*spContactTitle.setSelection(intent.getIntExtra(getString(R.string.EXTRA_CONTACT_TITLE_SPINNER_INDEX), 0))
         spContactStatus.setSelection(intent.getIntExtra(getString(R.string.EXTRA_CONTACT_STATUS_SPINNER_INDEX), 0))
         spContactPreferredTime.setSelection(intent.getIntExtra(getString(R.string.EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX), 0))
         etContactFirstName.setText(intent.getStringExtra(getString(R.string.EXTRA_CONTACT_FIRST_NAME)))
@@ -98,7 +111,7 @@ class ContactEditorActivity : AppCompatActivity() {
         etContactCompanyName.setText(intent.getStringExtra(getString(R.string.EXTRA_CONTACT_COMPANY)))
         etContactPhone.setText(intent.getStringExtra(getString(R.string.EXTRA_CONTACT_PHONE)))
         etContactEmail.setText(intent.getStringExtra(getString(R.string.EXTRA_CONTACT_EMAIL)))
-        etContactDetails.setText(intent.getStringExtra(getString(R.string.EXTRA_CONTACT_DETAILS)))
+        etContactDetails.setText(intent.getStringExtra(getString(R.string.EXTRA_CONTACT_DETAILS)))*/
     }
 
     override fun onResume() {
@@ -122,6 +135,25 @@ class ContactEditorActivity : AppCompatActivity() {
 
     override fun onUserInteraction() {
         (application as MyApp).onUserInteracted()
+    }
+
+    fun onSaveClicked(@Suppress("UNUSED_PARAMETER") view: View) {
+        //TODO Prikazati sve errore, a podatke iscitati iz polja na ekranu
+        if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
+            //TODO Stvara se novi Contact - save u bazu
+            Toast.makeText(this, "New Contact created", Toast.LENGTH_SHORT).show()
+        } else {
+            //TODO Sprema se edit postojeceg Contacta - update u bazu
+//            val documentID = intent.getStringExtra(getString(R.string.EXTRA_CONTACT_DOCUMENT_ID))
+            val documentID = (intent.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as? Contact)?.documentID
+            if (documentID.isNullOrBlank()) {
+                //Ako je null ne spremaj nista u bazu!
+            } else {
+                Toast.makeText(this, "Contact updated", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        finish()    //Samo ako nema errora
     }
 
 }

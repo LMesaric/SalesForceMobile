@@ -5,11 +5,16 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_company_list.*
 
 class CompanyListActivity : AppCompatActivity() {
+
+    companion object RequestCodeEditCompany {
+        const val requestCode = 1
+    }
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -35,7 +40,7 @@ class CompanyListActivity : AppCompatActivity() {
                 "012475479",
                 0,
                 2,
-                150000
+                "150000"
         ))
         companyList.add(Company(
                 "knksgnf",
@@ -48,10 +53,10 @@ class CompanyListActivity : AppCompatActivity() {
                 "01484567",
                 0,
                 4,
-                100000
+                "100000"
         ))
 
-        val adapter = CompanyAdapter(companyList, applicationContext)
+        val adapter = CompanyAdapter(companyList, this)     // Do not send applicationContext
         recyclerViewCompanies.adapter = adapter
     }
 
@@ -76,5 +81,13 @@ class CompanyListActivity : AppCompatActivity() {
 
     override fun onUserInteraction() {
         (application as MyApp).onUserInteracted()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == requestCode) {
+            if (resultCode == RESULT_OK) {
+                recyclerViewCompanies.adapter?.notifyDataSetChanged()
+            }
+        }
     }
 }
