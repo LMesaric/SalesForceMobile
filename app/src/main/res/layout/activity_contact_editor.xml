@@ -148,6 +148,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spContactPreferredTime" />
 
+        <ImageButton
+            android:id="@+id/btnContactPickCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onPickCompanyClicked"
+            app:layout_constraintBottom_toBottomOf="@+id/etContactCompanyName"
+            app:layout_constraintStart_toEndOf="@+id/etContactCompanyName"
+            app:layout_constraintTop_toTopOf="@+id/etContactCompanyName"
+            app:srcCompat="@drawable/ic_action_company_accent" />
+
         <Button
             android:id="@+id/btnContactSave"
             android:layout_width="170dp"

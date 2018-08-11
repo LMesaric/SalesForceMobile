@@ -1,6 +1,7 @@
 package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.support.constraint.ConstraintLayout
@@ -12,7 +13,7 @@ import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
-class CompanyAdapter(private val companyList: ArrayList<Company>, val context: Context) : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
+class CompanyAdapter(private val companyList: ArrayList<Company>, val context: Context, val isForSelect: Boolean) : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
 
     private var currentPosition = -1    // If -1 is replaced with 0 then the first card will automatically be expanded
 
@@ -58,33 +59,50 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: C
             notifyDataSetChanged()
         }
 
-        holder.btnCardCompaniesAddContact.setOnClickListener {
-            val intent = Intent(context, ContactEditorActivity::class.java).apply {
-                putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-            }
-            context.startActivity(intent)
-        }
+        if (isForSelect) {
+            holder.btnCardCompaniesAddContact.visibility = View.GONE
+            holder.btnCardCompaniesEditCompany.visibility = View.GONE
+            holder.btnCardCompaniesSelectCompany.visibility = View.VISIBLE
 
-        holder.btnCardCompaniesEditCompany.setOnClickListener {
-            val intent = Intent(context, CompanyEditorActivity::class.java).apply {
-                putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-
-                /*putExtra(context.getString(R.string.EXTRA_COMPANY_DOCUMENT_ID), company.documentID)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_STATUS_SPINNER_INDEX), company.status)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_CVS_SPINNER_INDEX), company.cvsSegment)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX), company.communicationType)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX), company.employees)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_NAME), company.name)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_OIB), company.OIB)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_WEB_PAGE), company.webPage)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_PHONE), company.phone)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_DETAILS), company.details)
-                putExtra(context.getString(R.string.EXTRA_COMPANY_INCOME), company.income)*/
+            holder.btnCardCompaniesSelectCompany.setOnClickListener {
+                val intent = Intent()
+                intent.putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
+                (context as Activity).setResult(RESULT_OK, intent)
+                context.finish()
             }
-            (context as Activity).startActivityForResult(intent, CompanyListActivity.requestCode)
-            //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
+        } else {
+            holder.btnCardCompaniesAddContact.visibility = View.VISIBLE
+            holder.btnCardCompaniesEditCompany.visibility = View.VISIBLE
+            holder.btnCardCompaniesSelectCompany.visibility = View.GONE
+
+            holder.btnCardCompaniesAddContact.setOnClickListener {
+                val intent = Intent(context, ContactEditorActivity::class.java).apply {
+                    putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
+                }
+                context.startActivity(intent)
+            }
+
+            holder.btnCardCompaniesEditCompany.setOnClickListener {
+                val intent = Intent(context, CompanyEditorActivity::class.java).apply {
+                    putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
+
+                    /*putExtra(context.getString(R.string.EXTRA_COMPANY_DOCUMENT_ID), company.documentID)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_STATUS_SPINNER_INDEX), company.status)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_CVS_SPINNER_INDEX), company.cvsSegment)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX), company.communicationType)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX), company.employees)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_NAME), company.name)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_OIB), company.OIB)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_WEB_PAGE), company.webPage)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_PHONE), company.phone)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_DETAILS), company.details)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_INCOME), company.income)*/
+                }
+                (context as Activity).startActivityForResult(intent, CompanyListActivity.requestCodeRefresh)
+                //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
+            }
         }
     }
 
@@ -110,5 +128,6 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: C
 
         val btnCardCompaniesAddContact: Button = itemView.btnCardCompaniesAddContact
         val btnCardCompaniesEditCompany: Button = itemView.btnCardCompaniesEditCompany
+        val btnCardCompaniesSelectCompany: Button = itemView.btnCardCompaniesSelectCompany
     }
 }

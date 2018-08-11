@@ -1,19 +1,22 @@
 package hr.atoscvc.salesforcemobile
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_company_list.*
 
 class CompanyListActivity : AppCompatActivity() {
 
-    companion object RequestCodeEditCompany {
-        const val requestCode = 1
+    //TODO Implementirati Search funkcionalnost (i za Contacts)
+
+    companion object RequestCodesCompany {
+        const val requestCodeRefresh = 1
+        const val requestCodePickCompany = 2
     }
 
     private lateinit var mAuth: FirebaseAuth
@@ -27,7 +30,7 @@ class CompanyListActivity : AppCompatActivity() {
         recyclerViewCompanies.setHasFixedSize(true)
         recyclerViewCompanies.layoutManager = LinearLayoutManager(this)
 
-        val companyList = ArrayList<Company>()
+        val companyList = ArrayList<Company>()      //TODO Prebaciti ovo (i contactList) u posebne Singleton objekte?
 
         companyList.add(Company(
                 "asdbnasd",
@@ -56,7 +59,14 @@ class CompanyListActivity : AppCompatActivity() {
                 "100000"
         ))
 
-        val adapter = CompanyAdapter(companyList, this)     // Do not send applicationContext
+        val adapter = CompanyAdapter(
+                companyList,
+                this,               // Do NOT use applicationContext instead of 'this'
+                intent.getBooleanExtra(
+                        getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT),
+                        false
+                )
+        )
         recyclerViewCompanies.adapter = adapter
     }
 
@@ -76,6 +86,7 @@ class CompanyListActivity : AppCompatActivity() {
         val loginIntent = Intent(this, LoginActivity::class.java)
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(loginIntent)
+        setResult(Activity.RESULT_CANCELED)
         finish()
     }
 
@@ -84,7 +95,7 @@ class CompanyListActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == requestCode) {
+        if (requestCode == requestCodeRefresh) {
             if (resultCode == RESULT_OK) {
                 recyclerViewCompanies.adapter?.notifyDataSetChanged()
             }

@@ -1,5 +1,6 @@
 package hr.atoscvc.salesforcemobile
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -9,11 +10,13 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import hr.atoscvc.salesforcemobile.CompanyListActivity.RequestCodesCompany.requestCodePickCompany
 import kotlinx.android.synthetic.main.activity_contact_editor.*
 
 class ContactEditorActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var chosenCompany: Company
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -137,6 +140,13 @@ class ContactEditorActivity : AppCompatActivity() {
         (application as MyApp).onUserInteracted()
     }
 
+    fun onPickCompanyClicked(@Suppress("UNUSED_PARAMETER") view: View) {
+        val intent = Intent(this, CompanyListActivity::class.java).apply {
+            putExtra(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), true)
+        }
+        startActivityForResult(intent, requestCodePickCompany)
+    }
+
     fun onSaveClicked(@Suppress("UNUSED_PARAMETER") view: View) {
         //TODO Prikazati sve errore, a podatke iscitati iz polja na ekranu
         if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
@@ -154,6 +164,15 @@ class ContactEditorActivity : AppCompatActivity() {
         }
 
         finish()    //Samo ako nema errora
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == requestCodePickCompany) {
+            if (resultCode == Activity.RESULT_OK) {
+                chosenCompany = data?.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as? Company ?: chosenCompany
+                etContactCompanyName.setText(chosenCompany.name)
+            }
+        }
     }
 
 }
