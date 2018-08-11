@@ -11,7 +11,7 @@ data class Company(
         var cvsSegment: Int,
         var details: String,
         var phone: String,
-        var communicationType: Int,  //TODO String-array: ne znam sto da stavim tamo osim Phone (email nemamo u bazi pa to ne mozemo)
+        var communicationType: Int,
         var employees: Int,
         var income: String
 ) : Serializable

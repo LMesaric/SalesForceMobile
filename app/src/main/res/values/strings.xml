@@ -84,6 +84,7 @@
         <item>Bronze</item>
     </string-array>
 
+    <!-- TODO Sto uopce staviti na ovu listu? Email ne drzimo u bazi pa to nema smisla -->
     <string-array name="companyCommunicationType_array">
         <item>Phone</item>
     </string-array>
@@ -137,6 +138,7 @@
     <string name="EXTRA_CONTACT_EMAIL">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_EMAIL</string>
     <string name="EXTRA_CONTACT_DETAILS">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DETAILS</string>
 
+    <string name="EXTRA_COMPANY_IS_LIST_FOR_SELECT">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_IS_LIST_FOR_SELECT</string>
     <string name="EXTRA_COMPANY_ENTIRE_OBJECT">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_ENTIRE_OBJECT</string>
     <string name="EXTRA_COMPANY_DOCUMENT_ID">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DOCUMENT_ID</string>
     <string name="EXTRA_COMPANY_STATUS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_STATUS_SPINNER_INDEX</string>
