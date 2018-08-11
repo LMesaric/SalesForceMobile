@@ -20,63 +20,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnNextNewName"
-            style="@style/mainButtonsStyle"
-            android:layout_width="100dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/button_login_style"
-            android:fontFamily="sans-serif"
-            android:text="Next"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etLastName" />
-
-        <EditText
-            android:id="@+id/etLastName"
-            style="@style/editTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginStart="50dp"
-            android:ems="10"
-            android:hint="@string/LastName"
-            android:inputType="textCapWords"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etFirstName" />
-
-        <EditText
-            android:id="@+id/etFirstName"
-            style="@style/editTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:hint="@string/FirstName"
-            android:inputType="textCapWords"
-            app:layout_constraintBottom_toTopOf="@+id/etLastName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8"
-            app:layout_constraintVertical_bias="0.33"
-            app:layout_constraintVertical_chainStyle="packed" />
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar3"
             android:layout_width="match_parent"
@@ -147,6 +90,63 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <EditText
+            android:id="@+id/etFirstName"
+            style="@style/editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="@string/FirstName"
+            android:inputType="textCapWords"
+            app:layout_constraintBottom_toTopOf="@+id/etLastName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            app:layout_constraintVertical_bias="0.33"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <EditText
+            android:id="@+id/etLastName"
+            style="@style/editTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginStart="50dp"
+            android:ems="10"
+            android:hint="@string/LastName"
+            android:inputType="textCapWords"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etFirstName" />
+
+        <Button
+            android:id="@+id/btnNextNewName"
+            style="@style/mainButtonsStyle"
+            android:layout_width="100dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_login_style"
+            android:fontFamily="sans-serif"
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etLastName" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
