@@ -29,6 +29,8 @@
     <string name="Password">Password</string>
     <string name="ConfirmPassword">Confirm Password</string>
 
+    <string name="emailAlreadyInUse">Email address is already in use.</string>
+
     <string name="firstNameEmptyMessage">First name cannot be empty.</string>
     <string name="lastNameEmptyMessage">Last name cannot be empty.</string>
     <string name="usernameEmptyMessage">Username cannot be empty.</string>

@@ -35,21 +35,21 @@ class EmailFragment : Fragment(), View.OnClickListener {
         return view
     }
 
-    override fun onClick(p0: View?) {
-        val email = etEmail.text.toString()
+    override fun onClick(view: View?) {
+        val email = etEmail.text.toString().trim()
 
         if (email.isBlank()) {
             etEmail.error = getString(R.string.emailEmptyMessage)
         } else {
             mAuth.fetchSignInMethodsForEmail(email)
-                    .addOnCompleteListener {task ->
+                    .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             val check = task.result.signInMethods?.isEmpty() ?: true
                             if (check) {
-                                ActiveUserSingleton.user?.email = email
+                                ActiveUserSingleton.user?.email = email     //FILIP - sto ako user?.email ne prodje, je li onda "null = email" -> try/catch mozda?
                                 replaceFragmentListener.replaceFragment(PasswordFragment())
                             } else {
-                                etEmail.error = "Email already exists"
+                                etEmail.error = getString(R.string.emailAlreadyInUse)
                             }
                         } else {
                             etEmail.error = task.exception?.message
