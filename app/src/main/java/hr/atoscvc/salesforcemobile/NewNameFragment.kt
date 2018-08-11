@@ -1,6 +1,5 @@
 package hr.atoscvc.salesforcemobile
 
-
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -9,11 +8,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 
-
 class NewNameFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var btnNext: Button
     private lateinit var replaceFragmentListener: ReplaceFragmentListener
+    private lateinit var btnNext: Button
     private lateinit var etFirstName: EditText
     private lateinit var etLastName: EditText
 
@@ -45,7 +43,7 @@ class NewNameFragment : Fragment(), View.OnClickListener {
         return view
     }
 
-    override fun onClick(p0: View?) {
+    override fun onClick(view: View?) {
         val firstName = etFirstName.text.toString().trim()
         val lastName = etLastName.text.toString().trim()
         var thereAreNoErrors = true
@@ -63,7 +61,5 @@ class NewNameFragment : Fragment(), View.OnClickListener {
             ActiveUserSingleton.user = User(firstName, lastName, "")
             replaceFragmentListener.replaceFragment(EmailFragment())
         }
-
     }
-
 }

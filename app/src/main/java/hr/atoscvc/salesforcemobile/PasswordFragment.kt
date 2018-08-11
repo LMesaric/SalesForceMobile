@@ -11,39 +11,42 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-
+import hr.atoscvc.salesforcemobile.CheckPasswordConstraints.checkPasswordConstraints
 
 class PasswordFragment : Fragment(), View.OnClickListener {
 
+    private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var btnFinish: Button
     private lateinit var etPassword: EditText
     private lateinit var etConfirmPassword: EditText
-    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
         val view = inflater.inflate(R.layout.fragment_password, container, false)
 
         btnFinish = view.findViewById(R.id.btnFinishPass)
-        btnFinish.setOnClickListener(this)
-
         etPassword = view.findViewById(R.id.etPassword)
         etConfirmPassword = view.findViewById(R.id.etConfirmPassword)
+
+        btnFinish.setOnClickListener(this)
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
 
-        etPassword.addTextChangedListener(PasswordTextWatcher(ActiveUserSingleton.user?.email.toString(), etPassword))
+        etPassword.addTextChangedListener(PasswordTextWatcher(ActiveUserSingleton.user?.email.toString(), etPassword))  //FILIP - null se ne smije poslati u PasswordTextWatcher
+        //LUKA - u PasswordTextWatcher email nije koristan umjesto usernamea -> izbaciti username dio watchera?
 
         return view
     }
 
-    override fun onClick(p0: View?) {
-        val password = etPassword.text.toString()
+    override fun onClick(view: View?) {
+        val password = etPassword.text.toString()   // Do NOT trim the password
         var thereAreNoErrors = true
 
-        val passwordStatus = CheckPasswordConstraints.checkPasswordConstraints(ActiveUserSingleton.user?.email.toString(), password)
+        val passwordStatus = checkPasswordConstraints(ActiveUserSingleton.user?.email.toString(), password)
+
         if (!passwordStatus.success) {
             etPassword.error = passwordStatus.message
             thereAreNoErrors = false
@@ -64,14 +67,12 @@ class PasswordFragment : Fragment(), View.OnClickListener {
                         }
                     }
         }
-
     }
 
     private fun sendToMain() {
         startActivity(Intent(activity, MainActivity::class.java))
         activity?.finish()
     }
-
 
     private fun addUserToDatabase() {
         mAuth.currentUser?.uid?.let {
@@ -88,6 +89,5 @@ class PasswordFragment : Fragment(), View.OnClickListener {
                         }
             }
         }
-
     }
 }

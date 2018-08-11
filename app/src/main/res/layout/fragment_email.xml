@@ -89,7 +89,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="40dp"
-            android:text="How you'll"
+            android:text="How you will"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"

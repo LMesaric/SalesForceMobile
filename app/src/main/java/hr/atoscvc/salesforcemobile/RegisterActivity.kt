@@ -1,16 +1,12 @@
 package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity(), ReplaceFragmentListener {
 
@@ -27,7 +23,6 @@ class RegisterActivity : AppCompatActivity(), ReplaceFragmentListener {
         setContentView(R.layout.activity_register)
 
         db = FirebaseFirestore.getInstance()
-
         mAuth = FirebaseAuth.getInstance()
 
         replaceFragment(NewNameFragment())

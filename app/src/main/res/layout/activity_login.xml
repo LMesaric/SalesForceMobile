@@ -91,7 +91,6 @@
             android:layout_marginTop="15dp"
             app:layout_constraintBottom_toTopOf="@+id/tvRegister"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword"
             app:srcCompat="@drawable/or_label" />
@@ -131,10 +130,9 @@
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toTopOf="@+id/etPassword"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.110000014"
+            app:layout_constraintVertical_bias="0.11"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView

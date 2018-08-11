@@ -1,7 +1,6 @@
 package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity(), LogoutListener {
         (application as MyApp).startUserSession()
 
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "Sales Force Mobile"
+        supportActionBar?.title = getString(R.string.app_name)
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
