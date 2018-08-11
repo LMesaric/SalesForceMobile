@@ -61,7 +61,7 @@ class CompanyListActivity : AppCompatActivity() {
 
         val adapter = CompanyAdapter(
                 companyList,
-                this,               // Do NOT use applicationContext instead of 'this'
+                this,               // Do NOT use 'applicationContext' instead of 'this'
                 intent.getBooleanExtra(
                         getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT),
                         false

@@ -13,7 +13,7 @@ import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
-class CompanyAdapter(private val companyList: ArrayList<Company>, val context: Context, val isForSelect: Boolean) : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
+class CompanyAdapter(private val companyList: ArrayList<Company>, val context: Context, private val isForSelect: Boolean) : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
 
     private var currentPosition = -1    // If -1 is replaced with 0 then the first card will automatically be expanded
 
