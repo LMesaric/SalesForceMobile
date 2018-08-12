@@ -1,5 +1,6 @@
 package hr.atoscvc.salesforcemobile
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -10,6 +11,12 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_contact_list.*
 
 class ContactListActivity : AppCompatActivity() {
+
+    //TODO Implementirati Search funkcionalnost
+
+    companion object {
+        const val requestCodeRefresh = 3
+    }
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -97,7 +104,14 @@ class ContactListActivity : AppCompatActivity() {
                 "masjdban asdaisd"
         ))
 
-        val adapter = ContactAdapter(contactList, this)
+        val adapter = ContactAdapter(
+                contactList,
+                this,
+                intent.getBooleanExtra(
+                        getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT),
+                        false
+                )
+        )
         recyclerViewContacts.adapter = adapter
     }
 
@@ -117,6 +131,7 @@ class ContactListActivity : AppCompatActivity() {
         val loginIntent = Intent(this, LoginActivity::class.java)
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(loginIntent)
+        setResult(Activity.RESULT_CANCELED)
         finish()
     }
 
@@ -124,4 +139,11 @@ class ContactListActivity : AppCompatActivity() {
         (application as MyApp).onUserInteracted()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == requestCodeRefresh) {
+            if (resultCode == RESULT_OK) {
+                recyclerViewContacts.adapter?.notifyDataSetChanged()
+            }
+        }
+    }
 }

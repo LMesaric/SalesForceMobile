@@ -12,11 +12,11 @@ import kotlinx.android.synthetic.main.activity_company_list.*
 
 class CompanyListActivity : AppCompatActivity() {
 
-    //TODO Implementirati Search funkcionalnost (i za Contacts)
+    //TODO Implementirati Search funkcionalnost
 
     companion object RequestCodesCompany {
         const val requestCodeRefresh = 1
-        const val requestCodePickCompany = 2
+        const val requestCodeChooseCompany = 2
     }
 
     private lateinit var mAuth: FirebaseAuth

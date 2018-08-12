@@ -100,6 +100,29 @@
                     app:layout_constraintStart_toStartOf="@+id/tvCardContactsPrefTime"
                     app:layout_constraintTop_toBottomOf="@+id/tvCardContactsPrefTime" />
 
+                <Button
+                    android:id="@+id/btnCardContactsEditContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Edit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardContactsDetails" />
+
+                <Button
+                    android:id="@+id/btnCardContactsSelectContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Select"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardContactsDetails" />
+
             </android.support.constraint.ConstraintLayout>
 
         </android.support.constraint.ConstraintLayout>

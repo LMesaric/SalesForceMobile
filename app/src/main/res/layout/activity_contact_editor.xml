@@ -69,8 +69,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etContactFirstName" />
 
-        <EditText
-            android:id="@+id/etContactCompanyName"
+        <!-- LUKA - tekst premali i previsoko -->
+        <TextView
+            android:id="@+id/tvContactCompanyName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="65dp"
@@ -83,7 +84,6 @@
             android:drawableStart="@drawable/ic_action_company"
             android:ems="10"
             android:hint="Company Name"
-            android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etContactLastName" />
@@ -105,7 +105,7 @@
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etContactCompanyName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvContactCompanyName" />
 
         <EditText
             android:id="@+id/etContactEmail"
@@ -149,13 +149,14 @@
             app:layout_constraintTop_toBottomOf="@+id/spContactPreferredTime" />
 
         <ImageButton
-            android:id="@+id/btnContactPickCompany"
+            android:id="@+id/btnContactChooseCompany"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onPickCompanyClicked"
-            app:layout_constraintBottom_toBottomOf="@+id/etContactCompanyName"
-            app:layout_constraintStart_toEndOf="@+id/etContactCompanyName"
-            app:layout_constraintTop_toTopOf="@+id/etContactCompanyName"
+            android:contentDescription="@string/chooseCompany"
+            android:onClick="onChooseCompanyClicked"
+            app:layout_constraintBottom_toBottomOf="@+id/tvContactCompanyName"
+            app:layout_constraintStart_toEndOf="@+id/tvContactCompanyName"
+            app:layout_constraintTop_toTopOf="@+id/tvContactCompanyName"
             app:srcCompat="@drawable/ic_action_company_accent" />
 
         <Button
