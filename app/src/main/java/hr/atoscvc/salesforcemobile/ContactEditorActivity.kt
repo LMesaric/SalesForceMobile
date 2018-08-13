@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser
 import hr.atoscvc.salesforcemobile.CompanyListActivity.RequestCodesCompany.requestCodeChooseCompany
 import kotlinx.android.synthetic.main.activity_contact_editor.*
 
-//LUKA - malo urediti login i register screen, animacije
+//LUKA - urediti login i register screen, staviti animacije + trimmati sve inpute za login i register
 
 class ContactEditorActivity : AppCompatActivity() {
 
@@ -133,7 +133,6 @@ class ContactEditorActivity : AppCompatActivity() {
     }
 
     fun onSaveClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        //LUKA trimmati sve inpute za login i register!!
         //LUKA Prikazati sve errore, a podatke iscitati iz polja na ekranu (osim chosenCompany) i stvoriti objekt u varijabli 'contact'
         if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
             //FILIP Stvara se novi Contact -> save u bazu

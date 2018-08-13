@@ -106,7 +106,7 @@ class ContactListActivity : AppCompatActivity() {
 
         val adapter = ContactAdapter(
                 contactList,
-                this,
+                this,               // Do NOT use 'applicationContext' instead of 'this'
                 intent.getBooleanExtra(
                         getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT),
                         false

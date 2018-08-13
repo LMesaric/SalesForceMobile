@@ -30,7 +30,7 @@ class CompanyListActivity : AppCompatActivity() {
         recyclerViewCompanies.setHasFixedSize(true)
         recyclerViewCompanies.layoutManager = LinearLayoutManager(this)
 
-        val companyList = ArrayList<Company>()      //TODO Prebaciti ovo (i contactList) u posebne Singleton objekte?
+        val companyList = ArrayList<Company>()      //LUKA Prebaciti ovo (i contactList) u posebne Singleton objekte?
 
         companyList.add(Company(
                 "asdbnasd",
