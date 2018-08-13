@@ -62,6 +62,7 @@ class CompanyEditorActivity : AppCompatActivity() {
 
         //TODO OIB ima fiksan broj znamenaka (mozda druge drzave to nemaju?)
 
+        //LUKA - Company i Contact paziti da nije out of range
         spCompanyStatus.setSelection(company?.status ?: 0)
         spCompanyCvsSegment.setSelection(company?.cvsSegment ?: 0)
         spCompanyCommunicationType.setSelection(company?.communicationType ?: 0)
@@ -101,6 +102,16 @@ class CompanyEditorActivity : AppCompatActivity() {
 
     fun onSaveClicked(@Suppress("UNUSED_PARAMETER") view: View) {
         //LUKA Prikazati sve errore, a podatke iscitati iz polja na ekranu i stvoriti objekt u varijabli 'company'
+        var thereAreNoErrors = true
+
+        val status: Int = spCompanyStatus.selectedItemPosition
+        val oib: String = etCompanyOIB.text.toString().trim()
+        val name: String = etCompanyName.text.toString().trim()
+        var webPage: String? = etCompanyWebPage.text.toString().trim()
+        if (webPage?.isEmpty() != false) {
+            webPage = null
+        }
+        //Dovrsiti popis...
         if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
             //FILIP Stvara se novi Company -> save u bazu
             Toast.makeText(this, "New Company created", Toast.LENGTH_SHORT).show()
