@@ -100,9 +100,9 @@ class CompanyEditorActivity : AppCompatActivity() {
     }
 
     fun onSaveClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        //TODO Prikazati sve errore, a podatke iscitati iz polja na ekranu i stvoriti objekt u varijabli 'company'
+        //LUKA Prikazati sve errore, a podatke iscitati iz polja na ekranu i stvoriti objekt u varijabli 'company'
         if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
-            //TODO Stvara se novi Company -> save u bazu
+            //FILIP Stvara se novi Company -> save u bazu
             Toast.makeText(this, "New Company created", Toast.LENGTH_SHORT).show()
         } else {
             val documentID = company?.documentID
@@ -111,7 +111,7 @@ class CompanyEditorActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_CANCELED)
                 finish()
             } else {
-                //TODO Sprema se edit postojeceg Companyja -> update u bazu
+                //FILIP Sprema se edit postojeceg Companyja -> update u bazu
                 Toast.makeText(this, "Company updated", Toast.LENGTH_SHORT).show()
             }
         }

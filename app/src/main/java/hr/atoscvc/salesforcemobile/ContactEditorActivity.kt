@@ -94,7 +94,7 @@ class ContactEditorActivity : AppCompatActivity() {
         spContactPreferredTime.setSelection(contact?.preferredTime ?: 0)
         etContactFirstName.setText(contact?.firstName)
         etContactLastName.setText(contact?.lastName)
-        tvContactCompanyName.text = chosenCompany?.name
+        etContactCompanyName.setText(chosenCompany?.name)
         etContactPhone.setText(contact?.phone)
         etContactEmail.setText(contact?.email)
         etContactDetails.setText(contact?.details)
@@ -133,9 +133,10 @@ class ContactEditorActivity : AppCompatActivity() {
     }
 
     fun onSaveClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        //TODO Prikazati sve errore, a podatke iscitati iz polja na ekranu (osim chosenCompany) i stvoriti objekt u varijabli 'contact'
+        //LUKA trimmati sve inpute za login i register!!
+        //LUKA Prikazati sve errore, a podatke iscitati iz polja na ekranu (osim chosenCompany) i stvoriti objekt u varijabli 'contact'
         if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
-            //TODO Stvara se novi Contact -> save u bazu
+            //FILIP Stvara se novi Contact -> save u bazu
             Toast.makeText(this, "New Contact created", Toast.LENGTH_SHORT).show()
         } else {
             val documentID = contact?.documentID
@@ -143,7 +144,7 @@ class ContactEditorActivity : AppCompatActivity() {
                 Toast.makeText(this, "Unknown error occurred", Toast.LENGTH_SHORT).show()
                 finish()
             } else {
-                //TODO Sprema se edit postojeceg Contacta -> update u bazu
+                //FILIP Sprema se edit postojeceg Contacta -> update u bazu
                 Toast.makeText(this, "Contact updated", Toast.LENGTH_SHORT).show()
             }
         }
@@ -155,7 +156,7 @@ class ContactEditorActivity : AppCompatActivity() {
         if (requestCode == requestCodeChooseCompany) {
             if (resultCode == Activity.RESULT_OK) {
                 chosenCompany = data?.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as? Company ?: chosenCompany
-                tvContactCompanyName.text = chosenCompany?.name
+                etContactCompanyName.setText(chosenCompany?.name)
             }
         }
     }

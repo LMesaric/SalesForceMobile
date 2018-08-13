@@ -50,16 +50,19 @@
     <string name="editCompany">Edit Company</string>
     <string name="chooseCompany">Choose Company</string>
 
+    <string name="Save">Save</string>
+
     <string name="resetPassword">Reset Password</string>
     <string name="reset">Reset</string>
     <string name="resetPasswordDescriptionLabel">We will send you an email with a link to reset your password. Please check your Spam folder.</string>
 
+    <string name="change">Change</string>
     <string name="changePassword">Change Password</string>
     <string name="oldPassword">Old Password</string>
     <string name="newPassword">New Password</string>
     <string name="wrongPassword">Wrong password.</string>
-    <string name="change">Change</string>
     <string name="passChangeSuccess">Password changed successfully!</string>
+
 
     <string-array name="status_array">
         <item>ACTIVE</item>
