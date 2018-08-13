@@ -13,6 +13,10 @@ import com.google.firebase.auth.FirebaseAuth
 
 class ContactsFragment : Fragment() {
 
+    companion object {
+        const val requestCodeRefresh = 3
+    }
+
     private lateinit var mAuth: FirebaseAuth
     private lateinit var recyclerView: RecyclerView
 
@@ -317,10 +321,27 @@ class ContactsFragment : Fragment() {
                 1,
                 "masjdban asdaisd"
         ))
-        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, it) }
+        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, it, false) }
         recyclerView.adapter = adapter
+
+        /*val adapter = ContactAdapter(
+                contactList,
+                this,
+                intent.getBooleanExtra(
+                        getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT),
+                        false
+                )
+        )*/
 
         return view
     }
+
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == ContactsFragment.requestCodeRefresh) {
+            if (resultCode == RESULT_OK) {
+                recyclerViewContacts.adapter?.notifyDataSetChanged()
+            }
+        }
+    }*/
 
 }

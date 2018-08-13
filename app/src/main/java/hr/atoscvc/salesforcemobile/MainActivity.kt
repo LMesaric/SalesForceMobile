@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -87,7 +86,7 @@ class MainActivity : AppCompatActivity(), LogoutListener {
         finish()
     }
 
-    fun onAddContact(@Suppress("UNUSED_PARAMETER") view: View) {
+    /*fun onAddContact(@Suppress("UNUSED_PARAMETER") view: View) {
         val intent = Intent(this, ContactEditorActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
         }
@@ -110,7 +109,7 @@ class MainActivity : AppCompatActivity(), LogoutListener {
         val intent = Intent(this, CompanyListActivity::class.java)
         startActivity(intent)
     }
-
+*/
     override fun onSessionTimeout() {
         sendToLogin()
     }
