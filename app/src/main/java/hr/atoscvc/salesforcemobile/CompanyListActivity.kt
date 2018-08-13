@@ -11,11 +11,11 @@ import com.google.firebase.auth.FirebaseUser
 
 class CompanyListActivity : AppCompatActivity() {
 
-    //TODO Implementirati Search funkcionalnost (i za Contacts)
+    //TODO Implementirati Search funkcionalnost
 
     companion object RequestCodesCompany {
         const val requestCodeRefresh = 1
-        const val requestCodePickCompany = 2
+        const val requestCodeChooseCompany = 2
     }
 
     private lateinit var mAuth: FirebaseAuth
@@ -28,7 +28,7 @@ class CompanyListActivity : AppCompatActivity() {
         //recyclerViewCompanies.setHasFixedSize(true)
        // recyclerViewCompanies.layoutManager = LinearLayoutManager(this)
 
-        val companyList = ArrayList<Company>()      //TODO Prebaciti ovo (i contactList) u posebne Singleton objekte?
+        val companyList = ArrayList<Company>()      //LUKA Prebaciti ovo (i contactList) u posebne Singleton objekte?
 
         companyList.add(Company(
                 "asdbnasd",

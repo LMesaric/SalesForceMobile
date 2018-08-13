@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_contact_list.*
 
 class ContactListActivity : AppCompatActivity() {
 
@@ -14,12 +15,12 @@ class ContactListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_contact_list)
+        setContentView(R.layout.activity_contact_list)
 
         mAuth = FirebaseAuth.getInstance()
 
-        //recyclerViewContacts.setHasFixedSize(true)
-        //recyclerViewContacts.layoutManager = LinearLayoutManager(this)
+        recyclerViewContacts.setHasFixedSize(true)
+        recyclerViewContacts.layoutManager = LinearLayoutManager(this)
 
         val contactList = ArrayList<Contact>()
 
@@ -97,7 +98,7 @@ class ContactListActivity : AppCompatActivity() {
         ))
 
         val adapter = ContactAdapter(contactList, this)
-       // recyclerViewContacts.adapter = adapter
+        recyclerViewContacts.adapter = adapter
     }
 
     override fun onResume() {

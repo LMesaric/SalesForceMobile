@@ -48,17 +48,21 @@
     <string name="newCompany">New Company</string>
     <string name="editContact">Edit Contact</string>
     <string name="editCompany">Edit Company</string>
+    <string name="chooseCompany">Choose Company</string>
+
+    <string name="Save">Save</string>
 
     <string name="resetPassword">Reset Password</string>
     <string name="reset">Reset</string>
     <string name="resetPasswordDescriptionLabel">We will send you an email with a link to reset your password. Please check your Spam folder.</string>
 
+    <string name="change">Change</string>
     <string name="changePassword">Change Password</string>
     <string name="oldPassword">Old Password</string>
     <string name="newPassword">New Password</string>
     <string name="wrongPassword">Wrong password.</string>
-    <string name="change">Change</string>
     <string name="passChangeSuccess">Password changed successfully!</string>
+
 
     <string-array name="status_array">
         <item>ACTIVE</item>
@@ -66,6 +70,7 @@
     </string-array>
 
     <string-array name="contactTitle_array">
+        <item>UNDEFINED</item>
         <item>Mr.</item>
         <item>Mrs.</item>
         <item>Ms.</item>
@@ -73,11 +78,13 @@
     </string-array>
 
     <string-array name="contactPreferredTime_array">
+        <item>UNDEFINED</item>
         <item>Morning</item>
         <item>Afternoon</item>
     </string-array>
 
     <string-array name="companyCVS_array">
+        <item>UNDEFINED</item>
         <item>Platinum</item>
         <item>Gold</item>
         <item>Silver</item>
@@ -86,10 +93,12 @@
 
     <!-- TODO Sto uopce staviti na ovu listu? Email ne drzimo u bazi pa to nema smisla -->
     <string-array name="companyCommunicationType_array">
+        <item>UNDEFINED</item>
         <item>Phone</item>
     </string-array>
 
     <string-array name="companyEmployees_array">
+        <item>UNDEFINED</item>
         <item>&lt;10</item>
         <item>10–24</item>
         <item>25–49</item>
@@ -127,6 +136,7 @@
     <string name="EXTRA_IS_EDITOR_FOR_NEW_ITEM">hr.atoscvc.salesforcemobile.EXTRA_IS_EDITOR_FOR_NEW_ITEM</string>
 
     <string name="EXTRA_CONTACT_ENTIRE_OBJECT">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_ENTIRE_OBJECT</string>
+    <string name="EXTRA_CONTACT_IS_LIST_FOR_SELECT">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_IS_LIST_FOR_SELECT</string>
     <string name="EXTRA_CONTACT_DOCUMENT_ID">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DOCUMENT_ID</string>
     <string name="EXTRA_CONTACT_STATUS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_STATUS_SPINNER_INDEX</string>
     <string name="EXTRA_CONTACT_TITLE_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_TITLE_SPINNER_INDEX</string>
@@ -138,8 +148,8 @@
     <string name="EXTRA_CONTACT_EMAIL">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_EMAIL</string>
     <string name="EXTRA_CONTACT_DETAILS">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DETAILS</string>
 
-    <string name="EXTRA_COMPANY_IS_LIST_FOR_SELECT">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_IS_LIST_FOR_SELECT</string>
     <string name="EXTRA_COMPANY_ENTIRE_OBJECT">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_ENTIRE_OBJECT</string>
+    <string name="EXTRA_COMPANY_IS_LIST_FOR_SELECT">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_IS_LIST_FOR_SELECT</string>
     <string name="EXTRA_COMPANY_DOCUMENT_ID">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DOCUMENT_ID</string>
     <string name="EXTRA_COMPANY_STATUS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_STATUS_SPINNER_INDEX</string>
     <string name="EXTRA_COMPANY_CVS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_CVS_SPINNER_INDEX</string>

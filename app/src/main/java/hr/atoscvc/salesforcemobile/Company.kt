@@ -3,15 +3,15 @@ package hr.atoscvc.salesforcemobile
 import java.io.Serializable
 
 data class Company(
-        var documentID: String,
-        var status: Int,
-        var OIB: String,
-        var name: String,
-        var webPage: String,
-        var cvsSegment: Int,
-        var details: String,
-        var phone: String,
-        var communicationType: Int,
-        var employees: Int,
-        var income: String
+        var documentID: String? = null,     // 'documentID' set to 'null' means we are creating a new Company
+        var status: Int,                    // mandatory
+        var OIB: String,                    // mandatory
+        var name: String,                   // mandatory
+        var webPage: String? = null,
+        var cvsSegment: Int = 0,
+        var details: String? = null,
+        var phone: String? = null,
+        var communicationType: Int = 0,
+        var employees: Int = 0,
+        var income: String? = null
 ) : Serializable

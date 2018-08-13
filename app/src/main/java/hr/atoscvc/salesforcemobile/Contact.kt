@@ -3,14 +3,14 @@ package hr.atoscvc.salesforcemobile
 import java.io.Serializable
 
 data class Contact(
-        var documentID: String,
-        var status: Int,
-        var title: Int,
-        var firstName: String,
-        var lastName: String,
-        var company: Company,
-        var phone: String,
-        var email: String,
-        var preferredTime: Int,
-        var details: String
+        var documentID: String? = null,     // 'documentID' set to 'null' means we are creating a new Contact
+        var status: Int,                    // mandatory
+        var title: Int = 0,
+        var firstName: String,              // mandatory
+        var lastName: String,               // mandatory
+        var company: Company,               // mandatory
+        var phone: String? = null,
+        var email: String? = null,
+        var preferredTime: Int = 0,
+        var details: String? = null
 ) : Serializable

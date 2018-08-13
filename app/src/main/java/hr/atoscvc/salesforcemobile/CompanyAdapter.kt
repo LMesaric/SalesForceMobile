@@ -28,7 +28,7 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: C
 
     override fun onBindViewHolder(holder: CompanyViewHolder, position: Int) {
         val company = companyList[position]
-        //LUKA - outOfBounds za Company i Contact
+        //LUKA - outOfBounds za Company i Contact files
         holder.tvCardCompaniesName.text = company.name
         holder.tvCardCompaniesCvsSegment.text = context.resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]
         holder.tvCardCompaniesStatus.text = context.resources.getStringArray(R.array.status_array)[company.status]
@@ -87,18 +87,6 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: C
                 val intent = Intent(context, CompanyEditorActivity::class.java).apply {
                     putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
                     putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-
-                    /*putExtra(context.getString(R.string.EXTRA_COMPANY_DOCUMENT_ID), company.documentID)
-                    putExtra(context.getString(R.string.EXTRA_COMPANY_STATUS_SPINNER_INDEX), company.status)
-                    putExtra(context.getString(R.string.EXTRA_COMPANY_CVS_SPINNER_INDEX), company.cvsSegment)
-                    putExtra(context.getString(R.string.EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX), company.communicationType)
-                    putExtra(context.getString(R.string.EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX), company.employees)
-                    putExtra(context.getString(R.string.EXTRA_COMPANY_NAME), company.name)
-                    putExtra(context.getString(R.string.EXTRA_COMPANY_OIB), company.OIB)
-                    putExtra(context.getString(R.string.EXTRA_COMPANY_WEB_PAGE), company.webPage)
-                    putExtra(context.getString(R.string.EXTRA_COMPANY_PHONE), company.phone)
-                    putExtra(context.getString(R.string.EXTRA_COMPANY_DETAILS), company.details)
-                    putExtra(context.getString(R.string.EXTRA_COMPANY_INCOME), company.income)*/
                 }
                 (context as Activity).startActivityForResult(intent, CompanyListActivity.requestCodeRefresh)
                 //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
