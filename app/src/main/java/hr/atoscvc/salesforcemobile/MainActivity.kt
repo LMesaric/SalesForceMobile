@@ -2,6 +2,7 @@ package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -24,8 +25,45 @@ class MainActivity : AppCompatActivity(), LogoutListener {
         (application as MyApp).registerSessionListener(this)
         (application as MyApp).startUserSession()
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.title = getString(R.string.app_name)
+        appBarLayout.setExpanded(false, true)
+        appBarLayout.isActivated = false
+
+        setSupportActionBar(toolBar)
+        coordinator.title = resources.getString(R.string.Home)
+
+        navBar.selectedItemId = R.id.navBarHome
+        replaceFragment(HomeFragment())
+
+        navBar.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+
+                R.id.navBarHome -> {
+                    appBarLayout.setExpanded(false, true)
+                    appBarLayout.isActivated = false
+                    coordinator.title = resources.getString(R.string.Home)
+                    replaceFragment(HomeFragment())
+                    true
+                }
+
+                R.id.navBarContacts -> {
+                    appBarLayout.setExpanded(true, true)
+                    appBarLayout.isActivated = true
+                    coordinator.title = resources.getString(R.string.Contacts)
+                    replaceFragment(ContactsFragment())
+                    true
+                }
+
+                R.id.navBarCompanies -> {
+                    appBarLayout.setExpanded(true, true)
+                    appBarLayout.isActivated = true
+                    coordinator.title = resources.getString(R.string.Companies)
+                    replaceFragment(CompaniesFragment())
+                    true
+                }
+
+                else -> false
+            }
+        }
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
@@ -99,6 +137,12 @@ class MainActivity : AppCompatActivity(), LogoutListener {
         }
 
         return true
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainContainer, fragment)
+        fragmentTransaction.commit()
     }
 
 }

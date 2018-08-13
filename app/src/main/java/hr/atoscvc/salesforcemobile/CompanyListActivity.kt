@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_company_list.*
 
 class CompanyListActivity : AppCompatActivity() {
 
@@ -23,12 +22,11 @@ class CompanyListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_company_list)
 
         mAuth = FirebaseAuth.getInstance()
 
-        recyclerViewCompanies.setHasFixedSize(true)
-        recyclerViewCompanies.layoutManager = LinearLayoutManager(this)
+        //recyclerViewCompanies.setHasFixedSize(true)
+       // recyclerViewCompanies.layoutManager = LinearLayoutManager(this)
 
         val companyList = ArrayList<Company>()      //TODO Prebaciti ovo (i contactList) u posebne Singleton objekte?
 
@@ -67,7 +65,7 @@ class CompanyListActivity : AppCompatActivity() {
                         false
                 )
         )
-        recyclerViewCompanies.adapter = adapter
+        //recyclerViewCompanies.adapter = adapter
     }
 
     override fun onResume() {
@@ -97,7 +95,7 @@ class CompanyListActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == requestCodeRefresh) {
             if (resultCode == RESULT_OK) {
-                recyclerViewCompanies.adapter?.notifyDataSetChanged()
+                //recyclerViewCompanies.adapter?.notifyDataSetChanged()
             }
         }
     }

@@ -46,9 +46,9 @@ class RegisterActivity : AppCompatActivity(), ReplaceFragmentListener {
     override fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         if (fragment.javaClass == NewNameFragment().javaClass) {
-            fragmentTransaction.replace(R.id.mainContainer, fragment)
+            fragmentTransaction.replace(R.id.regContainer, fragment)
         } else {
-            fragmentTransaction.replace(R.id.mainContainer, fragment).addToBackStack("tag")
+            fragmentTransaction.replace(R.id.regContainer, fragment).addToBackStack("tag")
         }
         fragmentTransaction.commit()
     }
