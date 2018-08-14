@@ -2,7 +2,6 @@ package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -101,29 +100,62 @@ class CompanyEditorActivity : AppCompatActivity() {
         var thereAreNoErrors = true
 
         val status: Int = spCompanyStatus.selectedItemPosition
+        val cvsSegment: Int = spCompanyCvsSegment.selectedItemPosition
+        val communicationType: Int = spCompanyCommunicationType.selectedItemPosition
+        val employees: Int = spCompanyEmployees.selectedItemPosition
         val oib: String = etCompanyOIB.text.toString().trim()
         val name: String = etCompanyName.text.toString().trim()
+        val income: String? = etCompanyIncome.text.toString().trim()
+
         var webPage: String? = etCompanyWebPage.text.toString().trim()
         if (webPage?.isEmpty() != false) {
             webPage = null
         }
-        //Dovrsiti popis...
-        if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
-            //FILIP Stvara se novi Company -> save u bazu
-            Toast.makeText(this, "New Company created", Toast.LENGTH_SHORT).show()
-        } else {
-            val documentID = company?.documentID
-            if (documentID.isNullOrBlank()) {
-                Toast.makeText(this, "Unknown error occurred", Toast.LENGTH_SHORT).show()
-                setResult(Activity.RESULT_CANCELED)
-                finish()
-            } else {
-                //FILIP Sprema se edit postojeceg Companyja -> update u bazu
-                Toast.makeText(this, "Company updated", Toast.LENGTH_SHORT).show()
-            }
+        var details: String? = etCompanyDetails.text.toString().trim()
+        if (details?.isEmpty() != false) {
+            details = null
+        }
+        var phone: String? = etCompanyPhone.text.toString().trim()
+        if (phone?.isEmpty() != false) {
+            phone = null
         }
 
-        setResult(RESULT_OK)    //Samo ako nema errora
-        finish()
+        if (name.isEmpty()) {
+            etCompanyName.error = getString(R.string.companyNameEmptyMessage)
+            thereAreNoErrors = false
+        }
+
+        if (oib.isEmpty()) {
+            etCompanyOIB.error = getString(R.string.oibEmptyMessage)
+            thereAreNoErrors = false
+        } else if (!oib.matches("\\d+".toRegex())) {
+            etCompanyOIB.error = getString(R.string.oibOnlyDigitsMessage)
+            thereAreNoErrors = false
+        }
+
+        //LUKA - Dovrsiti popis...
+
+        if (thereAreNoErrors) {
+            val documentID = company?.documentID
+            company = Company(null, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
+
+            if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
+                //FILIP Stvara se novi Company -> save 'company' u bazu
+                Toast.makeText(this, "New Company created", Toast.LENGTH_SHORT).show()
+            } else {
+                if (documentID.isNullOrBlank()) {
+                    Toast.makeText(this, "Unknown error occurred", Toast.LENGTH_SHORT).show()
+                    setResult(Activity.RESULT_CANCELED)
+                    finish()
+                } else {
+                    //FILIP Sprema se edit postojeceg Companyja -> update 'company' u bazu
+                    company?.documentID = documentID
+                    Toast.makeText(this, "Company updated", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            setResult(RESULT_OK)
+            finish()
+        }
     }
 }

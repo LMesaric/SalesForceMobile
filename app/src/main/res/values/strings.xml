@@ -37,6 +37,9 @@
     <string name="emailEmptyMessage">E-mail cannot be empty.</string>
     <string name="passwordEmptyMessage">Password cannot be empty.</string>
     <string name="wrongConfirmPassword">Specified passwords do not match.</string>
+    <string name="companyNameEmptyMessage">Company name cannot be empty.</string>
+    <string name="oibEmptyMessage">OIB cannot be empty.</string>
+    <string name="oibOnlyDigitsMessage">OIB must contain only digits.</string>
 
     <string name="addContact">Add a new contact</string>
     <string name="viewContacts">View all contacts</string>
