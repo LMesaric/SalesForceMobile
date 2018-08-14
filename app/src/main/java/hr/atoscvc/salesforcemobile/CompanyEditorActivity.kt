@@ -1,12 +1,10 @@
 package hr.atoscvc.salesforcemobile
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_company_editor.*
@@ -136,23 +134,11 @@ class CompanyEditorActivity : AppCompatActivity() {
         //LUKA - Dovrsiti popis...
 
         if (thereAreNoErrors) {
-            val documentID = company?.documentID
+            val documentID: String? = company?.documentID
             company = Company(null, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
+            company?.documentID = documentID
 
-            if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
-                //FILIP Stvara se novi Company -> save 'company' u bazu
-                Toast.makeText(this, "New Company created", Toast.LENGTH_SHORT).show()
-            } else {
-                if (documentID.isNullOrBlank()) {
-                    Toast.makeText(this, "Unknown error occurred", Toast.LENGTH_SHORT).show()
-                    setResult(Activity.RESULT_CANCELED)
-                    finish()
-                } else {
-                    //FILIP Sprema se edit postojeceg Companyja -> update 'company' u bazu
-                    company?.documentID = documentID
-                    Toast.makeText(this, "Company updated", Toast.LENGTH_SHORT).show()
-                }
-            }
+            //FILIP Stvara se (ID == null) ili updatea (ID != null) 'company' -> poruke useru "New Company created" / "Company updated"
 
             setResult(RESULT_OK)
             finish()
