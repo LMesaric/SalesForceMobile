@@ -1,7 +1,6 @@
 package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
@@ -12,7 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_contacts.view.*
 
-class ContactAdapter(private val contactList: ArrayList<Contact>, val context: Context, private val isForSelect: Boolean) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+class ContactAdapter(private val contactList: ArrayList<Contact>, val context: Activity, private val isForSelect: Boolean) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     private var currentPosition = -1    // If -1 is replaced with 0 then the first card will automatically be expanded
 
@@ -69,7 +68,7 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: C
                 //TODO Use this for creating opportunities
                 val intent = Intent()
                 intent.putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-                (context as Activity).setResult(Activity.RESULT_OK, intent)
+                context.setResult(Activity.RESULT_OK, intent)
                 context.finish()
             }
         } else {
@@ -81,7 +80,7 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: C
                     putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
                     putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
                 }
-                //(context as Activity).startActivityForResult(intent, ContactListActivity.requestCodeRefresh)
+                context.startActivityForResult(intent, ContactsFragment.requestCodeRefresh)
                 //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
             }
         }

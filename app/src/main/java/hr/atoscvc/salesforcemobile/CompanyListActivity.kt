@@ -1,3 +1,4 @@
+/*
 package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
@@ -100,3 +101,4 @@ class CompanyListActivity : AppCompatActivity() {
         }
     }
 }
+*/

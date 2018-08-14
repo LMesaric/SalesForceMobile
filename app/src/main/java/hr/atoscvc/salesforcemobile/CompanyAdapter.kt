@@ -2,7 +2,6 @@ package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
 import android.app.Activity.RESULT_OK
-import android.content.Context
 import android.content.Intent
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
@@ -13,7 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
-class CompanyAdapter(private val companyList: ArrayList<Company>, val context: Context, private val isForSelect: Boolean) : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
+class CompanyAdapter(private val companyList: ArrayList<Company>, val context: Activity, private val isForSelect: Boolean) : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
 
     private var currentPosition = -1    // If -1 is replaced with 0 then the first card will automatically be expanded
 
@@ -67,7 +66,7 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: C
             holder.btnCardCompaniesSelectCompany.setOnClickListener {
                 val intent = Intent()
                 intent.putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-                (context as Activity).setResult(RESULT_OK, intent)
+                context.setResult(RESULT_OK, intent)
                 context.finish()
             }
         } else {
@@ -88,7 +87,7 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: C
                     putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
                     putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
                 }
-                (context as Activity).startActivityForResult(intent, CompanyListActivity.requestCodeRefresh)
+                (context).startActivityForResult(intent, CompaniesFragment.requestCodeRefresh)
                 //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
             }
         }

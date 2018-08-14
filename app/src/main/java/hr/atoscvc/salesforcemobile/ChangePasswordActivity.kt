@@ -104,10 +104,6 @@ class ChangePasswordActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        window.setBackgroundDrawable(BitmapDrawable(
-                applicationContext.resources,
-                (application as MyApp).getInstance(applicationContext.resources)
-        ))
         val user: FirebaseUser? = mAuth.currentUser
         if (user == null) {
             sendToLogin()

@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import hr.atoscvc.salesforcemobile.CompanyListActivity.RequestCodesCompany.requestCodeChooseCompany
 import kotlinx.android.synthetic.main.activity_contact_editor.*
 
 //LUKA - urediti login i register screen, staviti animacije + trimmati sve inpute za login i register
@@ -103,10 +102,6 @@ class ContactEditorActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        window.setBackgroundDrawable(BitmapDrawable(
-                applicationContext.resources,
-                (application as MyApp).getInstance(applicationContext.resources)
-        ))
         val user: FirebaseUser? = mAuth.currentUser
         if (user == null) {
             sendToLogin()
@@ -126,10 +121,10 @@ class ContactEditorActivity : AppCompatActivity() {
 
     fun onChooseCompanyClicked(@Suppress("UNUSED_PARAMETER") view: View) {
         //TODO Osim biranja Companyja, trebalo bi omoguciti i kreiranje novog u istom prozoru -> problem vracanja podatka kroz intent
-        val intent = Intent(this, CompanyListActivity::class.java).apply {
-            putExtra(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), true)
+        /**val intent = Intent(this, CompanyListActivity::class.java).apply {
+        putExtra(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), true)
         }
-        startActivityForResult(intent, requestCodeChooseCompany)
+        startActivityForResult(intent, CompaniesFragment.requestCodeChooseCompany)*/
     }
 
     fun onSaveClicked(@Suppress("UNUSED_PARAMETER") view: View) {
@@ -152,7 +147,7 @@ class ContactEditorActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == requestCodeChooseCompany) {
+        if (requestCode == CompaniesFragment.requestCodeChooseCompany) {
             if (resultCode == Activity.RESULT_OK) {
                 chosenCompany = data?.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as? Company ?: chosenCompany
                 etContactCompanyName.setText(chosenCompany?.name)

@@ -7,48 +7,63 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toTopOf="@+id/navBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add" />
+
     <android.support.design.widget.CoordinatorLayout
-        android:layout_height="0dp"
+        android:id="@+id/coordinatorLayout"
         android:layout_width="0dp"
+        android:layout_height="0dp"
         app:expandedTitleGravity="bottom"
         app:layout_constraintBottom_toTopOf="@id/navBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:fitsSystemWindows="true" >
+            android:fitsSystemWindows="true">
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/coordinator"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:contentScrim="?attr/colorPrimary"
+                android:fitsSystemWindows="true"
                 app:collapsedTitleTextAppearance="@style/collapsedToolbar"
+                app:contentScrim="?attr/colorPrimary"
                 app:expandedTitleTextAppearance="@style/expandedToolbar"
-                android:fitsSystemWindows="true" >
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolBar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    android:theme="@style/MenuTheme"/>
+                    android:theme="@style/MenuTheme"
+                    app:layout_collapseMode="pin" />
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
         </android.support.design.widget.AppBarLayout>
+
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="fill_vertical"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:layout_gravity="fill_vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <!-- content -->
@@ -56,9 +71,9 @@
         </android.support.v4.widget.NestedScrollView>
 
         <RelativeLayout
-            android:elevation="1dp"
             android:layout_width="match_parent"
             android:layout_height="8dp"
+            android:elevation="1dp"
             app:layout_anchor="@id/coordinator"
             app:layout_anchorGravity="bottom">
 
@@ -66,14 +81,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:layout_alignParentBottom="true"
-                android:background="@drawable/toolbar_shadow"/>
+                android:background="@drawable/toolbar_shadow" />
         </RelativeLayout>
+
         <FrameLayout
             android:id="@+id/mainContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" >
-        </FrameLayout>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </android.support.design.widget.CoordinatorLayout>
 
@@ -81,6 +96,8 @@
         android:id="@+id/navBar"
         android:layout_width="0dp"
         android:layout_height="56dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

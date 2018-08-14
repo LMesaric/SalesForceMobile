@@ -1,7 +1,11 @@
 package hr.atoscvc.salesforcemobile
 
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -19,7 +23,9 @@ class ContactsFragment : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var recyclerView: RecyclerView
+    private var fabAddContacts: FloatingActionButton? = null
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -33,6 +39,15 @@ class ContactsFragment : Fragment() {
 
         val contactList = ArrayList<Contact>()
 
+        fabAddContacts = activity?.findViewById(R.id.fabAdd)
+        fabAddContacts?.visibility = View.VISIBLE
+        fabAddContacts?.setOnClickListener {
+            val intent = Intent(activity, ContactEditorActivity::class.java).apply {
+                putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
+            }
+            startActivity(intent)
+        }
+
         contactList.add(Contact(
                 "akjssgddad",
                 0,
@@ -321,7 +336,7 @@ class ContactsFragment : Fragment() {
                 1,
                 "masjdban asdaisd"
         ))
-        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, it, false) }
+        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, activity as Activity, false) }
         recyclerView.adapter = adapter
 
         /*val adapter = ContactAdapter(
