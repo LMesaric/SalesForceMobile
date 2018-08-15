@@ -1,10 +1,8 @@
 package hr.atoscvc.salesforcemobile
 
-import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,7 +59,6 @@ class ContactEditFragment : Fragment() {
         btnSave.setOnClickListener { _ ->
             //LUKA Prikazati sve errore, a podatke iscitati iz polja na ekranu (osim chosenCompany) i stvoriti objekt u varijabli 'contact'
             if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
-                //FILIP Stvara se novi Contact -> save u bazu
                 val docRef: DocumentReference? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").document() }
                 contact = chosenCompany?.let { Contact(docRef?.id, spContactStatus.selectedItemPosition, spContactTitle.selectedItemPosition, etContactFirstName.text.toString(), etContactLastName.text.toString(), it, etContactPhone.text.toString(), etContactEmail.text.toString(), spContactPreferredTime.selectedItemPosition, etContactDetails.text.toString()) }
                 contact?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
@@ -79,8 +76,16 @@ class ContactEditFragment : Fragment() {
                     Toast.makeText(activity, "Unknown error occurred", Toast.LENGTH_SHORT).show()
                     activity?.finish()
                 } else {
-                    //FILIP Sprema se edit postojeceg Contacta -> update u bazu
-                    Toast.makeText(activity, "Contact updated", Toast.LENGTH_SHORT).show()
+                    contact = chosenCompany?.let { Contact(contact?.documentID, spContactStatus.selectedItemPosition, spContactTitle.selectedItemPosition, etContactFirstName.text.toString(), etContactLastName.text.toString(), it, etContactPhone.text.toString(), etContactEmail.text.toString(), spContactPreferredTime.selectedItemPosition, etContactDetails.text.toString()) }
+                    mAuth.uid?.let { contact?.let { it1 -> db.collection("Users").document(it).collection("Contacts").document(contact?.documentID.toString()).set(it1) } }?.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(activity, "Contact updated", Toast.LENGTH_LONG).show()
+                            activity?.setResult(AppCompatActivity.RESULT_OK)
+                            activity?.finish()
+                        } else {
+                            Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
             }
         }
@@ -91,7 +96,6 @@ class ContactEditFragment : Fragment() {
             activity?.title = getString(R.string.newContact)
         } else {
             activity?.title = getString(R.string.editContact)
-            chosenCompany = contact?.company
         }
 
         spContactTitle.adapter = ArrayAdapter.createFromResource(

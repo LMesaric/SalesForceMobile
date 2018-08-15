@@ -139,24 +139,32 @@ class CompanyEditorActivity : AppCompatActivity() {
         //LUKA - Dovrsiti popis...
 
         if (thereAreNoErrors) {
-            val documentID: String? = company?.documentID
-            company = Company(null, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
-            company?.documentID = documentID
 
-            //FILIP Stvara se (ID == null) ili updatea (ID != null) 'company' -> poruke useru "New Company created" / "Company updated"
-
-            //FILIP Stvara se novi Contact -> save u bazu
-            val docRef: DocumentReference? = mAuth.uid?.let { db.collection("Users").document(it).collection("Companies").document() }
-            company = Company(docRef?.id, spCompanyStatus.selectedItemPosition, etCompanyOIB.text.toString(), etCompanyName.text.toString(), etCompanyWebPage.text.toString(), spCompanyCvsSegment.selectedItemPosition, etCompanyDetails.text.toString(), etCompanyPhone.text.toString(), spCompanyCommunicationType.selectedItemPosition, spCompanyEmployees.selectedItemPosition, etCompanyIncome.text.toString())
-            company?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(this, "New Company created", Toast.LENGTH_SHORT).show()
-                    setResult(AppCompatActivity.RESULT_OK)
-                    finish()
-                } else {
-                    Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+            if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
+                val docRef: DocumentReference? = mAuth.uid?.let { db.collection("Users").document(it).collection("Companies").document() }
+                company = Company(docRef?.id, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
+                company?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "New Company created", Toast.LENGTH_SHORT).show()
+                        setResult(AppCompatActivity.RESULT_OK)
+                        finish()
+                    } else {
+                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+            } else {
+                company = Company(company?.documentID, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
+                mAuth.uid?.let { company?.let { it1 -> db.collection("Users").document(it).collection("Companies").document(company?.documentID.toString()).set(it1) } }?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Company updated", Toast.LENGTH_LONG).show()
+                        setResult(AppCompatActivity.RESULT_OK)
+                        finish()
+                    } else {
+                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+                    }
                 }
             }
+
         }
     }
 }

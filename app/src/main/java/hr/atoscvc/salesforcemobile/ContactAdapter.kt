@@ -97,6 +97,7 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
                         putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
                         putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
                     }
+                    ContactEditFragment.chosenCompany = contact.company
                     context.startActivityForResult(intent, ContactsFragment.requestCodeRefresh)
                     //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
                 }
