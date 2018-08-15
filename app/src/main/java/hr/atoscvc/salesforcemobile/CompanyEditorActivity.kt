@@ -94,7 +94,6 @@ class CompanyEditorActivity : AppCompatActivity() {
     }
 
     fun onSaveClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        //LUKA Prikazati sve errore, a podatke iscitati iz polja na ekranu i stvoriti objekt u varijabli 'company'
         var thereAreNoErrors = true
 
         val status: Int = spCompanyStatus.selectedItemPosition
@@ -106,15 +105,15 @@ class CompanyEditorActivity : AppCompatActivity() {
         val income: String? = etCompanyIncome.text.toString().trim()
 
         var webPage: String? = etCompanyWebPage.text.toString().trim()
-        if (webPage?.isEmpty() != false) {
+        if (webPage.isNullOrBlank()) {
             webPage = null
         }
         var details: String? = etCompanyDetails.text.toString().trim()
-        if (details?.isEmpty() != false) {
+        if (details.isNullOrBlank()) {
             details = null
         }
         var phone: String? = etCompanyPhone.text.toString().trim()
-        if (phone?.isEmpty() != false) {
+        if (phone.isNullOrBlank()) {
             phone = null
         }
 
@@ -135,8 +134,7 @@ class CompanyEditorActivity : AppCompatActivity() {
 
         if (thereAreNoErrors) {
             val documentID: String? = company?.documentID
-            company = Company(null, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
-            company?.documentID = documentID
+            company = Company(documentID, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
 
             //FILIP Stvara se (ID == null) ili updatea (ID != null) 'company' -> poruke useru "New Company created" / "Company updated"
 

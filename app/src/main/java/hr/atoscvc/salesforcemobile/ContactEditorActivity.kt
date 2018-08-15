@@ -2,12 +2,10 @@ package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_contact_editor.*
@@ -128,22 +126,49 @@ class ContactEditorActivity : AppCompatActivity() {
     }
 
     fun onSaveClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        //LUKA Prikazati sve errore, a podatke iscitati iz polja na ekranu (osim chosenCompany) i stvoriti objekt u varijabli 'contact'
-        if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
-            //FILIP Stvara se novi Contact -> save u bazu
-            Toast.makeText(this, "New Contact created", Toast.LENGTH_SHORT).show()
-        } else {
-            val documentID = contact?.documentID
-            if (documentID.isNullOrBlank()) {
-                Toast.makeText(this, "Unknown error occurred", Toast.LENGTH_SHORT).show()
-                finish()
-            } else {
-                //FILIP Sprema se edit postojeceg Contacta -> update u bazu
-                Toast.makeText(this, "Contact updated", Toast.LENGTH_SHORT).show()
-            }
+        var thereAreNoErrors = true
+
+        val status: Int = spContactStatus.selectedItemPosition
+        val title: Int = spContactTitle.selectedItemPosition
+        val prefTime: Int = spContactPreferredTime.selectedItemPosition
+        val firstName: String = etContactFirstName.text.toString().trim()
+        val lastName: String = etContactLastName.text.toString().trim()
+
+        var phone: String? = etContactPhone.text.toString().trim()
+        if (phone.isNullOrBlank()) {
+            phone = null
+        }
+        var email: String? = etContactEmail.text.toString().trim()
+        if (email.isNullOrBlank()) {
+            email = null
+        }
+        var details: String? = etContactEmail.text.toString().trim()
+        if (details.isNullOrBlank()) {
+            details = null
         }
 
-        finish()    //Samo ako nema errora
+        if (firstName.isEmpty()) {
+            etContactFirstName.error = getString(R.string.firstNameEmptyMessage)
+            thereAreNoErrors = false
+        }
+        if (lastName.isEmpty()) {
+            etContactLastName.error = getString(R.string.lastNameEmptyMessage)
+            thereAreNoErrors = false
+        }
+        if (chosenCompany == null) {
+            etContactCompanyName.error = getString(R.string.noCompanyChosenMessage)
+            thereAreNoErrors = false
+        }
+
+        //LUKA - Dovrsiti popis...
+
+        if (thereAreNoErrors) {
+            val documentID: String? = contact?.documentID
+            contact = Contact(documentID, status, title, firstName, lastName, chosenCompany!!, phone, email, prefTime, details)
+            //FILIP Stvara se novi Contact -> save u bazu
+            //FILIP Stvara se (ID == null) ili updatea (ID != null) 'contact' -> poruke useru "New Contact created" / "Contact updated"
+            finish()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
