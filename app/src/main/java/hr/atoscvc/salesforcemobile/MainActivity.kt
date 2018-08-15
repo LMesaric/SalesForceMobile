@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity(), LogoutListener {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    private var refreshContacts = false
+    private var refreshCompanies = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +80,24 @@ class MainActivity : AppCompatActivity(), LogoutListener {
 
     override fun onResume() {
         super.onResume()
+        if (refreshContacts) {
+            refreshContacts = false
+            appBarLayout.setExpanded(true, true)
+            appBarLayout.isActivated = true
+            coordinator.title = resources.getString(R.string.Contacts)
+            replaceFragment(ContactsFragment())
+
+        } else if (refreshCompanies) {
+            refreshCompanies = false
+            val companiesFragment = CompaniesFragment()
+            val bundle = Bundle()
+            bundle.putBoolean("isForSelect", false)
+            companiesFragment.arguments = bundle
+            appBarLayout.setExpanded(true, true)
+            appBarLayout.isActivated = true
+            coordinator.title = resources.getString(R.string.Companies)
+            replaceFragment(companiesFragment)
+        }
         val user: FirebaseUser? = mAuth.currentUser
         if (user == null) {
             sendToLogin()
@@ -131,11 +151,11 @@ class MainActivity : AppCompatActivity(), LogoutListener {
 
         if (requestCode == CompaniesFragment.requestCodeRefresh) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
-                recyclerViewCompanies.adapter?.notifyDataSetChanged()
+                refreshCompanies = true
             }
-        } else if (requestCode == 3) {
+        } else if (requestCode == ContactsFragment.requestCodeRefresh) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
-
+                refreshContacts = true
             }
         }
     }

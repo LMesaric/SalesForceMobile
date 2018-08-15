@@ -14,8 +14,6 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private var contact: Contact? = null
-    private var chosenCompany: Company? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

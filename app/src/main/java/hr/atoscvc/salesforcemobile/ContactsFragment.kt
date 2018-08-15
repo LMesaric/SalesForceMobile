@@ -49,7 +49,7 @@ class ContactsFragment : Fragment() {
         val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, activity as Activity, false) }
         recyclerView.adapter = adapter
 
-        val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").orderBy("firstName").limit(10) }
+        val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").orderBy("firstName") }
         query?.addSnapshotListener { p0, p1 ->
             if (p1 != null) {
                 Log.d("ERRORS", p1.message)
@@ -73,28 +73,10 @@ class ContactsFragment : Fragment() {
             val intent = Intent(activity, ContactEditorActivity::class.java).apply {
                 putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
             }
-            startActivity(intent)
+            activity?.startActivityForResult(intent, requestCodeRefresh)
         }
-
-        
-        /*val adapter = ContactAdapter(
-                contactList,
-                this,
-                intent.getBooleanExtra(
-                        getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT),
-                        false
-                )
-        )*/
 
         return view
     }
-
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == ContactsFragment.requestCodeRefresh) {
-            if (resultCode == RESULT_OK) {
-                recyclerViewContacts.adapter?.notifyDataSetChanged()
-            }
-        }
-    }*/
 
 }

@@ -3,6 +3,7 @@ package hr.atoscvc.salesforcemobile
 import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -66,7 +67,7 @@ class ContactEditFragment : Fragment() {
                 contact?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(activity, "New Contact created", Toast.LENGTH_SHORT).show()
-                        activity?.setResult(Activity.RESULT_OK)
+                        activity?.setResult(AppCompatActivity.RESULT_OK)
                         activity?.finish()
                     } else {
                         Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()

@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_company_editor.*
 
 class CompanyEditorActivity : AppCompatActivity() {
@@ -17,6 +20,7 @@ class CompanyEditorActivity : AppCompatActivity() {
     //TODO Za Company i Contact Editor staviti alert dialog na back button
 
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
     private var company: Company? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +28,7 @@ class CompanyEditorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_company_editor)
 
         mAuth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
         company = intent.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as? Company
 
@@ -140,8 +145,18 @@ class CompanyEditorActivity : AppCompatActivity() {
 
             //FILIP Stvara se (ID == null) ili updatea (ID != null) 'company' -> poruke useru "New Company created" / "Company updated"
 
-            setResult(RESULT_OK)
-            finish()
+            //FILIP Stvara se novi Contact -> save u bazu
+            val docRef: DocumentReference? = mAuth.uid?.let { db.collection("Users").document(it).collection("Companies").document() }
+            company = Company(docRef?.id, spCompanyStatus.selectedItemPosition, etCompanyOIB.text.toString(), etCompanyName.text.toString(), etCompanyWebPage.text.toString(), spCompanyCvsSegment.selectedItemPosition, etCompanyDetails.text.toString(), etCompanyPhone.text.toString(), spCompanyCommunicationType.selectedItemPosition, spCompanyEmployees.selectedItemPosition, etCompanyIncome.text.toString())
+            company?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "New Company created", Toast.LENGTH_SHORT).show()
+                    setResult(AppCompatActivity.RESULT_OK)
+                    finish()
+                } else {
+                    Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 }
