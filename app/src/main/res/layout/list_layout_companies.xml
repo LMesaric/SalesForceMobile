@@ -8,6 +8,15 @@
     android:paddingRight="8dp"
     android:paddingStart="8dp">
 
+    <View
+        android:id="@+id/marginViewCompanies"
+        android:layout_width="1dp"
+        android:layout_height="8dp"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.v7.widget.CardView
         android:id="@+id/cardViewCompanies"
         android:layout_width="match_parent"
