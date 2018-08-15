@@ -44,7 +44,7 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
             val tvCardContactsNameText = "$contactTitle${contact.firstName} ${contact.lastName}"
 
             holder.tvCardContactsName.text = tvCardContactsNameText
-            holder.tvCardContactCompany.text = contact.company.name
+            holder.tvCardContactCompany.text = contact.company?.name ?: "No company found"
             holder.tvCardContactsStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
             holder.tvCardContactsPrefTime.text = context.resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
             holder.tvCardContactsPhone.text = contact.phone

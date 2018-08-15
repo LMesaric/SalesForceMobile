@@ -25,7 +25,7 @@ class MyApp : Application() {
                 listener?.onSessionTimeout()
             }
 
-        }, 300000)    //FIXME Use a normal value
+        }, 3000000)    //FIXME Use a normal value
     }
 
     fun cancelTimer() {

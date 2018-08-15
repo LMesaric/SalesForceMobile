@@ -9,10 +9,14 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 
 class ContactsFragment : Fragment() {
@@ -22,6 +26,7 @@ class ContactsFragment : Fragment() {
     }
 
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
     private lateinit var recyclerView: RecyclerView
     private var fabAddContacts: FloatingActionButton? = null
 
@@ -35,9 +40,32 @@ class ContactsFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
+
         mAuth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
         val contactList = ArrayList<Contact>()
+
+        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, activity as Activity, false) }
+        recyclerView.adapter = adapter
+
+        val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").orderBy("firstName").limit(10) }
+        query?.addSnapshotListener { p0, p1 ->
+            if (p1 != null) {
+                Log.d("ERRORS", p1.message)
+            }
+            if (p0 != null) {
+                for (doc in p0.documentChanges) {
+                    if (doc.type == DocumentChange.Type.ADDED) {
+                        //val contact: Contact = doc.document.toObject(Contact)
+                        val newContact = doc.document.toObject<Contact>(Contact::class.java)
+                        contactList.add(newContact)
+                        adapter?.notifyDataSetChanged()
+                    }
+                }
+
+            }
+        }
 
         fabAddContacts = activity?.findViewById(R.id.fabAdd)
         fabAddContacts?.visibility = View.VISIBLE
@@ -48,297 +76,7 @@ class ContactsFragment : Fragment() {
             startActivity(intent)
         }
 
-        contactList.add(Contact(
-                "akjssgddad",
-                0,
-                1,
-                "Ana",
-                "Peric",
-                Company(
-                        "asdbnasd",
-                        0,
-                        "976754689",
-                        "Atos CVC",
-                        "atos.net",
-                        0,
-                        "Very good company",
-                        "012475479",
-                        0,
-                        2,
-                        "150000"
-                ),
-                "091251244",
-                "email@email.com",
-                1,
-                "asdjbajhbdsnadjhas asda sda safsd fasdgasdg asdga sdgasdg asdg sdgasd ggasdg asdg asdgas dgasdg sadg sdg asdgg asdg sadg"
-        ))
-        contactList.add(Contact(
-                "tffcvbh",
-                1,
-                0,
-                "Matej",
-                "Bubic",
-                Company(
-                        "knksgnf",
-                        1,
-                        "45678934",
-                        "Siemens",
-                        "siemens.hr",
-                        1,
-                        "Very great company",
-                        "01484567",
-                        0,
-                        4,
-                        "100000"
-                ),
-                "087654567899",
-                "email@gmail.com",
-                0,
-                "alksnbdabnsd"
-        ))
-        contactList.add(Contact(
-                "klejwf",
-                1,
-                3,
-                "Tea",
-                "Bubic",
-                Company(
-                        "asdbnasd",
-                        0,
-                        "976754689",
-                        "Atos CVC",
-                        "atos.net",
-                        0,
-                        "Very good company",
-                        "012475479",
-                        0,
-                        2,
-                        "150000"
-                ),
-                "56456789867",
-                "yahoo@gmail.com",
-                1,
-                "masjdban asdaisd"
-        ))
-        contactList.add(Contact(
-                "akjssgddad",
-                0,
-                1,
-                "Ana",
-                "Peric",
-                Company(
-                        "asdbnasd",
-                        0,
-                        "976754689",
-                        "Atos CVC",
-                        "atos.net",
-                        0,
-                        "Very good company",
-                        "012475479",
-                        0,
-                        2,
-                        "150000"
-                ),
-                "091251244",
-                "email@email.com",
-                1,
-                "asdjbajhbdsnadjhas asda sda safsd fasdgasdg asdga sdgasdg asdg sdgasd ggasdg asdg asdgas dgasdg sadg sdg asdgg asdg sadg"
-        ))
-        contactList.add(Contact(
-                "tffcvbh",
-                1,
-                0,
-                "Matej",
-                "Bubic",
-                Company(
-                        "knksgnf",
-                        1,
-                        "45678934",
-                        "Siemens",
-                        "siemens.hr",
-                        1,
-                        "Very great company",
-                        "01484567",
-                        0,
-                        4,
-                        "100000"
-                ),
-                "087654567899",
-                "email@gmail.com",
-                0,
-                "alksnbdabnsd"
-        ))
-        contactList.add(Contact(
-                "klejwf",
-                1,
-                3,
-                "Tea",
-                "Bubic",
-                Company(
-                        "asdbnasd",
-                        0,
-                        "976754689",
-                        "Atos CVC",
-                        "atos.net",
-                        0,
-                        "Very good company",
-                        "012475479",
-                        0,
-                        2,
-                        "150000"
-                ),
-                "56456789867",
-                "yahoo@gmail.com",
-                1,
-                "masjdban asdaisd"
-        ))
-        contactList.add(Contact(
-                "akjssgddad",
-                0,
-                1,
-                "Ana",
-                "Peric",
-                Company(
-                        "asdbnasd",
-                        0,
-                        "976754689",
-                        "Atos CVC",
-                        "atos.net",
-                        0,
-                        "Very good company",
-                        "012475479",
-                        0,
-                        2,
-                        "150000"
-                ),
-                "091251244",
-                "email@email.com",
-                1,
-                "asdjbajhbdsnadjhas asda sda safsd fasdgasdg asdga sdgasdg asdg sdgasd ggasdg asdg asdgas dgasdg sadg sdg asdgg asdg sadg"
-        ))
-        contactList.add(Contact(
-                "tffcvbh",
-                1,
-                0,
-                "Matej",
-                "Bubic",
-                Company(
-                        "knksgnf",
-                        1,
-                        "45678934",
-                        "Siemens",
-                        "siemens.hr",
-                        1,
-                        "Very great company",
-                        "01484567",
-                        0,
-                        4,
-                        "100000"
-                ),
-                "087654567899",
-                "email@gmail.com",
-                0,
-                "alksnbdabnsd"
-        ))
-        contactList.add(Contact(
-                "klejwf",
-                1,
-                3,
-                "Tea",
-                "Bubic",
-                Company(
-                        "asdbnasd",
-                        0,
-                        "976754689",
-                        "Atos CVC",
-                        "atos.net",
-                        0,
-                        "Very good company",
-                        "012475479",
-                        0,
-                        2,
-                        "150000"
-                ),
-                "56456789867",
-                "yahoo@gmail.com",
-                1,
-                "masjdban asdaisd"
-        ))
-        contactList.add(Contact(
-                "akjssgddad",
-                0,
-                1,
-                "Ana",
-                "Peric",
-                Company(
-                        "asdbnasd",
-                        0,
-                        "976754689",
-                        "Atos CVC",
-                        "atos.net",
-                        0,
-                        "Very good company",
-                        "012475479",
-                        0,
-                        2,
-                        "150000"
-                ),
-                "091251244",
-                "email@email.com",
-                1,
-                "asdjbajhbdsnadjhas asda sda safsd fasdgasdg asdga sdgasdg asdg sdgasd ggasdg asdg asdgas dgasdg sadg sdg asdgg asdg sadg"
-        ))
-        contactList.add(Contact(
-                "tffcvbh",
-                1,
-                0,
-                "Matej",
-                "Bubic",
-                Company(
-                        "knksgnf",
-                        1,
-                        "45678934",
-                        "Siemens",
-                        "siemens.hr",
-                        1,
-                        "Very great company",
-                        "01484567",
-                        0,
-                        4,
-                        "100000"
-                ),
-                "087654567899",
-                "email@gmail.com",
-                0,
-                "alksnbdabnsd"
-        ))
-        contactList.add(Contact(
-                "klejwf",
-                1,
-                3,
-                "Tea",
-                "Bubic",
-                Company(
-                        "asdbnasd",
-                        0,
-                        "976754689",
-                        "Atos CVC",
-                        "atos.net",
-                        0,
-                        "Very good company",
-                        "012475479",
-                        0,
-                        2,
-                        "150000"
-                ),
-                "56456789867",
-                "yahoo@gmail.com",
-                1,
-                "masjdban asdaisd"
-        ))
-        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, activity as Activity, false) }
-        recyclerView.adapter = adapter
-
+        
         /*val adapter = ContactAdapter(
                 contactList,
                 this,

@@ -71,12 +71,9 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: A
                 holder.btnCardCompaniesAddContact.visibility = View.GONE
                 holder.btnCardCompaniesEditCompany.visibility = View.GONE
                 holder.btnCardCompaniesSelectCompany.visibility = View.VISIBLE
-
                 holder.btnCardCompaniesSelectCompany.setOnClickListener {
-                    val intent = Intent()
-                    intent.putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-                    context.setResult(RESULT_OK, intent)
-                    context.finish()
+                    ContactEditFragment.chosenCompany = company
+                    context.onBackPressed()
                 }
             } else {
                 holder.btnCardCompaniesAddContact.visibility = View.VISIBLE

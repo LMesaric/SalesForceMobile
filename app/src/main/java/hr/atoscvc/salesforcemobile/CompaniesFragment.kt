@@ -21,6 +21,7 @@ class CompaniesFragment : Fragment() {
         const val requestCodeChooseCompany = 2
     }
 
+    private var isForSelect: Boolean = false
     private lateinit var recyclerView: RecyclerView
     private var fabAddCompanies: FloatingActionButton? = null
 
@@ -28,6 +29,8 @@ class CompaniesFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_companies, container, false)
+
+        isForSelect = arguments?.getBoolean("isForSelect") ?: false
 
         fabAddCompanies = activity?.findViewById(R.id.fabAdd)
         fabAddCompanies?.visibility = View.VISIBLE
@@ -71,7 +74,7 @@ class CompaniesFragment : Fragment() {
                 "100000"
         ))
 
-        val adapter = CompanyAdapter(companyList, activity as Activity, false)
+        val adapter = CompanyAdapter(companyList, activity as Activity, isForSelect)
         recyclerView.adapter = adapter
 
         return view

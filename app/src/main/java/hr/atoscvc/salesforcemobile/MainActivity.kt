@@ -56,10 +56,14 @@ class MainActivity : AppCompatActivity(), LogoutListener {
                 }
 
                 R.id.navBarCompanies -> {
+                    val companiesFragment = CompaniesFragment()
+                    val bundle = Bundle()
+                    bundle.putBoolean("isForSelect", false)
+                    companiesFragment.arguments = bundle
                     appBarLayout.setExpanded(true, true)
                     appBarLayout.isActivated = true
                     coordinator.title = resources.getString(R.string.Companies)
-                    replaceFragment(CompaniesFragment())
+                    replaceFragment(companiesFragment)
                     true
                 }
 
