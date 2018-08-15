@@ -133,6 +133,10 @@ class MainActivity : AppCompatActivity(), LogoutListener {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 recyclerViewCompanies.adapter?.notifyDataSetChanged()
             }
+        } else if (requestCode == 3) {
+            if (resultCode == AppCompatActivity.RESULT_OK) {
+
+            }
         }
     }
 

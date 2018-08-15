@@ -1,5 +1,6 @@
 package hr.atoscvc.salesforcemobile
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -12,7 +13,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class ContactEditFragment : Fragment(), SetTextListener {
+class ContactEditFragment : Fragment() {
 
     companion object {
         var chosenCompany: Company? = null
@@ -65,6 +66,7 @@ class ContactEditFragment : Fragment(), SetTextListener {
                 contact?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(activity, "New Contact created", Toast.LENGTH_SHORT).show()
+                        activity?.setResult(Activity.RESULT_OK)
                         activity?.finish()
                     } else {
                         Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -141,8 +143,6 @@ class ContactEditFragment : Fragment(), SetTextListener {
                 etContactEmail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_email_outline_accent, 0, 0, 0)
             }
         }
-
-        Log.i("PROBA", chosenCompany?.name.toString())
 
         //TODO Listener for Details
 

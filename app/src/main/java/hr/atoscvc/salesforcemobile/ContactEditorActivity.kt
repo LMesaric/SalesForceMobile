@@ -12,16 +12,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener {
 
-    companion object {
-        fun setCompany(company: Company): ContactEditFragment {
-            val contactEditFragment = ContactEditFragment()
-            val bundle = Bundle()
-            bundle.putSerializable("Company", company)
-            contactEditFragment.arguments = bundle
-            return contactEditFragment
-        }
-    }
-
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private var contact: Contact? = null
