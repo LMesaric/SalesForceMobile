@@ -54,45 +54,5 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener {
         }
         fragmentTransaction.commit()
     }
-    fun onSaveClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        //LUKA Prikazati sve errore, a podatke iscitati iz polja na ekranu (osim chosenCompany) i stvoriti objekt u varijabli 'contact'
-        var thereAreNoErrors = true
-        val status: Int = spContactStatus.selectedItemPosition
-        val title: Int = spContactTitle.selectedItemPosition
-        val prefTime: Int = spContactPreferredTime.selectedItemPosition
-        val firstName: String = etContactFirstName.text.toString().trim()
-        val lastName: String = etContactLastName.text.toString().trim()
-        var phone: String? = etContactPhone.text.toString().trim()
-        if (phone.isNullOrBlank()) {
-            phone = null
-        }
-        var email: String? = etContactEmail.text.toString().trim()
-        if (email.isNullOrBlank()) {
-            email = null
-        }
-        var details: String? = etContactEmail.text.toString().trim()
-        if (details.isNullOrBlank()) {
-            details = null
-        }
-        if (firstName.isEmpty()) {
-            etContactFirstName.error = getString(R.string.firstNameEmptyMessage)
-            thereAreNoErrors = false
-        }
-        if (lastName.isEmpty()) {
-            etContactLastName.error = getString(R.string.lastNameEmptyMessage)
-            thereAreNoErrors = false
-        }
-        if (chosenCompany == null) {
-            etContactCompanyName.error = getString(R.string.noCompanyChosenMessage)
-            thereAreNoErrors = false
-        }
-        //LUKA - Dovrsiti popis...
-        if (thereAreNoErrors) {
-            val documentID: String? = contact?.documentID
-            contact = Contact(documentID, status, title, firstName, lastName, chosenCompany!!, phone, email, prefTime, details)
-            //FILIP Stvara se novi Contact -> save u bazu
-            //FILIP Stvara se (ID == null) ili updatea (ID != null) 'contact' -> poruke useru "New Contact created" / "Contact updated"
-            finish()
-        }
-    }
+
 }

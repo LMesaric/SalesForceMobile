@@ -139,10 +139,6 @@ class CompanyEditorActivity : AppCompatActivity() {
         //LUKA - Dovrsiti popis...
 
         if (thereAreNoErrors) {
-
-            val documentID: String? = company?.documentID
-            company = Company(documentID, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
-
             if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
                 val docRef: DocumentReference? = mAuth.uid?.let { db.collection("Users").document(it).collection("Companies").document() }
                 company = Company(docRef?.id, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
