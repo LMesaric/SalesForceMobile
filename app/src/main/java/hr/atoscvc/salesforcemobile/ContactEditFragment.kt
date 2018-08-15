@@ -57,37 +57,72 @@ class ContactEditFragment : Fragment() {
         }
 
         btnSave.setOnClickListener { _ ->
-            //LUKA Prikazati sve errore, a podatke iscitati iz polja na ekranu (osim chosenCompany) i stvoriti objekt u varijabli 'contact'
-            if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
-                val docRef: DocumentReference? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").document() }
-                contact = chosenCompany?.let { Contact(docRef?.id, spContactStatus.selectedItemPosition, spContactTitle.selectedItemPosition, etContactFirstName.text.toString(), etContactLastName.text.toString(), it, etContactPhone.text.toString(), etContactEmail.text.toString(), spContactPreferredTime.selectedItemPosition, etContactDetails.text.toString()) }
-                contact?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(activity, "New Contact created", Toast.LENGTH_SHORT).show()
-                        activity?.setResult(AppCompatActivity.RESULT_OK)
-                        activity?.finish()
-                    } else {
-                        Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
-                    }
-                }
-            } else {
-                val documentID = contact?.documentID
-                if (documentID.isNullOrBlank()) {
-                    Toast.makeText(activity, "Unknown error occurred", Toast.LENGTH_SHORT).show()
-                    activity?.finish()
-                } else {
-                    contact = chosenCompany?.let { Contact(contact?.documentID, spContactStatus.selectedItemPosition, spContactTitle.selectedItemPosition, etContactFirstName.text.toString(), etContactLastName.text.toString(), it, etContactPhone.text.toString(), etContactEmail.text.toString(), spContactPreferredTime.selectedItemPosition, etContactDetails.text.toString()) }
-                    mAuth.uid?.let { contact?.let { it1 -> db.collection("Users").document(it).collection("Contacts").document(contact?.documentID.toString()).set(it1) } }?.addOnCompleteListener { task ->
+            var thereAreNoErrors = true
+            val status: Int = spContactStatus.selectedItemPosition
+            val title: Int = spContactTitle.selectedItemPosition
+            val prefTime: Int = spContactPreferredTime.selectedItemPosition
+            val firstName: String = etContactFirstName.text.toString().trim()
+            val lastName: String = etContactLastName.text.toString().trim()
+            var phone: String? = etContactPhone.text.toString().trim()
+            if (phone.isNullOrBlank()) {
+                phone = null
+            }
+            var email: String? = etContactEmail.text.toString().trim()
+            if (email.isNullOrBlank()) {
+                email = null
+            }
+            var details: String? = etContactEmail.text.toString().trim()
+            if (details.isNullOrBlank()) {
+                details = null
+            }
+            if (firstName.isEmpty()) {
+                etContactFirstName.error = getString(R.string.firstNameEmptyMessage)
+                thereAreNoErrors = false
+            }
+            if (lastName.isEmpty()) {
+                etContactLastName.error = getString(R.string.lastNameEmptyMessage)
+                thereAreNoErrors = false
+            }
+            if (chosenCompany == null) {
+                etContactCompanyName.error = getString(R.string.noCompanyChosenMessage)
+                thereAreNoErrors = false
+            }
+
+
+            //LUKA - Dovrsiti popis..
+            if (thereAreNoErrors) {
+                if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
+                    val docRef: DocumentReference? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").document() }
+                    contact = chosenCompany?.let { Contact(docRef?.id, status, title, firstName, lastName, it, phone, email, prefTime, details) }
+                    contact?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(activity, "Contact updated", Toast.LENGTH_LONG).show()
+                            Toast.makeText(activity, "New Contact created", Toast.LENGTH_SHORT).show()
                             activity?.setResult(AppCompatActivity.RESULT_OK)
                             activity?.finish()
                         } else {
                             Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
                         }
                     }
+                } else {
+                    val documentID = contact?.documentID
+                    if (documentID.isNullOrBlank()) {
+                        Toast.makeText(activity, "Unknown error occurred", Toast.LENGTH_SHORT).show()
+                        activity?.finish()
+                    } else {
+                        contact = chosenCompany?.let { Contact(contact?.documentID, status, title, firstName, lastName, it, phone, email, prefTime, details) }
+                        mAuth.uid?.let { contact?.let { it1 -> db.collection("Users").document(it).collection("Contacts").document(contact?.documentID.toString()).set(it1) } }?.addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(activity, "Contact updated", Toast.LENGTH_LONG).show()
+                                activity?.setResult(AppCompatActivity.RESULT_OK)
+                                activity?.finish()
+                            } else {
+                                Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
                 }
             }
+
         }
 
         contact = activity?.intent?.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as? Contact
