@@ -111,15 +111,15 @@ class CompanyEditorActivity : AppCompatActivity() {
         val income: String? = etCompanyIncome.text.toString().trim()
 
         var webPage: String? = etCompanyWebPage.text.toString().trim()
-        if (webPage?.isEmpty() != false) {
+        if (webPage.isNullOrBlank()) {
             webPage = null
         }
         var details: String? = etCompanyDetails.text.toString().trim()
-        if (details?.isEmpty() != false) {
+        if (details.isNullOrBlank()) {
             details = null
         }
         var phone: String? = etCompanyPhone.text.toString().trim()
-        if (phone?.isEmpty() != false) {
+        if (phone.isNullOrBlank()) {
             phone = null
         }
 
@@ -139,6 +139,9 @@ class CompanyEditorActivity : AppCompatActivity() {
         //LUKA - Dovrsiti popis...
 
         if (thereAreNoErrors) {
+
+            val documentID: String? = company?.documentID
+            company = Company(documentID, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
 
             if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
                 val docRef: DocumentReference? = mAuth.uid?.let { db.collection("Users").document(it).collection("Companies").document() }
