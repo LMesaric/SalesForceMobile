@@ -58,18 +58,6 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="fill_vertical"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <!-- content -->
-
-        </android.support.v4.widget.NestedScrollView>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="8dp"
@@ -97,7 +85,7 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="#FFFFFF"
-        android:backgroundTint="#FFFFFF"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

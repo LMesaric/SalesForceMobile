@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.list_layout_contacts.view.*
 class ContactAdapter(private val contactList: ArrayList<Contact>, val context: Activity, private val isForSelect: Boolean) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     private var currentPosition = -1    // If -1 is replaced with 0 then the first card will automatically be expanded
+    private var isExpanded = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -42,7 +44,8 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
         holder.tvCardContactsDetails.text = contact.details
 
         if (currentPosition == position) {
-            if (holder.constraintLayoutContactsExpandable.visibility == View.GONE) {
+            //holder.constraintLayoutContactsExpandable.visibility = View.VISIBLE
+            if (!isExpanded) {
 //                val slideDown = AnimationUtils.loadAnimation(context, R.anim.animation_cardview_expand)
                 holder.constraintLayoutContactsExpandable.visibility = View.VISIBLE
 //                holder.constraintLayoutContactsExpandable.startAnimation(slideDown)
@@ -57,6 +60,12 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
 
         holder.constraintLayoutContactsMain.setOnClickListener {
             currentPosition = holder.adapterPosition
+            if (holder.constraintLayoutContactsExpandable.visibility == View.GONE) {
+                isExpanded = false
+                Log.i("PROBA", "RADI")
+            } else {
+                isExpanded = true
+            }
             notifyDataSetChanged()
         }
 
