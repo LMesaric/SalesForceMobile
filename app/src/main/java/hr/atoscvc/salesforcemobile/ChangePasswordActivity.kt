@@ -1,7 +1,6 @@
 package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -10,7 +9,6 @@ import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_change_password.*
-
 
 class ChangePasswordActivity : AppCompatActivity() {
 
@@ -25,7 +23,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         /* Listener reporting password constraints errors on every change of password field */
-        etUsernameInvisible.setText(mAuth.currentUser?.email)   //FILIP - ovdje treba ici username a ne email
+        etUsernameInvisible.setText(mAuth.currentUser?.email)   //LUKA exFILIP - ovdje treba ici username a ne email (slati First i Last name?)
         etPasswordNew.addTextChangedListener(PasswordTextWatcher(etUsernameInvisible.text.toString(), etPasswordNew))
 
         /* Listeners that change icon color */
@@ -59,7 +57,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         val passwordNew = etPasswordNew.text.toString()
 
         val passwordNewStatus = CheckPasswordConstraints.checkPasswordConstraints(
-                mAuth.currentUser?.email.toString(),    //FILIP - pobogu opet ista stvar SMH
+                mAuth.currentUser?.email.toString(),    //LUKA exFILIP - pobogu opet ista stvar SMH
                 passwordNew
         )
 
