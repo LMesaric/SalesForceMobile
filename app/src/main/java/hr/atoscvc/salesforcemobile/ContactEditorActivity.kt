@@ -23,7 +23,6 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener {
         db = FirebaseFirestore.getInstance()
 
         replaceFragment(ContactEditFragment())
-
     }
 
     override fun onResume() {

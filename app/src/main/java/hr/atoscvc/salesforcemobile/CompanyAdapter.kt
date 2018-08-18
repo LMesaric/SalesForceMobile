@@ -1,7 +1,6 @@
 package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.CardView
@@ -13,6 +12,11 @@ import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
+//LUKA - paziti da se empty polja u CardView za Company i Contact budu sa View.GONE
+//TODO - dodati gumb za pregled svih kontakata na CardView svakog Companyja
+//TODO - Valuta za income
+//TODO - Delete contact/company -> checkbox za ukljucivanje Inactive stavki
+//TODO - poruka da je popis Contacts/Companies empty kad nema nista - TextView u centru ekrana
 
 class CompanyAdapter(private val companyList: ArrayList<Company>, val context: Activity, private val isForSelect: Boolean) : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
 
@@ -37,16 +41,18 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: A
 
             val company = companyList[position - 1]
             //LUKA - outOfBounds za Company i Contact files
-            holder.tvCardCompaniesName.text = company.name
-            holder.tvCardCompaniesCvsSegment.text = context.resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]
-            holder.tvCardCompaniesStatus.text = context.resources.getStringArray(R.array.status_array)[company.status]
-            holder.tvCardCompaniesOIB.text = company.OIB
-            holder.tvCardCompaniesWebPage.text = company.webPage
-            holder.tvCardCompaniesPhone.text = company.phone
-            holder.tvCardCompaniesIncome.text = company.income
-            holder.tvCardCompaniesCommunicationType.text = context.resources.getStringArray(R.array.companyCommunicationType_array)[company.communicationType]
-            holder.tvCardCompaniesEmployees.text = context.resources.getStringArray(R.array.companyEmployees_array)[company.employees]
-            holder.tvCardCompaniesDetails.text = company.details
+            with(holder) {
+                tvCardCompaniesName.text = company.name
+                tvCardCompaniesCvsSegment.text = context.resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]
+                tvCardCompaniesStatus.text = context.resources.getStringArray(R.array.status_array)[company.status]
+                tvCardCompaniesOIB.text = company.OIB
+                tvCardCompaniesWebPage.text = company.webPage
+                tvCardCompaniesPhone.text = company.phone
+                tvCardCompaniesIncome.text = company.income
+                tvCardCompaniesCommunicationType.text = context.resources.getStringArray(R.array.companyCommunicationType_array)[company.communicationType]
+                tvCardCompaniesEmployees.text = context.resources.getStringArray(R.array.companyEmployees_array)[company.employees]
+                tvCardCompaniesDetails.text = company.details
+            }
 
             if (currentPosition == position) {
                 if (holder.constraintLayoutCompaniesExpandable.visibility == View.GONE) {
@@ -71,6 +77,7 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: A
                 holder.btnCardCompaniesAddContact.visibility = View.GONE
                 holder.btnCardCompaniesEditCompany.visibility = View.GONE
                 holder.btnCardCompaniesSelectCompany.visibility = View.VISIBLE
+
                 holder.btnCardCompaniesSelectCompany.setOnClickListener {
                     ContactEditFragment.chosenCompany = company
                     context.onBackPressed()
