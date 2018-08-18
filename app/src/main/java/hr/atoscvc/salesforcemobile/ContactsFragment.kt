@@ -8,30 +8,28 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.fragment_contacts.*
 
 
-class ContactsFragment : Fragment(), ContactAdapter.RecyclerViewOnClickListener {
+class ContactsFragment : Fragment() {
 
     companion object {
         const val requestCodeRefresh = 3
-    }
-
-    override fun recyclerViewOnClick(circleImageView: CircleImageView, contact: Contact) {
-        val intent = Intent(activity, ContactDetailsActivity::class.java)
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity as Activity, circleImageView, "contactAvatar")
-        intent.putExtra("Contact", contact)
-        activity?.startActivityForResult(intent, requestCodeRefresh, options.toBundle())
+        const val requestItemRefresh = 4
+        val contactList = ArrayList<Contact>()
     }
 
     private lateinit var mAuth: FirebaseAuth
@@ -53,12 +51,11 @@ class ContactsFragment : Fragment(), ContactAdapter.RecyclerViewOnClickListener 
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        val contactList = ArrayList<Contact>()
-
-        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, activity as Activity, false, this) }
+        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList as ArrayList<Contact>, activity as Activity, false, activity as MainActivity) }
         recyclerView.adapter = adapter
 
-        val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").orderBy("firstName") }
+        //TODO Bilo bi dosta lako dodati Sort By feature - samo ubaciti string u .orderBy()
+        val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").orderBy("lastName") }
         query?.addSnapshotListener { p0, p1 ->
             if (p1 != null) {
                 Log.d("ERRORS", p1.message)
@@ -68,7 +65,7 @@ class ContactsFragment : Fragment(), ContactAdapter.RecyclerViewOnClickListener 
                     if (doc.type == DocumentChange.Type.ADDED) {
                         //val contact: Contact = doc.document.toObject(Contact)
                         val newContact = doc.document.toObject<Contact>(Contact::class.java)
-                        contactList.add(newContact)
+                        (contactList as ArrayList<Contact>).add(newContact)
                         adapter?.notifyDataSetChanged()
                     }
                 }

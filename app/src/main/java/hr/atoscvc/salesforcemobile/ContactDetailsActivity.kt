@@ -4,12 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
 class ContactDetailsActivity : AppCompatActivity() {
 
     private lateinit var contact: Contact
+    private var isChanged: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         tvContactDetailsDetails.text = contact.details
     }
 
-    fun onEditContactDetails(view: View) {
+    fun onEditContactDetails(@Suppress("UNUSED_PARAMETER") view: View) {
         val intent = Intent(this, ContactEditorActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
             putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
@@ -36,17 +38,22 @@ class ContactDetailsActivity : AppCompatActivity() {
         //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
     }
 
+    override fun onBackPressed() {
+        if (isChanged) {
+            val intent = Intent()
+            intent.putExtra("Contact", contact)
+            setResult(AppCompatActivity.RESULT_OK, intent)
+        }
+        super.onBackPressed()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 4) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 contact = data?.getSerializableExtra("Contact") as Contact
+                isChanged = true
             }
         }
-    }
-
-    override fun onBackPressed() {
-        setResult(AppCompatActivity.RESULT_OK)
-        finish()
     }
 
 }

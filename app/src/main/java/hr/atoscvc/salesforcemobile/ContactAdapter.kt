@@ -1,16 +1,11 @@
 package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
-import android.content.Intent
 import android.support.constraint.ConstraintLayout
-import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.list_layout_contacts.view.*
@@ -21,7 +16,7 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
     private var isExpanded = false
 
     interface RecyclerViewOnClickListener {
-        fun recyclerViewOnClick(circleImageView: CircleImageView, contact: Contact)
+        fun recyclerViewOnClick(circleImageView: CircleImageView, contact: Contact, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -76,7 +71,7 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
             holder.constraintLayoutContactsMain.setOnClickListener {
                 currentPosition = holder.adapterPosition
 
-                listener.recyclerViewOnClick(holder.ivContactAvatar, contactList[currentPosition - 1])
+                listener.recyclerViewOnClick(holder.ivContactAvatar, contactList[currentPosition - 1], currentPosition - 1)
 
                 /*if (holder.constraintLayoutContactsExpandable.visibility == View.GONE) {
                     isExpanded = false
@@ -87,31 +82,31 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
                 notifyDataSetChanged()*/
             }
 
-           /* if (isForSelect) {
-                //holder.btnCardContactsEditContact.visibility = View.GONE
-                //holder.btnCardContactsSelectContact.visibility = View.VISIBLE
+            /* if (isForSelect) {
+                 //holder.btnCardContactsEditContact.visibility = View.GONE
+                 //holder.btnCardContactsSelectContact.visibility = View.VISIBLE
 
-                //holder.btnCardContactsSelectContact.setOnClickListener {
-                    //TODO Use this for creating opportunities
-                    val intent = Intent()
-                    intent.putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-                    context.setResult(Activity.RESULT_OK, intent)
-                    context.finish()
-                //}
-            } else {
-                //holder.btnCardContactsEditContact.visibility = View.VISIBLE
-                //holder.btnCardContactsSelectContact.visibility = View.GONE
+                 //holder.btnCardContactsSelectContact.setOnClickListener {
+                     //TODO Use this for creating opportunities
+                     val intent = Intent()
+                     intent.putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                     context.setResult(Activity.RESULT_OK, intent)
+                     context.finish()
+                 //}
+             } else {
+                 //holder.btnCardContactsEditContact.visibility = View.VISIBLE
+                 //holder.btnCardContactsSelectContact.visibility = View.GONE
 
-                holder.btnCardContactsEditContact.setOnClickListener {
-                    val intent = Intent(context, ContactEditorActivity::class.java).apply {
-                        putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
-                        putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-                    }
-                    ContactEditFragment.chosenCompany = contact.company
-                    context.startActivityForResult(intent, ContactsFragment.requestCodeRefresh)
-                    //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
-                }
-            }*/
+                 holder.btnCardContactsEditContact.setOnClickListener {
+                     val intent = Intent(context, ContactEditorActivity::class.java).apply {
+                         putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
+                         putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                     }
+                     ContactEditFragment.chosenCompany = contact.company
+                     context.startActivityForResult(intent, ContactsFragment.requestCodeRefresh)
+                     //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
+                 }
+             }*/
         }
     }
 
