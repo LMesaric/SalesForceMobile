@@ -1,5 +1,6 @@
 package hr.atoscvc.salesforcemobile
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -113,7 +114,9 @@ class ContactEditFragment : Fragment() {
                         mAuth.uid?.let { contact?.let { it1 -> db.collection("Users").document(it).collection("Contacts").document(contact?.documentID.toString()).set(it1) } }?.addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 Toast.makeText(activity, "Contact updated", Toast.LENGTH_LONG).show()
-                                activity?.setResult(AppCompatActivity.RESULT_OK)
+                                val resultIntent = Intent()
+                                resultIntent.putExtra("Contact", contact)
+                                activity?.setResult(AppCompatActivity.RESULT_OK, resultIntent)
                                 activity?.finish()
                             } else {
                                 Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()

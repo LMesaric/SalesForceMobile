@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -17,12 +18,20 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import de.hdodenhof.circleimageview.CircleImageView
 
 
-class ContactsFragment : Fragment() {
+class ContactsFragment : Fragment(), ContactAdapter.RecyclerViewOnClickListener {
 
     companion object {
         const val requestCodeRefresh = 3
+    }
+
+    override fun recyclerViewOnClick(circleImageView: CircleImageView, contact: Contact) {
+        val intent = Intent(activity, ContactDetailsActivity::class.java)
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity as Activity, circleImageView, "contactAvatar")
+        intent.putExtra("Contact", contact)
+        activity?.startActivityForResult(intent, requestCodeRefresh, options.toBundle())
     }
 
     private lateinit var mAuth: FirebaseAuth
@@ -46,7 +55,7 @@ class ContactsFragment : Fragment() {
 
         val contactList = ArrayList<Contact>()
 
-        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, activity as Activity, false) }
+        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, activity as Activity, false, this) }
         recyclerView.adapter = adapter
 
         val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").orderBy("firstName") }
