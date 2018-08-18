@@ -6,22 +6,17 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
-import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.fragment_contacts.*
 
 
 class ContactsFragment : Fragment() {
@@ -29,7 +24,7 @@ class ContactsFragment : Fragment() {
     companion object {
         const val requestCodeRefresh = 3
         const val requestItemRefresh = 4
-        val contactList = ArrayList<Contact>()
+        var contactList = ArrayList<Contact>()
     }
 
     private lateinit var mAuth: FirebaseAuth
@@ -47,11 +42,12 @@ class ContactsFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
+        contactList = ArrayList()
 
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList as ArrayList<Contact>, activity as Activity, false, activity as MainActivity) }
+        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, activity as Activity, false, activity as MainActivity) }
         recyclerView.adapter = adapter
 
         //TODO Bilo bi dosta lako dodati Sort By feature - samo ubaciti string u .orderBy()
@@ -65,7 +61,7 @@ class ContactsFragment : Fragment() {
                     if (doc.type == DocumentChange.Type.ADDED) {
                         //val contact: Contact = doc.document.toObject(Contact)
                         val newContact = doc.document.toObject<Contact>(Contact::class.java)
-                        (contactList as ArrayList<Contact>).add(newContact)
+                        contactList.add(newContact)
                         adapter?.notifyDataSetChanged()
                     }
                 }

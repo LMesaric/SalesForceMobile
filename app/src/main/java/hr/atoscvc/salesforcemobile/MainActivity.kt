@@ -168,8 +168,9 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
             }
         } else if (requestCode == ContactsFragment.requestItemRefresh) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
-                ContactsFragment.contactList[position] = data?.getSerializableExtra("Contact") as Contact
-                recyclerViewContacts.adapter?.notifyItemChanged(position + 1)
+                refreshContacts = true
+                /**ContactsFragment.contactList[position] = data?.getSerializableExtra("Contact") as Contact
+                recyclerViewContacts.adapter?.notifyDataSetChanged()*/
             }
         }
     }
