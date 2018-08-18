@@ -45,7 +45,7 @@ class CompaniesFragment : Fragment() {
 
         fabAddCompanies = activity?.findViewById(R.id.fabAdd)
         fabAddCompanies?.visibility = View.VISIBLE
-        fabAddCompanies?.setOnClickListener{
+        fabAddCompanies?.setOnClickListener {
             val intent = Intent(activity, CompanyEditorActivity::class.java).apply {
                 putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
             }
