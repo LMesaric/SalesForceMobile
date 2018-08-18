@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-
+//FILIP - kad se ide preko Add Contact od Company Carda, dobiva se krivi company u ovom editoru (prije je ispravno radilo)
 class ContactEditFragment : Fragment() {
 
     companion object {
@@ -27,7 +27,7 @@ class ContactEditFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_contact_edit, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_contact_edit, container, false)
 
         val btnChooseCompany: ImageButton = view.findViewById(R.id.btnContactChooseCompany)
         val btnSave: Button = view.findViewById(R.id.btnContactSave)
@@ -52,30 +52,36 @@ class ContactEditFragment : Fragment() {
             //TODO Osim biranja Companyja, trebalo bi omoguciti i kreiranje novog u istom prozoru -> problem vracanja podatka kroz intent
             val companiesFragment = CompaniesFragment()
             val bundle = Bundle()
-            bundle.putBoolean("isForSelect", true)
+            bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), true)
             companiesFragment.arguments = bundle
             replaceFragmentListener.replaceFragment(companiesFragment)
         }
 
-        btnSave.setOnClickListener { _ ->
+        btnSave.setOnClickListener {
             var thereAreNoErrors = true
+
             val status: Int = spContactStatus.selectedItemPosition
             val title: Int = spContactTitle.selectedItemPosition
             val prefTime: Int = spContactPreferredTime.selectedItemPosition
+
             val firstName: String = etContactFirstName.text.toString().trim()
             val lastName: String = etContactLastName.text.toString().trim()
+
             var phone: String? = etContactPhone.text.toString().trim()
             if (phone.isNullOrBlank()) {
                 phone = null
             }
+
             var email: String? = etContactEmail.text.toString().trim()
             if (email.isNullOrBlank()) {
                 email = null
             }
+
             var details: String? = etContactEmail.text.toString().trim()
             if (details.isNullOrBlank()) {
                 details = null
             }
+
             if (firstName.isEmpty()) {
                 etContactFirstName.error = getString(R.string.firstNameEmptyMessage)
                 thereAreNoErrors = false
@@ -88,7 +94,6 @@ class ContactEditFragment : Fragment() {
                 etContactCompanyName.error = getString(R.string.noCompanyChosenMessage)
                 thereAreNoErrors = false
             }
-
 
             //LUKA - Dovrsiti popis..
             if (thereAreNoErrors) {
@@ -125,7 +130,6 @@ class ContactEditFragment : Fragment() {
                     }
                 }
             }
-
         }
 
         contact = activity?.intent?.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as? Contact
@@ -136,6 +140,7 @@ class ContactEditFragment : Fragment() {
             activity?.title = getString(R.string.editContact)
         }
 
+        //FILIP - srediti warninge
         spContactTitle.adapter = ArrayAdapter.createFromResource(
                 activity?.baseContext,
                 R.array.contactTitle_array,
@@ -206,5 +211,4 @@ class ContactEditFragment : Fragment() {
         super.onResume()
         etContactCompanyName.setText(chosenCompany?.name)
     }
-
 }

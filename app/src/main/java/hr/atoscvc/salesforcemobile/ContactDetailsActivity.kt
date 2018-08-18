@@ -26,7 +26,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         tvContactDetailsDetails.text = contact.details
     }
 
-    fun onEditContactDetails(view: View) {
+    fun onEditContactDetails(@Suppress("UNUSED_PARAMETER") view: View) {
         val intent = Intent(this, ContactEditorActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
             putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)

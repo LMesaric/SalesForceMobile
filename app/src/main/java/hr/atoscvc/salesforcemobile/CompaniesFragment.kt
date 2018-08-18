@@ -41,7 +41,7 @@ class CompaniesFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        isForSelect = arguments?.getBoolean("isForSelect") ?: false
+        isForSelect = arguments?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT)) ?: false
 
         fabAddCompanies = activity?.findViewById(R.id.fabAdd)
         fabAddCompanies?.visibility = View.VISIBLE

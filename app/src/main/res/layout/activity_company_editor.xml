@@ -42,7 +42,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Company Name"
-            android:inputType="textPersonName"
+            android:inputType="textCapSentences"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spCompanyCvsSegment" />

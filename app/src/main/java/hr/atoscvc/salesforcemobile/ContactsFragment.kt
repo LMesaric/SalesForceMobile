@@ -58,7 +58,8 @@ class ContactsFragment : Fragment(), ContactAdapter.RecyclerViewOnClickListener 
         val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, activity as Activity, false, this) }
         recyclerView.adapter = adapter
 
-        val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").orderBy("firstName") }
+        //TODO Bilo bi dosta lako dodati Sort By feature - samo ubaciti string u .orderBy()
+        val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").orderBy("lastName") }
         query?.addSnapshotListener { p0, p1 ->
             if (p1 != null) {
                 Log.d("ERRORS", p1.message)

@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity(), LogoutListener {
                 R.id.navBarCompanies -> {
                     val companiesFragment = CompaniesFragment()
                     val bundle = Bundle()
-                    bundle.putBoolean("isForSelect", false)
+                    bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), false)
                     companiesFragment.arguments = bundle
                     appBarLayout.setExpanded(true, true)
                     appBarLayout.isActivated = true
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity(), LogoutListener {
             refreshCompanies = false
             val companiesFragment = CompaniesFragment()
             val bundle = Bundle()
-            bundle.putBoolean("isForSelect", false)
+            bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), false)
             companiesFragment.arguments = bundle
             appBarLayout.setExpanded(true, true)
             appBarLayout.isActivated = true
