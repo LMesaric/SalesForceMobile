@@ -54,7 +54,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvCardCompaniesCvsSegment">
-                <!-- LUKA - set visibility to "gone"-->
+                <!-- LUKA - set visibility to "gone" -->
 
                 <TextView
                     android:id="@+id/tvCardCompaniesStatus"

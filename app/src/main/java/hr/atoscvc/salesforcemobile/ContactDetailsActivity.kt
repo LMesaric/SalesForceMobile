@@ -14,7 +14,7 @@ class ContactDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_details)
-        contact = intent.getSerializableExtra("Contact") as Contact
+        contact = intent.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as Contact
     }
 
     override fun onResume() {
@@ -39,7 +39,7 @@ class ContactDetailsActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (isChanged) {
             val intent = Intent()
-            intent.putExtra("Contact", contact)
+            intent.putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
             setResult(AppCompatActivity.RESULT_OK, intent)
         }
         super.onBackPressed()
@@ -48,7 +48,7 @@ class ContactDetailsActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 4) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
-                contact = data?.getSerializableExtra("Contact") as Contact
+                contact = data?.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as Contact
                 isChanged = true
             }
         }

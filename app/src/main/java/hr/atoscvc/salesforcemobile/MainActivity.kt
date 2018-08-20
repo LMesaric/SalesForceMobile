@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
         this.position = position
         val intent = Intent(this, ContactDetailsActivity::class.java)
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, circleImageView, "contactAvatar")
-        intent.putExtra("Contact", contact)
+        intent.putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
         startActivityForResult(intent, ContactsFragment.requestItemRefresh, options.toBundle())
     }
 

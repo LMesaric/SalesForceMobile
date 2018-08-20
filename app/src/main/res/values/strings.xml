@@ -47,6 +47,17 @@
     <string name="Companies">Companies</string>
     <string name="Contacts">Contacts</string>
 
+    <string name="noCompanyFoundError">No company found</string>
+    <string name="noUserFound">No user found</string>
+
+    <string name="wrongEmailOrPassword">Wrong email or password</string>
+    <string name="checkYourEmail">Check your email</string>
+
+    <string name="newCompanyCreated">New Company created</string>
+    <string name="companyUpdated">Company updated</string>
+    <string name="newContactCreated">New Contact created</string>
+    <string name="contactUpdated">Contact updated</string>
+
     <string name="addContact">Add Contact</string>
     <string name="addCompany">Add Company</string>
 

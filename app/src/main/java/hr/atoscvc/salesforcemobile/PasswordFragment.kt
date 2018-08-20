@@ -74,14 +74,16 @@ class PasswordFragment : Fragment(), View.OnClickListener {
     private fun addUserToDatabase() {
         mAuth.currentUser?.uid?.let {
             ActiveUserSingleton.user?.let { it1 ->
-                db.collection("Users").document(it).set(it1)
+                db.collection("Users")
+                        .document(it)
+                        .set(it1)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 sendToMain()
                             } else {
                                 ActiveUserSingleton.user = null
                                 mAuth.signOut()
-                                Toast.makeText(activity, "Error: " + task.exception?.message.toString(), Toast.LENGTH_LONG).show()
+                                Toast.makeText(activity, "Error: ${task.exception?.message.toString()}", Toast.LENGTH_LONG).show()
                             }
                         }
             }

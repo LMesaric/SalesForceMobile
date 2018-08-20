@@ -138,12 +138,19 @@ class CompanyEditorActivity : AppCompatActivity() {
         //LUKA - Dovrsiti popis...
 
         if (thereAreNoErrors) {
+            company = Company(company?.documentID, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
+
             if (intent.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)) {
-                val docRef: DocumentReference? = mAuth.uid?.let { db.collection("Users").document(it).collection("Companies").document() }
-                company = Company(docRef?.id, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
+                val docRef: DocumentReference? = mAuth.uid?.let {
+                    db.collection("Users")
+                            .document(it)
+                            .collection("Companies")
+                            .document()
+                }
+                company?.documentID = docRef?.id
                 company?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, "New Company created", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.newCompanyCreated), Toast.LENGTH_SHORT).show()
                         setResult(AppCompatActivity.RESULT_OK)
                         finish()
                     } else {
@@ -151,10 +158,17 @@ class CompanyEditorActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                company = Company(company?.documentID, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
-                mAuth.uid?.let { company?.let { it1 -> db.collection("Users").document(it).collection("Companies").document(company?.documentID.toString()).set(it1) } }?.addOnCompleteListener { task ->
+                mAuth.uid?.let {
+                    company?.let { it1 ->
+                        db.collection("Users")
+                                .document(it)
+                                .collection("Companies")
+                                .document(company?.documentID.toString())
+                                .set(it1)
+                    }
+                }?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, "Company updated", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, getString(R.string.companyUpdated), Toast.LENGTH_LONG).show()
                         setResult(AppCompatActivity.RESULT_OK)
                         finish()
                     } else {

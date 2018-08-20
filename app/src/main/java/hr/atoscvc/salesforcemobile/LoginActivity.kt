@@ -11,16 +11,14 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import hr.atoscvc.salesforcemobile.R.string.username
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.reset_password.view.*
-import java.lang.ref.WeakReference
 
 class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
 
     //FILIP - novi password (hard reset) nema nikakve provjere (CheckPasswordConstraints) - implementirati u backendu
     //FILIP - forgot password loader indicator se trenutno vrti iza prozora pa se ne vidi
-    //FILIP - EventLog SQL tablica (EventID primary key + String) - "User $userID forgot his password", "User $userID set a new password", "User $userID changed his password", "User $userID logged in/out"
+    //FILIP - EventLog tablica (samo String) u bazi - "User $userID forgot his password", "User $userID set a new password", "User $userID changed his password", "User $userID logged in/out"...
 
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
@@ -29,7 +27,6 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     private lateinit var alertDialogBuilder: AlertDialog.Builder
     private lateinit var alertDialog: AlertDialog
     private lateinit var resetPasswordView: View
-    private lateinit var operation: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,15 +82,18 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                             db.collection("Users").document(mAuth.uid.toString()).get()
                                     .addOnSuccessListener { documentSnapshot ->
                                         if (documentSnapshot.exists()) {
-                                            val activeUser = User(documentSnapshot.getString("firstName").toString(), documentSnapshot.getString("lastName").toString(), mAuth.currentUser!!.email.toString())
-                                            ActiveUserSingleton.user = activeUser
+                                            ActiveUserSingleton.user = User(
+                                                    documentSnapshot.getString("firstName").toString(),
+                                                    documentSnapshot.getString("lastName").toString(),
+                                                    mAuth.currentUser!!.email.toString()
+                                            )
                                             sendToMain()
                                         } else {
-                                            Toast.makeText(this, "No user found", Toast.LENGTH_LONG).show()
+                                            Toast.makeText(this, getString(R.string.noUserFound), Toast.LENGTH_LONG).show()
                                         }
                                     }
                         } else {
-                            Toast.makeText(this, "Wrong email or password", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, getString(R.string.wrongEmailOrPassword), Toast.LENGTH_LONG).show()
                         }
                         btnLogin.visibility = View.VISIBLE
                     }
@@ -135,7 +135,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
 
         if (!email.isBlank()) {
             mAuth.sendPasswordResetEmail(email)
-                    .addOnCompleteListener { task->
+                    .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             alertDialog.dismiss()
                         } else {
@@ -179,16 +179,15 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         btnLogin.isEnabled = false
     }
 
+    //FILIP - Za apsolutno sve greske osim successful password changea nema poruke useru
+    //FILIP - Moguce da cak ne radi za ispravan username i email (probao sam i nisam dobio Toast ni email)
     override fun processFinish(output: String) {
         resetPasswordView.btnSendPassReset.visibility = View.VISIBLE
         resetPasswordView.mailProgress.visibility = View.GONE
         if (output.contains("Success")) {
             resetPasswordView.btnSendPassReset.visibility = View.GONE
-            Toast.makeText(this, "Check your email", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.checkYourEmail), Toast.LENGTH_LONG).show()
             alertDialog.dismiss()
         }
-        //FILIP - Za apsolutno sve greske osim successful password changea nema poruke useru
-        //FILIP - Moguce da cak ne radi za ispravan username i email (probao sam i nisam dobio Toast ni email)
-        //FILIP - Kada je username bio za login, email je bio ekstra confirmation. Sad mozda vise ne treba username za reset (ne koristi se pa se zaboravi - cemu uopce imati usernameove?)
     }
 }

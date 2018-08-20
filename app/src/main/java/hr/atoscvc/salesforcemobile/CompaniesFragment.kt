@@ -26,7 +26,6 @@ class CompaniesFragment : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-
     @SuppressLint("RestrictedApi")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

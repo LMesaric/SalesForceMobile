@@ -36,6 +36,14 @@ class ContactEditFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
+        contact = activity?.intent?.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as? Contact
+
+        if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
+            activity?.title = getString(R.string.newContact)
+        } else {
+            activity?.title = getString(R.string.editContact)
+        }
+
         view.btnContactChooseCompany.setOnClickListener {
             //TODO Osim biranja Companyja, trebalo bi omoguciti i kreiranje novog u istom prozoru -> problem vracanja podatka kroz intent
             val companiesFragment = CompaniesFragment()
@@ -86,11 +94,16 @@ class ContactEditFragment : Fragment() {
             //LUKA - Dovrsiti popis..
             if (thereAreNoErrors) {
                 if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
-                    val docRef: DocumentReference? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").document() }
+                    val docRef: DocumentReference? = mAuth.uid?.let {
+                        db.collection("Users")
+                                .document(it)
+                                .collection("Contacts")
+                                .document()
+                    }
                     contact = chosenCompany?.let { Contact(docRef?.id, status, title, firstName, lastName, it, phone, email, prefTime, details) }
                     contact?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(activity, "New Contact created", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, getString(R.string.newContactCreated), Toast.LENGTH_SHORT).show()
                             activity?.setResult(AppCompatActivity.RESULT_OK)
                             activity?.finish()
                         } else {
@@ -98,34 +111,28 @@ class ContactEditFragment : Fragment() {
                         }
                     }
                 } else {
-                    val documentID = contact?.documentID
-                    if (documentID.isNullOrBlank()) {
-                        Toast.makeText(activity, "Unknown error occurred", Toast.LENGTH_SHORT).show()
-                        activity?.finish()
-                    } else {
-                        contact = chosenCompany?.let { Contact(contact?.documentID, status, title, firstName, lastName, it, phone, email, prefTime, details) }
-                        mAuth.uid?.let { contact?.let { it1 -> db.collection("Users").document(it).collection("Contacts").document(contact?.documentID.toString()).set(it1) } }?.addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Toast.makeText(activity, "Contact updated", Toast.LENGTH_LONG).show()
-                                val resultIntent = Intent()
-                                resultIntent.putExtra("Contact", contact)
-                                activity?.setResult(AppCompatActivity.RESULT_OK, resultIntent)
-                                activity?.finish()
-                            } else {
-                                Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
-                            }
+                    contact = chosenCompany?.let { Contact(contact?.documentID, status, title, firstName, lastName, it, phone, email, prefTime, details) }
+                    mAuth.uid?.let {
+                        contact?.let { it1 ->
+                            db.collection("Users")
+                                    .document(it)
+                                    .collection("Contacts")
+                                    .document(contact?.documentID.toString())
+                                    .set(it1)
+                        }
+                    }?.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(activity, getString(R.string.contactUpdated), Toast.LENGTH_LONG).show()
+                            val resultIntent = Intent()
+                            resultIntent.putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                            activity?.setResult(AppCompatActivity.RESULT_OK, resultIntent)
+                            activity?.finish()
+                        } else {
+                            Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
                         }
                     }
                 }
             }
-        }
-
-        contact = activity?.intent?.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as? Contact
-
-        if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
-            activity?.title = getString(R.string.newContact)
-        } else {
-            activity?.title = getString(R.string.editContact)
         }
 
         try {

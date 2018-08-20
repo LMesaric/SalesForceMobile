@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import de.hdodenhof.circleimageview.CircleImageView
-import hr.atoscvc.salesforcemobile.ContactsFragment.Companion.contactList
 import kotlinx.android.synthetic.main.list_layout_contacts.view.*
 
 class ContactAdapter(private val contactList: ArrayList<Contact>, val context: Activity, private val isForSelect: Boolean, private val listener: RecyclerViewOnClickListener) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
@@ -40,7 +39,7 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
         val tvCardContactsNameText = "$contactTitle${contact.firstName} ${contact.lastName}"
 
         holder.tvCardContactsName.text = tvCardContactsNameText
-        holder.tvCardContactCompany.text = contact.company?.name ?: "No company found"
+        holder.tvCardContactCompany.text = contact.company?.name ?: context.getString(R.string.noCompanyFoundError)
         holder.tvCardContactStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
         /*holder.tvCardContactsStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
         holder.tvCardContactsPrefTime.text = context.resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
