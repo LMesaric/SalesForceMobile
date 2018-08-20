@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".NewNameFragment">
 
-
+    <!-- LUKA - obrisati parent FrameLayout -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +24,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="50dp"
-                android:text="Create new"
+                android:text="@string/CreateNew"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:text="account"
+                android:text="@string/Account"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:text="Enter your name"
+                android:text="@string/EnterYourName"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +110,7 @@
                 android:layout_marginTop="50dp"
                 android:background="@drawable/button_login_style"
                 android:fontFamily="sans-serif"
-                android:text="Next"
+                android:text="@string/Next"
                 android:textColor="@color/colorBackgroundWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

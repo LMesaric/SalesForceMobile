@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".EmailFragment">
 
+    <!-- LUKA - obrisati parent FrameLayout -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +24,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="50dp"
-                android:text="How you will"
+                android:text="@string/HowYouWill"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +39,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:text="sign in"
+                android:text="@string/SignIn"
                 android:textColor="@color/colorPrimary"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +54,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:text="Enter your email"
+                android:text="@string/EnterYourEmail"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +90,7 @@
                 android:layout_marginTop="50dp"
                 android:background="@drawable/button_login_style"
                 android:fontFamily="sans-serif"
-                android:text="Next"
+                android:text="@string/Next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

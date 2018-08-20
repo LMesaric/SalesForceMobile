@@ -2,6 +2,7 @@
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayoutContactsMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -37,7 +38,8 @@
             android:text="Mr. John Smith"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tvCardContactCompany"
@@ -45,7 +47,8 @@
             android:layout_height="wrap_content"
             android:text="Atos CVC"
             app:layout_constraintStart_toStartOf="@+id/tvCardContactsName"
-            app:layout_constraintTop_toBottomOf="@+id/tvCardContactsName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvCardContactsName"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tvCardContactStatus"
@@ -53,7 +56,8 @@
             android:layout_height="wrap_content"
             android:text="ACTIVE"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCardContactCompany" />
+            app:layout_constraintTop_toBottomOf="@+id/tvCardContactCompany"
+            tools:ignore="HardcodedText" />
 
     </android.support.constraint.ConstraintLayout>
 

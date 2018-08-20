@@ -11,20 +11,42 @@
     <string name="forgotPassword"><a href="">Forgot your password?</a></string>
     <string name="clickHereToRegister"><a href="">Register</a></string>
 
+    <string name="resetPassword">Reset Password</string>
+    <string name="reset">Reset</string>
+    <string name="resetPasswordDescriptionLabel">We will send you an email with a link to reset your password. Please check your Spam folder.</string>
+
+    <string name="CreateNew">Create new</string>
+    <string name="Account">account</string>
+    <string name="EnterYourName">Enter your name</string>
+
+    <string name="HowYouWill">How you will</string>
+    <string name="SignIn">sign in</string>
+    <string name="EnterYourEmail">Enter your email</string>
+
+    <string name="ProtectYour">Protect your</string>
+    <string name="Information">information</string>
+    <string name="CreatePassword">Create a password</string>
+
     <string name="login">Login</string>
     <string name="registration">Registration</string>
     <string name="Register">Register</string>
 
+    <string name="Search">Search</string>
     <string name="AccountSettings">Account Settings</string>
     <string name="logout">Logout</string>
 
+    <string name="Password">Password</string>
+    <string name="ConfirmPassword">Confirm Password</string>
     <string name="FirstName">First Name</string>
     <string name="LastName">Last Name</string>
     <string name="PhoneNumber">Phone Number</string>
     <string name="Email">E-mail</string>
     <string name="Details">Details</string>
-    <string name="Password">Password</string>
-    <string name="ConfirmPassword">Confirm Password</string>
+    <string name="Company">Company</string>
+    <string name="CompanyName">Company Name</string>
+    <string name="OIB">OIB</string>
+    <string name="WebPage">Web Page</string>
+    <string name="Income">Income</string>
 
     <string name="emailAlreadyInUse">Email address is already in use.</string>
 
@@ -68,11 +90,9 @@
 
     <string name="Save">Save</string>
     <string name="Edit">Edit</string>
+    <string name="Next">Next</string>
+    <string name="Finish">Finish</string>
     <string name="Select">Select</string>
-
-    <string name="resetPassword">Reset Password</string>
-    <string name="reset">Reset</string>
-    <string name="resetPasswordDescriptionLabel">We will send you an email with a link to reset your password. Please check your Spam folder.</string>
 
     <string name="change">Change</string>
     <string name="changePassword">Change Password</string>
