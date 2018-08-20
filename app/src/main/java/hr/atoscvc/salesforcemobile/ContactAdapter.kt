@@ -56,13 +56,9 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
             if (currentPosition == position) {
                 //holder.constraintLayoutContactsExpandable.visibility = View.VISIBLE
                 if (!isExpanded) {
-//                val slideDown = AnimationUtils.loadAnimation(context, R.anim.animation_cardview_expand)
                     //holder.constraintLayoutContactsExpandable.visibility = View.VISIBLE
-//                holder.constraintLayoutContactsExpandable.startAnimation(slideDown)
                 } else {
-//                val slideUp = AnimationUtils.loadAnimation(context, R.anim.animation_cardview_collapse)
                     //holder.constraintLayoutContactsExpandable.visibility = View.GONE
-//                holder.constraintLayoutContactsExpandable.startAnimation(slideUp)
                 }
             } else {    // Remove this else statement and the other cards will not automatically collapse
                 //holder.constraintLayoutContactsExpandable.visibility = View.GONE

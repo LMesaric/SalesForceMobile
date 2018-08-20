@@ -57,13 +57,9 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: A
 
             if (currentPosition == position) {
                 if (holder.constraintLayoutCompaniesExpandable.visibility == View.GONE) {
-//                val slideDown = AnimationUtils.loadAnimation(context, R.anim.animation_cardview_expand)
                     holder.constraintLayoutCompaniesExpandable.visibility = View.VISIBLE
-//                holder.constraintLayoutCompaniesExpandable.startAnimation(slideDown)
                 } else {
-//                val slideUp = AnimationUtils.loadAnimation(context, R.anim.animation_cardview_collapse)
                     holder.constraintLayoutCompaniesExpandable.visibility = View.GONE
-//                holder.constraintLayoutCompaniesExpandable.startAnimation(slideUp)
                 }
             } else {    // Remove this else statement and the other cards will not automatically collapse
                 holder.constraintLayoutCompaniesExpandable.visibility = View.GONE
