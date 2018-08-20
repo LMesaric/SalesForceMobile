@@ -42,6 +42,10 @@
     <string name="oibOnlyDigitsMessage">OIB must contain only digits.</string>
     <string name="noCompanyChosenMessage">No Company chosen.</string>
 
+    <string name="Home">Home</string>
+    <string name="Companies">Companies</string>
+    <string name="Contacts">Contacts</string>
+
     <string name="addContact">Add a new contact</string>
     <string name="viewContacts">View all contacts</string>
     <string name="addCompany">Add a new company</string>
@@ -165,11 +169,5 @@
     <string name="EXTRA_COMPANY_PHONE">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_PHONE</string>
     <string name="EXTRA_COMPANY_INCOME">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_INCOME</string>
     <string name="EXTRA_COMPANY_DETAILS">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DETAILS</string>
-    <string name="Home">Home</string>
-    <string name="Companies">Companies</string>
-    <string name="Contacts">Contacts</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
