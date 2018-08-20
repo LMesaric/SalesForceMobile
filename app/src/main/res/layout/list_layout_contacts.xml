@@ -1,65 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root"
+    android:id="@+id/constraintLayoutContactsMain"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/colorBackgroundWhite"
+    android:paddingBottom="0dp"
+    android:paddingEnd="0dp"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivContactAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/contact_avatar_small"
+        android:transitionName="contactAvatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayoutContactsMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackgroundWhite"
-        android:paddingBottom="0dp"
-        android:paddingEnd="0dp"
-        android:paddingStart="16dp"
-        android:paddingTop="16dp">
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/list_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivContactAvatar"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivContactAvatar"
+        <TextView
+            android:id="@+id/tvCardContactsName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/contact_avatar_small"
-            android:transitionName="contactAvatar"
+            android:text="Mr. John Smith"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="72dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/list_border"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivContactAvatar"
-            app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/tvCardContactCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Atos CVC"
+            app:layout_constraintStart_toStartOf="@+id/tvCardContactsName"
+            app:layout_constraintTop_toBottomOf="@+id/tvCardContactsName" />
 
-            <TextView
-                android:id="@+id/tvCardContactsName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mr. John Smith"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvCardContactCompany"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Atos CVC"
-                app:layout_constraintStart_toStartOf="@+id/tvCardContactsName"
-                app:layout_constraintTop_toBottomOf="@+id/tvCardContactsName" />
-
-            <TextView
-                android:id="@+id/tvCardContactStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ACTIVE"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvCardContactCompany" />
-
-        </android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvCardContactStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACTIVE"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCardContactCompany" />
 
     </android.support.constraint.ConstraintLayout>
 
