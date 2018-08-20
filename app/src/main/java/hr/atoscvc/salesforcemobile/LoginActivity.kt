@@ -24,7 +24,6 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     private lateinit var mAuth: FirebaseAuth
 
     private lateinit var email: String
-    private lateinit var alertDialogBuilder: AlertDialog.Builder
     private lateinit var alertDialog: AlertDialog
     private lateinit var resetPasswordView: View
 
@@ -104,13 +103,12 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     @SuppressLint("InflateParams")
     fun onForgotPassword(@Suppress("UNUSED_PARAMETER") view: View) {
         resetPasswordView = layoutInflater.inflate(R.layout.reset_password, null)
-        alertDialogBuilder = AlertDialog.Builder(this)
-        alertDialog = alertDialogBuilder.create()
+        alertDialog = AlertDialog.Builder(this).create()
         alertDialog.setView(resetPasswordView)
 
         resetPasswordView.etEmailPassReset.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                val email = resetPasswordView.etEmailPassReset.text.toString().trim()
+                val email: String = resetPasswordView.etEmailPassReset.text.toString().trim()
                 resetPasswordView.etEmailPassReset.setText(email)
                 resetPasswordView.etEmailPassReset.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_email_outline, 0, 0, 0)
 
@@ -131,7 +129,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     }
 
     fun onSendEmail(@Suppress("UNUSED_PARAMETER") view: View) {
-        val email = resetPasswordView.etEmailPassReset.text.toString().trim()
+        val email: String = resetPasswordView.etEmailPassReset.text.toString().trim()
 
         if (!email.isBlank()) {
             mAuth.sendPasswordResetEmail(email)
@@ -180,7 +178,6 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     }
 
     //FILIP - Za apsolutno sve greske osim successful password changea nema poruke useru
-    //FILIP - Moguce da cak ne radi za ispravan username i email (probao sam i nisam dobio Toast ni email)
     override fun processFinish(output: String) {
         resetPasswordView.btnSendPassReset.visibility = View.VISIBLE
         resetPasswordView.mailProgress.visibility = View.GONE

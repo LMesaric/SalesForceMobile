@@ -13,7 +13,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_company_editor.*
 
 class CompanyEditorActivity : AppCompatActivity() {
-
     //TODO Ovako se dobiva string iz indeksa u bazi:  resources.getStringArray(R.array.contactTitle_array)[index]
     //TODO Ovako se dobiva indeks selektiranog u spinneru:  spTitleContact.selectedItemPosition.toString()
 
@@ -62,9 +61,6 @@ class CompanyEditorActivity : AppCompatActivity() {
                 R.layout.simple_spinner_dropdown_item
         )
 
-        //TODO OIB ima fiksan broj znamenaka (mozda druge drzave to nemaju?)
-
-        //LUKA - Company i Contact paziti da nije out of range
         spCompanyStatus.setSelection(company?.status ?: 0)
         spCompanyCvsSegment.setSelection(company?.cvsSegment ?: 0)
         spCompanyCommunicationType.setSelection(company?.communicationType ?: 0)
@@ -75,7 +71,6 @@ class CompanyEditorActivity : AppCompatActivity() {
         etCompanyPhone.setText(company?.phone)
         etCompanyDetails.setText(company?.details)
         etCompanyIncome.setText(company?.income)
-
     }
 
     override fun onResume() {
@@ -176,7 +171,6 @@ class CompanyEditorActivity : AppCompatActivity() {
                     }
                 }
             }
-
         }
     }
 }
