@@ -19,7 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/spCompanyCvsSegment"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -88,7 +87,6 @@
             android:layout_marginRight="65dp"
             android:layout_marginStart="65dp"
             android:layout_marginTop="8dp"
-            android:drawableLeft="@drawable/ic_action_phone"
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_action_phone"
             android:ems="10"
@@ -140,7 +138,6 @@
             android:id="@+id/spCompanyEmployees"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/spCompanyCommunicationType"
             app:layout_constraintStart_toEndOf="@+id/spCompanyCommunicationType" />

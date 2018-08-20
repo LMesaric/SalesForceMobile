@@ -13,7 +13,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.RecyclerViewOnClickListener {
 
     private lateinit var mAuth: FirebaseAuth
@@ -139,8 +138,6 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
             if (item.itemId == R.id.action_logout) {
                 sendToLogin()
             } else if (item.itemId == R.id.action_account_settings) {
-                //FIXME Method should be moved elsewhere
-                //FIXME In Manifest: android:parentActivityName=".MainMenuActivity" should be changed accordingly
                 val intent = Intent(this, ChangePasswordActivity::class.java)
                 startActivity(intent)
             }

@@ -40,8 +40,10 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         (application as MyApp).cancelTimer()
 
         db = FirebaseFirestore.getInstance()
-
         mAuth = FirebaseAuth.getInstance()
+
+        setSupportActionBar(toolbarLogin)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         etEmail.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
@@ -219,5 +221,4 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         //FILIP - Moguce da cak ne radi za ispravan username i email (probao sam i nisam dobio Toast ni email)
         //FILIP - Kada je username bio za login, email je bio ekstra confirmation. Sad mozda vise ne treba username za reset (ne koristi se pa se zaboravi - cemu uopce imati usernameove?)
     }
-
 }

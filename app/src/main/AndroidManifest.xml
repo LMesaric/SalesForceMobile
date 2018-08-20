@@ -15,34 +15,15 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity
-            android:name=".RegisterActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".ChangePasswordActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".CompanyEditorActivity"
-            android:label="@string/newCompany"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".CompanyListActivity"
-            android:label="@string/allCompanies"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".ContactEditorActivity"
-            android:label="@string/newContact"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".ContactListActivity"
-            android:label="@string/allContacts"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".ContactDetailsActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".CompanyEditorActivity" />
+        <activity android:name=".ContactEditorActivity" />
+        <activity android:name=".ContactDetailsActivity" />
     </application>
 
 </manifest>

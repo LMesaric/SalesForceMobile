@@ -122,8 +122,7 @@
 
     <!-- HIDDEN FROM USERS (for development) -->
 
-    <string name="loginURL">http://atoscvc.000webhostapp.com/login.php</string>
-    <string name="registerURL">http://atoscvc.000webhostapp.com/register.php</string>
+    <!-- FILIP - obrisati resetPasswordURL i vidjeti sto napraviti s Background Workerom -->
     <string name="resetPasswordURL">http://atoscvc.000webhostapp.com/resetPassword.php</string>
 
     <string name="UTF8">UTF-8</string>

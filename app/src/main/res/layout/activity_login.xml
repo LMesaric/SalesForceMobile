@@ -69,8 +69,8 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:elevation="5dp"
             android:clickable="true"
+            android:elevation="5dp"
             android:focusable="true"
             android:text="@string/forgotPassword"
             android:textColor="@color/colorPrimary"
@@ -93,7 +93,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword"
-            app:srcCompat="@drawable/or_label" />
+            app:srcCompat="@drawable/or_label"
+            tools:ignore="ContentDescription" />
 
         <EditText
             android:id="@+id/etPassword"
@@ -167,7 +168,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar2"
+            android:id="@+id/toolbarLogin"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:background="@color/colorPrimary"
@@ -190,7 +191,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/login_page" />
+            app:srcCompat="@drawable/login_page"
+            tools:ignore="ContentDescription" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

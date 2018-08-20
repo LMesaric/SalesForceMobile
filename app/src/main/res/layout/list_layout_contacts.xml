@@ -21,8 +21,6 @@
         android:background="#FFFFFF"
         android:paddingBottom="0dp"
         android:paddingEnd="0dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="0dp"
         android:paddingStart="16dp"
         android:paddingTop="16dp">
 
@@ -38,7 +36,6 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="72dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:background="@drawable/list_border"
             app:layout_constraintEnd_toEndOf="parent"
