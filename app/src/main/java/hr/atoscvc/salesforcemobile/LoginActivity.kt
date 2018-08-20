@@ -137,9 +137,11 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                         if (task.isSuccessful) {
                             alertDialog.dismiss()
                         } else {
-                            etEmail.error = task.exception?.message
+                            resetPasswordView.etEmailPassReset.error = task.exception?.message
                         }
                     }
+        } else {
+            resetPasswordView.etEmailPassReset.error = getString(R.string.emailEmptyMessage)
         }
     }
 
