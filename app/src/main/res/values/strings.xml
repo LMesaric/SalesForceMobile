@@ -47,9 +47,10 @@
     <string name="Companies">Companies</string>
     <string name="Contacts">Contacts</string>
 
-    <string name="addContact">Add a new contact</string>
+    <string name="addContact">Add Contact</string>
+    <string name="addCompany">Add Company</string>
+
     <string name="viewContacts">View all contacts</string>
-    <string name="addCompany">Add a new company</string>
     <string name="viewCompanies">View all companies</string>
     <string name="allContacts">All Contacts</string>
     <string name="allCompanies">All Companies</string>
@@ -60,6 +61,8 @@
     <string name="chooseCompany">Choose Company</string>
 
     <string name="Save">Save</string>
+    <string name="Edit">Edit</string>
+    <string name="Select">Select</string>
 
     <string name="resetPassword">Reset Password</string>
     <string name="reset">Reset</string>
@@ -169,5 +172,16 @@
     <string name="EXTRA_COMPANY_PHONE">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_PHONE</string>
     <string name="EXTRA_COMPANY_INCOME">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_INCOME</string>
     <string name="EXTRA_COMPANY_DETAILS">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DETAILS</string>
+
+    <string name="dummyCompanyName">Atos CVC</string>
+    <string name="dummyCompanyCvsSegment">Platinum</string>
+    <string name="dummyCompanyStatus">ACTIVE</string>
+    <string name="dummyCompanyOib">0123456789</string>
+    <string name="dummyCompanyWebPage">www.chuck_norris.com</string>
+    <string name="dummyCompanyPhone">0917893456</string>
+    <string name="dummyCompanyIncome">100000</string>
+    <string name="dummyCompanyCommunicationType">Phone</string>
+    <string name="dummyCompanyEmployees">10–24</string>
+    <string name="dummyCompanyDetails">Best Company Ever!</string>
 
 </resources>
