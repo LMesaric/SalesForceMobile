@@ -173,15 +173,4 @@
     <string name="EXTRA_COMPANY_INCOME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_INCOME</string>
     <string name="EXTRA_COMPANY_DETAILS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DETAILS</string>
 
-    <string name="dummyCompanyName" translatable="false">Atos CVC</string>
-    <string name="dummyCompanyCvsSegment" translatable="false">Platinum</string>
-    <string name="dummyCompanyStatus" translatable="false">ACTIVE</string>
-    <string name="dummyCompanyOib" translatable="false">0123456789</string>
-    <string name="dummyCompanyWebPage" translatable="false">www.chuck_norris.com</string>
-    <string name="dummyCompanyPhone" translatable="false">0917893456</string>
-    <string name="dummyCompanyIncome" translatable="false">100000</string>
-    <string name="dummyCompanyCommunicationType" translatable="false">Phone</string>
-    <string name="dummyCompanyEmployees" translatable="false">10–24</string>
-    <string name="dummyCompanyDetails" translatable="false">Best Company Ever!</string>
-
 </resources>
