@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_contacts.*
 
 
 class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.RecyclerViewOnClickListener {

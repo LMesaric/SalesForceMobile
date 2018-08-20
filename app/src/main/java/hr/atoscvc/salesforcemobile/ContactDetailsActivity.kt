@@ -1,10 +1,8 @@
 package hr.atoscvc.salesforcemobile
 
-import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
