@@ -1,6 +1,5 @@
 package hr.atoscvc.salesforcemobile
 
-
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
@@ -18,9 +17,8 @@ import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_companies.view.*
 
-
 class CompaniesFragment : Fragment() {
-
+    //TODO Implementirati Search funkcionalnost
     companion object RequestCodesCompany {
         const val requestCodeRefresh = 1
     }
@@ -28,7 +26,6 @@ class CompaniesFragment : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-    private var isForSelect: Boolean = false
 
     @SuppressLint("RestrictedApi")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +35,6 @@ class CompaniesFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        isForSelect = arguments?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT)) ?: false
-
         activity?.fabAdd?.visibility = View.VISIBLE
         activity?.fabAdd?.setOnClickListener {
             val intent = Intent(activity, CompanyEditorActivity::class.java).apply {
@@ -48,15 +43,26 @@ class CompaniesFragment : Fragment() {
             activity?.startActivityForResult(intent, requestCodeRefresh)
         }
 
-        val companyList = ArrayList<Company>()      //LUKA - SINGLETON
+        val companyList = ArrayList<Company>()      //LUKA - TWO SINGLETONS
 
         view.recyclerViewCompanies.setHasFixedSize(true)
         view.recyclerViewCompanies.layoutManager = LinearLayoutManager(activity)
 
-        val adapter = CompanyAdapter(companyList, activity as Activity, isForSelect)
+        val adapter = CompanyAdapter(
+                companyList,
+                activity as Activity,
+                arguments
+                        ?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT))
+                        ?: false
+        )
         view.recyclerViewCompanies.adapter = adapter
 
-        val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Companies").orderBy("name") }
+        val query: Query? = mAuth.uid?.let {
+            db.collection("Users")
+                    .document(it)
+                    .collection("Companies")
+                    .orderBy("name")
+        }
         query?.addSnapshotListener { p0, p1 ->
             if (p1 != null) {
                 Log.d("ERRORS", p1.message)
