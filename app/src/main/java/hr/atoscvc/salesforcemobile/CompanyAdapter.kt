@@ -34,86 +34,75 @@ class CompanyAdapter(private val companyList: ArrayList<Company>, val context: A
     }
 
     override fun onBindViewHolder(holder: CompanyViewHolder, position: Int) {
-        if (position == 0) {
-            holder.marginView.visibility = View.VISIBLE
-            holder.cardView.visibility = View.GONE
-        } else {
-            holder.marginView.visibility = View.GONE
-            holder.cardView.visibility = View.VISIBLE
 
-            val company = companyList[position - 1]
-            //LUKA - outOfBounds za Company i Contact files
-            with(holder) {
-                tvCardCompaniesName.text = company.name
-                tvCardCompaniesCvsSegment.text = context.resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]
-                tvCardCompaniesStatus.text = context.resources.getStringArray(R.array.status_array)[company.status]
-                tvCardCompaniesOIB.text = company.OIB
-                tvCardCompaniesWebPage.text = company.webPage
-                tvCardCompaniesPhone.text = company.phone
-                tvCardCompaniesIncome.text = company.income
-                tvCardCompaniesCommunicationType.text = context.resources.getStringArray(R.array.companyCommunicationType_array)[company.communicationType]
-                tvCardCompaniesEmployees.text = context.resources.getStringArray(R.array.companyEmployees_array)[company.employees]
-                tvCardCompaniesDetails.text = company.details
-            }
+        val company = companyList[position]
 
-            if (currentPosition == position) {
-                if (holder.constraintLayoutCompaniesExpandable.visibility == View.GONE) {
-                    holder.constraintLayoutCompaniesExpandable.visibility = View.VISIBLE
-                } else {
-                    holder.constraintLayoutCompaniesExpandable.visibility = View.GONE
-                }
-            } else {    // Remove this else statement and the other cards will not automatically collapse
+        with(holder) {
+            tvCardCompaniesName.text = company.name
+            tvCardCompaniesCvsSegment.text = context.resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]
+            tvCardCompaniesStatus.text = context.resources.getStringArray(R.array.status_array)[company.status]
+            tvCardCompaniesOIB.text = company.OIB
+            tvCardCompaniesWebPage.text = company.webPage
+            tvCardCompaniesPhone.text = company.phone
+            tvCardCompaniesIncome.text = company.income
+            tvCardCompaniesCommunicationType.text = context.resources.getStringArray(R.array.companyCommunicationType_array)[company.communicationType]
+            tvCardCompaniesEmployees.text = context.resources.getStringArray(R.array.companyEmployees_array)[company.employees]
+            tvCardCompaniesDetails.text = company.details
+        }
+
+        if (currentPosition == position) {
+            if (holder.constraintLayoutCompaniesExpandable.visibility == View.GONE) {
+                holder.constraintLayoutCompaniesExpandable.visibility = View.VISIBLE
+            } else {
                 holder.constraintLayoutCompaniesExpandable.visibility = View.GONE
             }
+        } else {    // Remove this else statement and the other cards will not automatically collapse
+            holder.constraintLayoutCompaniesExpandable.visibility = View.GONE
+        }
 
-            holder.constraintLayoutCompaniesMain.setOnClickListener {
-                currentPosition = holder.adapterPosition
-                notifyDataSetChanged()
+        holder.constraintLayoutCompaniesMain.setOnClickListener {
+            currentPosition = holder.adapterPosition
+            notifyDataSetChanged()
+        }
+
+        if (isForSelect) {
+            holder.btnCardCompaniesAddContact.visibility = View.GONE
+            holder.btnCardCompaniesEditCompany.visibility = View.GONE
+            holder.btnCardCompaniesSelectCompany.visibility = View.VISIBLE
+
+            holder.btnCardCompaniesSelectCompany.setOnClickListener {
+                ContactEditFragment.chosenCompany = company
+                context.onBackPressed()
+            }
+        } else {
+            holder.btnCardCompaniesAddContact.visibility = View.VISIBLE
+            holder.btnCardCompaniesEditCompany.visibility = View.VISIBLE
+            holder.btnCardCompaniesSelectCompany.visibility = View.GONE
+
+            holder.btnCardCompaniesAddContact.setOnClickListener {
+                val intent = Intent(context, ContactEditorActivity::class.java).apply {
+                    putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
+                }
+                context.startActivity(intent)
             }
 
-            if (isForSelect) {
-                holder.btnCardCompaniesAddContact.visibility = View.GONE
-                holder.btnCardCompaniesEditCompany.visibility = View.GONE
-                holder.btnCardCompaniesSelectCompany.visibility = View.VISIBLE
-
-                holder.btnCardCompaniesSelectCompany.setOnClickListener {
-                    ContactEditFragment.chosenCompany = company
-                    context.onBackPressed()
+            holder.btnCardCompaniesEditCompany.setOnClickListener {
+                val intent = Intent(context, CompanyEditorActivity::class.java).apply {
+                    putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
+                    putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
                 }
-            } else {
-                holder.btnCardCompaniesAddContact.visibility = View.VISIBLE
-                holder.btnCardCompaniesEditCompany.visibility = View.VISIBLE
-                holder.btnCardCompaniesSelectCompany.visibility = View.GONE
-
-                holder.btnCardCompaniesAddContact.setOnClickListener {
-                    val intent = Intent(context, ContactEditorActivity::class.java).apply {
-                        putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
-                        putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-                    }
-                    context.startActivity(intent)
-                }
-
-                holder.btnCardCompaniesEditCompany.setOnClickListener {
-                    val intent = Intent(context, CompanyEditorActivity::class.java).apply {
-                        putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
-                        putExtra(context.getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-                    }
-                    (context).startActivityForResult(intent, CompaniesFragment.requestCodeRefresh)
-                    //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
-                }
+                (context).startActivityForResult(intent, CompaniesFragment.requestCodeRefresh)
+                //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return companyList.size + 1
+        return companyList.size
     }
 
     class CompanyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val marginView: View = itemView.marginViewCompanies
-
-        val cardView: CardView = itemView.cardViewCompanies
-
         val tvCardCompaniesName: TextView = itemView.tvCardCompaniesName
         val tvCardCompaniesCvsSegment: TextView = itemView.tvCardCompaniesCvsSegment
 

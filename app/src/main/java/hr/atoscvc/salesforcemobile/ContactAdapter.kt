@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import de.hdodenhof.circleimageview.CircleImageView
+import hr.atoscvc.salesforcemobile.ContactsFragment.Companion.contactList
 import kotlinx.android.synthetic.main.list_layout_contacts.view.*
 
 class ContactAdapter(private val contactList: ArrayList<Contact>, val context: Activity, private val isForSelect: Boolean, private val listener: RecyclerViewOnClickListener) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
@@ -29,90 +30,82 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-        if (position == 0) {
-            holder.marginView.visibility = View.VISIBLE
-            holder.constraintLayoutContactsMain.visibility = View.GONE
+
+        val contact: Contact = contactList[position]
+        val contactTitle: String = if (contact.title == 0) {
+            ""
         } else {
-            holder.marginView.visibility = View.GONE
-            holder.constraintLayoutContactsMain.visibility = View.VISIBLE
+            context.resources.getStringArray(R.array.contactTitle_array)[contact.title] + " "
+        }
+        val tvCardContactsNameText = "$contactTitle${contact.firstName} ${contact.lastName}"
 
-            val contact: Contact = contactList[position - 1]
-            val contactTitle: String = if (contact.title == 0) {
-                ""
-            } else {
-                context.resources.getStringArray(R.array.contactTitle_array)[contact.title] + " "
-            }
-            val tvCardContactsNameText = "$contactTitle${contact.firstName} ${contact.lastName}"
+        holder.tvCardContactsName.text = tvCardContactsNameText
+        holder.tvCardContactCompany.text = contact.company?.name ?: "No company found"
+        holder.tvCardContactStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
+        /*holder.tvCardContactsStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
+        holder.tvCardContactsPrefTime.text = context.resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
+        holder.tvCardContactsPhone.text = contact.phone
+        holder.tvCardContactsEmail.text = contact.email
+        holder.tvCardContactsDetails.text = contact.details*/
 
-            holder.tvCardContactsName.text = tvCardContactsNameText
-            holder.tvCardContactCompany.text = contact.company?.name ?: "No company found"
-            holder.tvCardContactStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
-            /*holder.tvCardContactsStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
-            holder.tvCardContactsPrefTime.text = context.resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
-            holder.tvCardContactsPhone.text = contact.phone
-            holder.tvCardContactsEmail.text = contact.email
-            holder.tvCardContactsDetails.text = contact.details*/
-
-            if (currentPosition == position) {
+        if (currentPosition == position) {
+            //holder.constraintLayoutContactsExpandable.visibility = View.VISIBLE
+            if (!isExpanded) {
                 //holder.constraintLayoutContactsExpandable.visibility = View.VISIBLE
-                if (!isExpanded) {
-                    //holder.constraintLayoutContactsExpandable.visibility = View.VISIBLE
-                } else {
-                    //holder.constraintLayoutContactsExpandable.visibility = View.GONE
-                }
-            } else {    // Remove this else statement and the other cards will not automatically collapse
+            } else {
                 //holder.constraintLayoutContactsExpandable.visibility = View.GONE
             }
-
-            holder.constraintLayoutContactsMain.setOnClickListener {
-                currentPosition = holder.adapterPosition
-
-                listener.recyclerViewOnClick(holder.ivContactAvatar, contactList[currentPosition - 1], currentPosition - 1)
-
-                /*if (holder.constraintLayoutContactsExpandable.visibility == View.GONE) {
-                    isExpanded = false
-                    Log.i("PROBA", "RADI")
-                } else {
-                    isExpanded = true
-                }
-                notifyDataSetChanged()*/
-            }
-
-            /* if (isForSelect) {
-                 //holder.btnCardContactsEditContact.visibility = View.GONE
-                 //holder.btnCardContactsSelectContact.visibility = View.VISIBLE
-
-                 //holder.btnCardContactsSelectContact.setOnClickListener {
-                     //TODO Use this for creating opportunities
-                     val intent = Intent()
-                     intent.putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-                     context.setResult(Activity.RESULT_OK, intent)
-                     context.finish()
-                 //}
-             } else {
-                 //holder.btnCardContactsEditContact.visibility = View.VISIBLE
-                 //holder.btnCardContactsSelectContact.visibility = View.GONE
-
-                 holder.btnCardContactsEditContact.setOnClickListener {
-                     val intent = Intent(context, ContactEditorActivity::class.java).apply {
-                         putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
-                         putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-                     }
-                     ContactEditFragment.chosenCompany = contact.company
-                     context.startActivityForResult(intent, ContactsFragment.requestCodeRefresh)
-                     //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
-                 }
-             }*/
+        } else {    // Remove this else statement and the other cards will not automatically collapse
+            //holder.constraintLayoutContactsExpandable.visibility = View.GONE
         }
+
+        holder.constraintLayoutContactsMain.setOnClickListener {
+            currentPosition = holder.adapterPosition
+
+            listener.recyclerViewOnClick(holder.ivContactAvatar, contactList[currentPosition], currentPosition)
+
+            /*if (holder.constraintLayoutContactsExpandable.visibility == View.GONE) {
+                isExpanded = false
+                Log.i("PROBA", "RADI")
+            } else {
+                isExpanded = true
+            }
+            notifyDataSetChanged()*/
+        }
+
+        /* if (isForSelect) {
+             //holder.btnCardContactsEditContact.visibility = View.GONE
+             //holder.btnCardContactsSelectContact.visibility = View.VISIBLE
+
+             //holder.btnCardContactsSelectContact.setOnClickListener {
+                 //TODO Use this for creating opportunities
+                 val intent = Intent()
+                 intent.putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                 context.setResult(Activity.RESULT_OK, intent)
+                 context.finish()
+             //}
+         } else {
+             //holder.btnCardContactsEditContact.visibility = View.VISIBLE
+             //holder.btnCardContactsSelectContact.visibility = View.GONE
+
+             holder.btnCardContactsEditContact.setOnClickListener {
+                 val intent = Intent(context, ContactEditorActivity::class.java).apply {
+                     putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
+                     putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                 }
+                 ContactEditFragment.chosenCompany = contact.company
+                 context.startActivityForResult(intent, ContactsFragment.requestCodeRefresh)
+                 //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
+             }
+         }*/
+
     }
 
     override fun getItemCount(): Int {
-        return contactList.size + 1
+        return contactList.size
     }
 
     class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val marginView: View = itemView.marginViewContacts
-
         val tvCardContactsName: TextView = itemView.tvCardContactsName
         val tvCardContactCompany: TextView = itemView.tvCardContactCompany
 
