@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import hr.atoscvc.salesforcemobile.R.string.username
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.reset_password.view.*
 import java.lang.ref.WeakReference
@@ -107,20 +108,6 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         alertDialog = alertDialogBuilder.create()
         alertDialog.setView(resetPasswordView)
 
-        resetPasswordView.etUsernamePassReset.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                val username = resetPasswordView.etUsernamePassReset.text.toString().trim()
-                resetPasswordView.etUsernamePassReset.setText(username)
-                resetPasswordView.etUsernamePassReset.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_username_outline, 0, 0, 0)
-
-                if (username.isBlank()) {
-                    resetPasswordView.etUsernamePassReset.error = getString(R.string.usernameEmptyMessage)
-                }
-            } else {
-                resetPasswordView.etUsernamePassReset.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_username_outline_accent, 0, 0, 0)
-            }
-        }
-
         resetPasswordView.etEmailPassReset.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 val email = resetPasswordView.etEmailPassReset.text.toString().trim()
@@ -144,31 +131,17 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     }
 
     fun onSendEmail(@Suppress("UNUSED_PARAMETER") view: View) {
-        var thereAreNoErrors = true
-
-        val username = resetPasswordView.etUsernamePassReset.text.toString().trim()
         val email = resetPasswordView.etEmailPassReset.text.toString().trim()
 
-        if (username.isBlank()) {
-            resetPasswordView.etUsernamePassReset.error = getString(R.string.usernameEmptyMessage)
-            thereAreNoErrors = false
-        }
-
-        if (email.isBlank()) {
-            resetPasswordView.etEmailPassReset.error = getString(R.string.emailEmptyMessage)
-            thereAreNoErrors = false
-        }
-
-        if (thereAreNoErrors) {
-            resetPasswordView.btnSendPassReset.visibility = View.GONE
-            operation = "PasswordReset"
-            val backgroundWorker = BackgroundWorker(
-                    WeakReference(applicationContext),
-                    getString(R.string.loginStatus),
-                    this,
-                    WeakReference(resetPasswordView.mailProgress)
-            )
-            backgroundWorker.execute(operation, username, email)
+        if (!email.isBlank()) {
+            mAuth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener { task->
+                        if (task.isSuccessful) {
+                            alertDialog.dismiss()
+                        } else {
+                            etEmail.error = task.exception?.message
+                        }
+                    }
         }
     }
 
