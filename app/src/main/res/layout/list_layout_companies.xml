@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingEnd="8dp"
@@ -27,19 +28,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@string/dummyCompanyName"
+                android:text="Atos CVC"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/tvCardCompaniesCvsSegment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/dummyCompanyCvsSegment"
+                android:text="Platinum"
                 app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesName"
-                app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesName" />
+                app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesName"
+                tools:ignore="HardcodedText" />
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayoutCompaniesExpandable"
@@ -58,72 +61,80 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="@string/dummyCompanyStatus"
+                    android:text="ACTIVE"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/tvCardCompaniesOIB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/dummyCompanyOib"
+                    android:text="0123456789"
                     app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesStatus"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesStatus" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesStatus"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/tvCardCompaniesWebPage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/dummyCompanyWebPage"
+                    android:text="www.chuck_norris.com"
                     app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesOIB"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesOIB" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesOIB"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/tvCardCompaniesPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/dummyCompanyPhone"
+                    android:text="0917893456"
                     app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesWebPage"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesWebPage" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesWebPage"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/tvCardCompaniesIncome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/dummyCompanyIncome"
+                    android:text="100000"
                     app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesPhone"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesPhone" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesPhone"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/tvCardCompaniesCommunicationType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/dummyCompanyCommunicationType"
+                    android:text="Phone"
                     app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesIncome"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesIncome" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesIncome"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/tvCardCompaniesEmployees"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/dummyCompanyEmployees"
+                    android:text="10–24"
                     app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesCommunicationType"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesCommunicationType" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesCommunicationType"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/tvCardCompaniesDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/dummyCompanyDetails"
+                    android:text="Best Company Ever!"
                     app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesEmployees"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesEmployees" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesEmployees"
+                    tools:ignore="HardcodedText" />
 
                 <Button
                     android:id="@+id/btnCardCompaniesAddContact"
