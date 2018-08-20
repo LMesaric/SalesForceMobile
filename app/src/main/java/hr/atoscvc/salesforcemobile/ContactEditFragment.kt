@@ -45,7 +45,7 @@ class ContactEditFragment : Fragment() {
             replaceFragmentListener.replaceFragment(companiesFragment)
         }
 
-        view.btnContactSave.setOnClickListener {
+        view.btnContactSave.setOnClickListener { _ ->
             var thereAreNoErrors = true
 
             val status: Int = view.spContactStatus.selectedItemPosition
@@ -147,7 +147,7 @@ class ContactEditFragment : Fragment() {
                     R.layout.simple_spinner_dropdown_item
             )
         } catch (e: Exception) {
-            e.printStackTrace()     // This will never run
+            e.printStackTrace()     // This will (hopefully) never run
         }
 
         view.etContactFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->

@@ -56,7 +56,6 @@ class ContactsFragment : Fragment() {
             if (p0 != null) {
                 for (doc in p0.documentChanges) {
                     if (doc.type == DocumentChange.Type.ADDED) {
-                        //val contact: Contact = doc.document.toObject(Contact)
                         val newContact = doc.document.toObject<Contact>(Contact::class.java)
                         contactList.add(newContact)
                         adapter?.notifyDataSetChanged()
