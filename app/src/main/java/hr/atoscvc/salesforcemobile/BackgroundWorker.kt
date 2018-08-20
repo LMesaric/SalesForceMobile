@@ -35,9 +35,10 @@ class BackgroundWorker(
                 val username: String = p0[1]
                 val email: String = p0[2]
 
-                val postData: String = URLEncoder.encode(context.get()?.getString(R.string.username), context.get()?.getString(R.string.UTF8)) + "=" + URLEncoder.encode(username, context.get()?.getString(R.string.UTF8)) + "&" +
-                        URLEncoder.encode(context.get()?.getString(R.string.email), context.get()?.getString(R.string.UTF8)) + "=" + URLEncoder.encode(email, context.get()?.getString(R.string.UTF8))
-
+                val postData: String = URLEncoder.encode("username", context.get()?.getString(R.string.UTF8)) +
+                        "=" + URLEncoder.encode(username, context.get()?.getString(R.string.UTF8)) +
+                        "&" + URLEncoder.encode(context.get()?.getString(R.string.email), context.get()?.getString(R.string.UTF8)) +
+                        "=" + URLEncoder.encode(email, context.get()?.getString(R.string.UTF8))
 
                 val url: URL = NetworkUtils.buildUrl(resetPasswordURL!!)
 

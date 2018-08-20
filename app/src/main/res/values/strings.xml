@@ -20,7 +20,6 @@
 
     <string name="FirstName">First Name</string>
     <string name="LastName">Last Name</string>
-    <string name="Username">Username</string>
     <string name="PhoneNumber">Phone Number</string>
     <string name="Email">E-mail</string>
     <string name="Details">Details</string>
@@ -31,7 +30,6 @@
 
     <string name="firstNameEmptyMessage">First name cannot be empty.</string>
     <string name="lastNameEmptyMessage">Last name cannot be empty.</string>
-    <string name="usernameEmptyMessage">Username cannot be empty.</string>
     <string name="emailEmptyMessage">E-mail cannot be empty.</string>
     <string name="passwordEmptyMessage">Password cannot be empty.</string>
     <string name="wrongConfirmPassword">Specified passwords do not match.</string>
@@ -152,7 +150,6 @@
 
     <string name="firstName" translatable="false">firstName</string>
     <string name="lastName" translatable="false">lastName</string>
-    <string name="username" translatable="false">username</string>
     <string name="email" translatable="false">email</string>
     <string name="password" translatable="false">password</string>
 

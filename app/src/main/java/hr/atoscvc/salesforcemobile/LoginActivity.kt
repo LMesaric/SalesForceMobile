@@ -65,7 +65,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         var thereAreNoErrors = true
 
         if (email.isBlank()) {
-            etEmail.error = getString(R.string.usernameEmptyMessage)
+            etEmail.error = getString(R.string.emailEmptyMessage)
             thereAreNoErrors = false
         }
         if (tempPassword.isBlank()) {
