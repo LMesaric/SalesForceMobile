@@ -12,7 +12,8 @@ import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
-//LUKA - paziti da se empty polja u CardView za Company i Contact budu sa View.GONE
+//LUKA - paziti da se empty polja u CardView i DetailedView za Company i Contact budu sa View.GONE
+//FILIP - email overridea description kod upisa Contacta u bazu
 //TODO - dodati gumb za pregled svih kontakata na CardView svakog Companyja
 //TODO - Valuta za income
 //TODO - Delete contact/company -> checkbox za ukljucivanje Inactive stavki
