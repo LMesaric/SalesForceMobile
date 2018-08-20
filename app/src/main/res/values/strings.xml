@@ -127,61 +127,61 @@
     <!-- HIDDEN FROM USERS (for development) -->
 
     <!-- FILIP - obrisati resetPasswordURL i vidjeti sto napraviti s Background Workerom -->
-    <string name="resetPasswordURL">http://atoscvc.000webhostapp.com/resetPassword.php</string>
+    <string name="resetPasswordURL" translatable="false">http://atoscvc.000webhostapp.com/resetPassword.php</string>
 
-    <string name="UTF8">UTF-8</string>
+    <string name="UTF8" translatable="false">UTF-8</string>
 
-    <string name="typeLogin">Login</string>
-    <string name="typeRegister">Register</string>
-    <string name="typePasswordReset">PasswordReset</string>
+    <string name="typeLogin" translatable="false">Login</string>
+    <string name="typeRegister" translatable="false">Register</string>
+    <string name="typePasswordReset" translatable="false">PasswordReset</string>
 
-    <string name="loginStatus">Login status</string>
-    <string name="registrationStatus">Registration status</string>
+    <string name="loginStatus" translatable="false">Login status</string>
+    <string name="registrationStatus" translatable="false">Registration status</string>
 
-    <string name="firstName">firstName</string>
-    <string name="lastName">lastName</string>
-    <string name="username">username</string>
-    <string name="email">email</string>
-    <string name="password">password</string>
+    <string name="firstName" translatable="false">firstName</string>
+    <string name="lastName" translatable="false">lastName</string>
+    <string name="username" translatable="false">username</string>
+    <string name="email" translatable="false">email</string>
+    <string name="password" translatable="false">password</string>
 
-    <string name="EXTRA_IS_EDITOR_FOR_NEW_ITEM">hr.atoscvc.salesforcemobile.EXTRA_IS_EDITOR_FOR_NEW_ITEM</string>
+    <string name="EXTRA_IS_EDITOR_FOR_NEW_ITEM" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_IS_EDITOR_FOR_NEW_ITEM</string>
 
-    <string name="EXTRA_CONTACT_ENTIRE_OBJECT">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_ENTIRE_OBJECT</string>
-    <string name="EXTRA_CONTACT_IS_LIST_FOR_SELECT">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_IS_LIST_FOR_SELECT</string>
-    <string name="EXTRA_CONTACT_DOCUMENT_ID">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DOCUMENT_ID</string>
-    <string name="EXTRA_CONTACT_STATUS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_STATUS_SPINNER_INDEX</string>
-    <string name="EXTRA_CONTACT_TITLE_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_TITLE_SPINNER_INDEX</string>
-    <string name="EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX</string>
-    <string name="EXTRA_CONTACT_FIRST_NAME">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_FIRST_NAME</string>
-    <string name="EXTRA_CONTACT_LAST_NAME">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_LAST_NAME</string>
-    <string name="EXTRA_CONTACT_COMPANY">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_COMPANY</string>
-    <string name="EXTRA_CONTACT_PHONE">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_PHONE</string>
-    <string name="EXTRA_CONTACT_EMAIL">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_EMAIL</string>
-    <string name="EXTRA_CONTACT_DETAILS">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DETAILS</string>
+    <string name="EXTRA_CONTACT_ENTIRE_OBJECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_ENTIRE_OBJECT</string>
+    <string name="EXTRA_CONTACT_IS_LIST_FOR_SELECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_IS_LIST_FOR_SELECT</string>
+    <string name="EXTRA_CONTACT_DOCUMENT_ID" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DOCUMENT_ID</string>
+    <string name="EXTRA_CONTACT_STATUS_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_STATUS_SPINNER_INDEX</string>
+    <string name="EXTRA_CONTACT_TITLE_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_TITLE_SPINNER_INDEX</string>
+    <string name="EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX</string>
+    <string name="EXTRA_CONTACT_FIRST_NAME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_FIRST_NAME</string>
+    <string name="EXTRA_CONTACT_LAST_NAME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_LAST_NAME</string>
+    <string name="EXTRA_CONTACT_COMPANY" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_COMPANY</string>
+    <string name="EXTRA_CONTACT_PHONE" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_PHONE</string>
+    <string name="EXTRA_CONTACT_EMAIL" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_EMAIL</string>
+    <string name="EXTRA_CONTACT_DETAILS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DETAILS</string>
 
-    <string name="EXTRA_COMPANY_ENTIRE_OBJECT">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_ENTIRE_OBJECT</string>
-    <string name="EXTRA_COMPANY_IS_LIST_FOR_SELECT">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_IS_LIST_FOR_SELECT</string>
-    <string name="EXTRA_COMPANY_DOCUMENT_ID">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DOCUMENT_ID</string>
-    <string name="EXTRA_COMPANY_STATUS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_STATUS_SPINNER_INDEX</string>
-    <string name="EXTRA_COMPANY_CVS_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_CVS_SPINNER_INDEX</string>
-    <string name="EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX</string>
-    <string name="EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX</string>
-    <string name="EXTRA_COMPANY_NAME">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_NAME</string>
-    <string name="EXTRA_COMPANY_OIB">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_OIB</string>
-    <string name="EXTRA_COMPANY_WEB_PAGE">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_WEB_PAGE</string>
-    <string name="EXTRA_COMPANY_PHONE">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_PHONE</string>
-    <string name="EXTRA_COMPANY_INCOME">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_INCOME</string>
-    <string name="EXTRA_COMPANY_DETAILS">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DETAILS</string>
+    <string name="EXTRA_COMPANY_ENTIRE_OBJECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_ENTIRE_OBJECT</string>
+    <string name="EXTRA_COMPANY_IS_LIST_FOR_SELECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_IS_LIST_FOR_SELECT</string>
+    <string name="EXTRA_COMPANY_DOCUMENT_ID" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DOCUMENT_ID</string>
+    <string name="EXTRA_COMPANY_STATUS_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_STATUS_SPINNER_INDEX</string>
+    <string name="EXTRA_COMPANY_CVS_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_CVS_SPINNER_INDEX</string>
+    <string name="EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX</string>
+    <string name="EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX</string>
+    <string name="EXTRA_COMPANY_NAME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_NAME</string>
+    <string name="EXTRA_COMPANY_OIB" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_OIB</string>
+    <string name="EXTRA_COMPANY_WEB_PAGE" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_WEB_PAGE</string>
+    <string name="EXTRA_COMPANY_PHONE" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_PHONE</string>
+    <string name="EXTRA_COMPANY_INCOME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_INCOME</string>
+    <string name="EXTRA_COMPANY_DETAILS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DETAILS</string>
 
-    <string name="dummyCompanyName">Atos CVC</string>
-    <string name="dummyCompanyCvsSegment">Platinum</string>
-    <string name="dummyCompanyStatus">ACTIVE</string>
-    <string name="dummyCompanyOib">0123456789</string>
-    <string name="dummyCompanyWebPage">www.chuck_norris.com</string>
-    <string name="dummyCompanyPhone">0917893456</string>
-    <string name="dummyCompanyIncome">100000</string>
-    <string name="dummyCompanyCommunicationType">Phone</string>
-    <string name="dummyCompanyEmployees">10–24</string>
-    <string name="dummyCompanyDetails">Best Company Ever!</string>
+    <string name="dummyCompanyName" translatable="false">Atos CVC</string>
+    <string name="dummyCompanyCvsSegment" translatable="false">Platinum</string>
+    <string name="dummyCompanyStatus" translatable="false">ACTIVE</string>
+    <string name="dummyCompanyOib" translatable="false">0123456789</string>
+    <string name="dummyCompanyWebPage" translatable="false">www.chuck_norris.com</string>
+    <string name="dummyCompanyPhone" translatable="false">0917893456</string>
+    <string name="dummyCompanyIncome" translatable="false">100000</string>
+    <string name="dummyCompanyCommunicationType" translatable="false">Phone</string>
+    <string name="dummyCompanyEmployees" translatable="false">10–24</string>
+    <string name="dummyCompanyDetails" translatable="false">Best Company Ever!</string>
 
 </resources>
