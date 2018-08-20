@@ -142,7 +142,7 @@
             android:background="@drawable/button_login_style"
             android:fontFamily="sans-serif"
             android:text="Next"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorBackgroundWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

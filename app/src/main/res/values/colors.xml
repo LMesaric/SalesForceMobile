@@ -11,5 +11,9 @@
     <color name="colorAccent">#ed1500</color>
 
     <!--   color for edges of vector drawables   -->
-    <color name="strokeColorPrimary">@android:color/black</color>
+    <color name="colorStrokePrimary">@android:color/black</color>
+
+    <color name="colorBackgroundWhite">@android:color/white</color>
+    <color name="colorListBorder">#E0E0E0</color>
+    <color name="colorShadow">#88333333</color>
 </resources>
