@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.fragment_new_name.*
 import kotlinx.android.synthetic.main.fragment_new_name.view.*
 
@@ -34,6 +35,11 @@ class NewNameFragment : Fragment(), View.OnClickListener {
         }
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.registerImageView?.setImageResource(R.drawable.name_page)
     }
 
     override fun onClick(view: View?) {

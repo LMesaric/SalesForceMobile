@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.fragment_email.*
 import kotlinx.android.synthetic.main.fragment_email.view.*
 
@@ -25,6 +26,11 @@ class EmailFragment : Fragment(), View.OnClickListener {
         view.btnNextEmail.setOnClickListener(this)
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.registerImageView?.setImageResource(R.drawable.email_page)
     }
 
     override fun onClick(view: View?) {

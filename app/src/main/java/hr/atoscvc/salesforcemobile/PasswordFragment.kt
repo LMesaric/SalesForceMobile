@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import hr.atoscvc.salesforcemobile.CheckPasswordConstraints.checkPasswordConstraints
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.fragment_password.*
 import kotlinx.android.synthetic.main.fragment_password.view.*
 
@@ -30,6 +31,11 @@ class PasswordFragment : Fragment(), View.OnClickListener {
         view.etPassword.addTextChangedListener(PasswordTextWatcher(view.etPassword))
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.registerImageView?.setImageResource(R.drawable.password_page)
     }
 
     override fun onClick(view: View?) {
