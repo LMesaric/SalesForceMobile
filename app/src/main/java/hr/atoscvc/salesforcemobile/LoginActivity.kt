@@ -17,10 +17,7 @@ import java.lang.ref.WeakReference
 
 class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
 
-    //LUKA - Dodati Log na sve Create/Resume itd.
-    //LUKA - Python line counter
-
-    //FILIP - novi password (hard reset) nema nikakve provjere (CheckPasswordConstraints) - implementirati u JS-u
+    //FILIP - novi password (hard reset) nema nikakve provjere (CheckPasswordConstraints) - implementirati u backendu
     //FILIP - forgot password loader indicator se trenutno vrti iza prozora pa se ne vidi
     //FILIP - EventLog SQL tablica (EventID primary key + String) - "User $userID forgot his password", "User $userID set a new password", "User $userID changed his password", "User $userID logged in/out"
 

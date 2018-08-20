@@ -99,7 +99,6 @@ class CompanyEditorActivity : AppCompatActivity() {
     }
 
     fun onSaveClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-        //LUKA Prikazati sve errore, a podatke iscitati iz polja na ekranu i stvoriti objekt u varijabli 'company'
         var thereAreNoErrors = true
 
         val status: Int = spCompanyStatus.selectedItemPosition
