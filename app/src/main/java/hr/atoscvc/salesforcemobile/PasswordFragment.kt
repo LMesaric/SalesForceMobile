@@ -22,23 +22,21 @@ class PasswordFragment : Fragment(), View.OnClickListener {
                               savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_password, container, false)
-
         view.btnFinishPass.setOnClickListener(this)
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
 
-        view.etPassword.addTextChangedListener(PasswordTextWatcher(ActiveUserSingleton.user?.email.toString(), view.etPassword))  //FILIP - null se ne smije poslati u PasswordTextWatcher
-        //LUKA - u PasswordTextWatcher email nije koristan umjesto usernamea -> izbaciti username dio watchera!
+        view.etPassword.addTextChangedListener(PasswordTextWatcher(view.etPassword))
 
         return view
     }
 
     override fun onClick(view: View?) {
-        val password = etPassword.text.toString()   // Do NOT trim the password
+        val password: String = etPassword.text.toString()   // Do NOT trim the password
         var thereAreNoErrors = true
 
-        val passwordStatus = checkPasswordConstraints(ActiveUserSingleton.user?.email.toString(), password)
+        val passwordStatus: PasswordErrors = checkPasswordConstraints(password)
 
         if (!passwordStatus.success) {
             etPassword.error = passwordStatus.message
