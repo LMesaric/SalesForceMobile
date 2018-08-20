@@ -6,37 +6,30 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import hr.atoscvc.salesforcemobile.CheckPasswordConstraints.checkPasswordConstraints
+import kotlinx.android.synthetic.main.fragment_password.*
+import kotlinx.android.synthetic.main.fragment_password.view.*
 
 class PasswordFragment : Fragment(), View.OnClickListener {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private lateinit var btnFinish: Button
-    private lateinit var etPassword: EditText
-    private lateinit var etConfirmPassword: EditText
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_password, container, false)
 
-        btnFinish = view.findViewById(R.id.btnFinishPass)
-        etPassword = view.findViewById(R.id.etPassword)
-        etConfirmPassword = view.findViewById(R.id.etConfirmPassword)
-
-        btnFinish.setOnClickListener(this)
+        view.btnFinishPass.setOnClickListener(this)
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
 
-        etPassword.addTextChangedListener(PasswordTextWatcher(ActiveUserSingleton.user?.email.toString(), etPassword))  //FILIP - null se ne smije poslati u PasswordTextWatcher
-        //LUKA - u PasswordTextWatcher email nije koristan umjesto usernamea -> izbaciti username dio watchera?
+        view.etPassword.addTextChangedListener(PasswordTextWatcher(ActiveUserSingleton.user?.email.toString(), view.etPassword))  //FILIP - null se ne smije poslati u PasswordTextWatcher
+        //LUKA - u PasswordTextWatcher email nije koristan umjesto usernamea -> izbaciti username dio watchera!
 
         return view
     }

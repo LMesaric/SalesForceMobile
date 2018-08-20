@@ -129,7 +129,7 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
         //val tvCardContactsDetails: TextView = itemView.tvCardContactsDetails
 
         val constraintLayoutContactsMain: ConstraintLayout = itemView.constraintLayoutContactsMain
-        val tvCardContactStatus: TextView = itemView.findViewById(R.id.tvCardContactStatus)
+        val tvCardContactStatus: TextView = itemView.tvCardContactStatus
         //val constraintLayoutContactsExpandable: ConstraintLayout = itemView.constraintLayoutContactsExpandable
 
         //val btnCardContactsEditContact: Button = itemView.btnCardContactsEditContact

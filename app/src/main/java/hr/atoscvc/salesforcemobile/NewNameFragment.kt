@@ -5,38 +5,31 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
+import kotlinx.android.synthetic.main.fragment_new_name.*
+import kotlinx.android.synthetic.main.fragment_new_name.view.*
 
 class NewNameFragment : Fragment(), View.OnClickListener {
 
     private lateinit var replaceFragmentListener: ReplaceFragmentListener
-    private lateinit var btnNext: Button
-    private lateinit var etFirstName: EditText
-    private lateinit var etLastName: EditText
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_new_name, container, false)
 
-        btnNext = view.findViewById(R.id.btnNextNewName)
         replaceFragmentListener = activity as ReplaceFragmentListener
 
-        btnNext.setOnClickListener(this)
+        view.btnNextNewName.setOnClickListener(this)
 
-        etFirstName = view.findViewById(R.id.etFirstName)
-        etLastName = view.findViewById(R.id.etLastName)
-
-        etFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+        view.etFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                etFirstName.setText(etFirstName.text.toString().trim())
+                view.etFirstName.setText(view.etFirstName.text.toString().trim())
             }
         }
 
-        etLastName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+        view.etLastName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                etLastName.setText(etLastName.text.toString().trim())
+                view.etLastName.setText(view.etLastName.text.toString().trim())
             }
         }
 

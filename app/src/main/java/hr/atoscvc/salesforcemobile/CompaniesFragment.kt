@@ -5,10 +5,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,21 +15,20 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_companies.view.*
 
 
 class CompaniesFragment : Fragment() {
 
     companion object RequestCodesCompany {
         const val requestCodeRefresh = 1
-        const val requestCodeChooseCompany = 2
     }
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
     private var isForSelect: Boolean = false
-    private lateinit var recyclerView: RecyclerView
-    private var fabAddCompanies: FloatingActionButton? = null
 
     @SuppressLint("RestrictedApi")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -43,23 +40,21 @@ class CompaniesFragment : Fragment() {
 
         isForSelect = arguments?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT)) ?: false
 
-        fabAddCompanies = activity?.findViewById(R.id.fabAdd)
-        fabAddCompanies?.visibility = View.VISIBLE
-        fabAddCompanies?.setOnClickListener {
+        activity?.fabAdd?.visibility = View.VISIBLE
+        activity?.fabAdd?.setOnClickListener {
             val intent = Intent(activity, CompanyEditorActivity::class.java).apply {
                 putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
             }
             activity?.startActivityForResult(intent, requestCodeRefresh)
         }
 
-        val companyList = ArrayList<Company>()
+        val companyList = ArrayList<Company>()      //LUKA - SINGLETON
 
-        recyclerView = view.findViewById(R.id.recyclerViewCompanies)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        view.recyclerViewCompanies.setHasFixedSize(true)
+        view.recyclerViewCompanies.layoutManager = LinearLayoutManager(activity)
 
         val adapter = CompanyAdapter(companyList, activity as Activity, isForSelect)
-        recyclerView.adapter = adapter
+        view.recyclerViewCompanies.adapter = adapter
 
         val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Companies").orderBy("name") }
         query?.addSnapshotListener { p0, p1 ->
@@ -74,7 +69,6 @@ class CompaniesFragment : Fragment() {
                         adapter.notifyDataSetChanged()
                     }
                 }
-
             }
         }
 

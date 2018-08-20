@@ -5,10 +5,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_contacts.view.*
 
 
 class ContactsFragment : Fragment() {
@@ -29,8 +29,6 @@ class ContactsFragment : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private lateinit var recyclerView: RecyclerView
-    private var fabAddContacts: FloatingActionButton? = null
 
     @SuppressLint("RestrictedApi")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +36,8 @@ class ContactsFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_contacts, container, false)
 
-        recyclerView = view.findViewById(R.id.recyclerViewContacts)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        view.recyclerViewContacts.setHasFixedSize(true)
+        view.recyclerViewContacts.layoutManager = LinearLayoutManager(activity)
 
         contactList = ArrayList()
 
@@ -48,7 +45,7 @@ class ContactsFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
 
         val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, activity as Activity, false, activity as MainActivity) }
-        recyclerView.adapter = adapter
+        view.recyclerViewContacts.adapter = adapter
 
         //TODO Bilo bi dosta lako dodati Sort By feature - samo ubaciti string u .orderBy()
         val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").orderBy("lastName") }
@@ -65,13 +62,11 @@ class ContactsFragment : Fragment() {
                         adapter?.notifyDataSetChanged()
                     }
                 }
-
             }
         }
 
-        fabAddContacts = activity?.findViewById(R.id.fabAdd)
-        fabAddContacts?.visibility = View.VISIBLE
-        fabAddContacts?.setOnClickListener {
+        activity?.fabAdd?.visibility = View.VISIBLE
+        activity?.fabAdd?.setOnClickListener {
             val intent = Intent(activity, ContactEditorActivity::class.java).apply {
                 putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
             }

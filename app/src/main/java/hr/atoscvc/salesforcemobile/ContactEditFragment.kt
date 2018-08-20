@@ -7,10 +7,13 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_contact_edit.*
+import kotlinx.android.synthetic.main.fragment_contact_edit.view.*
 
 //FILIP - kad se ide preko Add Contact od Company Carda, dobiva se krivi company u ovom editoru (prije je ispravno radilo)
 class ContactEditFragment : Fragment() {
@@ -22,33 +25,18 @@ class ContactEditFragment : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private var contact: Contact? = null
-    private lateinit var etContactCompanyName: EditText
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         val view: View = inflater.inflate(R.layout.fragment_contact_edit, container, false)
 
-        val btnChooseCompany: ImageButton = view.findViewById(R.id.btnContactChooseCompany)
-        val btnSave: Button = view.findViewById(R.id.btnContactSave)
-
-        val spContactTitle: Spinner = view.findViewById(R.id.spContactTitle)
-        val spContactStatus: Spinner = view.findViewById(R.id.spContactStatus)
-        val spContactPreferredTime: Spinner = view.findViewById(R.id.spContactPreferredTime)
-
-        val etContactFirstName: EditText = view.findViewById(R.id.etContactFirstName)
-        val etContactLastName: EditText = view.findViewById(R.id.etContactLastName)
-        val etContactPhone: EditText = view.findViewById(R.id.etContactPhone)
-        val etContactEmail: EditText = view.findViewById(R.id.etContactEmail)
-        etContactCompanyName = view.findViewById(R.id.etContactCompanyName)
-        val etContactDetails: EditText = view.findViewById(R.id.etContactDetails)
-
         val replaceFragmentListener = activity as ReplaceFragmentListener
 
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        btnChooseCompany.setOnClickListener {
+        view.btnContactChooseCompany.setOnClickListener {
             //TODO Osim biranja Companyja, trebalo bi omoguciti i kreiranje novog u istom prozoru -> problem vracanja podatka kroz intent
             val companiesFragment = CompaniesFragment()
             val bundle = Bundle()
@@ -57,41 +45,41 @@ class ContactEditFragment : Fragment() {
             replaceFragmentListener.replaceFragment(companiesFragment)
         }
 
-        btnSave.setOnClickListener {
+        view.btnContactSave.setOnClickListener {
             var thereAreNoErrors = true
 
-            val status: Int = spContactStatus.selectedItemPosition
-            val title: Int = spContactTitle.selectedItemPosition
-            val prefTime: Int = spContactPreferredTime.selectedItemPosition
+            val status: Int = view.spContactStatus.selectedItemPosition
+            val title: Int = view.spContactTitle.selectedItemPosition
+            val prefTime: Int = view.spContactPreferredTime.selectedItemPosition
 
-            val firstName: String = etContactFirstName.text.toString().trim()
-            val lastName: String = etContactLastName.text.toString().trim()
+            val firstName: String = view.etContactFirstName.text.toString().trim()
+            val lastName: String = view.etContactLastName.text.toString().trim()
 
-            var phone: String? = etContactPhone.text.toString().trim()
+            var phone: String? = view.etContactPhone.text.toString().trim()
             if (phone.isNullOrBlank()) {
                 phone = null
             }
 
-            var email: String? = etContactEmail.text.toString().trim()
+            var email: String? = view.etContactEmail.text.toString().trim()
             if (email.isNullOrBlank()) {
                 email = null
             }
 
-            var details: String? = etContactEmail.text.toString().trim()
+            var details: String? = view.etContactEmail.text.toString().trim()
             if (details.isNullOrBlank()) {
                 details = null
             }
 
             if (firstName.isEmpty()) {
-                etContactFirstName.error = getString(R.string.firstNameEmptyMessage)
+                view.etContactFirstName.error = getString(R.string.firstNameEmptyMessage)
                 thereAreNoErrors = false
             }
             if (lastName.isEmpty()) {
-                etContactLastName.error = getString(R.string.lastNameEmptyMessage)
+                view.etContactLastName.error = getString(R.string.lastNameEmptyMessage)
                 thereAreNoErrors = false
             }
             if (chosenCompany == null) {
-                etContactCompanyName.error = getString(R.string.noCompanyChosenMessage)
+                view.etContactCompanyName.error = getString(R.string.noCompanyChosenMessage)
                 thereAreNoErrors = false
             }
 
@@ -140,69 +128,72 @@ class ContactEditFragment : Fragment() {
             activity?.title = getString(R.string.editContact)
         }
 
-        //FILIP - srediti warninge
-        spContactTitle.adapter = ArrayAdapter.createFromResource(
-                activity?.baseContext,
-                R.array.contactTitle_array,
-                R.layout.simple_spinner_dropdown_item
-        )
+        try {
+            view.spContactTitle.adapter = ArrayAdapter.createFromResource(
+                    activity?.baseContext!!,
+                    R.array.contactTitle_array,
+                    R.layout.simple_spinner_dropdown_item
+            )
 
-        spContactStatus.adapter = ArrayAdapter.createFromResource(
-                activity?.baseContext,
-                R.array.status_array,
-                R.layout.simple_spinner_dropdown_item
-        )
+            view.spContactStatus.adapter = ArrayAdapter.createFromResource(
+                    activity?.baseContext!!,
+                    R.array.status_array,
+                    R.layout.simple_spinner_dropdown_item
+            )
 
-        spContactPreferredTime.adapter = ArrayAdapter.createFromResource(
-                activity?.baseContext,
-                R.array.contactPreferredTime_array,
-                R.layout.simple_spinner_dropdown_item
-        )
+            view.spContactPreferredTime.adapter = ArrayAdapter.createFromResource(
+                    activity?.baseContext!!,
+                    R.array.contactPreferredTime_array,
+                    R.layout.simple_spinner_dropdown_item
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()     // This will never run
+        }
 
-        etContactFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+        view.etContactFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                etContactFirstName.setText(etContactFirstName.text.toString().trim())
-                etContactFirstName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_smile, 0, 0, 0)
+                view.etContactFirstName.setText(view.etContactFirstName.text.toString().trim())
+                view.etContactFirstName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_smile, 0, 0, 0)
             } else {
-                etContactFirstName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_smile_accent, 0, 0, 0)
+                view.etContactFirstName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_smile_accent, 0, 0, 0)
             }
         }
-        etContactLastName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+        view.etContactLastName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                etContactLastName.setText(etContactLastName.text.toString().trim())
-                etContactLastName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_smile, 0, 0, 0)
+                view.etContactLastName.setText(view.etContactLastName.text.toString().trim())
+                view.etContactLastName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_smile, 0, 0, 0)
             } else {
-                etContactLastName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_smile_accent, 0, 0, 0)
+                view.etContactLastName.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_smile_accent, 0, 0, 0)
             }
         }
-        etContactPhone.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+        view.etContactPhone.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                etContactPhone.setText(etContactPhone.text.toString().trim())
-                etContactPhone.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_phone, 0, 0, 0)
+                view.etContactPhone.setText(view.etContactPhone.text.toString().trim())
+                view.etContactPhone.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_phone, 0, 0, 0)
             } else {
-                etContactPhone.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_phone_accent, 0, 0, 0)
+                view.etContactPhone.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_phone_accent, 0, 0, 0)
             }
         }
-        etContactEmail.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+        view.etContactEmail.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                etContactEmail.setText(etContactEmail.text.toString().trim())
-                etContactEmail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_email_outline, 0, 0, 0)
+                view.etContactEmail.setText(view.etContactEmail.text.toString().trim())
+                view.etContactEmail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_email_outline, 0, 0, 0)
             } else {
-                etContactEmail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_email_outline_accent, 0, 0, 0)
+                view.etContactEmail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_email_outline_accent, 0, 0, 0)
             }
         }
 
         //TODO Listener for Details
 
-        spContactTitle.setSelection(contact?.title ?: 0)
-        spContactStatus.setSelection(contact?.status ?: 0)
-        spContactPreferredTime.setSelection(contact?.preferredTime ?: 0)
-        etContactFirstName.setText(contact?.firstName)
-        etContactLastName.setText(contact?.lastName)
-        etContactCompanyName.setText(chosenCompany?.name)
-        etContactPhone.setText(contact?.phone)
-        etContactEmail.setText(contact?.email)
-        etContactDetails.setText(contact?.details)
+        view.spContactTitle.setSelection(contact?.title ?: 0)
+        view.spContactStatus.setSelection(contact?.status ?: 0)
+        view.spContactPreferredTime.setSelection(contact?.preferredTime ?: 0)
+        view.etContactFirstName.setText(contact?.firstName)
+        view.etContactLastName.setText(contact?.lastName)
+        view.etContactCompanyName.setText(chosenCompany?.name)
+        view.etContactPhone.setText(contact?.phone)
+        view.etContactEmail.setText(contact?.email)
+        view.etContactDetails.setText(contact?.details)
 
         return view
     }
