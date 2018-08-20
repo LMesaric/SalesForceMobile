@@ -15,13 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:layout_marginTop="128dp"
+        android:elevation="1dp"
         android:background="@drawable/toolbar_shadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar3"
+        android:id="@+id/toolbarRegister"
         android:layout_width="match_parent"
         android:layout_height="128dp"
         android:background="@color/colorPrimary"
@@ -54,6 +55,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarRegisterShadow" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarRegister" />
 
 </android.support.constraint.ConstraintLayout>
