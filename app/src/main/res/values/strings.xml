@@ -5,14 +5,11 @@
 
     <string name="app_name">Sales Force Mobile</string>
 
-    <string name="serverNoResponse">No response from server</string>
-    <string name="malformedURL">Malformed URL exception!</string>
-    <string name="exceptionIO">IO exception</string>
-    <string name="typeNotRecognized">Type not recognized</string>
-
+    <string name="welcomeTo">Welcome to</string>
+    <!-- FILIP - dodati Remember Me feature -->
     <string name="rememberMe">Remember me</string>
-    <string name="clickHereToRegister"><a href="">Register</a></string>
     <string name="forgotPassword"><a href="">Forgot your password?</a></string>
+    <string name="clickHereToRegister"><a href="">Register</a></string>
 
     <string name="login">Login</string>
     <string name="registration">Registration</string>
@@ -86,6 +83,10 @@
     <string name="wrongPassword">Wrong password.</string>
     <string name="passChangeSuccess">Password changed successfully!</string>
 
+    <string name="serverNoResponse">No response from server</string>
+    <string name="malformedURL">Malformed URL exception!</string>
+    <string name="exceptionIO">IO exception</string>
+    <string name="typeNotRecognized">Type not recognized</string>
 
     <string-array name="status_array">
         <item>ACTIVE</item>
