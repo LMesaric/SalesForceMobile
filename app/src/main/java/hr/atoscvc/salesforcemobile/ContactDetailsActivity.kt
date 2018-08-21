@@ -1,13 +1,16 @@
 package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
 class ContactDetailsActivity : AppCompatActivity() {
-    //TODO - dodati i direct na company details
+    //TODO - dodati i direct link na company details
+    //TODO - export i import kontakata iz Imenika
     private var contact: Contact? = null
     private var isChanged: Boolean = false
 
@@ -19,11 +22,61 @@ class ContactDetailsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        tvContactDetailsFirstName.text = contact?.firstName
-        tvContactDetailsLastName.text = contact?.lastName
+
+        tvContactDetailsName.text = ContactNameConcatenate.fullName(contact!!, resources, true)
         tvContactDetailsEmail.text = contact?.email
         tvContactDetailsPhoneNumber.text = contact?.phone
         tvContactDetailsDetails.text = contact?.details
+    }
+
+    fun onContactEmail(@Suppress("UNUSED_PARAMETER") view: View) {
+        val email: String? = contact?.email?.trim()
+        if (email.isNullOrBlank()) {
+            Toast.makeText(this, getString(R.string.wrongEmail), Toast.LENGTH_SHORT).show()
+        } else {
+            val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:")).apply {
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+                putExtra(Intent.EXTRA_TEXT, "${getString(R.string.emailGreeting)} ${ContactNameConcatenate.fullName(contact!!, resources, true)}, \n\n")
+            }
+            try {
+                startActivity(Intent.createChooser(emailIntent, getString(R.string.sendEmailChooser)))
+            } catch (e: Exception) {
+                // Most of the times, if not always, app chooser will display a similar message.
+                Toast.makeText(this, getString(R.string.noSuitableEmailAppFound), Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    fun onContactCall(@Suppress("UNUSED_PARAMETER") view: View) {
+        val phone: String? = contact?.phone?.trim()
+        if (phone.isNullOrBlank()) {
+            Toast.makeText(this, getString(R.string.wrongPhoneNumber), Toast.LENGTH_SHORT).show()
+        } else {
+            val dialIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone"))
+            try {
+                startActivity(Intent.createChooser(dialIntent, getString(R.string.dialPhoneChooser)))
+            } catch (e: Exception) {
+                // Most of the times, if not always, app chooser will display a similar message.
+                Toast.makeText(this, getString(R.string.noSuitableAppFound), Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    fun onContactText(@Suppress("UNUSED_PARAMETER") view: View) {
+        val phone: String? = contact?.phone?.trim()
+        if (phone.isNullOrBlank()) {
+            Toast.makeText(this, getString(R.string.wrongPhoneNumber), Toast.LENGTH_SHORT).show()
+        } else {
+            val smsIntent = Intent(Intent.ACTION_VIEW, Uri.parse("smsto:$phone")).apply {
+                putExtra("sms_body", "${getString(R.string.smsGreeting)} ${ContactNameConcatenate.fullName(contact!!, resources, false)}, \n")
+            }
+            try {
+                startActivity(Intent.createChooser(smsIntent, getString(R.string.sendTextChooser)))
+            } catch (e: Exception) {
+                // Most of the times, if not always, app chooser will display a similar message.
+                Toast.makeText(this, getString(R.string.noSuitableAppFound), Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     fun onEditContactDetails(@Suppress("UNUSED_PARAMETER") view: View) {

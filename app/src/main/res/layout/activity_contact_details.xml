@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvContactDetailsFirstName"
+        android:id="@+id/tvContactDetailsName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -35,21 +35,6 @@
         app:layout_constraintTop_toBottomOf="@+id/ivContactDetailsAvatar" />
 
     <TextView
-        android:id="@+id/tvContactDetailsLastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/LastName"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvContactDetailsFirstName" />
-
-    <TextView
         android:id="@+id/tvContactDetailsEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,7 +45,7 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvContactDetailsLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvContactDetailsName" />
 
     <TextView
         android:id="@+id/tvContactDetailsPhoneNumber"
@@ -100,5 +85,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvContactDetailsDetails" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabContactDetailsSendEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onContactEmail"
+        app:backgroundTint="@color/colorBackgroundWhite"
+        app:elevation="2dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/tvContactDetailsEmail"
+        app:layout_constraintStart_toEndOf="@+id/tvContactDetailsEmail"
+        app:layout_constraintTop_toTopOf="@+id/tvContactDetailsEmail"
+        app:srcCompat="@android:drawable/sym_action_email" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabContactDetailsCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onContactCall"
+        app:backgroundTint="@color/colorBackgroundWhite"
+        app:elevation="2dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/tvContactDetailsPhoneNumber"
+        app:layout_constraintStart_toEndOf="@+id/tvContactDetailsPhoneNumber"
+        app:layout_constraintTop_toTopOf="@+id/tvContactDetailsPhoneNumber"
+        app:srcCompat="@android:drawable/sym_action_call" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabContactDetailsSendText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onContactText"
+        app:backgroundTint="@color/colorBackgroundWhite"
+        app:elevation="2dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/fabContactDetailsCall"
+        app:layout_constraintStart_toEndOf="@+id/fabContactDetailsCall"
+        app:layout_constraintTop_toTopOf="@+id/fabContactDetailsCall"
+        app:srcCompat="@android:drawable/sym_action_chat" />
 
 </android.support.constraint.ConstraintLayout>
