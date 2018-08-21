@@ -7,23 +7,23 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
 class ContactDetailsActivity : AppCompatActivity() {
-
-    private lateinit var contact: Contact
+    //TODO - dodati i direct na company details
+    private var contact: Contact? = null
     private var isChanged: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_details)
-        contact = intent.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as Contact
+        contact = intent.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as? Contact
     }
 
     override fun onResume() {
         super.onResume()
-        tvContactDetailsFirstName.text = contact.firstName
-        tvContactDetailsLastName.text = contact.lastName
-        tvContactDetailsEmail.text = contact.email
-        tvContactDetailsPhoneNumber.text = contact.phone
-        tvContactDetailsDetails.text = contact.details
+        tvContactDetailsFirstName.text = contact?.firstName
+        tvContactDetailsLastName.text = contact?.lastName
+        tvContactDetailsEmail.text = contact?.email
+        tvContactDetailsPhoneNumber.text = contact?.phone
+        tvContactDetailsDetails.text = contact?.details
     }
 
     fun onEditContactDetails(@Suppress("UNUSED_PARAMETER") view: View) {
@@ -31,7 +31,7 @@ class ContactDetailsActivity : AppCompatActivity() {
             putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
             putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
         }
-        ContactEditFragment.chosenCompany = contact.company
+        ContactEditFragment.chosenCompany = contact?.company
         startActivityForResult(intent, 4)
         //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
     }
@@ -48,7 +48,7 @@ class ContactDetailsActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 4) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
-                contact = data?.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as Contact
+                contact = data?.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as? Contact
                 isChanged = true
             }
         }
