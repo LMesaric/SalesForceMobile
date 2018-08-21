@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="edit_text_font_common">18sp</dimen>
+    <dimen name="edit_text_padding_horizontal">6dp</dimen>
+
+    <dimen name="text_view_font_title_small">15sp</dimen>
+    <dimen name="text_view_font_title_medium">20sp</dimen>
+    <dimen name="text_view_font_title_large">25sp</dimen>
+    <dimen name="text_view_font_title_huge">30sp</dimen>
+
     <dimen name="button_radius_large">5dp</dimen>
 
-    <dimen name="text_font_title_large">20sp</dimen>
-    <dimen name="text_font_title_huge">25sp</dimen>
+    <dimen name="fab_elevation_small">2dp</dimen>
+
+    <dimen name="shadow_height">4dp</dimen>
+
+    <dimen name="toolbar_font_collapsed">21sp</dimen>
+    <dimen name="toolbar_font_expanded">24sp</dimen>
+
 </resources>
