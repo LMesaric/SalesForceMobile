@@ -22,7 +22,7 @@
             android:layout_marginTop="50dp"
             android:text="@string/CreateNew"
             android:textColor="@color/colorPrimary"
-            android:textSize="30sp"
+            android:textSize="@dimen/text_view_font_title_huge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/Account"
             android:textColor="@color/colorPrimary"
-            android:textSize="30sp"
+            android:textSize="@dimen/text_view_font_title_huge"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -52,7 +52,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/EnterYourName"
             android:textColor="@color/colorPrimary"
-            android:textSize="25sp"
+            android:textSize="@dimen/text_view_font_title_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
