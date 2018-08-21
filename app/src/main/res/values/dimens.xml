@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_radius_large">5dp</dimen>
+
+    <dimen name="text_font_title_large">20sp</dimen>
+    <dimen name="text_font_title_huge">25sp</dimen>
+</resources>

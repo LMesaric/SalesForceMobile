@@ -88,7 +88,6 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="50dp"
-                android:background="@drawable/button_login_style"
                 android:fontFamily="sans-serif"
                 android:text="@string/Next"
                 app:layout_constraintBottom_toBottomOf="parent"
