@@ -5,15 +5,11 @@
 
     <string name="app_name">Sales Force Mobile</string>
 
-    <string name="welcomeTo">Welcome to</string>
     <!-- FILIP - dodati Remember Me feature -->
+    <string name="WelcomeTo">Welcome to</string>
     <string name="rememberMe">Remember me</string>
     <string name="forgotPassword"><a href="">Forgot your password?</a></string>
     <string name="clickHereToRegister"><a href="">Register</a></string>
-
-    <string name="resetPassword">Reset Password</string>
-    <string name="reset">Reset</string>
-    <string name="resetPasswordDescriptionLabel">We will send you an email with a link to reset your password. Please check your Spam folder.</string>
 
     <string name="CreateNew">Create new</string>
     <string name="Account">account</string>
@@ -26,6 +22,10 @@
     <string name="ProtectYour">Protect your</string>
     <string name="Information">information</string>
     <string name="CreatePassword">Create a password</string>
+
+    <string name="resetPassword">Reset Password</string>
+    <string name="reset">Reset</string>
+    <string name="resetPasswordDescriptionLabel">We will send you an email with a link to reset your password. Please check your Spam folder.</string>
 
     <string name="login">Login</string>
     <string name="registration">Registration</string>
@@ -87,6 +87,19 @@
     <string name="editContact">Edit Contact</string>
     <string name="editCompany">Edit Company</string>
     <string name="chooseCompany">Choose Company</string>
+
+    <string name="sendEmailChooser">Send email</string>
+    <string name="dialPhoneChooser">Dial phone number</string>
+    <string name="sendTextChooser">Send text</string>
+
+    <string name="emailGreeting">Dear</string>
+    <string name="smsGreeting">Hi</string>
+
+    <string name="wrongEmail">E-mail is empty</string>
+    <string name="wrongPhoneNumber">Phone number is empty</string>
+
+    <string name="noSuitableEmailAppFound">There are no email clients installed.</string>
+    <string name="noSuitableAppFound">Please install an application that can do what you need.</string>
 
     <string name="Save">Save</string>
     <string name="Edit">Edit</string>
