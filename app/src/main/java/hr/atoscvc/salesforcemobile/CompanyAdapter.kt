@@ -11,7 +11,10 @@ import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
+//LUKA - styles za sve zivo
+//LUKA - dodati gumbe za call, sms, email (oba mjesta)
 //LUKA - paziti da se empty polja u CardView i DetailedView za Company i Contact budu sa View.GONE
+//LUKA - Loading dialogs
 //FILIP - email overridea description kod upisa Contacta u bazu
 //FILIP - edit companyja trenutno ne updatea podatke o companyju za kontakte
 //TODO - dodati gumb za pregled svih kontakata na CardView svakog Companyja
