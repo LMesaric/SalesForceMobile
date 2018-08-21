@@ -8,9 +8,15 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
+//TODO - dodati i direct link na company details
+//TODO - export i import kontakata iz Imenika
+
 class ContactDetailsActivity : AppCompatActivity() {
-    //TODO - dodati i direct link na company details
-    //TODO - export i import kontakata iz Imenika
+
+    companion object {
+        const val requestCodeEditContact = 5
+    }
+
     private var contact: Contact? = null
     private var isChanged: Boolean = false
 
@@ -85,7 +91,7 @@ class ContactDetailsActivity : AppCompatActivity() {
             putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
         }
         ContactEditFragment.chosenCompany = contact?.company
-        startActivityForResult(intent, 4)
+        startActivityForResult(intent, ContactDetailsActivity.requestCodeEditContact)
         //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
     }
 
@@ -99,7 +105,7 @@ class ContactDetailsActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 4) {
+        if (requestCode == ContactDetailsActivity.requestCodeEditContact) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 contact = data?.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as? Contact
                 isChanged = true
