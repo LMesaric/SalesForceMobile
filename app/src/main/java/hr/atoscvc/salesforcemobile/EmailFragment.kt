@@ -42,9 +42,8 @@ class EmailFragment : Fragment(), View.OnClickListener {
             mAuth.fetchSignInMethodsForEmail(email)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            val check = task.result.signInMethods?.isEmpty() ?: true
-                            if (check) {
-                                ActiveUserSingleton.user?.email = email     //FILIP - sto ako user?.email ne prodje, je li onda "null = email" -> try/catch mozda?
+                            if (task.result.signInMethods?.isEmpty() != false) {
+                                ActiveUserSingleton.user?.email = email
                                 replaceFragmentListener.replaceFragment(PasswordFragment())
                             } else {
                                 etEmail.error = getString(R.string.emailAlreadyInUse)
