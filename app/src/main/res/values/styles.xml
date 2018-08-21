@@ -32,7 +32,7 @@
     <style name="textViewDetailsStyle">
         <item name="android:textSize">@dimen/text_view_font_title_medium</item>
     </style>
-
+<!-- LUKA - stilovi za manji i veci login/register title -->
     <style name="floatingActionButtonDetailsStyle" parent="Widget.Design.FloatingActionButton">
         <item name="elevation">@dimen/fab_elevation_small</item>
         <item name="fabSize">mini</item>
