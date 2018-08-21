@@ -73,6 +73,7 @@ class ContactEditFragment : Fragment() {
                 email = null
             }
 
+            //FILIP - je li moguce koristiti Firebase za provjeru je li upisani email valjan?
             var details: String? = view.etContactEmail.text.toString().trim()
             if (details.isNullOrBlank()) {
                 details = null
