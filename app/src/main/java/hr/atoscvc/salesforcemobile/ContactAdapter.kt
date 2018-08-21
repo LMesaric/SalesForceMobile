@@ -31,14 +31,8 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
 
         val contact: Contact = contactList[position]
-        val contactTitle: String = if (contact.title == 0) {
-            ""
-        } else {
-            context.resources.getStringArray(R.array.contactTitle_array)[contact.title] + " "
-        }
-        val tvCardContactsNameText = "$contactTitle${contact.firstName} ${contact.lastName}"
 
-        holder.tvCardContactsName.text = tvCardContactsNameText
+        holder.tvCardContactName.text = ContactNameConcatenate.fullName(contact, context.resources, true)
         holder.tvCardContactCompany.text = contact.company?.name ?: context.getString(R.string.noCompanyFoundError)
         holder.tvCardContactStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
         /*holder.tvCardContactsStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
@@ -105,7 +99,7 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
     }
 
     class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvCardContactsName: TextView = itemView.tvCardContactsName
+        val tvCardContactName: TextView = itemView.tvCardContactName
         val tvCardContactCompany: TextView = itemView.tvCardContactCompany
 
         val ivContactAvatar: CircleImageView = itemView.ivContactAvatar
