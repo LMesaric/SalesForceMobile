@@ -82,7 +82,7 @@
 
             <Button
                 android:id="@+id/btnNextEmail"
-                style="@style/mainButtonsStyle"
+                style="@style/mainButtonStyle"
                 android:layout_width="100dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginEnd="20dp"

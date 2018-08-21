@@ -123,7 +123,7 @@
 
             <Button
                 android:id="@+id/btnLogin"
-                style="@style/mainButtonsStyle"
+                style="@style/mainButtonStyle"
                 android:layout_width="100dp"
                 android:layout_marginEnd="150dp"
                 android:layout_marginLeft="150dp"
