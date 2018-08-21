@@ -13,7 +13,6 @@ class RegisterActivity : AppCompatActivity(), ReplaceFragmentListener {
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
 
-    lateinit var username: String
     lateinit var firstName: String
     lateinit var lastName: String
     lateinit var email: String
