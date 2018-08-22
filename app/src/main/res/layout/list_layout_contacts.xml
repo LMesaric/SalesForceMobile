@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ACTIVE"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvCardContactCompany"
             app:layout_constraintTop_toBottomOf="@+id/tvCardContactCompany"
             tools:ignore="HardcodedText" />
 
