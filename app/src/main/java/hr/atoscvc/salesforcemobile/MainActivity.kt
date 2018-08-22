@@ -13,6 +13,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
 
+//TODO Prilikom rotacije ekrana uvijek skoci na Home i ostane staro selectano na dnu (na Registration se vraca na dio s imenom i prezimenom)
+//TODO MainActivity napraviti kao tabbedActivity ?
+
 class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.RecyclerViewOnClickListener {
 
     private lateinit var mAuth: FirebaseAuth
@@ -105,6 +108,7 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
             coordinator.title = resources.getString(R.string.Companies)
             replaceFragment(companiesFragment)
         }
+
         val user: FirebaseUser? = mAuth.currentUser
         if (user == null) {
             sendToLogin()
@@ -168,5 +172,4 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
             }
         }
     }
-
 }
