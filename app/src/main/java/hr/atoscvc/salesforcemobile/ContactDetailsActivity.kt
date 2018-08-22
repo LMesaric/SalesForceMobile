@@ -9,7 +9,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
 //TODO - dodati i direct link na company details
-//TODO - export i import kontakata iz Imenika
+//LUKA - export i import kontakata iz Imenika (paziti da se ne exporta vise puta)
 
 class ContactDetailsActivity : AppCompatActivity() {
 
@@ -112,5 +112,4 @@ class ContactDetailsActivity : AppCompatActivity() {
             }
         }
     }
-
 }
