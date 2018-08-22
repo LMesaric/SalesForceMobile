@@ -120,7 +120,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
             }
         }
 
-        alertDialog.show()
+        alertDialog.show()      //TODO App se jednom ovdje srusio, navodno leaka activity i ne moze naci parenta za attachati dialog
 
         (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(
                 InputMethodManager.SHOW_FORCED,
