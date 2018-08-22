@@ -16,11 +16,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 //TODO Prilikom rotacije ekrana uvijek skoci na Home i ostane staro selectano na dnu (na Registration se vraca na dio s imenom i prezimenom)
 //TODO MainActivity napraviti kao tabbedActivity ?
 
-class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.RecyclerViewOnClickListener {
+class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.RecyclerViewContactsOnClickListener {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private var position: Int = 0
     private var refreshContacts = false
     private var refreshCompanies = false
 
@@ -77,14 +76,14 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
-
     }
 
-    override fun recyclerViewOnClick(circleImageView: CircleImageView, contact: Contact, position: Int) {
-        this.position = position
-        val intent = Intent(this, ContactDetailsActivity::class.java)
+    override fun recyclerViewContactsOnClick(circleImageView: CircleImageView, contact: Contact, position: Int, isForSelect: Boolean) {
+        val intent = Intent(this, ContactDetailsActivity::class.java).apply {
+            putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+            putExtra(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), isForSelect)
+        }
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, circleImageView, "contactAvatar")
-        intent.putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
         startActivityForResult(intent, ContactsFragment.requestItemRefresh, options.toBundle())
     }
 

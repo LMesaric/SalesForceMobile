@@ -1,26 +1,35 @@
 package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
+import android.content.Intent
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.list_layout_contacts.view.*
 
-class ContactAdapter(private val contactList: ArrayList<Contact>, val context: Activity, private val isForSelect: Boolean, private val listener: RecyclerViewOnClickListener) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+class ContactAdapter(
+        private val contactList: ArrayList<Contact>,
+        private val context: Activity,
+        private val isForSelect: Boolean,
+        private val listenerContacts: RecyclerViewContactsOnClickListener
+) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
-    private var currentPosition = -1    // If -1 is replaced with 0 then the first card will automatically be expanded
-    private var isExpanded = false
-
-    interface RecyclerViewOnClickListener {
-        fun recyclerViewOnClick(circleImageView: CircleImageView, contact: Contact, position: Int)
+    interface RecyclerViewContactsOnClickListener {
+        fun recyclerViewContactsOnClick(
+                circleImageView: CircleImageView,
+                contact: Contact,
+                position: Int,
+                isForSelect: Boolean
+        )
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
+        val view: View = LayoutInflater.from(parent.context).inflate(
                 R.layout.list_layout_contacts,
                 parent,
                 false
@@ -29,69 +38,33 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-
         val contact: Contact = contactList[position]
 
         holder.tvCardContactName.text = ContactNameConcatenate.fullName(contact, context.resources, true)
         holder.tvCardContactCompany.text = contact.company?.name ?: context.getString(R.string.noCompanyFoundError)
         holder.tvCardContactStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
-        /*holder.tvCardContactsStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
-        holder.tvCardContactsPrefTime.text = context.resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
-        holder.tvCardContactsPhone.text = contact.phone
-        holder.tvCardContactsEmail.text = contact.email
-        holder.tvCardContactsDetails.text = contact.details*/
-
-        if (currentPosition == position) {
-            //holder.constraintLayoutContactsExpandable.visibility = View.VISIBLE
-            if (!isExpanded) {
-                //holder.constraintLayoutContactsExpandable.visibility = View.VISIBLE
-            } else {
-                //holder.constraintLayoutContactsExpandable.visibility = View.GONE
-            }
-        } else {    // Remove this else statement and the other cards will not automatically collapse
-            //holder.constraintLayoutContactsExpandable.visibility = View.GONE
-        }
 
         holder.constraintLayoutContactsMain.setOnClickListener {
-            currentPosition = holder.adapterPosition
-
-            listener.recyclerViewOnClick(holder.ivContactAvatar, contactList[currentPosition], currentPosition)
-
-            /*if (holder.constraintLayoutContactsExpandable.visibility == View.GONE) {
-                isExpanded = false
-                Log.i("PROBA", "RADI")
-            } else {
-                isExpanded = true
-            }
-            notifyDataSetChanged()*/
+            listenerContacts.recyclerViewContactsOnClick(
+                    holder.ivContactAvatar,
+                    contactList[position],
+                    position,
+                    isForSelect
+            )
         }
 
-        /* if (isForSelect) {
-             //holder.btnCardContactsEditContact.visibility = View.GONE
-             //holder.btnCardContactsSelectContact.visibility = View.VISIBLE
+        if (isForSelect) {
+            holder.btnCardContactSelectContact.visibility = View.VISIBLE
 
-             //holder.btnCardContactsSelectContact.setOnClickListener {
-                 //TODO Use this for creating opportunities
-                 val intent = Intent()
-                 intent.putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-                 context.setResult(Activity.RESULT_OK, intent)
-                 context.finish()
-             //}
-         } else {
-             //holder.btnCardContactsEditContact.visibility = View.VISIBLE
-             //holder.btnCardContactsSelectContact.visibility = View.GONE
-
-             holder.btnCardContactsEditContact.setOnClickListener {
-                 val intent = Intent(context, ContactEditorActivity::class.java).apply {
-                     putExtra(context.getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
-                     putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-                 }
-                 ContactEditFragment.chosenCompany = contact.company
-                 context.startActivityForResult(intent, ContactsFragment.requestCodeRefresh)
-                 //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
-             }
-         }*/
-
+            holder.btnCardContactSelectContact.setOnClickListener {
+                //TODO Use this for creating opportunities
+                val intent = Intent()
+                intent.putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                context.setResult(Activity.RESULT_OK, intent)
+            }
+        } else {
+            holder.btnCardContactSelectContact.visibility = View.GONE
+        }
     }
 
     override fun getItemCount(): Int {
@@ -101,20 +74,12 @@ class ContactAdapter(private val contactList: ArrayList<Contact>, val context: A
     class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCardContactName: TextView = itemView.tvCardContactName
         val tvCardContactCompany: TextView = itemView.tvCardContactCompany
+        val tvCardContactStatus: TextView = itemView.tvCardContactStatus
 
         val ivContactAvatar: CircleImageView = itemView.ivContactAvatar
 
-        //val tvCardContactsStatus: TextView = itemView.tvCardContactsStatus
-        //val tvCardContactsPrefTime: TextView = itemView.tvCardContactsPrefTime
-        //val tvCardContactsPhone: TextView = itemView.tvCardContactsPhone
-        //val tvCardContactsEmail: TextView = itemView.tvCardContactsEmail
-        //val tvCardContactsDetails: TextView = itemView.tvCardContactsDetails
+        val btnCardContactSelectContact: Button = itemView.btnCardContactSelectContact
 
         val constraintLayoutContactsMain: ConstraintLayout = itemView.constraintLayoutContactsMain
-        val tvCardContactStatus: TextView = itemView.tvCardContactStatus
-        //val constraintLayoutContactsExpandable: ConstraintLayout = itemView.constraintLayoutContactsExpandable
-
-        //val btnCardContactsEditContact: Button = itemView.btnCardContactsEditContact
-        //val btnCardContactsSelectContact: Button = itemView.btnCardContactsSelectContact
     }
 }

@@ -36,6 +36,12 @@ class ContactDetailsActivity : AppCompatActivity() {
         tvContactDetailsPhoneNumber.text = contact.phone
         tvContactDetailsPrefTime.text = resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
         tvContactDetailsDetails.text = contact.details
+
+        val isForSelect: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), false)
+        if (isForSelect) {
+            btnContactDetailsEdit.visibility = View.GONE
+            btnContactDetailsEdit.isEnabled = false
+        }
     }
 
     fun onContactEmail(@Suppress("UNUSED_PARAMETER") view: View) {
@@ -89,20 +95,21 @@ class ContactDetailsActivity : AppCompatActivity() {
     }
 
     fun onEditContactDetails(@Suppress("UNUSED_PARAMETER") view: View) {
-        val intent = Intent(this, ContactEditorActivity::class.java).apply {
+        val intentEdit = Intent(this, ContactEditorActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
             putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
         }
         ContactEditFragment.chosenCompany = contact.company
-        startActivityForResult(intent, ContactDetailsActivity.requestCodeEditContact)
+        startActivityForResult(intentEdit, ContactDetailsActivity.requestCodeEditContact)
         //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
     }
 
     override fun onBackPressed() {
         if (isChanged) {
-            val intent = Intent()
-            intent.putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-            setResult(AppCompatActivity.RESULT_OK, intent)
+            val intentBack = Intent().apply {
+                putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+            }
+            setResult(AppCompatActivity.RESULT_OK, intentBack)
         }
         super.onBackPressed()
     }
