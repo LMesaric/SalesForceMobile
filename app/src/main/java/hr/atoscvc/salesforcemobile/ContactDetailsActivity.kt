@@ -37,10 +37,13 @@ class ContactDetailsActivity : AppCompatActivity() {
         tvContactDetailsPrefTime.text = resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
         tvContactDetailsDetails.text = contact.details
 
-        val isForSelect: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), false)
-        if (isForSelect) {
+        val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), false)
+        if (shouldHideButtons) {
             btnContactDetailsEdit.visibility = View.GONE
             btnContactDetailsEdit.isEnabled = false
+        } else {
+            btnContactDetailsEdit.visibility = View.VISIBLE
+            btnContactDetailsEdit.isEnabled = true
         }
     }
 
