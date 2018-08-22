@@ -44,7 +44,7 @@ class ContactAdapter(
         holder.tvCardContactCompany.text = contact.company?.name ?: context.getString(R.string.noCompanyFoundError)
         holder.tvCardContactStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
 
-        holder.constraintLayoutContactsMain.setOnClickListener {
+        holder.constraintLayoutContactMain.setOnClickListener {
             listenerContacts.recyclerViewContactsOnClick(
                     holder.ivContactAvatar,
                     contactList[position],
@@ -80,6 +80,6 @@ class ContactAdapter(
 
         val btnCardContactSelectContact: Button = itemView.btnCardContactSelectContact
 
-        val constraintLayoutContactsMain: ConstraintLayout = itemView.constraintLayoutContactsMain
+        val constraintLayoutContactMain: ConstraintLayout = itemView.constraintLayoutContactMain
     }
 }

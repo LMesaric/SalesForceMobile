@@ -186,6 +186,9 @@
     <string name="email" translatable="false">email</string>
     <string name="password" translatable="false">password</string>
 
+    <string name="transitionNameContactAvatar">contactAvatar</string>
+    <string name="transitionNameCompanyAvatar">companyAvatar</string>
+
     <string name="EXTRA_IS_EDITOR_FOR_NEW_ITEM" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_IS_EDITOR_FOR_NEW_ITEM</string>
 
     <string name="EXTRA_CONTACT_ENTIRE_OBJECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_ENTIRE_OBJECT</string>

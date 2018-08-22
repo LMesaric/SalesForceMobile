@@ -15,7 +15,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="120dp"
         android:src="@drawable/contact_avatar"
-        android:transitionName="contactAvatar"
+        android:transitionName="@string/transitionNameContactAvatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

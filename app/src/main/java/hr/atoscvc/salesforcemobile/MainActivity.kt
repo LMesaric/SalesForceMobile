@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
             putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
             putExtra(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), isForSelect)
         }
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, circleImageView, "contactAvatar")
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, circleImageView, getString(R.string.transitionNameContactAvatar))
         startActivityForResult(intent, ContactsFragment.requestItemRefresh, options.toBundle())
     }
 
