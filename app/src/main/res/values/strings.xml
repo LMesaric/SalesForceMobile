@@ -91,12 +91,14 @@
     <string name="sendEmailChooser">Send email</string>
     <string name="dialPhoneChooser">Dial phone number</string>
     <string name="sendTextChooser">Send text</string>
+    <string name="openWebChooser">Open in browser</string>
 
     <string name="emailGreeting">Dear</string>
     <string name="smsGreeting">Hi</string>
 
     <string name="wrongEmail">E-mail is empty</string>
     <string name="wrongPhoneNumber">Phone number is empty</string>
+    <string name="wrongWebPage">Web page is empty</string>
 
     <string name="noSuitableEmailAppFound">There are no email clients installed.</string>
     <string name="noSuitableAppFound">Please install an application that can do what you need.</string>

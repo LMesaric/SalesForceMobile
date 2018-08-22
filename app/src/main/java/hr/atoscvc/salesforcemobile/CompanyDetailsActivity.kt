@@ -49,7 +49,20 @@ class CompanyDetailsActivity : AppCompatActivity() {
     }
 
     fun onCompanyWebPage(@Suppress("UNUSED_PARAMETER") view: View) {
-        //LUKA - otvoriti web stranicu u browseru
+        //LUKA - provjera za register (i Contact) http://emailregex.com/
+        //LUKA - otvoriti web stranicu u browseru (http i www)
+        val webPage: String? = company.webPage?.trim()
+        if (webPage.isNullOrBlank()) {
+            Toast.makeText(this, getString(R.string.wrongWebPage), Toast.LENGTH_SHORT).show()
+        } else {
+            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(webPage))
+            try {
+                startActivity(Intent.createChooser(webIntent, getString(R.string.openWebChooser)))
+            } catch (e: Exception) {
+                // Most of the times, if not always, app chooser will display a similar message.
+                Toast.makeText(this, getString(R.string.noSuitableAppFound), Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     fun onCompanyCall(@Suppress("UNUSED_PARAMETER") view: View) {
