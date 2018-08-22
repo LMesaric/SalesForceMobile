@@ -1,6 +1,5 @@
 package hr.atoscvc.salesforcemobile
 
-
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
@@ -17,7 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_contacts.view.*
-
 
 class ContactsFragment : Fragment() {
 
@@ -74,5 +72,4 @@ class ContactsFragment : Fragment() {
 
         return view
     }
-
 }
