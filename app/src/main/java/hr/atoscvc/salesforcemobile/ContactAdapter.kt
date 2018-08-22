@@ -23,8 +23,7 @@ class ContactAdapter(
         fun recyclerViewContactsOnClick(
                 circleImageView: CircleImageView,
                 contact: Contact,
-                position: Int,
-                isForSelect: Boolean
+                hideEditButtons: Boolean
         )
     }
 
@@ -48,22 +47,24 @@ class ContactAdapter(
             listenerContacts.recyclerViewContactsOnClick(
                     holder.ivContactAvatar,
                     contactList[position],
-                    position,
                     isForSelect
             )
         }
 
         if (isForSelect) {
             holder.btnCardContactSelectContact.visibility = View.VISIBLE
+            holder.btnCardContactSelectContact.isEnabled = true
 
             holder.btnCardContactSelectContact.setOnClickListener {
                 //TODO Use this for creating opportunities
-                val intent = Intent()
-                intent.putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                val intent = Intent().apply {
+                    putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                }
                 context.setResult(Activity.RESULT_OK, intent)
             }
         } else {
             holder.btnCardContactSelectContact.visibility = View.GONE
+            holder.btnCardContactSelectContact.isEnabled = false
         }
     }
 
@@ -77,9 +78,7 @@ class ContactAdapter(
         val tvCardContactStatus: TextView = itemView.tvCardContactStatus
 
         val ivContactAvatar: CircleImageView = itemView.ivContactAvatar
-
         val btnCardContactSelectContact: Button = itemView.btnCardContactSelectContact
-
         val constraintLayoutContactMain: ConstraintLayout = itemView.constraintLayoutContactMain
     }
 }
