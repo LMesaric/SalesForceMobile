@@ -18,6 +18,8 @@ class CompanyEditorActivity : AppCompatActivity() {
 
     //TODO Za Company i Contact Editor staviti alert dialog na back button
 
+    //FILIP Dodati fragment kao u ContactEditorActivity
+
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private var company: Company? = null
@@ -146,7 +148,12 @@ class CompanyEditorActivity : AppCompatActivity() {
                 company?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this, getString(R.string.newCompanyCreated), Toast.LENGTH_SHORT).show()
-                        setResult(AppCompatActivity.RESULT_OK)
+                        setResult(
+                                AppCompatActivity.RESULT_OK,
+                                Intent().apply {
+                                    putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
+                                }
+                        )
                         finish()
                     } else {
                         Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -164,7 +171,12 @@ class CompanyEditorActivity : AppCompatActivity() {
                 }?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this, getString(R.string.companyUpdated), Toast.LENGTH_LONG).show()
-                        setResult(AppCompatActivity.RESULT_OK)
+                        setResult(
+                                AppCompatActivity.RESULT_OK,
+                                Intent().apply {
+                                    putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
+                                }
+                        )
                         finish()
                     } else {
                         Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
