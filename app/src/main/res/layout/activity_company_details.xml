@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?><!-- LUKA - make scrollable -->
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/PreviewDetailsTheme"
+    tools:context=".CompanyDetailsActivity">
+
+    <!-- TODO - napraviti company_avatar(_small) -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivCompanyDetailsAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/ic_companies"
+        android:transitionName="@string/transitionNameCompanyAvatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCompanyDetailsName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:text="Atos CVC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCompanyDetailsAvatar"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvCompanyDetailsCvsSegment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Platinum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsName"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvCompanyDetailsStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="ACTIVE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsCvsSegment"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvCompanyDetailsWebPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/WebPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsStatus" />
+
+    <TextView
+        android:id="@+id/tvCompanyDetailsPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/PhoneNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsWebPage" />
+
+    <TextView
+        android:id="@+id/tvCompanyDetailsOib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Afternoon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsPhoneNumber"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvCompanyDetailsIncome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="120000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsOib"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvCompanyDetailsEmployees"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="100-199"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsIncome"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvCompanyDetailsCommunicationType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsEmployees"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvCompanyDetailsDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/Details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsCommunicationType" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabCompanyDetailsSendEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onCompanyWebPage"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCompanyDetailsWebPage"
+        app:layout_constraintStart_toEndOf="@+id/tvCompanyDetailsWebPage"
+        app:layout_constraintTop_toTopOf="@+id/tvCompanyDetailsWebPage"
+        app:srcCompat="@android:drawable/sym_action_email" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabCompanyDetailsCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onCompanyCall"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCompanyDetailsPhoneNumber"
+        app:layout_constraintStart_toEndOf="@+id/tvCompanyDetailsPhoneNumber"
+        app:layout_constraintTop_toTopOf="@+id/tvCompanyDetailsPhoneNumber"
+        app:srcCompat="@android:drawable/sym_action_call" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabCompanyDetailsSendText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onCompanyText"
+        app:layout_constraintBottom_toBottomOf="@+id/fabCompanyDetailsCall"
+        app:layout_constraintStart_toEndOf="@+id/fabCompanyDetailsCall"
+        app:layout_constraintTop_toTopOf="@+id/fabCompanyDetailsCall"
+        app:srcCompat="@android:drawable/sym_action_chat" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutCompanyDetailsButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCompanyDetailsDetails">
+
+        <Button
+            android:id="@+id/btnCompanyDetailsAddContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:onClick="onAddContactCompanyDetails"
+            android:text="@string/addContact"
+            app:layout_constraintBaseline_toBaselineOf="@id/btnCompanyDetailsEdit"
+            app:layout_constraintEnd_toStartOf="@id/btnCompanyDetailsEdit" />
+
+        <Button
+            android:id="@+id/btnCompanyDetailsEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onEditCompanyDetails"
+            android:text="@string/Edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

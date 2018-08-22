@@ -21,6 +21,7 @@ class CompaniesFragment : Fragment() {
     //TODO Implementirati Search funkcionalnost
     companion object RequestCodesCompany {
         const val requestCodeRefresh = 1
+        const val requestItemRefresh = 2
     }
 
     private lateinit var mAuth: FirebaseAuth
@@ -29,7 +30,7 @@ class CompaniesFragment : Fragment() {
     @SuppressLint("RestrictedApi")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_companies, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_companies, container, false)
 
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
@@ -42,18 +43,36 @@ class CompaniesFragment : Fragment() {
             activity?.startActivityForResult(intent, requestCodeRefresh)
         }
 
-        val companyList = ArrayList<Company>()      //LUKA - TWO SINGLETONS
-
         view.recyclerViewCompanies.setHasFixedSize(true)
         view.recyclerViewCompanies.layoutManager = LinearLayoutManager(activity)
 
-        val adapter = CompanyAdapter(
-                companyList,
-                activity as Activity,
-                arguments
-                        ?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT))
-                        ?: false
-        )
+        val companyList = ArrayList<Company>()      //LUKA - TWO SINGLETONS
+
+        var adapter: CompanyAdapter?
+        try {
+            adapter = activity?.applicationContext?.let {
+                CompanyAdapter(
+                        companyList,
+                        activity as Activity,
+                        arguments
+                                ?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT))
+                                ?: false,
+                        activity as MainActivity
+                )
+            }
+        } catch (e: ClassCastException) {
+            adapter = activity?.applicationContext?.let {
+                CompanyAdapter(
+                        companyList,
+                        activity as Activity,
+                        arguments
+                                ?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT))
+                                ?: false,
+                        activity as ContactEditorActivity
+                )
+            }
+        }
+
         view.recyclerViewCompanies.adapter = adapter
 
         val query: Query? = mAuth.uid?.let {
@@ -71,7 +90,7 @@ class CompaniesFragment : Fragment() {
                     if (doc.type == DocumentChange.Type.ADDED) {
                         val newCompany = doc.document.toObject<Company>(Company::class.java)
                         companyList.add(newCompany)
-                        adapter.notifyDataSetChanged()
+                        adapter?.notifyDataSetChanged()
                     }
                 }
             }
@@ -79,5 +98,4 @@ class CompaniesFragment : Fragment() {
 
         return view
     }
-
 }

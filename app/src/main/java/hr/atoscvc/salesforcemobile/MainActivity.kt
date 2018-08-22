@@ -16,16 +16,20 @@ import kotlinx.android.synthetic.main.activity_main.*
 //TODO Prilikom rotacije ekrana uvijek skoci na Home i ostane staro selectano na dnu (na Registration se vraca na dio s imenom i prezimenom)
 //TODO MainActivity napraviti kao tabbedActivity ?
 
-class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.RecyclerViewContactsOnClickListener {
+class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.RecyclerViewContactsOnClickListener, CompanyAdapter.RecyclerViewCompaniesOnClickListener {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+
     private var refreshContacts = false
     private var refreshCompanies = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        db = FirebaseFirestore.getInstance()
+        mAuth = FirebaseAuth.getInstance()
 
         (application as MyApp).registerSessionListener(this)
         (application as MyApp).startUserSession()
@@ -51,10 +55,14 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
                 }
 
                 R.id.navBarContacts -> {
+                    val contactsFragment = ContactsFragment()
+                    val bundle = Bundle()
+                    bundle.putBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), false)
+                    contactsFragment.arguments = bundle
                     appBarLayout.setExpanded(true, true)
                     appBarLayout.isActivated = true
                     coordinator.title = resources.getString(R.string.Contacts)
-                    replaceFragment(ContactsFragment())
+                    replaceFragment(contactsFragment)
                     true
                 }
 
@@ -73,18 +81,24 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
                 else -> false
             }
         }
-
-        db = FirebaseFirestore.getInstance()
-        mAuth = FirebaseAuth.getInstance()
     }
 
-    override fun recyclerViewContactsOnClick(circleImageView: CircleImageView, contact: Contact, position: Int, isForSelect: Boolean) {
-        val intent = Intent(this, ContactDetailsActivity::class.java).apply {
+    override fun recyclerViewContactsOnClick(circleImageView: CircleImageView, contact: Contact, hideEditButtons: Boolean) {
+        val contactDetailsIntent = Intent(this, ContactDetailsActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-            putExtra(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), isForSelect)
+            putExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), hideEditButtons)
         }
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, circleImageView, getString(R.string.transitionNameContactAvatar))
-        startActivityForResult(intent, ContactsFragment.requestItemRefresh, options.toBundle())
+        startActivityForResult(contactDetailsIntent, ContactsFragment.requestItemRefresh, options.toBundle())
+    }
+
+    override fun recyclerViewCompaniesOnClick(circleImageView: CircleImageView, company: Company, hideEditButtons: Boolean) {
+        val companyDetailsIntent = Intent(this, CompanyDetailsActivity::class.java).apply {
+            putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
+            putExtra(getString(R.string.EXTRA_COMPANY_HIDE_EDIT_BUTTONS), hideEditButtons)
+        }
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, circleImageView, getString(R.string.transitionNameCompanyAvatar))
+        startActivityForResult(companyDetailsIntent, CompaniesFragment.requestItemRefresh, options.toBundle())
     }
 
     override fun onResume() {
@@ -156,19 +170,27 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
 
-        if (requestCode == CompaniesFragment.requestCodeRefresh) {
-            if (resultCode == AppCompatActivity.RESULT_OK) {
-                refreshCompanies = true
-            }
-        } else if (requestCode == ContactsFragment.requestCodeRefresh) {
-            if (resultCode == AppCompatActivity.RESULT_OK) {
-                refreshContacts = true
-            }
-        } else if (requestCode == ContactsFragment.requestItemRefresh) {
-            if (resultCode == AppCompatActivity.RESULT_OK) {
-                refreshContacts = true
-            }
+            CompaniesFragment.requestCodeRefresh ->
+                if (resultCode == AppCompatActivity.RESULT_OK) {
+                    refreshCompanies = true
+                }
+
+            CompaniesFragment.requestItemRefresh ->
+                if (resultCode == AppCompatActivity.RESULT_OK) {
+                    refreshCompanies = true
+                }
+
+            ContactsFragment.requestCodeRefresh ->
+                if (resultCode == AppCompatActivity.RESULT_OK) {
+                    refreshContacts = true
+                }
+
+            ContactsFragment.requestItemRefresh ->
+                if (resultCode == AppCompatActivity.RESULT_OK) {
+                    refreshContacts = true
+                }
         }
     }
 }

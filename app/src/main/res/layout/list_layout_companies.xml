@@ -1,175 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutCompanyMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingEnd="8dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
-    android:paddingStart="8dp">
+    android:background="@color/colorBackgroundWhite"
+    android:paddingBottom="0dp"
+    android:paddingEnd="0dp"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardViewCompanies"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
+    <!-- TODO - napraviti company_avatar(_small) -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivCompanyAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_companies"
+        android:transitionName="@string/transitionNameCompanyAvatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/constraintLayoutCompaniesMain"
-            android:layout_width="match_parent"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/list_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivCompanyAvatar"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvCardCompanyName"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:text="Atos CVC"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/tvCardCompaniesName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Atos CVC"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/tvCardCompanyCvsSegment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Platinum"
+            app:layout_constraintStart_toStartOf="@id/tvCardCompanyName"
+            app:layout_constraintTop_toBottomOf="@id/tvCardCompanyName"
+            tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/tvCardCompaniesCvsSegment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Platinum"
-                app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesName"
-                app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesName"
-                tools:ignore="HardcodedText" />
+        <TextView
+            android:id="@+id/tvCardCompanyStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACTIVE"
+            app:layout_constraintStart_toStartOf="@id/tvCardCompanyCvsSegment"
+            app:layout_constraintTop_toBottomOf="@id/tvCardCompanyCvsSegment"
+            tools:ignore="HardcodedText" />
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/constraintLayoutCompaniesExpandable"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:animateLayoutChanges="true"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvCardCompaniesCvsSegment">
-                <!-- LUKA - set visibility to "gone" -->
+        <!-- LUKA - ovo mora biti invertani button -->
+        <Button
+            android:id="@+id/btnCardCompanySelectCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/Select"
+            app:layout_constraintBottom_toBottomOf="@id/tvCardCompanyStatus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvCardCompanyName" />
 
-                <TextView
-                    android:id="@+id/tvCardCompaniesStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="ACTIVE"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvCardCompaniesOIB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="0123456789"
-                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesStatus"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesStatus"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvCardCompaniesWebPage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="www.chuck_norris.com"
-                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesOIB"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesOIB"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvCardCompaniesPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="0917893456"
-                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesWebPage"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesWebPage"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvCardCompaniesIncome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="100000"
-                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesPhone"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesPhone"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvCardCompaniesCommunicationType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Phone"
-                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesIncome"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesIncome"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvCardCompaniesEmployees"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="10–24"
-                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesCommunicationType"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesCommunicationType"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/tvCardCompaniesDetails"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Best Company Ever!"
-                    app:layout_constraintStart_toStartOf="@+id/tvCardCompaniesEmployees"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesEmployees"
-                    tools:ignore="HardcodedText" />
-
-                <Button
-                    android:id="@+id/btnCardCompaniesAddContact"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/addContact"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/btnCardCompaniesEditCompany"
-                    app:layout_constraintEnd_toStartOf="@+id/btnCardCompaniesEditCompany" />
-
-                <Button
-                    android:id="@+id/btnCardCompaniesEditCompany"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/Edit"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesDetails" />
-
-                <Button
-                    android:id="@+id/btnCardCompaniesSelectCompany"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/Select"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCardCompaniesDetails" />
-
-            </android.support.constraint.ConstraintLayout>
-
-        </android.support.constraint.ConstraintLayout>
-
-    </android.support.v7.widget.CardView>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
