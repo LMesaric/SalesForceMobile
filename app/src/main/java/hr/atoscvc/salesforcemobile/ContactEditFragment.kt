@@ -136,27 +136,23 @@ class ContactEditFragment : Fragment() {
             }
         }
 
-        try {
-            view.spContactTitle.adapter = ArrayAdapter.createFromResource(
-                    activity?.baseContext!!,
-                    R.array.contactTitle_array,
-                    R.layout.simple_spinner_dropdown_item
-            )
+        view.spContactTitle.adapter = ArrayAdapter.createFromResource(
+                activity?.baseContext!!,
+                R.array.contactTitle_array,
+                R.layout.simple_spinner_dropdown_item
+        )
 
-            view.spContactStatus.adapter = ArrayAdapter.createFromResource(
-                    activity?.baseContext!!,
-                    R.array.status_array,
-                    R.layout.simple_spinner_dropdown_item
-            )
+        view.spContactStatus.adapter = ArrayAdapter.createFromResource(
+                activity?.baseContext!!,
+                R.array.status_array,
+                R.layout.simple_spinner_dropdown_item
+        )
 
-            view.spContactPreferredTime.adapter = ArrayAdapter.createFromResource(
-                    activity?.baseContext!!,
-                    R.array.contactPreferredTime_array,
-                    R.layout.simple_spinner_dropdown_item
-            )
-        } catch (e: Exception) {
-            e.printStackTrace()     // This will (hopefully) never run
-        }
+        view.spContactPreferredTime.adapter = ArrayAdapter.createFromResource(
+                activity?.baseContext!!,
+                R.array.contactPreferredTime_array,
+                R.layout.simple_spinner_dropdown_item
+        )
 
         view.etContactFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
