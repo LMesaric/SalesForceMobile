@@ -12,7 +12,7 @@ import hr.atoscvc.salesforcemobile.CheckPasswordConstraints.checkPasswordConstra
 import kotlinx.android.synthetic.main.activity_change_password.*
 
 class ChangePasswordActivity : AppCompatActivity() {
-
+    //TODO Change password + first i last name
     private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
