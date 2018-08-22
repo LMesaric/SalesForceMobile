@@ -34,19 +34,42 @@ class ContactsFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_contacts, container, false)
 
+        mAuth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+
+        activity?.fabAdd?.visibility = View.VISIBLE
+        activity?.fabAdd?.setOnClickListener {
+            val intent = Intent(activity, ContactEditorActivity::class.java).apply {
+                putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
+            }
+            activity?.startActivityForResult(intent, requestCodeRefresh)
+        }
+
         view.recyclerViewContacts.setHasFixedSize(true)
         view.recyclerViewContacts.layoutManager = LinearLayoutManager(activity)
 
         contactList = ArrayList()
 
-        mAuth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
+        val adapter = activity?.applicationContext?.let {
+            ContactAdapter(
+                    contactList,
+                    activity as Activity,
+                    arguments
+                            ?.getBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT))
+                            ?: false,
+                    activity as MainActivity
+            )
+        }
 
-        val adapter = activity?.applicationContext?.let { ContactAdapter(contactList, activity as Activity, false, activity as MainActivity) }
         view.recyclerViewContacts.adapter = adapter
 
         //TODO Bilo bi dosta lako dodati Sort By feature - samo ubaciti string u .orderBy()
-        val query: Query? = mAuth.uid?.let { db.collection("Users").document(it).collection("Contacts").orderBy("lastName") }
+        val query: Query? = mAuth.uid?.let {
+            db.collection("Users")
+                    .document(it)
+                    .collection("Contacts")
+                    .orderBy("lastName")
+        }
         query?.addSnapshotListener { p0, p1 ->
             if (p1 != null) {
                 Log.d("ERRORS", p1.message)
@@ -60,14 +83,6 @@ class ContactsFragment : Fragment() {
                     }
                 }
             }
-        }
-
-        activity?.fabAdd?.visibility = View.VISIBLE
-        activity?.fabAdd?.setOnClickListener {
-            val intent = Intent(activity, ContactEditorActivity::class.java).apply {
-                putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
-            }
-            activity?.startActivityForResult(intent, requestCodeRefresh)
         }
 
         return view
