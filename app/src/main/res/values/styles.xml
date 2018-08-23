@@ -21,6 +21,17 @@
         <item name="floatingActionButtonStyle">@style/floatingActionButtonDetailsStyle</item>
     </style>
 
+    <style name="textViewTitleMediumStyle">
+        <item name="android:textColor">@color/loginRegisterTitleMedium</item>
+        <item name="android:textSize">@dimen/text_view_font_title_medium</item>
+    </style>
+
+    <style name="textViewTitleLargeStyle">
+        <item name="android:textColor">@color/loginRegisterTitleLarge</item>
+        <item name="android:textSize">@dimen/text_view_font_title_large</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="mainButtonStyle">
         <item name="android:layout_height">36dp</item>
         <item name="android:layout_width">100dp</item>
@@ -39,10 +50,9 @@
     </style>
 
     <style name="textViewDetailsStyle">
-        <item name="android:textSize">@dimen/text_view_font_title_medium</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
-    <!-- LUKA - stilovi za manji i veci login/register title -->
     <style name="floatingActionButtonDetailsStyle" parent="Widget.Design.FloatingActionButton">
         <item name="elevation">@dimen/fab_elevation_small</item>
         <item name="fabSize">mini</item>

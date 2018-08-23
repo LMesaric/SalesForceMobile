@@ -15,6 +15,11 @@
     <color name="colorStrokePrimary">@android:color/black</color>
 
     <color name="colorBackgroundWhite">@android:color/white</color>
+
+    <color name="loginRegisterTitleCommon">@color/colorPrimary</color>
+    <color name="loginRegisterTitleLarge">@color/loginRegisterTitleCommon</color>
+    <color name="loginRegisterTitleMedium">@color/loginRegisterTitleCommon</color>
+
     <color name="colorListBorder">#E0E0E0</color>
     <color name="colorShadow">#88333333</color>
 </resources>
