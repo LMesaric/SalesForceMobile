@@ -15,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_contact_edit.*
 import kotlinx.android.synthetic.main.fragment_contact_edit.view.*
 
-//FILIP - kad se ide preko Add Contact od Company Carda, dobiva se krivi company u ovom editoru (prije je ispravno radilo)
+//LUKA - kad se ide preko Add Contact od Company Carda, dobiva se krivi company u ovom editoru (prije je ispravno radilo)
 class ContactEditFragment : Fragment() {
 
     companion object {
@@ -74,7 +74,7 @@ class ContactEditFragment : Fragment() {
             }
 
             //FILIP - je li moguce koristiti Firebase za provjeru je li upisani email valjan?
-            var details: String? = view.etContactEmail.text.toString().trim()
+            var details: String? = view.etContactDetails.text.toString().trim()
             if (details.isNullOrBlank()) {
                 details = null
             }
