@@ -40,11 +40,12 @@ class CompanyDetailsActivity : AppCompatActivity() {
         val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_COMPANY_HIDE_EDIT_BUTTONS), false)
         if (shouldHideButtons) {
             layoutCompanyDetailsButtons.visibility = View.GONE
-            //LUKA - ovo mozda ne radi (testirati bez visibility change)
-            layoutCompanyDetailsButtons.isEnabled = false
+            btnCompanyDetailsEdit.isEnabled = false
+            btnCompanyDetailsAddContact.isEnabled = false
         } else {
             layoutCompanyDetailsButtons.visibility = View.VISIBLE
-            layoutCompanyDetailsButtons.isEnabled = true
+            btnCompanyDetailsEdit.isEnabled = true
+            btnCompanyDetailsAddContact.isEnabled = true
         }
     }
 
