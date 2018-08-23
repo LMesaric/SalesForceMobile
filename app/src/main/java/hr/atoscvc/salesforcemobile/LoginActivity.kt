@@ -82,7 +82,19 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                                                     documentSnapshot.getString("lastName").toString(),
                                                     mAuth.currentUser!!.email.toString()
                                             )
-                                            sendToMain()
+                                            if (mAuth.currentUser!!.isEmailVerified) {
+                                                sendToMain()
+                                            } else {
+                                                mAuth.currentUser!!.sendEmailVerification()
+                                                        .addOnCompleteListener{ task ->
+                                                            if (!task.isSuccessful) {
+                                                                Toast.makeText(this, "Error sending verification email :" + task.exception?.message, Toast.LENGTH_LONG).show()
+                                                            }
+                                                            sendToVerify()
+                                                        }
+
+                                            }
+
                                         } else {
                                             Toast.makeText(this, getString(R.string.noUserFound), Toast.LENGTH_LONG).show()
                                         }
@@ -158,6 +170,13 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         val mainIntent = Intent(this, MainActivity::class.java)
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(mainIntent)
+        finish()
+    }
+
+    private fun sendToVerify() {
+        val verifyIntent = Intent(this, VerifyActivity::class.java)
+        verifyIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(verifyIntent)
         finish()
     }
 
