@@ -17,7 +17,10 @@
 
     <style name="mainButtonStyle">
         <item name="android:layout_height">36dp</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:gravity">center</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@drawable/button_main_background</item>
@@ -32,7 +35,8 @@
     <style name="textViewDetailsStyle">
         <item name="android:textSize">@dimen/text_view_font_title_medium</item>
     </style>
-<!-- LUKA - stilovi za manji i veci login/register title -->
+
+    <!-- LUKA - stilovi za manji i veci login/register title -->
     <style name="floatingActionButtonDetailsStyle" parent="Widget.Design.FloatingActionButton">
         <item name="elevation">@dimen/fab_elevation_small</item>
         <item name="fabSize">mini</item>
@@ -41,6 +45,7 @@
 
     <style name="PreviewDetailsTheme" parent="AppTheme">
         <item name="android:textViewStyle">@style/textViewDetailsStyle</item>
+        <item name="android:buttonStyle">@style/mainButtonStyle</item>
         <item name="floatingActionButtonStyle">@style/floatingActionButtonDetailsStyle</item>
     </style>
 
