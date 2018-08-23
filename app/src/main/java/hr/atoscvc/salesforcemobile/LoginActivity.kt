@@ -16,9 +16,7 @@ import kotlinx.android.synthetic.main.reset_password.view.*
 
 class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
 
-    //FILIP - novi password (hard reset) nema nikakve provjere (CheckPasswordConstraints) - implementirati u backendu
     //FILIP - forgot password loader indicator se trenutno vrti iza prozora pa se ne vidi
-    //FILIP - EventLog tablica (samo String) u bazi - "User $userID forgot his password", "User $userID set a new password", "User $userID changed his password", "User $userID logged in/out"...
 
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
