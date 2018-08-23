@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -13,6 +13,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorSecondary">@color/colorBackgroundWhite</item>
+    </style>
+
+    <style name="PreviewDetailsTheme" parent="AppTheme">
+        <item name="android:textViewStyle">@style/textViewDetailsStyle</item>
+        <item name="android:buttonStyle">@style/mainButtonStyle</item>
+        <item name="floatingActionButtonStyle">@style/floatingActionButtonDetailsStyle</item>
     </style>
 
     <style name="mainButtonStyle">
@@ -41,12 +47,6 @@
         <item name="elevation">@dimen/fab_elevation_small</item>
         <item name="fabSize">mini</item>
         <item name="backgroundTint">@color/colorBackgroundWhite</item>
-    </style>
-
-    <style name="PreviewDetailsTheme" parent="AppTheme">
-        <item name="android:textViewStyle">@style/textViewDetailsStyle</item>
-        <item name="android:buttonStyle">@style/mainButtonStyle</item>
-        <item name="floatingActionButtonStyle">@style/floatingActionButtonDetailsStyle</item>
     </style>
 
     <style name="collapsedToolbar">
