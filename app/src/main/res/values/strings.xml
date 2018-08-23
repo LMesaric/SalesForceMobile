@@ -11,16 +11,13 @@
     <string name="forgotPassword"><a href="">Forgot your password?</a></string>
     <string name="clickHereToRegister"><a href="">Register</a></string>
 
-    <string name="CreateNew">Create new</string>
-    <string name="Account">account</string>
+    <string name="CreateNewAccount">Create new\naccount</string>
     <string name="EnterYourName">Enter your name</string>
 
-    <string name="HowYouWill">How you will</string>
-    <string name="SignIn">sign in</string>
+    <string name="HowYouWillSignIn">How you will\nsign in</string>
     <string name="EnterYourEmail">Enter your email</string>
 
-    <string name="ProtectYour">Protect your</string>
-    <string name="Information">information</string>
+    <string name="ProtectYourInformation">Protect your\ninformation</string>
     <string name="CreatePassword">Create a password</string>
 
     <string name="resetPassword">Reset Password</string>
