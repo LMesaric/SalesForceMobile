@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.reset_password.view.*
 
 class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
-    //LUKA - refactor view IDs za Login i Register
+
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
 

@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import de.hdodenhof.circleimageview.CircleImageView
 
-//LUKA - urediti login i register screen, staviti animacije + trimmati sve inpute za login i register
+//LUKA - urediti login i register screen, staviti animacije + trimmati sve inpute za login i register - dodati ikonice i onfucus listenere
 
 class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, CompanyAdapter.RecyclerViewCompaniesOnClickListener {
 
