@@ -59,6 +59,13 @@
         <item name="backgroundTint">@color/colorBackgroundWhite</item>
     </style>
 
+    <style name="textViewHyperlinkStyle">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorLink">@color/colorPrimary</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
     <style name="collapsedToolbar">
         <item name="android:textSize">@dimen/toolbar_font_collapsed</item>
         <item name="android:textStyle">bold</item>
