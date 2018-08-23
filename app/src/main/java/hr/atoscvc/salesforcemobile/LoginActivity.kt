@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.reset_password.view.*
 
 class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
-
+    //LUKA - refactor view IDs za Login i Register
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
 
@@ -35,20 +35,20 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         setSupportActionBar(toolbarLogin)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        etEmail.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+        etLoginEmail.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                val email = etEmail.text.toString().trim()
-                etEmail.setText(email)
+                val email: String = etLoginEmail.text.toString().trim()
+                etLoginEmail.setText(email)
 
                 if (email.isBlank()) {
-                    etEmail.error = getString(R.string.emailEmptyMessage)
+                    etLoginEmail.error = getString(R.string.emailEmptyMessage)
                 }
             }
         }
-        etPassword.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+        etLoginPassword.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                if (etPassword.text.isBlank()) {
-                    etPassword.error = getString(R.string.passwordEmptyMessage)
+                if (etLoginPassword.text.isBlank()) {
+                    etLoginPassword.error = getString(R.string.passwordEmptyMessage)
                 }
             }
         }
@@ -56,16 +56,16 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
 
     fun onLogin(@Suppress("UNUSED_PARAMETER") view: View) {
         disableAllButtons()
-        email = etEmail.text.toString().trim()
-        val tempPassword = etPassword.text.toString()       // Do NOT trim the password
+        email = etLoginEmail.text.toString().trim()
+        val tempPassword = etLoginPassword.text.toString()       // Do NOT trim the password
         var thereAreNoErrors = true
 
         if (email.isBlank()) {
-            etEmail.error = getString(R.string.emailEmptyMessage)
+            etLoginEmail.error = getString(R.string.emailEmptyMessage)
             thereAreNoErrors = false
         }
         if (tempPassword.isBlank()) {
-            etPassword.error = getString(R.string.passwordEmptyMessage)
+            etLoginPassword.error = getString(R.string.passwordEmptyMessage)
             thereAreNoErrors = false
         }
         if (thereAreNoErrors) {
@@ -159,7 +159,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     fun onCreateNewAccount(@Suppress("UNUSED_PARAMETER") view: View) {
         disableAllButtons()
         val intent = Intent(this, RegisterActivity::class.java)
-        startActivityForResult(intent, 0)
+        startActivityForResult(intent, 0)   //FILIP - ne vidim da se igdje koristi ovaj ForResult i requestCode
     }
 
     override fun onResume() {
