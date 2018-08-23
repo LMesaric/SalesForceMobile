@@ -119,6 +119,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         }
 
         alertDialog.show()      //FILIP App mi se jednom ovdje srusio, navodno leaka activity i ne moze naci parenta za attachati dialog
+        resetPasswordView.etEmailPassReset.requestFocus()
     }
 
     fun onSendEmail(@Suppress("UNUSED_PARAMETER") view: View) {
