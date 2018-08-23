@@ -15,7 +15,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_contact_edit.*
 import kotlinx.android.synthetic.main.fragment_contact_edit.view.*
 
-//LUKA - kad se ide preko Add Contact od Company Carda, dobiva se krivi company u ovom editoru (prije je ispravno radilo)
 class ContactEditFragment : Fragment() {
 
     companion object {
