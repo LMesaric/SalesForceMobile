@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.fragment_new_name.*
-import kotlinx.android.synthetic.main.fragment_new_name.view.*
+import kotlinx.android.synthetic.main.fragment_new_name_layout.*
+import kotlinx.android.synthetic.main.fragment_new_name_layout.view.*
 
 class NewNameFragment : Fragment(), View.OnClickListener {
 
@@ -16,7 +16,7 @@ class NewNameFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_new_name, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_new_name, container, false)
 
         replaceFragmentListener = activity as ReplaceFragmentListener
 

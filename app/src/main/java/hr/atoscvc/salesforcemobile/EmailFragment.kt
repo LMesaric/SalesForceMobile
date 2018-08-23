@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.fragment_email.*
-import kotlinx.android.synthetic.main.fragment_email.view.*
+import kotlinx.android.synthetic.main.fragment_email_layout.*
+import kotlinx.android.synthetic.main.fragment_email_layout.view.*
 
 class EmailFragment : Fragment(), View.OnClickListener {
 
@@ -34,7 +34,7 @@ class EmailFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        val email = etEmail.text.toString().trim()
+        val email: String = etEmail.text.toString().trim()
 
         if (email.isBlank()) {
             etEmail.error = getString(R.string.emailEmptyMessage)
