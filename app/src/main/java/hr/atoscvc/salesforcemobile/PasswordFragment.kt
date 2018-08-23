@@ -28,7 +28,7 @@ class PasswordFragment : Fragment(), View.OnClickListener {
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
 
-        view.etPassword.addTextChangedListener(PasswordTextWatcher(view.etPassword))
+        view.etRegisterPassword.addTextChangedListener(PasswordTextWatcher(view.etRegisterPassword))
 
         return view
     }
@@ -39,18 +39,18 @@ class PasswordFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        val password: String = etPassword.text.toString()   // Do NOT trim the password
+        val password: String = etRegisterPassword.text.toString()   // Do NOT trim the password
         var thereAreNoErrors = true
 
         val passwordStatus: PasswordErrors = checkPasswordConstraints(password)
 
         if (!passwordStatus.success) {
-            etPassword.error = passwordStatus.message
+            etRegisterPassword.error = passwordStatus.message
             thereAreNoErrors = false
         }
 
-        if (password != etConfirmPassword.text.toString()) {
-            etConfirmPassword.error = getString(R.string.wrongConfirmPassword)
+        if (password != etRegisterConfirmPassword.text.toString()) {
+            etRegisterConfirmPassword.error = getString(R.string.wrongConfirmPassword)
             thereAreNoErrors = false
         }
 

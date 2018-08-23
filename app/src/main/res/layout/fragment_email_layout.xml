@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etRegisterEmail"
         style="@style/editTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -63,6 +63,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideRight"
         app:layout_constraintStart_toStartOf="@id/guideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/etRegisterEmail" />
 
 </android.support.constraint.ConstraintLayout>

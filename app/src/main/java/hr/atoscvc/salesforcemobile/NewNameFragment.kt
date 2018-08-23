@@ -20,17 +20,17 @@ class NewNameFragment : Fragment(), View.OnClickListener {
 
         replaceFragmentListener = activity as ReplaceFragmentListener
 
-        view.btnNextNewName.setOnClickListener(this)
+        view.btnNewNameNext.setOnClickListener(this)
 
-        view.etFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+        view.etRegisterFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                view.etFirstName.setText(view.etFirstName.text.toString().trim())
+                view.etRegisterFirstName.setText(view.etRegisterFirstName.text.toString().trim())
             }
         }
 
-        view.etLastName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+        view.etRegisterLastName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                view.etLastName.setText(view.etLastName.text.toString().trim())
+                view.etRegisterLastName.setText(view.etRegisterLastName.text.toString().trim())
             }
         }
 
@@ -43,16 +43,16 @@ class NewNameFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        val firstName = etFirstName.text.toString().trim()
-        val lastName = etLastName.text.toString().trim()
+        val firstName = etRegisterFirstName.text.toString().trim()
+        val lastName = etRegisterLastName.text.toString().trim()
         var thereAreNoErrors = true
 
         if (firstName.isBlank()) {
-            etFirstName.error = getString(R.string.firstNameEmptyMessage)
+            etRegisterFirstName.error = getString(R.string.firstNameEmptyMessage)
             thereAreNoErrors = false
         }
         if (lastName.isBlank()) {
-            etLastName.error = getString(R.string.lastNameEmptyMessage)
+            etRegisterLastName.error = getString(R.string.lastNameEmptyMessage)
             thereAreNoErrors = false
         }
 

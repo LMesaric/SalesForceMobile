@@ -18,7 +18,7 @@ class EmailFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_email, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_email, container, false)
         replaceFragmentListener = activity as ReplaceFragmentListener
 
         mAuth = FirebaseAuth.getInstance()
@@ -34,10 +34,10 @@ class EmailFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        val email: String = etEmail.text.toString().trim()
+        val email: String = etRegisterEmail.text.toString().trim()
 
         if (email.isBlank()) {
-            etEmail.error = getString(R.string.emailEmptyMessage)
+            etRegisterEmail.error = getString(R.string.emailEmptyMessage)
         } else {
             mAuth.fetchSignInMethodsForEmail(email)
                     .addOnCompleteListener { task ->
@@ -46,10 +46,10 @@ class EmailFragment : Fragment(), View.OnClickListener {
                                 ActiveUserSingleton.user?.email = email
                                 replaceFragmentListener.replaceFragment(PasswordFragment())
                             } else {
-                                etEmail.error = getString(R.string.emailAlreadyInUse)
+                                etRegisterEmail.error = getString(R.string.emailAlreadyInUse)
                             }
                         } else {
-                            etEmail.error = task.exception?.message
+                            etRegisterEmail.error = task.exception?.message
                         }
                     }
         }
