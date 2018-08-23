@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.view.inputmethod.InputMethodManager
+import android.view.WindowManager
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -109,21 +109,18 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                 val email: String = resetPasswordView.etEmailPassReset.text.toString().trim()
                 resetPasswordView.etEmailPassReset.setText(email)
                 resetPasswordView.etEmailPassReset.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_email_outline, 0, 0, 0)
+                alertDialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
 
                 if (email.isBlank()) {
                     resetPasswordView.etEmailPassReset.error = getString(R.string.emailEmptyMessage)
                 }
             } else {
                 resetPasswordView.etEmailPassReset.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_action_email_outline_accent, 0, 0, 0)
+                alertDialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
             }
         }
 
         alertDialog.show()      //TODO App se jednom ovdje srusio, navodno leaka activity i ne moze naci parenta za attachati dialog
-
-        (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(
-                InputMethodManager.SHOW_FORCED,
-                InputMethodManager.HIDE_IMPLICIT_ONLY
-        )
     }
 
     fun onSendEmail(@Suppress("UNUSED_PARAMETER") view: View) {
