@@ -42,20 +42,27 @@ class CompanyDetailsActivity : AppCompatActivity() {
             layoutCompanyDetailsButtons.visibility = View.GONE
             btnCompanyDetailsEdit.isEnabled = false
             btnCompanyDetailsAddContact.isEnabled = false
+            btnCompanyDetailsViewContacts.isEnabled = false
         } else {
             layoutCompanyDetailsButtons.visibility = View.VISIBLE
             btnCompanyDetailsEdit.isEnabled = true
             btnCompanyDetailsAddContact.isEnabled = true
+            btnCompanyDetailsViewContacts.isEnabled = true
         }
     }
 
     fun onCompanyWebPage(@Suppress("UNUSED_PARAMETER") view: View) {
-        //LUKA - provjera za register (i Contact) http://emailregex.com/
-        //LUKA - otvoriti web stranicu u browseru (http i www)
-        val webPage: String? = company.webPage?.trim()
+        var webPage: String? = company.webPage?.trim()
         if (webPage.isNullOrBlank()) {
             Toast.makeText(this, getString(R.string.wrongWebPage), Toast.LENGTH_SHORT).show()
         } else {
+            webPage?.let {
+                if (it.startsWith("www.", true)) {
+                    webPage = "http://$webPage"
+                } else if (!it.startsWith("http://", true) and !it.startsWith("https://", true)) {
+                    webPage = "http://www.$webPage"
+                }
+            }
             val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(webPage))
             try {
                 startActivity(Intent.createChooser(webIntent, getString(R.string.openWebChooser)))
@@ -113,6 +120,10 @@ class CompanyDetailsActivity : AppCompatActivity() {
         }
         ContactEditFragment.chosenCompany = company
         startActivity(intent)
+    }
+
+    fun onViewContactsCompanyDetails(@Suppress("UNUSED_PARAMETER") view: View) {
+        //TODO - pregled svih kontakata za ovaj company
     }
 
     override fun onBackPressed() {
