@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_companies.view.*
 
 class CompaniesFragment : Fragment() {
-    //TODO Implementirati Search funkcionalnost
+    //TODO Implementirati Search funkcionalnost - Active / Inactive / Both opcije -> indexers Status_other
     companion object RequestCodesCompany {
         const val requestCodeRefresh = 1
         const val requestItemRefresh = 2
