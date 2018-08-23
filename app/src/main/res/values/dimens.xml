@@ -9,7 +9,9 @@
     <dimen name="login_register_common_margin">50dp</dimen>
     <dimen name="login_register_title_from_top">50dp</dimen>
     <dimen name="login_register_title_from_title">16dp</dimen>
-    <dimen name="login_register_button_distance">90dp</dimen>
+    <dimen name="login_register_edit_text_from_title">60dp</dimen>
+    <dimen name="login_register_edit_text_from_edit_text">8dp</dimen>
+    <dimen name="login_register_button_from_first_edit_text">90dp</dimen>
 
     <dimen name="button_radius_large">5dp</dimen>
 
