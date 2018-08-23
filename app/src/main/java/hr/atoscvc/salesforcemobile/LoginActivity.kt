@@ -74,7 +74,9 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
             mAuth.signInWithEmailAndPassword(email, HashSHA3.getHashedValue(tempPassword))
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            db.collection("Users").document(mAuth.uid.toString()).get()
+                            db.collection("Users")
+                                    .document(mAuth.uid.toString())
+                                    .get()
                                     .addOnSuccessListener { documentSnapshot ->
                                         if (documentSnapshot.exists()) {
                                             ActiveUserSingleton.user = User(
@@ -85,16 +87,19 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                                             if (mAuth.currentUser!!.isEmailVerified) {
                                                 sendToMain()
                                             } else {
-                                                mAuth.currentUser!!.sendEmailVerification()
-                                                        .addOnCompleteListener{ task ->
+                                                mAuth.currentUser!!
+                                                        .sendEmailVerification()
+                                                        .addOnCompleteListener { task ->
                                                             if (!task.isSuccessful) {
-                                                                Toast.makeText(this, "Error sending verification email :" + task.exception?.message, Toast.LENGTH_LONG).show()
+                                                                Toast.makeText(
+                                                                        this,
+                                                                        "Error sending verification email: ${task.exception?.message}",
+                                                                        Toast.LENGTH_LONG
+                                                                ).show()
                                                             }
                                                             sendToVerify()
                                                         }
-
                                             }
-
                                         } else {
                                             Toast.makeText(this, getString(R.string.noUserFound), Toast.LENGTH_LONG).show()
                                         }

@@ -1,8 +1,8 @@
 package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -31,7 +31,7 @@ class VerifyActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Verification email sent", Toast.LENGTH_LONG).show()
                     } else {
-                        Toast.makeText(this, "Error sending verification email :" + task.exception?.message, Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Error sending verification email: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                     }
                 }
     }
@@ -42,5 +42,4 @@ class VerifyActivity : AppCompatActivity() {
         startActivity(mainIntent)
         finish()
     }
-
 }

@@ -33,7 +33,7 @@
         <activity android:name=".ContactEditorActivity" />
         <activity android:name=".ContactDetailsActivity" />
         <activity android:name=".CompanyDetailsActivity" />
-        <activity android:name=".VerifyActivity"></activity>
+        <activity android:name=".VerifyActivity" />
     </application>
 
 </manifest>
