@@ -16,8 +16,6 @@ import kotlinx.android.synthetic.main.reset_password.view.*
 
 class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
 
-    //FILIP - forgot password loader indicator se trenutno vrti iza prozora pa se ne vidi
-
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
 
@@ -120,7 +118,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
             }
         }
 
-        alertDialog.show()      //TODO App se jednom ovdje srusio, navodno leaka activity i ne moze naci parenta za attachati dialog
+        alertDialog.show()      //FILIP App mi se jednom ovdje srusio, navodno leaka activity i ne moze naci parenta za attachati dialog
     }
 
     fun onSendEmail(@Suppress("UNUSED_PARAMETER") view: View) {
@@ -174,6 +172,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         btnLogin.isEnabled = false
     }
 
+    //FILIP - forgot password loader indicator se trenutno vrti iza prozora pa se ne vidi
     //FILIP - Za apsolutno sve greske osim successful password changea nema poruke useru
     override fun processFinish(output: String) {
         resetPasswordView.btnSendPassReset.visibility = View.VISIBLE
