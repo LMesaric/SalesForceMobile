@@ -33,8 +33,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         tvContactDetailsCompanyName.text = contact.company?.name
         tvContactDetailsStatus.text = resources.getStringArray(R.array.status_array)[contact.status]
 
-        val email: String? = contact.email
-        if (email.isNullOrBlank()) {
+        if (contact.email.isNullOrBlank()) {
             tvContactDetailsEmail.visibility = View.GONE
             fabContactDetailsSendEmail.hide()
         } else {
@@ -43,8 +42,7 @@ class ContactDetailsActivity : AppCompatActivity() {
             fabContactDetailsSendEmail.show()
         }
 
-        val phone: String? = contact.phone
-        if (phone.isNullOrBlank()) {
+        if (contact.phone.isNullOrBlank()) {
             tvContactDetailsPhoneNumber.visibility = View.GONE
             fabContactDetailsCall.hide()
             fabContactDetailsSendText.hide()
@@ -55,20 +53,18 @@ class ContactDetailsActivity : AppCompatActivity() {
             fabContactDetailsSendText.show()
         }
 
-        val prefTimeIndex: Int = contact.preferredTime
-        if (prefTimeIndex == 0) {
-            tvContactDetailsPrefTime.visibility = View.GONE
-        } else {
-            tvContactDetailsPrefTime.text = resources.getStringArray(R.array.contactPreferredTime_array)[prefTimeIndex]
-            tvContactDetailsPrefTime.visibility = View.VISIBLE
-        }
-
-        val details: String? = contact.details
-        if (details.isNullOrBlank()) {
+        if (contact.details.isNullOrBlank()) {
             tvContactDetailsDetails.visibility = View.GONE
         } else {
             tvContactDetailsDetails.text = contact.details
             tvContactDetailsDetails.visibility = View.VISIBLE
+        }
+
+        if (contact.preferredTime == 0) {
+            tvContactDetailsPrefTime.visibility = View.GONE
+        } else {
+            tvContactDetailsPrefTime.text = resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
+            tvContactDetailsPrefTime.visibility = View.VISIBLE
         }
 
         val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), false)
