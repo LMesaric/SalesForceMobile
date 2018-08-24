@@ -1,13 +1,11 @@
 package hr.atoscvc.salesforcemobile
 
 import android.app.Application
-import android.content.res.Resources
-import android.graphics.Bitmap
 import java.util.*
 
 class MyApp : Application() {
 
-    private var instance: Bitmap? = null
+//    private var instance: Bitmap? = null
     private var listener: LogoutListener? = null
     private lateinit var timer: Timer
 
@@ -38,18 +36,17 @@ class MyApp : Application() {
         startUserSession()
     }
 
-    fun getInstance(resources: Resources): Bitmap {
+    /*fun getInstance(resources: Resources): Bitmap {
         if (instance == null) {
             instance = BitmapManager.decodeSampledBitmapFromResource(
                     resources,
-                    R.drawable.background_test,
+                    R.drawable.background_image,
                     resources.displayMetrics.widthPixels,
                     resources.displayMetrics.heightPixels
             )
         }
 
         return instance as Bitmap
-
-    }
+    }*/
 
 }
