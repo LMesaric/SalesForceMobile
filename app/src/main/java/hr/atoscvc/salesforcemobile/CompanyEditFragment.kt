@@ -44,9 +44,9 @@ class CompanyEditFragment : Fragment() {
             val cvsSegment: Int = view.spCompanyCvsSegment.selectedItemPosition
             val communicationType: Int = view.spCompanyCommunicationType.selectedItemPosition
             val employees: Int = view.spCompanyEmployees.selectedItemPosition
+
             val oib: String = view.etCompanyOIB.text.toString().trim()
             val name: String = view.etCompanyName.text.toString().trim()
-            val income: String? = view.etCompanyIncome.text.toString().trim()
 
             var webPage: String? = view.etCompanyWebPage.text.toString().trim()
             if (webPage.isNullOrBlank()) {
@@ -59,6 +59,10 @@ class CompanyEditFragment : Fragment() {
             var phone: String? = view.etCompanyPhone.text.toString().trim()
             if (phone.isNullOrBlank()) {
                 phone = null
+            }
+            var income: String? = view.etCompanyIncome.text.toString().trim()
+            if (income.isNullOrBlank()) {
+                income = null
             }
 
             if (name.isEmpty()) {
@@ -73,8 +77,6 @@ class CompanyEditFragment : Fragment() {
                 view.etCompanyOIB.error = getString(R.string.oibOnlyDigitsMessage)
                 thereAreNoErrors = false
             }
-
-            //LUKA - Dovrsiti popis...
 
             if (thereAreNoErrors) {
                 company = Company(company?.documentID, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
