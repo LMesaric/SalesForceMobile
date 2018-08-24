@@ -10,16 +10,14 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
-
+import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
-import android.opengl.ETC1.getHeight
-import android.view.View
-import android.view.ViewTreeObserver
-
+import kotlinx.android.synthetic.main.fragment_companies.*
+import kotlinx.android.synthetic.main.fragment_contacts.*
 
 
 //TODO MainActivity napraviti kao tabbedActivity ?
@@ -197,6 +195,27 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
         menuInflater.inflate(R.menu.main_menu, menu)
         val searchItem: MenuItem? = menu?.findItem(R.id.action_search)
         searchView = MenuItemCompat.getActionView(searchItem) as SearchView
+
+        searchItem?.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
+                appBarLayout.setExpanded(false, true)
+                appBarLayout.isActivated = false
+                recyclerViewContacts?.isNestedScrollingEnabled = false
+                recyclerViewCompanies?.isNestedScrollingEnabled = false
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(menuItem: MenuItem): Boolean {
+                appBarLayout.setExpanded(true, true)
+                appBarLayout.isActivated = true
+                recyclerViewContacts?.isNestedScrollingEnabled = true
+                recyclerViewContacts?.smoothScrollToPosition(0)
+                recyclerViewCompanies?.isNestedScrollingEnabled = true
+                recyclerViewCompanies?.smoothScrollToPosition(0)
+                return true
+            }
+        })
+
         return true
     }
 
@@ -213,6 +232,7 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
                     val intent = Intent(this, ChangePasswordActivity::class.java)
                     startActivity(intent)
                 }
+
             }
         }
         return true
