@@ -67,12 +67,12 @@ class ContactEditFragment : Fragment() {
                 phone = null
             }
 
+            //FILIP - je li moguce koristiti Firebase za provjeru je li upisani email valjan?
             var email: String? = view.etContactEmail.text.toString().trim()
             if (email.isNullOrBlank()) {
                 email = null
             }
 
-            //FILIP - je li moguce koristiti Firebase za provjeru je li upisani email valjan?
             var details: String? = view.etContactDetails.text.toString().trim()
             if (details.isNullOrBlank()) {
                 details = null
@@ -91,7 +91,6 @@ class ContactEditFragment : Fragment() {
                 thereAreNoErrors = false
             }
 
-            //LUKA - Dovrsiti popis..
             if (thereAreNoErrors) {
                 if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
                     val docRef: DocumentReference? = mAuth.uid?.let {
