@@ -19,21 +19,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".CompanyEditorActivity" />
-        <activity android:name=".ContactEditorActivity" />
-        <activity android:name=".ContactDetailsActivity" />
-        <activity android:name=".CompanyDetailsActivity" />
-        <activity android:name=".VerifyActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".RegisterActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".CompanyEditorActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".ContactEditorActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".ContactDetailsActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".CompanyDetailsActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".VerifyActivity"
+            android:configChanges="orientation|screenSize" />
     </application>
 
 </manifest>

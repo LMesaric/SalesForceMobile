@@ -1,6 +1,5 @@
 package hr.atoscvc.salesforcemobile
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -29,7 +28,6 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-    @SuppressLint("RestrictedApi")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_companies, container, false)
@@ -37,7 +35,7 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        activity?.fabAdd?.visibility = View.VISIBLE
+        activity?.fabAdd?.show()
         activity?.fabAdd?.setOnClickListener {
             val intent = Intent(activity, CompanyEditorActivity::class.java).apply {
                 putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
@@ -50,19 +48,14 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
 
         val companyList = ArrayList<Company>()      //LUKA - TWO SINGLETONS
 
-        var adapter: CompanyAdapter?
+        val adapter: CompanyAdapter?
+
+        var listenerCompanies: CompanyAdapter.RecyclerViewCompaniesOnClickListener? = null
         try {
-            adapter = activity?.applicationContext?.let {
-                CompanyAdapter(
-                        companyList,
-                        activity as Activity,
-                        arguments
-                                ?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT))
-                                ?: false,
-                        activity as MainActivity
-                )
-            }
+            listenerCompanies = activity as MainActivity
         } catch (e: ClassCastException) {
+            listenerCompanies = activity as ContactEditorActivity
+        } finally {
             adapter = activity?.applicationContext?.let {
                 CompanyAdapter(
                         companyList,
@@ -70,7 +63,7 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
                         arguments
                                 ?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT))
                                 ?: false,
-                        activity as ContactEditorActivity
+                        listenerCompanies!!
                 )
             }
         }

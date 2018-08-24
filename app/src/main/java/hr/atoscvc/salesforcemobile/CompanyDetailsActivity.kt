@@ -27,27 +27,71 @@ class CompanyDetailsActivity : AppCompatActivity() {
         super.onResume()
 
         tvCompanyDetailsName.text = company.name
-        tvCompanyDetailsCvsSegment.text = resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]
         tvCompanyDetailsStatus.text = resources.getStringArray(R.array.status_array)[company.status]
         tvCompanyDetailsOib.text = company.OIB
-        tvCompanyDetailsWebPage.text = company.webPage
-        tvCompanyDetailsPhoneNumber.text = company.phone
-        tvCompanyDetailsIncome.text = company.income
-        tvCompanyDetailsCommunicationType.text = resources.getStringArray(R.array.companyCommunicationType_array)[company.communicationType]
-        tvCompanyDetailsEmployees.text = resources.getStringArray(R.array.companyEmployees_array)[company.employees]
-        tvCompanyDetailsDetails.text = company.details
+
+        if (company.cvsSegment == 0) {
+            tvCompanyDetailsCvsSegment.visibility = View.GONE
+        } else {
+            tvCompanyDetailsCvsSegment.text = resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]
+            tvCompanyDetailsCvsSegment.visibility = View.VISIBLE
+        }
+
+        if (company.communicationType == 0) {
+            tvCompanyDetailsCommunicationType.visibility = View.GONE
+        } else {
+            tvCompanyDetailsCommunicationType.text = resources.getStringArray(R.array.companyCommunicationType_array)[company.communicationType]
+            tvCompanyDetailsCommunicationType.visibility = View.VISIBLE
+        }
+
+        if (company.employees == 0) {
+            tvCompanyDetailsEmployees.visibility = View.GONE
+        } else {
+            tvCompanyDetailsEmployees.text = resources.getStringArray(R.array.companyEmployees_array)[company.employees]
+            tvCompanyDetailsEmployees.visibility = View.VISIBLE
+        }
+
+        if (company.webPage.isNullOrBlank()) {
+            tvCompanyDetailsWebPage.visibility = View.GONE
+            fabCompanyDetailsOpenWebPage.hide()
+        } else {
+            tvCompanyDetailsWebPage.text = company.webPage
+            tvCompanyDetailsWebPage.visibility = View.VISIBLE
+            fabCompanyDetailsOpenWebPage.show()
+        }
+
+        if (company.phone.isNullOrBlank()) {
+            tvCompanyDetailsPhoneNumber.visibility = View.GONE
+            fabCompanyDetailsCall.hide()
+            fabCompanyDetailsSendText.hide()
+        } else {
+            tvCompanyDetailsPhoneNumber.text = company.phone
+            tvCompanyDetailsPhoneNumber.visibility = View.VISIBLE
+            fabCompanyDetailsCall.show()
+            fabCompanyDetailsSendText.show()
+        }
+
+        if (company.income.isNullOrBlank()) {
+            tvCompanyDetailsIncome.visibility = View.GONE
+        } else {
+            tvCompanyDetailsIncome.text = company.income
+            tvCompanyDetailsIncome.visibility = View.VISIBLE
+        }
+
+        if (company.details.isNullOrBlank()) {
+            tvCompanyDetailsDetails.visibility = View.GONE
+        } else {
+            tvCompanyDetailsDetails.text = company.details
+            tvCompanyDetailsDetails.visibility = View.VISIBLE
+        }
 
         val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_COMPANY_HIDE_EDIT_BUTTONS), false)
         if (shouldHideButtons) {
             layoutCompanyDetailsButtons.visibility = View.GONE
-            btnCompanyDetailsEdit.isEnabled = false
-            btnCompanyDetailsAddContact.isEnabled = false
-            btnCompanyDetailsViewContacts.isEnabled = false
+            allButtonsEnabledStatus(false)
         } else {
             layoutCompanyDetailsButtons.visibility = View.VISIBLE
-            btnCompanyDetailsEdit.isEnabled = true
-            btnCompanyDetailsAddContact.isEnabled = true
-            btnCompanyDetailsViewContacts.isEnabled = true
+            allButtonsEnabledStatus(true)
         }
     }
 
@@ -140,8 +184,15 @@ class CompanyDetailsActivity : AppCompatActivity() {
         if (requestCode == CompanyDetailsActivity.requestCodeEditCompany) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 company = data?.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as Company
+                intent.putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
                 isChanged = true
             }
         }
+    }
+
+    private fun allButtonsEnabledStatus(status: Boolean) {
+        btnCompanyDetailsEdit.isEnabled = status
+        btnCompanyDetailsAddContact.isEnabled = status
+        btnCompanyDetailsViewContacts.isEnabled = status
     }
 }

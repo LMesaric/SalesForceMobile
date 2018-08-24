@@ -32,10 +32,40 @@ class ContactDetailsActivity : AppCompatActivity() {
         tvContactDetailsName.text = ContactNameConcatenate.fullName(contact, resources, true)
         tvContactDetailsCompanyName.text = contact.company?.name
         tvContactDetailsStatus.text = resources.getStringArray(R.array.status_array)[contact.status]
-        tvContactDetailsEmail.text = contact.email
-        tvContactDetailsPhoneNumber.text = contact.phone
-        tvContactDetailsPrefTime.text = resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
-        tvContactDetailsDetails.text = contact.details
+
+        if (contact.email.isNullOrBlank()) {
+            tvContactDetailsEmail.visibility = View.GONE
+            fabContactDetailsSendEmail.hide()
+        } else {
+            tvContactDetailsEmail.text = contact.email
+            tvContactDetailsEmail.visibility = View.VISIBLE
+            fabContactDetailsSendEmail.show()
+        }
+
+        if (contact.phone.isNullOrBlank()) {
+            tvContactDetailsPhoneNumber.visibility = View.GONE
+            fabContactDetailsCall.hide()
+            fabContactDetailsSendText.hide()
+        } else {
+            tvContactDetailsPhoneNumber.text = contact.phone
+            tvContactDetailsPhoneNumber.visibility = View.VISIBLE
+            fabContactDetailsCall.show()
+            fabContactDetailsSendText.show()
+        }
+
+        if (contact.details.isNullOrBlank()) {
+            tvContactDetailsDetails.visibility = View.GONE
+        } else {
+            tvContactDetailsDetails.text = contact.details
+            tvContactDetailsDetails.visibility = View.VISIBLE
+        }
+
+        if (contact.preferredTime == 0) {
+            tvContactDetailsPrefTime.visibility = View.GONE
+        } else {
+            tvContactDetailsPrefTime.text = resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
+            tvContactDetailsPrefTime.visibility = View.VISIBLE
+        }
 
         val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), false)
         if (shouldHideButtons) {
@@ -121,6 +151,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         if (requestCode == ContactDetailsActivity.requestCodeEditContact) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 contact = data?.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as Contact
+                intent.putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
                 isChanged = true
             }
         }

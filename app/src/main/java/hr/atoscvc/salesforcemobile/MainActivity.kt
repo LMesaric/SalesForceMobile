@@ -22,8 +22,9 @@ import android.view.ViewTreeObserver
 
 
 
-//TODO Prilikom rotacije ekrana uvijek skoci na Home i ostane staro selectano na dnu (na Registration se vraca na dio s imenom i prezimenom)
 //TODO MainActivity napraviti kao tabbedActivity ?
+
+//FIXME SVAKI PUT KAD CREATEAMO FRAGMENT ON OSTAJE SAVEAN, KAO I ONAJ STARI (MEMORIJA RASTE DO 370 MB) - REUSE https://stackoverflow.com/questions/19219458/fragment-on-screen-rotation
 
 class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.RecyclerViewContactsOnClickListener, CompanyAdapter.RecyclerViewCompaniesOnClickListener {
 
@@ -201,14 +202,19 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item != null) {
-            if (item.itemId == R.id.action_logout) {
-                sendToLogin()
-            } else if (item.itemId == R.id.action_account_settings) {
-                val intent = Intent(this, ChangePasswordActivity::class.java)
-                startActivity(intent)
+
+            when (item.itemId) {
+
+                R.id.action_logout -> {
+                    sendToLogin()
+                }
+
+                R.id.action_account_settings -> {
+                    val intent = Intent(this, ChangePasswordActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
-
         return true
     }
 
