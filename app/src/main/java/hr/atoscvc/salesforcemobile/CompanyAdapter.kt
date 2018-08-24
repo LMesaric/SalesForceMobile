@@ -12,7 +12,6 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
 //LUKA - styles za sve zivo
-//LUKA - paziti da se empty polja u CardView i DetailedView za Company i Contact budu sa View.GONE
 //LUKA - Loading dialogs
 //LUKA - provjera za register (i Contact) http://emailregex.com/
 //TODO - Valuta za income
