@@ -167,7 +167,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
     }
 
     fun onViewContactsCompanyDetails(@Suppress("UNUSED_PARAMETER") view: View) {
-        //TODO - pregled svih kontakata za ovaj company
+        //FILIP - pregled svih kontakata za ovaj company
     }
 
     override fun onBackPressed() {
