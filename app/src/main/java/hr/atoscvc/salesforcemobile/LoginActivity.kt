@@ -105,7 +105,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                                         }
                                     }
                         } else {
-                            Toast.makeText(this, getString(R.string.wrongEmailOrPassword), Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
                         }
                         btnLogin.visibility = View.VISIBLE
                     }
