@@ -46,19 +46,14 @@ class CompaniesFragment : Fragment() {
 
         val companyList = ArrayList<Company>()      //LUKA - TWO SINGLETONS
 
-        var adapter: CompanyAdapter?
+        val adapter: CompanyAdapter?
+
+        var listenerCompanies: CompanyAdapter.RecyclerViewCompaniesOnClickListener? = null
         try {
-            adapter = activity?.applicationContext?.let {
-                CompanyAdapter(
-                        companyList,
-                        activity as Activity,
-                        arguments
-                                ?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT))
-                                ?: false,
-                        activity as MainActivity
-                )
-            }
+            listenerCompanies = activity as MainActivity
         } catch (e: ClassCastException) {
+            listenerCompanies = activity as ContactEditorActivity
+        } finally {
             adapter = activity?.applicationContext?.let {
                 CompanyAdapter(
                         companyList,
@@ -66,7 +61,7 @@ class CompaniesFragment : Fragment() {
                         arguments
                                 ?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT))
                                 ?: false,
-                        activity as ContactEditorActivity
+                        listenerCompanies!!
                 )
             }
         }
