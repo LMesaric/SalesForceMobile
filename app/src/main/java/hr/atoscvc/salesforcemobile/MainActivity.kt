@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
                 navBarShadow.visibility = View.GONE
             } else {
                 navBar.visibility = View.VISIBLE
-                navBarShadow.visibility = View.INVISIBLE
+                navBarShadow.visibility = View.VISIBLE
             }
         }
 
@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
 
     override fun onResume() {
         super.onResume()
-        mainRoot.viewTreeObserver.addOnGlobalLayoutListener(mLayoutKeyboardVisibilityListener);
+        mainRoot.viewTreeObserver.addOnGlobalLayoutListener(mLayoutKeyboardVisibilityListener)
 
         if (refreshContacts) {
             refreshContacts = false
@@ -194,12 +194,11 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         val searchItem: MenuItem? = menu?.findItem(R.id.action_search)
-        searchView = MenuItemCompat.getActionView(searchItem) as SearchView
+        searchView = MenuItemCompat.getActionView(searchItem) as SearchView //TODO: update
 
         searchItem?.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
                 appBarLayout.setExpanded(false, true)
-                appBarLayout.isActivated = false
                 recyclerViewContacts?.isNestedScrollingEnabled = false
                 recyclerViewCompanies?.isNestedScrollingEnabled = false
                 return true
@@ -207,7 +206,6 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
 
             override fun onMenuItemActionCollapse(menuItem: MenuItem): Boolean {
                 appBarLayout.setExpanded(true, true)
-                appBarLayout.isActivated = true
                 recyclerViewContacts?.isNestedScrollingEnabled = true
                 recyclerViewContacts?.smoothScrollToPosition(0)
                 recyclerViewCompanies?.isNestedScrollingEnabled = true
