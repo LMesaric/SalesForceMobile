@@ -10,15 +10,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_company_editor.*
 
-class CompanyEditorActivity : AppCompatActivity() {
-    //TODO Ovako se dobiva string iz indeksa u bazi:  resources.getStringArray(R.array.contactTitle_array)[index]
-    //TODO Ovako se dobiva indeks selektiranog u spinneru:  spTitleContact.selectedItemPosition.toString()
+//TODO Ovako se dobiva string iz indeksa u bazi:  resources.getStringArray(R.array.contactTitle_array)[index]
+//TODO Ovako se dobiva indeks selektiranog u spinneru:  spTitleContact.selectedItemPosition.toString()
 
-    //TODO Za Company i Contact Editor staviti alert dialog na back button
+//TODO Za Company i Contact Editor staviti alert dialog na back button
 
-    //FILIP Dodati fragment kao u ContactEditorActivity
+//FILIP Dodati fragment kao u ContactEditorActivity
+
+class CompanyEditorActivity : AppCompatActivity(), ReplaceFragmentListener {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
