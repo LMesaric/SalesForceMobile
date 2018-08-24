@@ -1,17 +1,26 @@
 package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
+import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
+import android.opengl.ETC1.getHeight
+import android.view.View
+import android.view.ViewTreeObserver
+
+
 
 //TODO Prilikom rotacije ekrana uvijek skoci na Home i ostane staro selectano na dnu (na Registration se vraca na dio s imenom i prezimenom)
 //TODO MainActivity napraviti kao tabbedActivity ?
@@ -23,6 +32,8 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
 
     private var refreshContacts = false
     private var refreshCompanies = false
+
+    private lateinit var searchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +73,7 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
                     appBarLayout.setExpanded(true, true)
                     appBarLayout.isActivated = true
                     coordinator.title = resources.getString(R.string.Contacts)
+
                     replaceFragment(contactsFragment)
                     true
                 }
@@ -74,6 +86,7 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
                     appBarLayout.setExpanded(true, true)
                     appBarLayout.isActivated = true
                     coordinator.title = resources.getString(R.string.Companies)
+                    searchView.setOnQueryTextListener(companiesFragment)
                     replaceFragment(companiesFragment)
                     true
                 }
@@ -101,8 +114,42 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
         startActivityForResult(companyDetailsIntent, CompaniesFragment.requestItemRefresh, options.toBundle())
     }
 
+    private var mKeyboardVisible: Boolean = false
+    private val mLayoutKeyboardVisibilityListener = {
+        val rectangle = Rect()
+        //error getContentView
+        val contentView = mainRoot
+        contentView.getWindowVisibleDisplayFrame(rectangle)
+        val screenHeight = contentView.rootView.height
+
+        // r.bottom is the position above soft keypad or device button.
+        // If keypad is shown, the rectangle.bottom is smaller than that before.
+        val keypadHeight = screenHeight - rectangle.bottom
+        // 0.15 ratio is perhaps enough to determine keypad height.
+        val isKeyboardNowVisible = keypadHeight > screenHeight * 0.15
+
+        if (mKeyboardVisible != isKeyboardNowVisible) {
+            if (isKeyboardNowVisible) {
+                navBar.visibility = View.GONE
+                navBarShadow.visibility = View.GONE
+            } else {
+                navBar.visibility = View.VISIBLE
+                navBarShadow.visibility = View.INVISIBLE
+            }
+        }
+
+        mKeyboardVisible = isKeyboardNowVisible
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mainRoot.viewTreeObserver.removeOnGlobalLayoutListener(mLayoutKeyboardVisibilityListener)
+    }
+
     override fun onResume() {
         super.onResume()
+        mainRoot.viewTreeObserver.addOnGlobalLayoutListener(mLayoutKeyboardVisibilityListener);
+
         if (refreshContacts) {
             refreshContacts = false
             appBarLayout.setExpanded(true, true)
@@ -147,6 +194,8 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
+        val searchItem: MenuItem? = menu?.findItem(R.id.action_search)
+        searchView = MenuItemCompat.getActionView(searchItem) as SearchView
         return true
     }
 

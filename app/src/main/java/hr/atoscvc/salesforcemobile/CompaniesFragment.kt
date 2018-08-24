@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.SearchView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,8 @@ import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_companies.view.*
 
-class CompaniesFragment : Fragment() {
+class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
+
     //TODO Implementirati Search funkcionalnost - Active / Inactive / Both opcije -> indexers Status_other
     companion object RequestCodesCompany {
         const val requestCodeRefresh = 1
@@ -98,4 +100,13 @@ class CompaniesFragment : Fragment() {
 
         return view
     }
+
+    override fun onQueryTextSubmit(p0: String?): Boolean {
+        return false
+    }
+
+    override fun onQueryTextChange(p0: String?): Boolean {
+        return false
+    }
+
 }

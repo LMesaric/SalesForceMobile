@@ -85,19 +85,20 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="@color/colorBackgroundWhite"
-
+        android:isScrollContainer="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/nav_bar_menu" />
 
     <View
-        android:id="@+id/shadow"
+        android:id="@+id/navBarShadow"
         android:layout_width="match_parent"
         android:layout_height="@dimen/shadow_height"
         android:layout_marginBottom="56dp"
         android:background="@drawable/navbar_shadow"
         android:elevation="1dp"
+        android:isScrollContainer="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
