@@ -18,7 +18,7 @@ class VerifyActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        val title: String = getString(R.string.verificationEmailTitle) + mAuth.currentUser?.email.toString()
+        val title: String = getString(R.string.verificationEmailSentPrefix) + mAuth.currentUser?.email.toString()
 
         tvVerifyTitle.text = title
     }

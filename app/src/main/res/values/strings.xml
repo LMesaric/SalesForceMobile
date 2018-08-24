@@ -65,7 +65,8 @@
     <string name="noCompanyFoundError">No company found</string>
     <string name="noUserFound">No user found</string>
 
-    <string name="wrongEmailOrPassword">Wrong email or password</string>
+    <string name="verificationEmailSentPrefix">Verification email sent:\n</string>
+    <string name="verificationEmailErrorPrefix">Error sending verification email:</string>
     <string name="checkYourEmail">Check your email</string>
 
     <string name="newCompanyCreated">New Company created</string>
@@ -219,6 +220,5 @@
     <string name="EXTRA_COMPANY_PHONE" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_PHONE</string>
     <string name="EXTRA_COMPANY_INCOME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_INCOME</string>
     <string name="EXTRA_COMPANY_DETAILS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DETAILS</string>
-    <string name="verificationEmailTitle">Verification email sent:\n</string>
 
 </resources>

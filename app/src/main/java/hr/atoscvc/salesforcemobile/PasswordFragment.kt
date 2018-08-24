@@ -87,7 +87,7 @@ class PasswordFragment : Fragment(), View.OnClickListener {
                                             if (!task2.isSuccessful) {
                                                 Toast.makeText(
                                                         activity,
-                                                        "Error sending verification email: ${task2.exception?.message}",
+                                                        "${getString(R.string.verificationEmailErrorPrefix)} ${task2.exception?.message}",
                                                         Toast.LENGTH_LONG
                                                 ).show()
                                             }
