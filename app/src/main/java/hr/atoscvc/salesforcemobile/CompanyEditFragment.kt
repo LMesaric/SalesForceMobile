@@ -30,7 +30,7 @@ class CompanyEditFragment : Fragment() {
 
         company = activity?.intent?.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as? Company
 
-        //TODO - ovi naslovi se trebaju negdje prikazati (i za Contact)
+        //FILIP - ovi naslovi se trebaju negdje prikazati (i za Contact)
         if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
             activity?.title = getString(R.string.newCompany)
         } else {
