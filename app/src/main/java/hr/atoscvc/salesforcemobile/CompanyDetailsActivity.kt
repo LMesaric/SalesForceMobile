@@ -140,6 +140,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
         if (requestCode == CompanyDetailsActivity.requestCodeEditCompany) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 company = data?.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as Company
+                intent.putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
                 isChanged = true
             }
         }
