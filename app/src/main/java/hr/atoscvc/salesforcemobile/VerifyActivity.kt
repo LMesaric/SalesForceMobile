@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_verify.*
 
 class VerifyActivity : AppCompatActivity() {
 
@@ -16,10 +17,15 @@ class VerifyActivity : AppCompatActivity() {
         setContentView(R.layout.activity_verify)
 
         mAuth = FirebaseAuth.getInstance()
+
+        val title: String = getString(R.string.verificationEmailTitle) + mAuth.currentUser?.email.toString()
+
+        tvVerifyTitle.text = title
     }
 
     override fun onResume() {
         super.onResume()
+        mAuth.currentUser!!.reload()
         if (mAuth.currentUser!!.isEmailVerified) {
             sendToMain()
         }
@@ -34,6 +40,15 @@ class VerifyActivity : AppCompatActivity() {
                         Toast.makeText(this, "Error sending verification email: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                     }
                 }
+    }
+
+    fun onVerificationDone(view: View) {
+        mAuth.currentUser!!.reload()
+        if (mAuth.currentUser!!.isEmailVerified) {
+            sendToMain()
+        } else {
+            Toast.makeText(this, "Email is still not verified!" + mAuth.currentUser!!.isEmailVerified, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun sendToMain() {
