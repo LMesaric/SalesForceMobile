@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.list_layout_companies.view.*
 //LUKA - paziti da se empty polja u CardView i DetailedView za Company i Contact budu sa View.GONE
 //LUKA - Loading dialogs
 //LUKA - provjera za register (i Contact) http://emailregex.com/
-//FILIP - edit companyja trenutno ne updatea podatke o companyju za kontakte
 //TODO - Valuta za income
 //TODO - Delete contact/company -> checkbox za ukljucivanje Inactive stavki
 //TODO - poruka da je popis Contacts/Companies empty kad nema nista - TextView u centru ekrana

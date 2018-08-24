@@ -11,9 +11,6 @@
     <!--   a secondary color for controls like checkboxes and text fields -->
     <color name="colorAccent">#ed1500</color>
 
-    <!--   color for edges of vector drawables   -->
-    <color name="colorStrokePrimary">@android:color/black</color>
-
     <color name="colorBackgroundWhite">@android:color/white</color>
 
     <color name="loginRegisterTitleCommon">@color/colorPrimary</color>
