@@ -166,8 +166,13 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         super.onResume()
         enableAllButtons()
         val user: FirebaseUser? = mAuth.currentUser
+        user?.reload()
         if (user != null) {
-            sendToMain()
+            if (user.isEmailVerified) {
+                sendToMain()
+            } else {
+                sendToVerify()
+            }
         }
     }
 

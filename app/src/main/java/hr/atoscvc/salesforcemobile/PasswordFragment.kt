@@ -66,8 +66,10 @@ class PasswordFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun sendToMain() {
-        startActivity(Intent(activity, MainActivity::class.java))
+    private fun sendToVerify() {
+        val verifyIntent = Intent(activity, VerifyActivity::class.java)
+        verifyIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(verifyIntent)
         activity?.finish()
     }
 
@@ -79,7 +81,18 @@ class PasswordFragment : Fragment(), View.OnClickListener {
                         .set(it1)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                sendToMain()
+                                mAuth.currentUser!!
+                                        .sendEmailVerification()
+                                        .addOnCompleteListener { task2 ->
+                                            if (!task2.isSuccessful) {
+                                                Toast.makeText(
+                                                        activity,
+                                                        "Error sending verification email: ${task2.exception?.message}",
+                                                        Toast.LENGTH_LONG
+                                                ).show()
+                                            }
+                                            sendToVerify()
+                                        }
                             } else {
                                 ActiveUserSingleton.user = null
                                 mAuth.signOut()

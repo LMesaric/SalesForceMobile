@@ -30,8 +30,13 @@ class RegisterActivity : AppCompatActivity(), ReplaceFragmentListener {
     override fun onResume() {
         super.onResume()
         val user: FirebaseUser? = mAuth.currentUser
+        user?.reload()
         if (user != null) {
-            sendToMain()
+            if (user.isEmailVerified) {
+                sendToMain()
+            } else {
+                sendToVerify()
+            }
         }
     }
 
@@ -39,6 +44,13 @@ class RegisterActivity : AppCompatActivity(), ReplaceFragmentListener {
         val mainIntent = Intent(this, MainActivity::class.java)
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(mainIntent)
+        finish()
+    }
+
+    private fun sendToVerify() {
+        val verifyIntent = Intent(this, VerifyActivity::class.java)
+        verifyIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(verifyIntent)
         finish()
     }
 

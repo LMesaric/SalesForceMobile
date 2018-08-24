@@ -219,5 +219,6 @@
     <string name="EXTRA_COMPANY_PHONE" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_PHONE</string>
     <string name="EXTRA_COMPANY_INCOME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_INCOME</string>
     <string name="EXTRA_COMPANY_DETAILS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DETAILS</string>
+    <string name="verificationEmailTitle">Verification email sent:\n</string>
 
 </resources>
