@@ -5,30 +5,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ContactEditFragment">
+    tools:context=".CompanyEditFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Spinner
-            android:id="@+id/spContactStatus"
+            android:id="@+id/spCompanyStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/spContactTitle"
+            app:layout_constraintBaseline_toBaselineOf="@+id/spCompanyCvsSegment"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Spinner
-            android:id="@+id/spContactTitle"
+            android:id="@+id/spCompanyCvsSegment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="@+id/etContactFirstName"
+            app:layout_constraintStart_toStartOf="@+id/etCompanyOIB"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/etContactFirstName"
+            android:id="@+id/etCompanyName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="65dp"
@@ -36,17 +36,15 @@
             android:layout_marginRight="65dp"
             android:layout_marginStart="65dp"
             android:layout_marginTop="8dp"
-            android:drawablePadding="8dp"
-            android:drawableStart="@drawable/ic_action_smile"
             android:ems="10"
-            android:hint="@string/FirstName"
-            android:inputType="textCapWords"
+            android:hint="@string/CompanyName"
+            android:inputType="textCapSentences"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spContactTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/spCompanyCvsSegment" />
 
         <EditText
-            android:id="@+id/etContactLastName"
+            android:id="@+id/etCompanyOIB"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="65dp"
@@ -54,39 +52,31 @@
             android:layout_marginRight="65dp"
             android:layout_marginStart="65dp"
             android:layout_marginTop="8dp"
-            android:drawablePadding="8dp"
-            android:drawableStart="@drawable/ic_action_smile"
             android:ems="10"
-            android:hint="@string/LastName"
-            android:inputType="textCapWords"
+            android:hint="@string/OIB"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etContactFirstName" />
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyName" />
 
-        <!-- Uneditable EditText used instead of TextView to keep the same appearance. -->
         <EditText
-            android:id="@+id/etContactCompanyName"
+            android:id="@+id/etCompanyWebPage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
             android:layout_marginStart="65dp"
             android:layout_marginTop="8dp"
-            android:clickable="false"
-            android:drawablePadding="8dp"
-            android:drawableStart="@drawable/ic_action_company"
             android:ems="10"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:hint="@string/Company"
-            android:inputType="text"
-            android:longClickable="false"
-            app:layout_constraintEnd_toStartOf="@+id/btnContactChooseCompany"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            android:hint="@string/WebPage"
+            android:inputType="textWebEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etContactLastName" />
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyOIB" />
 
         <EditText
-            android:id="@+id/etContactPhone"
+            android:id="@+id/etCompanyPhone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="65dp"
@@ -101,36 +91,10 @@
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etContactCompanyName" />
-
-        <EditText
-            android:id="@+id/etContactEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="65dp"
-            android:layout_marginLeft="65dp"
-            android:layout_marginRight="65dp"
-            android:layout_marginStart="65dp"
-            android:layout_marginTop="8dp"
-            android:drawablePadding="8dp"
-            android:drawableStart="@drawable/ic_action_email_outline"
-            android:ems="10"
-            android:hint="@string/Email"
-            android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etContactPhone" />
-
-        <Spinner
-            android:id="@+id/spContactPreferredTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="@+id/etContactEmail"
-            app:layout_constraintTop_toBottomOf="@+id/etContactEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyWebPage" />
 
         <MultiAutoCompleteTextView
-            android:id="@+id/etContactDetails"
+            android:id="@+id/etCompanyDetails"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="65dp"
@@ -142,21 +106,42 @@
             android:inputType="textMultiLine|textCapSentences"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spContactPreferredTime" />
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyPhone" />
 
-        <ImageButton
-            android:id="@+id/btnContactChooseCompany"
+        <EditText
+            android:id="@+id/etCompanyIncome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="65dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/Income"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyDetails" />
+
+        <Spinner
+            android:id="@+id/spCompanyCommunicationType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/chooseCompany"
-            app:layout_constraintBottom_toBottomOf="@+id/etContactCompanyName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/etContactCompanyName"
-            app:layout_constraintTop_toTopOf="@+id/etContactCompanyName"
-            app:srcCompat="@drawable/ic_action_company_accent" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/etCompanyIncome"
+            app:layout_constraintTop_toBottomOf="@+id/etCompanyIncome" />
+
+        <Spinner
+            android:id="@+id/spCompanyEmployees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/spCompanyCommunicationType"
+            app:layout_constraintStart_toEndOf="@+id/spCompanyCommunicationType" />
 
         <Button
-            android:id="@+id/btnContactSave"
+            android:id="@+id/btnCompanySave"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -167,7 +152,7 @@
             android:text="@string/Save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etContactDetails" />
+            app:layout_constraintTop_toBottomOf="@+id/spCompanyCommunicationType" />
 
     </android.support.constraint.ConstraintLayout>
 
