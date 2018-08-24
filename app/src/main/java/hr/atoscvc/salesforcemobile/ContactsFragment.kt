@@ -1,6 +1,5 @@
 package hr.atoscvc.salesforcemobile
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -28,7 +27,6 @@ class ContactsFragment : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-    @SuppressLint("RestrictedApi")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -37,7 +35,7 @@ class ContactsFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        activity?.fabAdd?.visibility = View.VISIBLE
+        activity?.fabAdd?.show()
         activity?.fabAdd?.setOnClickListener {
             val intent = Intent(activity, ContactEditorActivity::class.java).apply {
                 putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
