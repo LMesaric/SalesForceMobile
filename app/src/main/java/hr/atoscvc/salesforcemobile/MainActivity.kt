@@ -18,12 +18,16 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_companies.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 
-
 //TODO MainActivity napraviti kao tabbedActivity ?
 
 //FIXME SVAKI PUT KAD CREATEAMO FRAGMENT ON OSTAJE SAVEAN, KAO I ONAJ STARI (MEMORIJA RASTE DO 370 MB) - REUSE https://stackoverflow.com/questions/19219458/fragment-on-screen-rotation
 
-class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.RecyclerViewContactsOnClickListener, CompanyAdapter.RecyclerViewCompaniesOnClickListener {
+class MainActivity :
+        AppCompatActivity(),
+        LogoutListener,
+        ReplaceFragmentListener,
+        ContactAdapter.RecyclerViewContactsOnClickListener,
+        CompanyAdapter.RecyclerViewCompaniesOnClickListener {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -235,7 +239,7 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
         return true
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    override fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.mainContainer, fragment)
         fragmentTransaction.commit()
