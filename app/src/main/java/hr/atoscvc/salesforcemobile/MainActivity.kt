@@ -5,7 +5,6 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
-import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
 import android.view.Menu
@@ -194,9 +193,9 @@ class MainActivity : AppCompatActivity(), LogoutListener, ContactAdapter.Recycle
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         val searchItem: MenuItem? = menu?.findItem(R.id.action_search)
-        searchView = MenuItemCompat.getActionView(searchItem) as SearchView //TODO: update
+        searchView = searchItem?.actionView as SearchView
 
-        searchItem?.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
                 appBarLayout.setExpanded(false, true)
                 recyclerViewContacts?.isNestedScrollingEnabled = false
