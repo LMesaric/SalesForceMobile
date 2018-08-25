@@ -42,7 +42,7 @@ class VerifyActivity : AppCompatActivity() {
                 }
     }
 
-    fun onVerificationDone(view: View) {
+    fun onVerificationDone(@Suppress("UNUSED_PARAMETER") view: View) {
         mAuth.currentUser!!.reload()
         if (mAuth.currentUser!!.isEmailVerified) {
             sendToMain()
