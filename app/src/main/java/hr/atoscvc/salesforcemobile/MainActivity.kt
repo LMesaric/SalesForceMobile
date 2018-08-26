@@ -149,6 +149,14 @@ class MainActivity :
 
     override fun onResume() {
         super.onResume()
+
+        val user: FirebaseUser? = mAuth.currentUser
+        if (user == null) {
+            sendToLogin()
+        } else if (!user.isEmailVerified) {
+            sendToVerify()
+        }
+
         mainRoot.viewTreeObserver.addOnGlobalLayoutListener(mLayoutKeyboardVisibilityListener)
 
         if (refreshContacts) {
@@ -168,11 +176,6 @@ class MainActivity :
             appBarLayout.isActivated = true
             coordinator.title = resources.getString(R.string.Companies)
             replaceFragment(companiesFragment)
-        }
-
-        val user: FirebaseUser? = mAuth.currentUser
-        if (user == null) {
-            sendToLogin()
         }
     }
 
@@ -265,5 +268,12 @@ class MainActivity :
                     refreshContacts = true
                 }
         }
+    }
+
+    private fun sendToVerify() {
+        val verifyIntent = Intent(this, VerifyActivity::class.java)
+        verifyIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(verifyIntent)
+        finish()
     }
 }

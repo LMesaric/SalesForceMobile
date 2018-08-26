@@ -13,9 +13,8 @@ class RegisterActivity : AppCompatActivity(), ReplaceFragmentListener {
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
 
-    lateinit var firstName: String
-    lateinit var lastName: String
-    lateinit var email: String
+    //LUKA - ovo se navodno koristi??
+    //lateinit var email: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

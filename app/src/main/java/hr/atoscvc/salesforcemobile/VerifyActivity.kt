@@ -51,6 +51,16 @@ class VerifyActivity : AppCompatActivity() {
         }
     }
 
+    //FILIP - ovo bi trebalo ici u toolbar menu
+    fun onVerifyLogout(@Suppress("UNUSED_PARAMETER") view: View) {
+        ActiveUserSingleton.user = null
+        mAuth.signOut()
+        val loginIntent = Intent(this, LoginActivity::class.java)
+        loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(loginIntent)
+        finish()
+    }
+
     private fun sendToMain() {
         val mainIntent = Intent(this, MainActivity::class.java)
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
