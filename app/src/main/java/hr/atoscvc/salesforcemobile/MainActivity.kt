@@ -220,20 +220,18 @@ class MainActivity :
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item != null) {
 
-            when (item.itemId) {
+        when (item?.itemId) {
 
-                R.id.action_logout -> {
-                    sendToLogin()
-                }
-
-                R.id.action_account_settings -> {
-                    val intent = Intent(this, ChangePasswordActivity::class.java)
-                    startActivity(intent)
-                }
-
+            R.id.action_logout -> {
+                sendToLogin()
             }
+
+            R.id.action_account_settings -> {
+                val intent = Intent(this, ChangePasswordActivity::class.java)
+                startActivity(intent)
+            }
+
         }
         return true
     }
