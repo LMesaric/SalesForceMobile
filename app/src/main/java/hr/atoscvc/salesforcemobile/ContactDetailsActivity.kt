@@ -134,7 +134,6 @@ class ContactDetailsActivity : AppCompatActivity() {
         }
         ContactEditFragment.chosenCompany = contact.company
         startActivityForResult(intentEdit, ContactDetailsActivity.requestCodeEditContact)
-        //TODO Testirati radi li implementirani refresh RecycleViewa nakon Savea
     }
 
     override fun onBackPressed() {

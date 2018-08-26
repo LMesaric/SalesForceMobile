@@ -14,6 +14,8 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_company_edit.view.*
 
+//TODO - Valuta za income
+
 class CompanyEditFragment : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth

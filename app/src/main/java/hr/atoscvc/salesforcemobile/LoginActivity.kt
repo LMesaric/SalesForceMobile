@@ -3,6 +3,7 @@ package hr.atoscvc.salesforcemobile
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -13,6 +14,13 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.reset_password.view.*
+
+//LUKA - styles za sve zivo
+//LUKA - Loading dialogs
+//LUKA - urediti login i register screen, staviti animacije + trimmati sve inpute za login i register - dodati ikonice i onfucus listenere
+//LUKA - change color for onFocus PNGs
+//FILIP - reset password stranica ima jako strgani background image na mobitelu
+//FILIP - dodati Remember Me feature
 
 class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
 
@@ -147,6 +155,11 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             alertDialog.dismiss()
+//                            Toast.makeText(this, getString(R.string.checkYourEmail), Toast.LENGTH_LONG).show()
+                            Snackbar.make(etLoginEmail, getString(R.string.checkYourEmail), Snackbar.LENGTH_INDEFINITE)
+                                    .setAction("Dismiss") {}    // There must be an empty OnClickListener for Dismiss to work
+                                    .show()
+                            // LUKA - zamijeniti sve toastove? -> napraviti static funkciju, extract resource
                         } else {
                             resetPasswordView.etEmailPassReset.error = task.exception?.message
                         }
@@ -203,7 +216,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
     }
 
     //FILIP - forgot password loader indicator se trenutno vrti iza prozora pa se ne vidi
-    //FILIP - Za apsolutno sve greske osim successful password changea nema poruke useru
+    //FILIP - sto napraviti s Background Workerom?
     override fun processFinish(output: String) {
         resetPasswordView.btnSendPassReset.visibility = View.VISIBLE
         resetPasswordView.mailProgress.visibility = View.GONE

@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.fragment_email_layout.*
 import kotlinx.android.synthetic.main.fragment_email_layout.view.*
 
+//LUKA - provjera za register (i Contact) http://emailregex.com/
+
 class EmailFragment : Fragment(), View.OnClickListener {
 
     private lateinit var mAuth: FirebaseAuth

@@ -11,13 +11,6 @@ import android.widget.TextView
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
-//LUKA - styles za sve zivo
-//LUKA - Loading dialogs
-//LUKA - provjera za register (i Contact) http://emailregex.com/
-//TODO - Valuta za income
-//TODO - Delete contact/company -> checkbox za ukljucivanje Inactive stavki
-//TODO - poruka da je popis Contacts/Companies empty kad nema nista - TextView u centru ekrana
-
 class CompanyAdapter(
         private val companyList: ArrayList<Company>,
         private val context: Activity,

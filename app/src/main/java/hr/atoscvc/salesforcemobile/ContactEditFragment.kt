@@ -44,7 +44,7 @@ class ContactEditFragment : Fragment() {
         }
 
         view.btnContactChooseCompany.setOnClickListener {
-            //TODO Osim biranja Companyja, trebalo bi omoguciti i kreiranje novog u istom prozoru -> problem vracanja podatka kroz intent
+            //TODO Osim biranja Companyja, trebalo bi omoguciti i kreiranje novog u istom prozoru -> problem vracanja podatka onome koji poziva
             val companiesFragment = CompaniesFragment()
             val bundle = Bundle()
             bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), true)
@@ -185,7 +185,7 @@ class ContactEditFragment : Fragment() {
             }
         }
 
-        //TODO Listener for Details
+        //LUKA Listener for Details
 
         view.spContactTitle.setSelection(contact?.title ?: 0)
         view.spContactStatus.setSelection(contact?.status ?: 0)

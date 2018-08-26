@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_companies.view.*
 class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     //TODO Implementirati Search funkcionalnost - Active / Inactive / Both opcije -> indexers Status_other
+    //TODO - poruka da je popis Contacts/Companies empty kad nema nista - TextView u centru ekrana
     companion object RequestCodesCompany {
         const val requestCodeRefresh = 1
         const val requestItemRefresh = 2

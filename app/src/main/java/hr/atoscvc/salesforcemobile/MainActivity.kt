@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_companies.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 
 //TODO MainActivity napraviti kao tabbedActivity ?
-
 //FIXME SVAKI PUT KAD CREATEAMO FRAGMENT ON OSTAJE SAVEAN, KAO I ONAJ STARI (MEMORIJA RASTE DO 370 MB) - REUSE https://stackoverflow.com/questions/19219458/fragment-on-screen-rotation
 
 class MainActivity :

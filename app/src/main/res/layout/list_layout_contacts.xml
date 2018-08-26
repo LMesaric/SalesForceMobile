@@ -59,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvCardContactCompany"
             tools:ignore="HardcodedText" />
 
-        <!-- LUKA - ovo mora biti invertani button -->
+        <!-- LUKA - ovo mora biti invertani button -> style -->
         <Button
             android:id="@+id/btnCardContactSelectContact"
             android:layout_width="wrap_content"

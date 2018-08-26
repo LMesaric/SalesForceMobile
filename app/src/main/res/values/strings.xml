@@ -1,12 +1,10 @@
 <resources>
     <!-- LUKA - delete unused resources -->
-    <!-- LUKA - change color for onFocus PNGs -->
 
     <!-- SEEN BY USERS (for layouts) -->
 
     <string name="app_name">Sales Force Mobile</string>
 
-    <!-- FILIP - dodati Remember Me feature -->
     <string name="WelcomeTo">Welcome to</string>
     <string name="rememberMe">Remember me</string>
     <string name="forgotPassword"><a href="">Forgot your password?</a></string>
@@ -67,7 +65,7 @@
 
     <string name="verificationEmailSentPrefix">Verification email sent:\n</string>
     <string name="verificationEmailErrorPrefix">Error sending verification email:</string>
-    <string name="checkYourEmail">Check your email</string>
+    <string name="checkYourEmail">Please check your email</string>
 
     <string name="newCompanyCreated">New Company created</string>
     <string name="companyUpdated">Company updated</string>
@@ -147,7 +145,7 @@
         <item>Bronze</item>
     </string-array>
 
-    <!-- TODO Sto uopce staviti na ovu listu? Email ne drzimo u bazi pa to nema smisla -->
+    <!-- LUKA Sto uopce staviti na ovu listu? Email ne drzimo u bazi -->
     <string-array name="companyCommunicationType_array">
         <item>UNDEFINED</item>
         <item>Phone</item>
@@ -170,7 +168,6 @@
 
     <!-- HIDDEN FROM USERS (for development) -->
 
-    <!-- FILIP - obrisati resetPasswordURL i vidjeti sto napraviti s Background Workerom -->
     <string name="resetPasswordURL" translatable="false">http://atoscvc.000webhostapp.com/resetPassword.php</string>
 
     <string name="UTF8" translatable="false">UTF-8</string>
