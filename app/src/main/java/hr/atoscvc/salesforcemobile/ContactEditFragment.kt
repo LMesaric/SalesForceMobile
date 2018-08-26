@@ -94,9 +94,9 @@ class ContactEditFragment : Fragment() {
             if (thereAreNoErrors) {
                 if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
                     val docRef: DocumentReference? = mAuth.uid?.let {
-                        db.collection("Users")
+                        db.collection(getString(R.string.databaseCollectionUsers))
                                 .document(it)
-                                .collection("Contacts")
+                                .collection(getString(R.string.databaseCollectionContacts))
                                 .document()
                     }
                     contact = chosenCompany?.let { Contact(docRef?.id, status, title, firstName, lastName, it, phone, email, prefTime, details) }
@@ -113,9 +113,9 @@ class ContactEditFragment : Fragment() {
                     contact = chosenCompany?.let { Contact(contact?.documentID, status, title, firstName, lastName, it, phone, email, prefTime, details) }
                     mAuth.uid?.let {
                         contact?.let { it1 ->
-                            db.collection("Users")
+                            db.collection(getString(R.string.databaseCollectionUsers))
                                     .document(it)
-                                    .collection("Contacts")
+                                    .collection(getString(R.string.databaseCollectionContacts))
                                     .document(contact?.documentID.toString())
                                     .set(it1)
                         }

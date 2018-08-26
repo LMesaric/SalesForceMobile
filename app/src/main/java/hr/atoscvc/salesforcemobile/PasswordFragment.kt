@@ -76,7 +76,7 @@ class PasswordFragment : Fragment(), View.OnClickListener {
     private fun addUserToDatabase() {
         mAuth.currentUser?.uid?.let {
             ActiveUserSingleton.user?.let { it1 ->
-                db.collection("Users")
+                db.collection(getString(R.string.databaseCollectionUsers))
                         .document(it)
                         .set(it1)
                         .addOnCompleteListener { task ->

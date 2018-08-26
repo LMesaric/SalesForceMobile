@@ -85,9 +85,9 @@ class CompanyEditFragment : Fragment() {
 
                 if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
                     val docRef: DocumentReference? = mAuth.uid?.let {
-                        db.collection("Users")
+                        db.collection(getString(R.string.databaseCollectionUsers))
                                 .document(it)
-                                .collection("Companies")
+                                .collection(getString(R.string.databaseCollectionCompanies))
                                 .document()
                     }
                     company?.documentID = docRef?.id
@@ -108,9 +108,9 @@ class CompanyEditFragment : Fragment() {
                 } else {
                     mAuth.uid?.let {
                         company?.let { it1 ->
-                            db.collection("Users")
+                            db.collection(getString(R.string.databaseCollectionUsers))
                                     .document(it)
-                                    .collection("Companies")
+                                    .collection(getString(R.string.databaseCollectionCompanies))
                                     .document(company?.documentID.toString())
                                     .set(it1)
                         }

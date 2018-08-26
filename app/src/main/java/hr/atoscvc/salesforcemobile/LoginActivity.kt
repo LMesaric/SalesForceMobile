@@ -1,6 +1,5 @@
 package hr.atoscvc.salesforcemobile
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.main.reset_password.view.*
 //LUKA - Loading dialogs
 //LUKA - urediti login i register screen, staviti animacije + trimmati sve inpute za login i register - dodati ikonice i onfucus listenere
 //LUKA - change color for onFocus PNGs
-//FILIP - reset password stranica ima jako strgani background image na mobitelu
+//FILIP - reset password stranica ima jako strgani background image na mobitelu - https://imgur.com/a/9yk4E08
 //FILIP - dodati Remember Me feature
 
 class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
@@ -82,14 +81,14 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
             mAuth.signInWithEmailAndPassword(email, HashSHA3.getHashedValue(tempPassword))
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            db.collection("Users")
+                            db.collection(getString(R.string.databaseCollectionUsers))
                                     .document(mAuth.uid.toString())
                                     .get()
                                     .addOnSuccessListener { documentSnapshot ->
                                         if (documentSnapshot.exists()) {
                                             ActiveUserSingleton.user = User(
-                                                    documentSnapshot.getString("firstName").toString(),
-                                                    documentSnapshot.getString("lastName").toString(),
+                                                    documentSnapshot.getString(getString(R.string.databaseDocumentFirstName)).toString(),
+                                                    documentSnapshot.getString(getString(R.string.databaseDocumentLastName)).toString(),
                                                     mAuth.currentUser!!.email.toString()
                                             )
                                             if (mAuth.currentUser!!.isEmailVerified) {
@@ -101,7 +100,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
                                                             if (!task.isSuccessful) {
                                                                 Toast.makeText(
                                                                         this,
-                                                                        "Error sending verification email: ${task.exception?.message}",
+                                                                        "${getString(R.string.verificationEmailErrorPrefix)} ${task.exception?.message}",
                                                                         Toast.LENGTH_LONG
                                                                 ).show()
                                                             }
@@ -121,9 +120,8 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         enableAllButtons()
     }
 
-    @SuppressLint("InflateParams")
     fun onForgotPassword(@Suppress("UNUSED_PARAMETER") view: View) {
-        resetPasswordView = layoutInflater.inflate(R.layout.reset_password, null)
+        resetPasswordView = layoutInflater.inflate(R.layout.reset_password, constraintLayoutLoginMain, false)
         alertDialog = AlertDialog.Builder(this).create()
         alertDialog.setView(resetPasswordView)
 
@@ -143,7 +141,7 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
             }
         }
 
-        alertDialog.show()      //FILIP App mi se jednom ovdje srusio, navodno leaka activity i ne moze naci parenta za attachati dialog
+        alertDialog.show()
         resetPasswordView.etEmailPassReset.requestFocus()
     }
 

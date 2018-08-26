@@ -72,10 +72,10 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
         view.recyclerViewCompanies.adapter = adapter
 
         val query: Query? = mAuth.uid?.let {
-            db.collection("Users")
+            db.collection(getString(R.string.databaseCollectionUsers))
                     .document(it)
-                    .collection("Companies")
-                    .orderBy("name")
+                    .collection(getString(R.string.databaseCollectionCompanies))
+                    .orderBy(getString(R.string.databaseDocumentName))
         }
         query?.addSnapshotListener { p0, p1 ->
             if (p1 != null) {

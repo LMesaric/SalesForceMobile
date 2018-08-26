@@ -179,10 +179,15 @@
     <string name="loginStatus" translatable="false">Login status</string>
     <string name="registrationStatus" translatable="false">Registration status</string>
 
-    <string name="firstName" translatable="false">firstName</string>
-    <string name="lastName" translatable="false">lastName</string>
     <string name="email" translatable="false">email</string>
     <string name="password" translatable="false">password</string>
+
+    <string name="databaseCollectionUsers" translatable="false">Users</string>
+    <string name="databaseCollectionContacts" translatable="false">Contacts</string>
+    <string name="databaseCollectionCompanies" translatable="false">Companies</string>
+    <string name="databaseDocumentName" translatable="false">name</string>
+    <string name="databaseDocumentFirstName" translatable="false">firstName</string>
+    <string name="databaseDocumentLastName" translatable="false">lastName</string>
 
     <string name="transitionNameContactAvatar">contactAvatar</string>
     <string name="transitionNameCompanyAvatar">companyAvatar</string>

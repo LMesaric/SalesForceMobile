@@ -37,7 +37,7 @@ class VerifyActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Verification email sent", Toast.LENGTH_LONG).show()
                     } else {
-                        Toast.makeText(this, "Error sending verification email: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "${getString(R.string.verificationEmailErrorPrefix)} ${task.exception?.message}", Toast.LENGTH_LONG).show()
                     }
                 }
     }

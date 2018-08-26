@@ -63,10 +63,10 @@ class ContactsFragment : Fragment() {
 
         //TODO Bilo bi dosta lako dodati Sort By feature - samo ubaciti string u .orderBy()
         val query: Query? = mAuth.uid?.let {
-            db.collection("Users")
+            db.collection(getString(R.string.databaseCollectionUsers))
                     .document(it)
-                    .collection("Contacts")
-                    .orderBy("lastName")
+                    .collection(getString(R.string.databaseCollectionContacts))
+                    .orderBy(getString(R.string.databaseDocumentLastName))
         }
         query?.addSnapshotListener { p0, p1 ->
             if (p1 != null) {
