@@ -33,7 +33,7 @@ class VerifyActivity : AppCompatActivity() {
 
     fun onVerifySend(@Suppress("UNUSED_PARAMETER") view: View) {
         mAuth.currentUser!!.sendEmailVerification()
-                .addOnCompleteListener{ task ->
+                .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Verification email sent", Toast.LENGTH_LONG).show()
                     } else {

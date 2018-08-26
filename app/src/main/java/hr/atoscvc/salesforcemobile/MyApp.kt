@@ -5,7 +5,7 @@ import java.util.*
 
 class MyApp : Application() {
 
-//    private var instance: Bitmap? = null
+    //private var instance: Bitmap? = null
     private var listener: LogoutListener? = null
     private lateinit var timer: Timer
 
