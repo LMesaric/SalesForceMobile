@@ -256,24 +256,25 @@ class MainActivity :
 
     override fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-//        when (fragment) {
-//            contactsFragment -> {
-//                fragmentTransaction.hide(companiesFragment)
-//                fragmentTransaction.hide(homeFragment)
-//            }
-//            homeFragment -> {
-//                fragmentTransaction.hide(contactsFragment)
-//                fragmentTransaction.hide(companiesFragment)
-//            }
-//            companiesFragment -> {
-//                fragmentTransaction.hide(contactsFragment)
-//                fragmentTransaction.hide(homeFragment)
-//            }
-//        }
+        when (fragment) {
+            contactsFragment -> {
+                contactsFragment.recyclerViewContacts.adapter?.notifyDataSetChanged()
+                fragmentTransaction.hide(companiesFragment)
+                fragmentTransaction.hide(homeFragment)
+            }
+            homeFragment -> {
+                fragmentTransaction.hide(contactsFragment)
+                fragmentTransaction.hide(companiesFragment)
+            }
+            companiesFragment -> {
+                fragmentTransaction.hide(contactsFragment)
+                fragmentTransaction.hide(homeFragment)
+            }
+        }
 
-        fragmentTransaction.hide(contactsFragment)
+        /*fragmentTransaction.hide(contactsFragment)
         fragmentTransaction.hide(companiesFragment)
-        fragmentTransaction.hide(homeFragment)
+        fragmentTransaction.hide(homeFragment)*/
 
         fragmentTransaction.show(fragment)
         fragmentTransaction.commit()
