@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.reset_password.view.*
 //FILIP - reset password stranica ima jako strgani background image na mobitelu - https://imgur.com/a/9yk4E08
 //FILIP - dodati Remember Me feature
 
-class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
@@ -211,17 +211,5 @@ class LoginActivity : AppCompatActivity(), BackgroundWorker.AsyncResponse {
         tvRegister.isEnabled = false
         tvForgotPassword.isEnabled = false
         btnLogin.isEnabled = false
-    }
-
-    //FILIP - forgot password loader indicator se trenutno vrti iza prozora pa se ne vidi
-    //FILIP - sto napraviti s Background Workerom?
-    override fun processFinish(output: String) {
-        resetPasswordView.btnSendPassReset.visibility = View.VISIBLE
-        resetPasswordView.mailProgress.visibility = View.GONE
-        if (output.contains("Success")) {
-            resetPasswordView.btnSendPassReset.visibility = View.GONE
-            Toast.makeText(this, getString(R.string.checkYourEmail), Toast.LENGTH_LONG).show()
-            alertDialog.dismiss()
-        }
     }
 }

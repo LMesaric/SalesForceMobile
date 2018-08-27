@@ -24,8 +24,6 @@
     <string name="resetPasswordDescriptionLabel">We will send you an email with a link to reset your password. Please check your Spam folder.</string>
 
     <string name="login">Login</string>
-    <string name="registration">Registration</string>
-    <string name="Register">Register</string>
 
     <string name="Search">Search</string>
     <string name="AccountSettings">Account Settings</string>
@@ -113,10 +111,6 @@
     <string name="wrongPassword">Wrong password.</string>
     <string name="passChangeSuccess">Password changed successfully!</string>
 
-    <string name="serverNoResponse">No response from server</string>
-    <string name="malformedURL">Malformed URL exception!</string>
-    <string name="exceptionIO">IO exception</string>
-    <string name="typeNotRecognized">Type not recognized</string>
 
     <string-array name="status_array">
         <item>ACTIVE</item>
@@ -167,20 +161,6 @@
 
 
     <!-- HIDDEN FROM USERS (for development) -->
-
-    <string name="resetPasswordURL" translatable="false">http://atoscvc.000webhostapp.com/resetPassword.php</string>
-
-    <string name="UTF8" translatable="false">UTF-8</string>
-
-    <string name="typeLogin" translatable="false">Login</string>
-    <string name="typeRegister" translatable="false">Register</string>
-    <string name="typePasswordReset" translatable="false">PasswordReset</string>
-
-    <string name="loginStatus" translatable="false">Login status</string>
-    <string name="registrationStatus" translatable="false">Registration status</string>
-
-    <string name="email" translatable="false">email</string>
-    <string name="password" translatable="false">password</string>
 
     <string name="databaseCollectionUsers" translatable="false">Users</string>
     <string name="databaseCollectionContacts" translatable="false">Contacts</string>
