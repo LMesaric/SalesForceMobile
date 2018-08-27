@@ -12,8 +12,14 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        activity?.fabAdd?.hide()
-
         return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+
+        if (!hidden) {
+            activity?.fabAdd?.hide()
+        }
     }
 }

@@ -56,12 +56,14 @@ class MainActivity :
         setSupportActionBar(toolBar)
         coordinator.title = resources.getString(R.string.Home)
 
-        navBar.selectedItemId = R.id.navBarHome
-        replaceFragment(HomeFragment())
-
         homeFragment = HomeFragment()
         contactsFragment = ContactsFragment()
         companiesFragment = CompaniesFragment()
+
+        initializeFragments()
+
+        navBar.selectedItemId = R.id.navBarHome
+        replaceFragment(homeFragment)
 
         navBar.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -70,7 +72,7 @@ class MainActivity :
                     appBarLayout.setExpanded(false, true)
                     appBarLayout.isActivated = false
                     coordinator.title = resources.getString(R.string.Home)
-                    replaceFragment(HomeFragment())
+                    replaceFragment(homeFragment)
                     true
                 }
 
@@ -87,7 +89,6 @@ class MainActivity :
                 }
 
                 R.id.navBarCompanies -> {
-                    val companiesFragment = CompaniesFragment()
                     val bundle = Bundle()
                     bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), false)
                     companiesFragment.arguments = bundle
@@ -171,11 +172,10 @@ class MainActivity :
             appBarLayout.setExpanded(true, true)
             appBarLayout.isActivated = true
             coordinator.title = resources.getString(R.string.Contacts)
-            replaceFragment(ContactsFragment())
+            replaceFragment(contactsFragment)
 
         } else if (refreshCompanies) {
             refreshCompanies = false
-            val companiesFragment = CompaniesFragment()
             val bundle = Bundle()
             bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), false)
             companiesFragment.arguments = bundle
@@ -201,6 +201,14 @@ class MainActivity :
 
     override fun onUserInteraction() {
         (application as MyApp).onUserInteracted()
+    }
+
+    private fun initializeFragments() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.mainContainer, homeFragment)
+        fragmentTransaction.add(R.id.mainContainer, companiesFragment)
+        fragmentTransaction.add(R.id.mainContainer, contactsFragment)
+        fragmentTransaction.commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -248,20 +256,25 @@ class MainActivity :
 
     override fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        when (fragment) {
-            contactsFragment -> {
-                fragmentTransaction.hide(companiesFragment)
-                fragmentTransaction.hide(homeFragment)
-            }
-            homeFragment -> {
-                fragmentTransaction.hide(contactsFragment)
-                fragmentTransaction.hide(companiesFragment)
-            }
-            companiesFragment -> {
-                fragmentTransaction.hide(contactsFragment)
-                fragmentTransaction.hide(homeFragment)
-            }
-        }
+//        when (fragment) {
+//            contactsFragment -> {
+//                fragmentTransaction.hide(companiesFragment)
+//                fragmentTransaction.hide(homeFragment)
+//            }
+//            homeFragment -> {
+//                fragmentTransaction.hide(contactsFragment)
+//                fragmentTransaction.hide(companiesFragment)
+//            }
+//            companiesFragment -> {
+//                fragmentTransaction.hide(contactsFragment)
+//                fragmentTransaction.hide(homeFragment)
+//            }
+//        }
+
+        fragmentTransaction.hide(contactsFragment)
+        fragmentTransaction.hide(companiesFragment)
+        fragmentTransaction.hide(homeFragment)
+
         fragmentTransaction.show(fragment)
         fragmentTransaction.commit()
     }

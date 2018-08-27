@@ -103,7 +103,9 @@ class ContactEditFragment : Fragment() {
                     contact?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(activity, getString(R.string.newContactCreated), Toast.LENGTH_SHORT).show()
-                            activity?.setResult(AppCompatActivity.RESULT_OK)
+                            val resultIntent = Intent()
+                            resultIntent.putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                            activity?.setResult(AppCompatActivity.RESULT_OK, resultIntent)
                             activity?.finish()
                         } else {
                             Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
