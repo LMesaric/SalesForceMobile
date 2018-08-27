@@ -36,6 +36,10 @@ class MainActivity :
 
     private lateinit var searchView: SearchView
 
+    private lateinit var homeFragment: HomeFragment
+    private lateinit var contactsFragment: ContactsFragment
+    private lateinit var companiesFragment: CompaniesFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -55,6 +59,10 @@ class MainActivity :
         navBar.selectedItemId = R.id.navBarHome
         replaceFragment(HomeFragment())
 
+        homeFragment = HomeFragment()
+        contactsFragment = ContactsFragment()
+        companiesFragment = CompaniesFragment()
+
         navBar.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
 
@@ -67,7 +75,6 @@ class MainActivity :
                 }
 
                 R.id.navBarContacts -> {
-                    val contactsFragment = ContactsFragment()
                     val bundle = Bundle()
                     bundle.putBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), false)
                     contactsFragment.arguments = bundle
@@ -241,7 +248,21 @@ class MainActivity :
 
     override fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.mainContainer, fragment)
+        when (fragment) {
+            contactsFragment -> {
+                fragmentTransaction.hide(companiesFragment)
+                fragmentTransaction.hide(homeFragment)
+            }
+            homeFragment -> {
+                fragmentTransaction.hide(contactsFragment)
+                fragmentTransaction.hide(companiesFragment)
+            }
+            companiesFragment -> {
+                fragmentTransaction.hide(contactsFragment)
+                fragmentTransaction.hide(homeFragment)
+            }
+        }
+        fragmentTransaction.show(fragment)
         fragmentTransaction.commit()
     }
 

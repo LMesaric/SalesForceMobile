@@ -15,7 +15,7 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_companies.view.*
+import kotlinx.android.synthetic.main.fragment_companies.*
 
 class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -36,6 +36,11 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
+        return view
+    }
+
+    override fun onResume() {
+        super.onResume()
         activity?.fabAdd?.show()
         activity?.fabAdd?.setOnClickListener {
             val intent = Intent(activity, CompanyEditorActivity::class.java).apply {
@@ -44,8 +49,8 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
             activity?.startActivityForResult(intent, requestCodeRefresh)
         }
 
-        view.recyclerViewCompanies.setHasFixedSize(true)
-        view.recyclerViewCompanies.layoutManager = LinearLayoutManager(activity)
+        recyclerViewCompanies.setHasFixedSize(true)
+        recyclerViewCompanies.layoutManager = LinearLayoutManager(activity)
 
         val companyList = ArrayList<Company>()      //LUKA - TWO SINGLETONS
 
@@ -69,7 +74,7 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
             }
         }
 
-        view.recyclerViewCompanies.adapter = adapter
+        recyclerViewCompanies.adapter = adapter
 
         val query: Query? = mAuth.uid?.let {
             db.collection(getString(R.string.databaseCollectionUsers))
@@ -91,8 +96,6 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
                 }
             }
         }
-
-        return view
     }
 
     override fun onQueryTextSubmit(p0: String?): Boolean {
