@@ -29,7 +29,7 @@ class ContactDetailsActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        tvContactDetailsName.text = ContactNameConcatenate.fullName(contact, resources, true)
+        tvContactDetailsName.text = ConcatenateObjectToString.concatenateContactName(contact, resources, true)
         tvContactDetailsCompanyName.text = contact.company?.name
         tvContactDetailsStatus.text = resources.getStringArray(R.array.status_array)[contact.status]
 
@@ -84,7 +84,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         } else {
             val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:")).apply {
                 putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
-                putExtra(Intent.EXTRA_TEXT, "${getString(R.string.emailGreeting)} ${ContactNameConcatenate.fullName(contact, resources, true)}, \n\n")
+                putExtra(Intent.EXTRA_TEXT, "${getString(R.string.emailGreeting)} ${ConcatenateObjectToString.concatenateContactName(contact, resources, true)}, \n\n")
             }
             try {
                 startActivity(Intent.createChooser(emailIntent, getString(R.string.sendEmailChooser)))
@@ -116,7 +116,7 @@ class ContactDetailsActivity : AppCompatActivity() {
             Toast.makeText(this, getString(R.string.wrongPhoneNumber), Toast.LENGTH_SHORT).show()
         } else {
             val smsIntent = Intent(Intent.ACTION_VIEW, Uri.parse("smsto:$phone")).apply {
-                putExtra("sms_body", "${getString(R.string.smsGreeting)} ${ContactNameConcatenate.fullName(contact, resources, false)}, \n")
+                putExtra("sms_body", "${getString(R.string.smsGreeting)} ${ConcatenateObjectToString.concatenateContactName(contact, resources, false)}, \n")
             }
             try {
                 startActivity(Intent.createChooser(smsIntent, getString(R.string.sendTextChooser)))

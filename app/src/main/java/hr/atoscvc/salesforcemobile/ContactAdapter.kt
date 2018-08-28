@@ -39,7 +39,7 @@ class ContactAdapter(
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contact: Contact = contactList[position]
 
-        holder.tvCardContactName.text = ContactNameConcatenate.fullName(contact, context.resources, true)
+        holder.tvCardContactName.text = ConcatenateObjectToString.concatenateContactName(contact, context.resources, true)
         holder.tvCardContactCompany.text = contact.company?.name ?: context.getString(R.string.noCompanyFoundError)
         holder.tvCardContactStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
 

@@ -114,7 +114,7 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun filter(text: String) {
         val filteredList = ArrayList<Company>()
         for (company in companyList) {
-            if (ContactNameConcatenate.concatenateCompany(company, resources).toLowerCase().contains(text.toLowerCase())) {
+            if (ConcatenateObjectToString.concatenateCompany(company, resources).toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(company)
             }
         }

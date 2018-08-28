@@ -1,11 +1,9 @@
 package hr.atoscvc.salesforcemobile
 
 import android.content.res.Resources
-import hr.atoscvc.salesforcemobile.R.id.*
-import kotlinx.android.synthetic.main.activity_contact_details.*
 
-object ContactNameConcatenate {
-    fun fullName(contact: Contact, resources: Resources, formal: Boolean = true): String {
+object ConcatenateObjectToString {
+    fun concatenateContactName(contact: Contact, resources: Resources, formal: Boolean = true): String {
         val contactTitle: String = if (contact.title == 0) {
             ""
         } else {
@@ -20,22 +18,20 @@ object ContactNameConcatenate {
 
     fun concatenateCompany(company: Company, resources: Resources): String {
         val result = StringBuilder("")
-        .append(company.name).append(" ")
-        .append(company.webPage).append(" ")
-        .append(company.details).append(" ")
-        .append(company.phone).append(" ")
-        .append(company.OIB).append(" ")
-        .append(resources.getStringArray(R.array.status_array)[company.status]).append(" ")
+                .append(company.name).append(" ")
+                .append(company.webPage).append(" ")
+                .append(company.details).append(" ")
+                .append(company.phone).append(" ")
+                .append(company.OIB).append(" ")
+                .append(resources.getStringArray(R.array.status_array)[company.status]).append(" ")
 
-        if (company.cvsSegment != 0) {
+        if (company.cvsSegment > 0) {
             result.append(resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]).append(" ")
         }
-
-        if (company.communicationType != 0) {
+        if (company.communicationType > 0) {
             result.append(resources.getStringArray(R.array.companyCommunicationType_array)[company.communicationType]).append(" ")
         }
-
-        if (company.employees != 0) {
+        if (company.employees > 0) {
             result.append(resources.getStringArray(R.array.companyEmployees_array)[company.employees]).append(" ")
         }
 
@@ -52,11 +48,10 @@ object ContactNameConcatenate {
                 .append(contact.email).append(" ")
                 .append(resources.getStringArray(R.array.status_array)[contact.status]).append(" ")
 
-        if (contact.preferredTime != 0) {
+        if (contact.preferredTime > 0) {
             result.append(resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]).append(" ")
         }
-
-        if (contact.title != 0) {
+        if (contact.title > 0) {
             result.append(resources.getStringArray(R.array.contactTitle_array)[contact.title]).append(" ")
         }
 

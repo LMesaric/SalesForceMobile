@@ -106,7 +106,7 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun filter(text: String) {
         val filteredList = ArrayList<Contact>()
         for (contact in ContactsFragment.contactList) {
-            if (ContactNameConcatenate.concatenateContact(contact, resources).toLowerCase().contains(text.toLowerCase())) {
+            if (ConcatenateObjectToString.concatenateContact(contact, resources).toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(contact)
             }
         }
