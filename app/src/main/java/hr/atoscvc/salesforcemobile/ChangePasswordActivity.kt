@@ -80,9 +80,25 @@ class ChangePasswordActivity : AppCompatActivity() {
             mAuth.currentUser?.reauthenticate(EmailAuthProvider.getCredential(mAuth.currentUser?.email.toString(), passwordOldHashed))
                     ?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            mAuth.currentUser?.updatePassword(HashSHA3.getHashedValue(passwordNew))
-                            Toast.makeText(this, getString(R.string.passChangeSuccess), Toast.LENGTH_SHORT).show()
-                            finish()
+                            if (passwordNew == passwordOld) {
+                                etPasswordNew.error = getString(R.string.sameOldNewPasswordMessage)
+                                btnChangePassOk.visibility = View.VISIBLE
+                                btnChangePassCancel.visibility = View.VISIBLE
+                                changePassProgress.visibility = View.INVISIBLE
+                            } else {
+                                mAuth.currentUser?.updatePassword(HashSHA3.getHashedValue(passwordNew))
+                                        ?.addOnCompleteListener { task2 ->
+                                            if (task2.isSuccessful) {
+                                                Toast.makeText(this, getString(R.string.passChangeSuccess), Toast.LENGTH_SHORT).show()
+                                                finish()
+                                            } else {
+                                                etPasswordNew.error = task2.exception?.message.toString()
+                                                btnChangePassOk.visibility = View.VISIBLE
+                                                btnChangePassCancel.visibility = View.VISIBLE
+                                                changePassProgress.visibility = View.INVISIBLE
+                                            }
+                                        }
+                            }
                         } else {
                             etPasswordOld.error = task.exception?.message.toString()
                             btnChangePassOk.visibility = View.VISIBLE
