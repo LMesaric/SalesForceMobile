@@ -67,7 +67,6 @@ class ContactEditFragment : Fragment() {
                 phone = null
             }
 
-            //FILIP - je li moguce koristiti Firebase za provjeru je li upisani email valjan?
             var email: String? = view.etContactEmail.text.toString().trim()
             if (email.isNullOrBlank()) {
                 email = null
@@ -84,6 +83,10 @@ class ContactEditFragment : Fragment() {
             }
             if (lastName.isEmpty()) {
                 view.etContactLastName.error = getString(R.string.lastNameEmptyMessage)
+                thereAreNoErrors = false
+            }
+            if (email != null && !CheckEmailValidity.isEmailValid(email)) {
+                view.etContactEmail.error = getString(R.string.malformedEmailMessage)
                 thereAreNoErrors = false
             }
             if (chosenCompany == null) {

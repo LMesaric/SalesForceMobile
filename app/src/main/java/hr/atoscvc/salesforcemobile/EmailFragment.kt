@@ -40,6 +40,8 @@ class EmailFragment : Fragment(), View.OnClickListener {
 
         if (email.isBlank()) {
             etRegisterEmail.error = getString(R.string.emailEmptyMessage)
+        } else if (!CheckEmailValidity.isEmailValid(email)) {
+            etRegisterEmail.error = getString(R.string.malformedEmailMessage)
         } else {
             mAuth.fetchSignInMethodsForEmail(email)
                     .addOnCompleteListener { task ->

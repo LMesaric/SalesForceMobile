@@ -47,6 +47,7 @@
     <string name="firstNameEmptyMessage">First name cannot be empty.</string>
     <string name="lastNameEmptyMessage">Last name cannot be empty.</string>
     <string name="emailEmptyMessage">E-mail cannot be empty.</string>
+    <string name="malformedEmailMessage">Malformed email address.</string>
     <string name="passwordEmptyMessage">Password cannot be empty.</string>
     <string name="wrongConfirmPassword">Specified passwords do not match.</string>
     <string name="companyNameEmptyMessage">Company name cannot be empty.</string>
