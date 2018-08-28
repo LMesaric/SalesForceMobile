@@ -12,7 +12,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
 class CompanyAdapter(
-        private val companyList: ArrayList<Company>,
+        private var companyList: ArrayList<Company>,
         private val context: Activity,
         private val isForSelect: Boolean,
         private val listenerCompanies: RecyclerViewCompaniesOnClickListener
@@ -67,6 +67,11 @@ class CompanyAdapter(
 
     override fun getItemCount(): Int {
         return companyList.size
+    }
+
+    fun filter(filteredList: ArrayList<Company>) {
+        companyList = filteredList
+        notifyDataSetChanged()
     }
 
     class CompanyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

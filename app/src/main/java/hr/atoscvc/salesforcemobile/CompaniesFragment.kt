@@ -24,10 +24,13 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
     companion object RequestCodesCompany {
         const val requestCodeRefresh = 1
         const val requestItemRefresh = 2
+        var companyList = ArrayList<Company>()
     }
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+
+    private var adapter: CompanyAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -54,9 +57,7 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
             recyclerViewCompanies.setHasFixedSize(true)
             recyclerViewCompanies.layoutManager = LinearLayoutManager(activity)
 
-            val companyList = ArrayList<Company>()      //LUKA - TWO SINGLETONS
-
-            val adapter: CompanyAdapter?
+            companyList = ArrayList()
 
             var listenerCompanies: CompanyAdapter.RecyclerViewCompaniesOnClickListener? = null
             try {
@@ -106,7 +107,18 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(p0: String?): Boolean {
+        filter(p0.toString())
         return false
+    }
+
+    private fun filter(text: String) {
+        val filteredList = ArrayList<Company>()
+        for (company in companyList) {
+            if (ContactNameConcatenate.concatenateCompany(company, resources).toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(company)
+            }
+        }
+        adapter?.filter(filteredList)
     }
 
 }

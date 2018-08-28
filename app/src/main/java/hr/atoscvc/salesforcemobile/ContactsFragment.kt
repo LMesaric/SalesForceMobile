@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.SearchView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +17,7 @@ import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 
-class ContactsFragment : Fragment() {
+class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
 
     companion object {
         const val requestCodeRefresh = 3
@@ -26,6 +27,8 @@ class ContactsFragment : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+
+    private var adapter: ContactAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -54,7 +57,7 @@ class ContactsFragment : Fragment() {
 
             contactList = ArrayList()
 
-            val adapter = activity?.applicationContext?.let {
+            adapter = activity?.applicationContext?.let {
                 ContactAdapter(
                         contactList,
                         activity as Activity,
@@ -89,5 +92,25 @@ class ContactsFragment : Fragment() {
                 }
             }
         }
+    }
+    override fun onQueryTextSubmit(p0: String?): Boolean {
+        return false
+    }
+
+    override fun onQueryTextChange(p0: String?): Boolean {
+        Log.i("TESTING", "RADI")
+        filter(p0.toString())
+
+        return false
+    }
+
+    private fun filter(text: String) {
+        val filteredList = ArrayList<Contact>()
+        for (contact in ContactsFragment.contactList) {
+            if (contact.toString().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(contact)
+            }
+        }
+        adapter?.filter(filteredList)
     }
 }

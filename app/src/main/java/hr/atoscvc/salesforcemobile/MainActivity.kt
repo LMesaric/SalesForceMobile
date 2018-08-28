@@ -40,6 +40,8 @@ class MainActivity :
     private lateinit var contactsFragment: ContactsFragment
     private lateinit var companiesFragment: CompaniesFragment
 
+    //TODO tuning icon search - dropdown, checkbox, and/or search
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -83,7 +85,7 @@ class MainActivity :
                     appBarLayout.setExpanded(true, true)
                     appBarLayout.isActivated = true
                     coordinator.title = resources.getString(R.string.Contacts)
-
+                    searchView.setOnQueryTextListener(contactsFragment)
                     replaceFragment(contactsFragment)
                     true
                 }

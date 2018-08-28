@@ -13,7 +13,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.list_layout_contacts.view.*
 
 class ContactAdapter(
-        private val contactList: ArrayList<Contact>,
+        private var contactList: ArrayList<Contact>,
         private val context: Activity,
         private val isForSelect: Boolean,
         private val listenerContacts: RecyclerViewContactsOnClickListener
@@ -70,6 +70,11 @@ class ContactAdapter(
 
     override fun getItemCount(): Int {
         return contactList.size
+    }
+
+    fun filter(filteredList: ArrayList<Contact>) {
+        contactList = filteredList
+        notifyDataSetChanged()
     }
 
     class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
