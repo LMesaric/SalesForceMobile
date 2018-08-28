@@ -112,42 +112,61 @@
     <string name="wrongPassword">Wrong password.</string>
     <string name="passChangeSuccess">Password changed successfully!</string>
 
+    <string name="UNDEFINED">UNDEFINED</string>
+
+    <string name="ACTIVE">ACTIVE</string>
+    <string name="INACTIVE">INACTIVE</string>
+
+    <string name="Mr">Mr.</string>
+    <string name="Mrs">Mrs.</string>
+    <string name="Ms">Ms.</string>
+    <string name="Miss">Miss</string>
+
+    <string name="Morning">Morning</string>
+    <string name="Afternoon">Afternoon</string>
+
+    <string name="Platinum">Platinum</string>
+    <string name="Gold">Gold</string>
+    <string name="Silver">Silver</string>
+    <string name="Bronze">Bronze</string>
+
+    <string name="Phone">Phone</string>
 
     <string-array name="status_array">
-        <item>ACTIVE</item>
-        <item>INACTIVE</item>
+        <item>@string/ACTIVE</item>
+        <item>@string/INACTIVE</item>
     </string-array>
 
     <string-array name="contactTitle_array">
-        <item>UNDEFINED</item>
-        <item>Mr.</item>
-        <item>Mrs.</item>
-        <item>Ms.</item>
-        <item>Miss</item>
+        <item>@string/UNDEFINED</item>
+        <item>@string/Mr</item>
+        <item>@string/Mrs</item>
+        <item>@string/Ms</item>
+        <item>@string/Miss</item>
     </string-array>
 
     <string-array name="contactPreferredTime_array">
-        <item>UNDEFINED</item>
-        <item>Morning</item>
-        <item>Afternoon</item>
+        <item>@string/UNDEFINED</item>
+        <item>@string/Morning</item>
+        <item>@string/Afternoon</item>
     </string-array>
 
     <string-array name="companyCVS_array">
-        <item>UNDEFINED</item>
-        <item>Platinum</item>
-        <item>Gold</item>
-        <item>Silver</item>
-        <item>Bronze</item>
+        <item>@string/UNDEFINED</item>
+        <item>@string/Platinum</item>
+        <item>@string/Gold</item>
+        <item>@string/Silver</item>
+        <item>@string/Bronze</item>
     </string-array>
 
     <!-- LUKA Sto uopce staviti na ovu listu? Email ne drzimo u bazi -->
     <string-array name="companyCommunicationType_array">
-        <item>UNDEFINED</item>
-        <item>Phone</item>
+        <item>@string/UNDEFINED</item>
+        <item>@string/Phone</item>
     </string-array>
 
     <string-array name="companyEmployees_array">
-        <item>UNDEFINED</item>
+        <item>@string/UNDEFINED</item>
         <item>&lt;10</item>
         <item>10–24</item>
         <item>25–49</item>
