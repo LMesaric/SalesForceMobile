@@ -93,21 +93,20 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
             }
         }
     }
+
     override fun onQueryTextSubmit(p0: String?): Boolean {
         return false
     }
 
     override fun onQueryTextChange(p0: String?): Boolean {
-        Log.i("TESTING", "RADI")
         filter(p0.toString())
-
         return false
     }
 
     private fun filter(text: String) {
         val filteredList = ArrayList<Contact>()
         for (contact in ContactsFragment.contactList) {
-            if (contact.toString().toLowerCase().contains(text.toLowerCase())) {
+            if (ContactNameConcatenate.concatenateContact(contact, resources).toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(contact)
             }
         }

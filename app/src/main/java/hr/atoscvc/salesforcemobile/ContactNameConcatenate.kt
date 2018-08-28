@@ -1,6 +1,8 @@
 package hr.atoscvc.salesforcemobile
 
 import android.content.res.Resources
+import hr.atoscvc.salesforcemobile.R.id.*
+import kotlinx.android.synthetic.main.activity_contact_details.*
 
 object ContactNameConcatenate {
     fun fullName(contact: Contact, resources: Resources, formal: Boolean = true): String {
@@ -35,6 +37,27 @@ object ContactNameConcatenate {
 
         if (company.employees != 0) {
             result.append(resources.getStringArray(R.array.companyEmployees_array)[company.employees]).append(" ")
+        }
+
+        return result.toString()
+    }
+
+    fun concatenateContact(contact: Contact, resources: Resources): String {
+        val result = StringBuilder("")
+                .append(contact.firstName).append(" ")
+                .append(contact.lastName).append(" ")
+                .append(contact.details).append(" ")
+                .append(contact.phone).append(" ")
+                .append(contact.company?.name).append(" ")
+                .append(contact.email).append(" ")
+                .append(resources.getStringArray(R.array.status_array)[contact.status]).append(" ")
+
+        if (contact.preferredTime != 0) {
+            result.append(resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]).append(" ")
+        }
+
+        if (contact.title != 0) {
+            result.append(resources.getStringArray(R.array.contactTitle_array)[contact.title]).append(" ")
         }
 
         return result.toString()

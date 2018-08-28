@@ -7,6 +7,7 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -35,10 +36,13 @@ class MainActivity :
     private var refreshCompanies = false
 
     private lateinit var searchView: SearchView
+    private lateinit var searchItem: MenuItem
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var contactsFragment: ContactsFragment
     private lateinit var companiesFragment: CompaniesFragment
+
+    private lateinit var currentFragment: Fragment
 
     //TODO tuning icon search - dropdown, checkbox, and/or search
 
@@ -63,7 +67,6 @@ class MainActivity :
         companiesFragment = CompaniesFragment()
 
         initializeFragments()
-
         navBar.selectedItemId = R.id.navBarHome
         replaceFragment(homeFragment)
 
@@ -74,7 +77,10 @@ class MainActivity :
                     appBarLayout.setExpanded(false, true)
                     appBarLayout.isActivated = false
                     coordinator.title = resources.getString(R.string.Home)
+                    searchItem.isVisible = false
+                    searchView.visibility = View.GONE
                     replaceFragment(homeFragment)
+                    searchItem.collapseActionView()
                     true
                 }
 
@@ -85,8 +91,11 @@ class MainActivity :
                     appBarLayout.setExpanded(true, true)
                     appBarLayout.isActivated = true
                     coordinator.title = resources.getString(R.string.Contacts)
+                    searchItem.isVisible = true
+                    searchView.visibility = View.VISIBLE
                     searchView.setOnQueryTextListener(contactsFragment)
                     replaceFragment(contactsFragment)
+                    searchItem.collapseActionView()
                     true
                 }
 
@@ -94,11 +103,14 @@ class MainActivity :
                     val bundle = Bundle()
                     bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), false)
                     companiesFragment.arguments = bundle
+                    searchItem.isVisible = true
+                    searchView.visibility = View.VISIBLE
                     appBarLayout.setExpanded(true, true)
                     appBarLayout.isActivated = true
                     coordinator.title = resources.getString(R.string.Companies)
                     searchView.setOnQueryTextListener(companiesFragment)
                     replaceFragment(companiesFragment)
+                    searchItem.collapseActionView()
                     true
                 }
 
@@ -215,8 +227,12 @@ class MainActivity :
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
-        val searchItem: MenuItem? = menu?.findItem(R.id.action_search)
-        searchView = searchItem?.actionView as SearchView
+        searchItem = menu?.findItem(R.id.action_search)!!
+        searchView = searchItem.actionView as SearchView
+
+        searchItem.isVisible = false
+        searchView.visibility = View.GONE
+        searchItem.collapseActionView()
 
         searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
@@ -227,7 +243,11 @@ class MainActivity :
             }
 
             override fun onMenuItemActionCollapse(menuItem: MenuItem): Boolean {
-                appBarLayout.setExpanded(true, true)
+                if (currentFragment == homeFragment) {
+                    appBarLayout.setExpanded(false, true)
+                } else {
+                    appBarLayout.setExpanded(true, true)
+                }
                 recyclerViewContacts?.isNestedScrollingEnabled = true
                 recyclerViewContacts?.smoothScrollToPosition(0)
                 recyclerViewCompanies?.isNestedScrollingEnabled = true
@@ -258,20 +278,7 @@ class MainActivity :
 
     override fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-//        when (fragment) {
-//            contactsFragment -> {
-//                fragmentTransaction.hide(companiesFragment)
-//                fragmentTransaction.hide(homeFragment)
-//            }
-//            homeFragment -> {
-//                fragmentTransaction.hide(contactsFragment)
-//                fragmentTransaction.hide(companiesFragment)
-//            }
-//            companiesFragment -> {
-//                fragmentTransaction.hide(contactsFragment)
-//                fragmentTransaction.hide(homeFragment)
-//            }
-//        }
+        currentFragment = fragment
 
         fragmentTransaction.hide(contactsFragment)
         fragmentTransaction.hide(companiesFragment)
