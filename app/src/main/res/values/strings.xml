@@ -109,7 +109,6 @@
     <string name="changePassword">Change Password</string>
     <string name="oldPassword">Old Password</string>
     <string name="newPassword">New Password</string>
-    <string name="wrongPassword">Wrong password.</string>
     <string name="sameOldNewPasswordMessage">New password cannot be the same as old password.</string>
     <string name="passChangeSuccess">Password changed successfully!</string>
 
