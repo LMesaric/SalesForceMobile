@@ -2,6 +2,7 @@ package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +12,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.reset_password.view.*
 
@@ -21,7 +23,7 @@ import kotlinx.android.synthetic.main.reset_password.view.*
 //FILIP - reset password stranica ima jako strgani background image na mobitelu - https://imgur.com/a/9yk4E08
 //FILIP - dodati Remember Me feature
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
@@ -29,6 +31,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var email: String
     private lateinit var alertDialog: AlertDialog
     private lateinit var resetPasswordView: View
+
+    private var dialog: android.app.AlertDialog? = null
+
+    private var lastClickTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +47,10 @@ class LoginActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbarLogin)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        btnLogin.setOnClickListener(this)
+        tvForgotPassword.setOnClickListener(this)
+        tvRegister.setOnClickListener(this)
 
         etLoginEmail.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
@@ -61,8 +71,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun onLogin(@Suppress("UNUSED_PARAMETER") view: View) {
-        disableAllButtons()
+    private fun onLogin() {
         email = etLoginEmail.text.toString().trim()
         val tempPassword = etLoginPassword.text.toString()       // Do NOT trim the password
         var thereAreNoErrors = true
@@ -76,7 +85,9 @@ class LoginActivity : AppCompatActivity() {
             thereAreNoErrors = false
         }
         if (thereAreNoErrors) {
-            btnLogin.visibility = View.INVISIBLE
+
+            dialog = SpotsDialog.Builder().setContext(this).build()
+            dialog?.show()
 
             mAuth.signInWithEmailAndPassword(email, HashSHA3.getHashedValue(tempPassword))
                     .addOnCompleteListener(this) { task ->
@@ -109,18 +120,19 @@ class LoginActivity : AppCompatActivity() {
                                             }
                                         } else {
                                             Toast.makeText(this, getString(R.string.noUserFound), Toast.LENGTH_LONG).show()
+                                            dialog?.dismiss()
                                         }
                                     }
                         } else {
                             Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+                            dialog?.dismiss()
                         }
-                        btnLogin.visibility = View.VISIBLE
+
                     }
         }
-        enableAllButtons()
     }
 
-    fun onForgotPassword(@Suppress("UNUSED_PARAMETER") view: View) {
+    private fun onForgotPassword() {
         resetPasswordView = layoutInflater.inflate(R.layout.reset_password, constraintLayoutLoginMain, false)
         alertDialog = AlertDialog.Builder(this).create()
         alertDialog.setView(resetPasswordView)
@@ -145,14 +157,17 @@ class LoginActivity : AppCompatActivity() {
         resetPasswordView.etEmailPassReset.requestFocus()
     }
 
-    fun onSendEmail(@Suppress("UNUSED_PARAMETER") view: View) {
+    fun onSendEmail() {
         val email: String = resetPasswordView.etEmailPassReset.text.toString().trim()
 
         if (!email.isBlank()) {
+            dialog = SpotsDialog.Builder().setContext(this).build()
+            dialog?.show()
             mAuth.sendPasswordResetEmail(email)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             alertDialog.dismiss()
+                            dialog?.dismiss()
 //                            Toast.makeText(this, getString(R.string.checkYourEmail), Toast.LENGTH_LONG).show()
                             Snackbar.make(etLoginEmail, getString(R.string.checkYourEmail), Snackbar.LENGTH_INDEFINITE)
                                     .setAction("Dismiss") {}    // There must be an empty OnClickListener for Dismiss to work
@@ -160,22 +175,41 @@ class LoginActivity : AppCompatActivity() {
                             // LUKA - zamijeniti sve toastove? -> napraviti static funkciju, extract resource
                         } else {
                             resetPasswordView.etEmailPassReset.error = task.exception?.message
+                            dialog?.dismiss()
                         }
                     }
         } else {
             resetPasswordView.etEmailPassReset.error = getString(R.string.emailEmptyMessage)
+            dialog?.dismiss()
         }
+
     }
 
-    fun onCreateNewAccount(@Suppress("UNUSED_PARAMETER") view: View) {
-        disableAllButtons()
+    override fun onClick(p0: View) {
+        if (SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+            return
+        }
+        lastClickTime = SystemClock.elapsedRealtime()
+        pressedOnClick(p0)
+    }
+
+    private fun pressedOnClick(v: View) {
+        when (v.id) {
+            R.id.btnLogin -> onLogin()
+            R.id.tvRegister -> onCreateNewAccount()
+            R.id.tvForgotPassword -> onForgotPassword()
+        }
+
+    }
+
+    private fun onCreateNewAccount() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivityForResult(intent, 0)   //FILIP - ne vidim da se igdje koristi ovaj ForResult i requestCode
     }
 
     override fun onResume() {
         super.onResume()
-        enableAllButtons()
+        window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
         val user: FirebaseUser? = mAuth.currentUser
         user?.reload()
         if (user != null) {
@@ -185,6 +219,13 @@ class LoginActivity : AppCompatActivity() {
                 sendToVerify()
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        dialog?.dismiss()
     }
 
     private fun sendToMain() {
@@ -199,17 +240,5 @@ class LoginActivity : AppCompatActivity() {
         verifyIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(verifyIntent)
         finish()
-    }
-
-    private fun enableAllButtons() {
-        tvRegister.isEnabled = true
-        tvForgotPassword.isEnabled = true
-        btnLogin.isEnabled = true
-    }
-
-    private fun disableAllButtons() {
-        tvRegister.isEnabled = false
-        tvForgotPassword.isEnabled = false
-        btnLogin.isEnabled = false
     }
 }

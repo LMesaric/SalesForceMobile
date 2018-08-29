@@ -1,6 +1,7 @@
 package hr.atoscvc.salesforcemobile
 
 import android.os.Bundle
+import android.os.SystemClock
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import kotlinx.android.synthetic.main.fragment_new_name_layout.view.*
 class NewNameFragment : Fragment(), View.OnClickListener {
 
     private lateinit var replaceFragmentListener: ReplaceFragmentListener
+
+    private var lastClickTime: Long = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -43,6 +46,10 @@ class NewNameFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
+        if (SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+            return
+        }
+        lastClickTime = SystemClock.elapsedRealtime()
         val firstName = etRegisterFirstName.text.toString().trim()
         val lastName = etRegisterLastName.text.toString().trim()
         var thereAreNoErrors = true

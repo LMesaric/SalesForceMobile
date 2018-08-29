@@ -24,10 +24,12 @@ android {
     }
 }
 
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
+    implementation 'com.android.support:animated-vector-drawable:28.0.0-rc01'
     implementation 'com.android.support:support-media-compat:28.0.0-rc01'
     implementation 'com.android.support:support-v4:28.0.0-rc01'
     implementation 'com.android.support:cardview-v7:28.0.0-rc01'
@@ -41,6 +43,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:17.1.0'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.github.walleth:sha3:0.5'
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
