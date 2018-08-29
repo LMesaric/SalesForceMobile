@@ -3,13 +3,13 @@ package hr.atoscvc.salesforcemobile
 import android.content.res.Resources
 
 object ConcatenateObjectToString {
-    fun concatenateContactName(contact: Contact, resources: Resources, formal: Boolean = true): String {
+    fun concatenateContactName(contact: Contact, resources: Resources, fullName: Boolean = true): String {
         val contactTitle: String = if (contact.title == 0) {
             ""
         } else {
             resources.getStringArray(R.array.contactTitle_array)[contact.title] + " "
         }
-        return if (formal) {
+        return if (fullName) {
             "$contactTitle${contact.firstName} ${contact.lastName}"
         } else {
             "$contactTitle${contact.lastName}"
@@ -17,19 +17,28 @@ object ConcatenateObjectToString {
     }
 
     fun concatenateCompany(company: Company, resources: Resources): String {
-        val result = StringBuilder("")
-                .append(company.name).append(" ")
-                .append(company.webPage).append(" ")
-                .append(company.details).append(" ")
-                .append(company.phone).append(" ")
-                .append(company.OIB).append(" ")
-                .append(resources.getStringArray(R.array.status_array)[company.status]).append(" ")
+        // company.status is deliberately not in this list
+        val result = StringBuilder()
 
+        result.append(company.name).append(" ")
+        result.append(company.OIB).append(" ")
         if (company.cvsSegment > 0) {
             result.append(resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]).append(" ")
         }
+        if (company.webPage != null) {
+            result.append(company.webPage).append(" ")
+        }
+        if (company.details != null) {
+            result.append(company.details).append(" ")
+        }
+        if (company.phone != null) {
+            result.append(company.phone).append(" ")
+        }
         if (company.communicationType > 0) {
             result.append(resources.getStringArray(R.array.companyCommunicationType_array)[company.communicationType]).append(" ")
+        }
+        if (company.income != null) {
+            result.append(company.income).append(" ")
         }
         if (company.employees > 0) {
             result.append(resources.getStringArray(R.array.companyEmployees_array)[company.employees]).append(" ")
@@ -39,20 +48,22 @@ object ConcatenateObjectToString {
     }
 
     fun concatenateContact(contact: Contact, resources: Resources): String {
-        val result = StringBuilder("")
-                .append(contact.firstName).append(" ")
-                .append(contact.lastName).append(" ")
-                .append(contact.details).append(" ")
-                .append(contact.phone).append(" ")
-                .append(contact.company?.name).append(" ")
-                .append(contact.email).append(" ")
-                .append(resources.getStringArray(R.array.status_array)[contact.status]).append(" ")
+        // contact.status is deliberately not in this list
+        val result = StringBuilder()
 
+        result.append(concatenateContactName(contact, resources, true)).append(" ")
+        result.append(contact.company?.name).append(" ")
+        if (contact.details != null) {
+            result.append(contact.details).append(" ")
+        }
+        if (contact.phone != null) {
+            result.append(contact.phone).append(" ")
+        }
+        if (contact.email != null) {
+            result.append(contact.email).append(" ")
+        }
         if (contact.preferredTime > 0) {
             result.append(resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]).append(" ")
-        }
-        if (contact.title > 0) {
-            result.append(resources.getStringArray(R.array.contactTitle_array)[contact.title]).append(" ")
         }
 
         return result.toString()
