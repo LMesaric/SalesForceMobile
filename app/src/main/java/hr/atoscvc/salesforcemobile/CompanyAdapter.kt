@@ -62,8 +62,11 @@ class CompanyAdapter(
             holder.btnCardCompanySelectCompany.isEnabled = true
 
             holder.btnCardCompanySelectCompany.setOnClickListener {
-                ContactEditFragment.chosenCompany = company
-                context.onBackPressed()
+                if (SystemClock.elapsedRealtime() - lastClickTime >= 2000) {
+                    lastClickTime = SystemClock.elapsedRealtime()
+                    ContactEditFragment.chosenCompany = company
+                    context.onBackPressed()
+                }
             }
         } else {
             holder.btnCardCompanySelectCompany.visibility = View.GONE
