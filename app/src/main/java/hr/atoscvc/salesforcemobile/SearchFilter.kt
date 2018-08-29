@@ -3,10 +3,11 @@ package hr.atoscvc.salesforcemobile
 import android.content.res.Resources
 import hr.atoscvc.salesforcemobile.ConcatenateObjectToString.concatenateCompany
 import hr.atoscvc.salesforcemobile.ConcatenateObjectToString.concatenateContact
+import java.util.regex.Pattern
 
 object SearchFilter {
     /**
-     * @param query - keywords separated by blanks, empty query matches any data
+     * @param query - keywords separated by blanks, empty and null query matches any data
      * @param data - data that is checked to see if it matches the query (Contact or Company)
      * @param matchAll - match all keywords or at least one
      * @param matchCase - match only keywords with the same case
@@ -15,7 +16,7 @@ object SearchFilter {
      * @param resources - needed for string arrays in data concatenation
      */
     fun satisfiesQuery(
-            query: String,
+            query: String?,
             data: Any,
             matchAll: Boolean,
             matchCase: Boolean,
@@ -38,11 +39,11 @@ object SearchFilter {
             return false
         } else if (onlyActive == false && isDataActive) {
             return false
-        } else if (query.isBlank()) {
+        } else if (query.isNullOrBlank()) {
             return true
         }
 
-        val keywordList: List<String> = query.trim().split("\\s+".toRegex())
+        val keywordList: List<String> = query!!.trim().split("\\s+".toRegex())
 
         var prepareRegex: String = if (matchAll) {
             if (onlyWords) {
@@ -63,6 +64,6 @@ object SearchFilter {
             prepareRegex = prepareRegex.toLowerCase()
         }
 
-        return dataString.matches(prepareRegex.toRegex())
+        return Pattern.compile(prepareRegex).matcher(dataString).find()
     }
 }

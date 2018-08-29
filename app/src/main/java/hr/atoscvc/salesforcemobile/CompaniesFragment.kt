@@ -102,23 +102,24 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
         }
     }
 
-    override fun onQueryTextSubmit(p0: String?): Boolean {
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        filter(query)
         return false
     }
 
-    override fun onQueryTextChange(p0: String?): Boolean {
-        filter(p0.toString())
+    override fun onQueryTextChange(query: String?): Boolean {
+        filter(query)
         return false
     }
 
-    private fun filter(text: String) {
+    //TODO dodati sve potrebne checkboxove!
+    private fun filter(query: String?) {
         val filteredList = ArrayList<Company>()
-        for (company in companyList) {
-            if (ConcatenateObjectToString.concatenateCompany(company, resources).toLowerCase().contains(text.toLowerCase())) {
+        for (company: Company in companyList) {
+            if (SearchFilter.satisfiesQuery(query, company, false, false, true, false, resources)) {
                 filteredList.add(company)
             }
         }
         adapter?.filter(filteredList)
     }
-
 }
