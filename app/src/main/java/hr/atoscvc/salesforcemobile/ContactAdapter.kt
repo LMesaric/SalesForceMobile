@@ -2,6 +2,7 @@ package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
 import android.content.Intent
+import android.os.SystemClock
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -18,6 +19,8 @@ class ContactAdapter(
         private val isForSelect: Boolean,
         private val listenerContacts: RecyclerViewContactsOnClickListener
 ) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+
+    private var lastClickTime: Long = 0
 
     interface RecyclerViewContactsOnClickListener {
         fun recyclerViewContactsOnClick(
@@ -44,11 +47,14 @@ class ContactAdapter(
         holder.tvCardContactStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
 
         holder.constraintLayoutContactMain.setOnClickListener {
-            listenerContacts.recyclerViewContactsOnClick(
-                    holder.ivContactAvatar,
-                    contactList[position],
-                    isForSelect
-            )
+            if (SystemClock.elapsedRealtime() - lastClickTime >= 1000) {
+                lastClickTime = SystemClock.elapsedRealtime()
+                listenerContacts.recyclerViewContactsOnClick(
+                        holder.ivContactAvatar,
+                        contactList[position],
+                        isForSelect
+                )
+            }
         }
 
         if (isForSelect) {
