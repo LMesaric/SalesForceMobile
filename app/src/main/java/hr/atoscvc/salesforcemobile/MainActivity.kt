@@ -98,8 +98,8 @@ class MainActivity :
                     searchView.setOnQueryTextListener(contactsFragment)
                     searchView.visibility = View.VISIBLE
                     searchItem.isVisible = true
-                    searchItem.collapseActionView()
                     replaceFragment(contactsFragment)
+                    searchItem.collapseActionView()
                     true
                 }
 
@@ -113,8 +113,8 @@ class MainActivity :
                     searchView.setOnQueryTextListener(companiesFragment)
                     searchView.visibility = View.VISIBLE
                     searchItem.isVisible = true
-                    searchItem.collapseActionView()
                     replaceFragment(companiesFragment)
+                    searchItem.collapseActionView()
                     true
                 }
 
@@ -186,23 +186,23 @@ class MainActivity :
 
         if (refreshContacts) {
             refreshContacts = false
-            searchView.setQuery(searchView.query, true)
             val bundle = Bundle()
             bundle.putBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), false)
             companiesFragment.arguments = bundle
             appBarLayout.isActivated = true
             coordinator.title = resources.getString(R.string.Contacts)
             replaceFragment(contactsFragment)
+            searchView.setQuery(searchView.query, true)
 
         } else if (refreshCompanies) {
             refreshCompanies = false
-            searchView.setQuery(searchView.query, true)
             val bundle = Bundle()
             bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), false)
             companiesFragment.arguments = bundle
             appBarLayout.isActivated = true
             coordinator.title = resources.getString(R.string.Companies)
             replaceFragment(companiesFragment)
+            searchView.setQuery(searchView.query, true)
         }
     }
 

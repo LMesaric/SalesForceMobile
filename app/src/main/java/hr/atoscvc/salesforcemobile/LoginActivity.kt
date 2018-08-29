@@ -136,6 +136,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         resetPasswordView = layoutInflater.inflate(R.layout.reset_password, constraintLayoutLoginMain, false)
         alertDialog = AlertDialog.Builder(this).create()
         alertDialog.setView(resetPasswordView)
+        resetPasswordView.btnSendPassReset.setOnClickListener {
+            onSendEmail()
+        }
 
         resetPasswordView.etEmailPassReset.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
