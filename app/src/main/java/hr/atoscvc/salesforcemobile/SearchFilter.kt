@@ -12,6 +12,7 @@ object SearchFilter {
      * @param matchCase - match only keywords with the same case
      * @param onlyActive - match only active data (true), only inactive data (false), or both (null)
      * @param onlyWords - match only beginning of words and not middle (should 'bc' match 'Abc'?)
+     * @param resources - needed for string arrays in data concatenation
      */
     fun satisfiesQuery(
             query: String,
