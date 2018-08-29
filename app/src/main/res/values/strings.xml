@@ -132,6 +132,8 @@
     <string name="Bronze">Bronze</string>
 
     <string name="Phone">Phone</string>
+    <string name="VideoCall">Video call</string>
+    <string name="Meeting">Meeting</string>
 
     <string-array name="status_array">
         <item>@string/ACTIVE</item>
@@ -160,10 +162,11 @@
         <item>@string/Bronze</item>
     </string-array>
 
-    <!-- LUKA Sto uopce staviti na ovu listu? Email ne drzimo u bazi -->
     <string-array name="companyCommunicationType_array">
         <item>@string/UNDEFINED</item>
         <item>@string/Phone</item>
+        <item>@string/VideoCall</item>
+        <item>@string/Meeting</item>
     </string-array>
 
     <string-array name="companyEmployees_array">
