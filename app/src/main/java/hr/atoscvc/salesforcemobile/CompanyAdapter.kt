@@ -1,6 +1,7 @@
 package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
+import android.os.SystemClock
 import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -17,6 +18,8 @@ class CompanyAdapter(
         private val isForSelect: Boolean,
         private val listenerCompanies: RecyclerViewCompaniesOnClickListener
 ) : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
+
+    private var lastClickTime: Long = 0
 
     interface RecyclerViewCompaniesOnClickListener {
         //FILIP - sortirati listu (Companies & Contacts) i onda pozvati notifyDataSetChanged(), pa se ne treba loadati ponovno iz baze
@@ -44,11 +47,14 @@ class CompanyAdapter(
         holder.tvCardCompanyStatus.text = context.resources.getStringArray(R.array.status_array)[company.status]
 
         holder.constraintLayoutCompanyMain.setOnClickListener {
-            listenerCompanies.recyclerViewCompaniesOnClick(
-                    holder.ivCompanyAvatar,
-                    companyList[position],
-                    isForSelect
-            )
+            if (SystemClock.elapsedRealtime() - lastClickTime >= 2000) {
+                lastClickTime = SystemClock.elapsedRealtime()
+                listenerCompanies.recyclerViewCompaniesOnClick(
+                        holder.ivCompanyAvatar,
+                        companyList[position],
+                        isForSelect
+                )
+            }
         }
 
         if (isForSelect) {
