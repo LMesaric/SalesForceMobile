@@ -2,15 +2,18 @@ package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_verify.*
 
-class VerifyActivity : AppCompatActivity() {
+class VerifyActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mAuth: FirebaseAuth
+
+    private var lastClickTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +34,28 @@ class VerifyActivity : AppCompatActivity() {
         }
     }
 
-    fun onVerifySend(@Suppress("UNUSED_PARAMETER") view: View) {
+    override fun onClick(p0: View) {
+        if (SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+            return
+        }
+        lastClickTime = SystemClock.elapsedRealtime()
+        pressedOnClick(p0)
+    }
+
+    private fun pressedOnClick(v: View) {
+        when (v.id) {
+            R.id.btnVerifyLogout -> onVerifyLogout()
+            R.id.btnVerifyResend -> onVerifySend()
+            R.id.btnVerifyDone -> onVerificationDone()
+        }
+
+    }
+
+    private fun onVerifySend() {
+        if (SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+            return
+        }
+        lastClickTime = SystemClock.elapsedRealtime()
         mAuth.currentUser!!.sendEmailVerification()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -42,7 +66,7 @@ class VerifyActivity : AppCompatActivity() {
                 }
     }
 
-    fun onVerificationDone(@Suppress("UNUSED_PARAMETER") view: View) {
+    private fun onVerificationDone() {
         mAuth.currentUser!!.reload()
         if (mAuth.currentUser!!.isEmailVerified) {
             sendToMain()
@@ -52,7 +76,7 @@ class VerifyActivity : AppCompatActivity() {
     }
 
     //FILIP - ovo bi trebalo ici u toolbar menu
-    fun onVerifyLogout(@Suppress("UNUSED_PARAMETER") view: View) {
+    private fun onVerifyLogout() {
         ActiveUserSingleton.user = null
         mAuth.signOut()
         val loginIntent = Intent(this, LoginActivity::class.java)

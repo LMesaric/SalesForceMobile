@@ -5,11 +5,13 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -17,6 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_companies.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
+
 
 //TODO MainActivity napraviti kao tabbedActivity ?
 //FIXME SVAKI PUT KAD CREATEAMO FRAGMENT ON OSTAJE SAVEAN, KAO I ONAJ STARI (MEMORIJA RASTE DO 370 MB) - REUSE https://stackoverflow.com/questions/19219458/fragment-on-screen-rotation
@@ -232,6 +235,9 @@ class MainActivity :
         searchItem.isVisible = false
         searchView.visibility = View.GONE
         searchItem.collapseActionView()
+
+        val searchEditText = searchView.findViewById<View>(android.support.v7.appcompat.R.id.search_src_text) as EditText
+        searchEditText.setTextColor(ContextCompat.getColor(this, R.color.colorBackgroundWhite))
 
         searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {

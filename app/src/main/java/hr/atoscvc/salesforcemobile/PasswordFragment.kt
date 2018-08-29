@@ -2,6 +2,7 @@ package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import dmax.dialog.SpotsDialog
 import hr.atoscvc.salesforcemobile.CheckPasswordConstraints.checkPasswordConstraints
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.fragment_password_layout.*
@@ -18,6 +20,10 @@ class PasswordFragment : Fragment(), View.OnClickListener {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+
+    private var dialog: android.app.AlertDialog? = null
+
+    private var lastClickTime: Long = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -39,6 +45,11 @@ class PasswordFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
+        if (SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+            return
+        }
+        lastClickTime = SystemClock.elapsedRealtime()
+
         val password: String = etRegisterPassword.text.toString()   // Do NOT trim the password
         var thereAreNoErrors = true
 
@@ -55,6 +66,8 @@ class PasswordFragment : Fragment(), View.OnClickListener {
         }
 
         if (thereAreNoErrors) {
+            dialog = SpotsDialog.Builder().setContext(activity).build()
+            dialog?.show()
             mAuth.createUserWithEmailAndPassword(ActiveUserSingleton.user?.email.toString(), HashSHA3.getHashedValue(password))
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
@@ -101,5 +114,10 @@ class PasswordFragment : Fragment(), View.OnClickListener {
                         }
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        dialog?.dismiss()
     }
 }

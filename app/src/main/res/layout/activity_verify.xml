@@ -10,7 +10,6 @@
         android:id="@+id/btnVerifyResend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onVerifySend"
         android:text="Resend Verification Email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,17 +20,15 @@
         android:id="@+id/btnVerifyLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onVerifyLogout"
         android:text="@string/logout"
         app:layout_constraintEnd_toEndOf="@id/btnVerifyResend"
         app:layout_constraintStart_toStartOf="@id/btnVerifyResend"
         app:layout_constraintTop_toBottomOf="@id/btnVerifyResend" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnVerifyDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onVerificationDone"
         android:text="I have verified my email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
