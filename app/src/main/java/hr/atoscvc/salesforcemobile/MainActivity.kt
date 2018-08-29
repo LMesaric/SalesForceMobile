@@ -46,6 +46,8 @@ class MainActivity :
 
     private lateinit var currentFragment: Fragment
 
+    private var mKeyboardVisible: Boolean = false
+
     //TODO tuning icon search - dropdown, checkbox, and/or search
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,32 +89,32 @@ class MainActivity :
                 }
 
                 R.id.navBarContacts -> {
+                    coordinator.title = resources.getString(R.string.Contacts)
                     val bundle = Bundle()
                     bundle.putBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), false)
                     contactsFragment.arguments = bundle
                     appBarLayout.setExpanded(true, true)
                     appBarLayout.isActivated = true
-                    coordinator.title = resources.getString(R.string.Contacts)
-                    searchItem.isVisible = true
-                    searchView.visibility = View.VISIBLE
                     searchView.setOnQueryTextListener(contactsFragment)
-                    replaceFragment(contactsFragment)
+                    searchView.visibility = View.VISIBLE
+                    searchItem.isVisible = true
                     searchItem.collapseActionView()
+                    replaceFragment(contactsFragment)
                     true
                 }
 
                 R.id.navBarCompanies -> {
+                    coordinator.title = resources.getString(R.string.Companies)
                     val bundle = Bundle()
                     bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), false)
                     companiesFragment.arguments = bundle
-                    searchItem.isVisible = true
-                    searchView.visibility = View.VISIBLE
                     appBarLayout.setExpanded(true, true)
                     appBarLayout.isActivated = true
-                    coordinator.title = resources.getString(R.string.Companies)
                     searchView.setOnQueryTextListener(companiesFragment)
-                    replaceFragment(companiesFragment)
+                    searchView.visibility = View.VISIBLE
+                    searchItem.isVisible = true
                     searchItem.collapseActionView()
+                    replaceFragment(companiesFragment)
                     true
                 }
 
@@ -139,7 +141,6 @@ class MainActivity :
         startActivityForResult(companyDetailsIntent, CompaniesFragment.requestItemRefresh, options.toBundle())
     }
 
-    private var mKeyboardVisible: Boolean = false
     private val mLayoutKeyboardVisibilityListener = {
         val rectangle = Rect()
         //error getContentView
@@ -185,17 +186,20 @@ class MainActivity :
 
         if (refreshContacts) {
             refreshContacts = false
-            appBarLayout.setExpanded(true, true)
+            searchView.setQuery(searchView.query, true)
+            val bundle = Bundle()
+            bundle.putBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), false)
+            companiesFragment.arguments = bundle
             appBarLayout.isActivated = true
             coordinator.title = resources.getString(R.string.Contacts)
             replaceFragment(contactsFragment)
 
         } else if (refreshCompanies) {
             refreshCompanies = false
+            searchView.setQuery(searchView.query, true)
             val bundle = Bundle()
             bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), false)
             companiesFragment.arguments = bundle
-            appBarLayout.setExpanded(true, true)
             appBarLayout.isActivated = true
             coordinator.title = resources.getString(R.string.Companies)
             replaceFragment(companiesFragment)
