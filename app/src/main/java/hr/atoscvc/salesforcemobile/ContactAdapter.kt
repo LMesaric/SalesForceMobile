@@ -63,10 +63,13 @@ class ContactAdapter(
 
             holder.btnCardContactSelectContact.setOnClickListener {
                 //TODO Use this for creating opportunities
-                val intent = Intent().apply {
-                    putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                if (SystemClock.elapsedRealtime() - lastClickTime >= 2000) {
+                    lastClickTime = SystemClock.elapsedRealtime()
+                    val intent = Intent().apply {
+                        putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                    }
+                    context.setResult(Activity.RESULT_OK, intent)
                 }
-                context.setResult(Activity.RESULT_OK, intent)
             }
         } else {
             holder.btnCardContactSelectContact.visibility = View.GONE
