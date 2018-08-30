@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -134,12 +135,12 @@ class MainActivity :
         replaceFragment(companiesFragment)
     }
 
-    override fun recyclerViewContactsOnClick(circleImageView: CircleImageView, contact: Contact, hideEditButtons: Boolean) {
+    override fun recyclerViewContactsOnClick(imageView: ImageView, contact: Contact, hideEditButtons: Boolean) {
         val contactDetailsIntent = Intent(this, ContactDetailsActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
             putExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), hideEditButtons)
         }
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, circleImageView, getString(R.string.transitionNameContactAvatar))
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView, getString(R.string.transitionNameContactAvatar))
         startActivityForResult(contactDetailsIntent, ContactsFragment.requestItemRefresh, options.toBundle())
     }
 

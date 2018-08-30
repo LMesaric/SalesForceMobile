@@ -34,47 +34,41 @@ class ContactDetailsActivity : AppCompatActivity() {
         tvContactDetailsStatus.text = resources.getStringArray(R.array.status_array)[contact.status]
 
         if (contact.email.isNullOrBlank()) {
-            tvContactDetailsEmail.visibility = View.GONE
-            fabContactDetailsSendEmail.hide()
+            layoutContactDetailsEmail.visibility = View.GONE
+            fabContactDetailsSendEmail.isEnabled = false
         } else {
             tvContactDetailsEmail.text = contact.email
-            tvContactDetailsEmail.visibility = View.VISIBLE
-            fabContactDetailsSendEmail.show()
+            layoutContactDetailsEmail.visibility = View.VISIBLE
+            fabContactDetailsSendEmail.isEnabled = true
         }
 
         if (contact.phone.isNullOrBlank()) {
-            tvContactDetailsPhoneNumber.visibility = View.GONE
-            fabContactDetailsCall.hide()
-            fabContactDetailsSendText.hide()
+            layoutContactDetailsPhoneNumber.visibility = View.GONE
+            fabContactDetailsCall.isEnabled = false
+            fabContactDetailsSendText.isEnabled = false
         } else {
             tvContactDetailsPhoneNumber.text = contact.phone
-            tvContactDetailsPhoneNumber.visibility = View.VISIBLE
-            fabContactDetailsCall.show()
-            fabContactDetailsSendText.show()
+            layoutContactDetailsPhoneNumber.visibility = View.VISIBLE
+            fabContactDetailsCall.isEnabled = true
+            fabContactDetailsSendText.isEnabled = true
         }
 
         if (contact.details.isNullOrBlank()) {
-            tvContactDetailsDetails.visibility = View.GONE
+            layoutContactDetailsDetails.visibility = View.GONE
         } else {
             tvContactDetailsDetails.text = contact.details
-            tvContactDetailsDetails.visibility = View.VISIBLE
+            layoutContactDetailsDetails.visibility = View.VISIBLE
         }
 
         if (contact.preferredTime == 0) {
-            tvContactDetailsPrefTime.visibility = View.GONE
+            layoutContactDetailsPreferredTime.visibility = View.GONE
         } else {
             tvContactDetailsPrefTime.text = resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
-            tvContactDetailsPrefTime.visibility = View.VISIBLE
+            layoutContactDetailsPreferredTime.visibility = View.VISIBLE
         }
 
         val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), false)
-        if (shouldHideButtons) {
-            tvContactDetailsEdit.visibility = View.GONE
-            tvContactDetailsEdit.isEnabled = false
-        } else {
-            tvContactDetailsEdit.visibility = View.VISIBLE
-            tvContactDetailsEdit.isEnabled = true
-        }
+        tvContactDetailsEdit.isEnabled = !shouldHideButtons
     }
 
     fun onContactEmail(@Suppress("UNUSED_PARAMETER") view: View) {
