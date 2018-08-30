@@ -43,6 +43,8 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
 
+        val mainActivity = activity as MainActivity
+
         if (!hidden) {
             activity?.fabAdd?.show()
             activity?.fabAdd?.setOnClickListener {
@@ -89,6 +91,7 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
                             adapter?.notifyDataSetChanged()
                         }
                     }
+                    mainActivity.searchView.setQuery(mainActivity.searchView.query, true)
                 }
             }
         }

@@ -37,7 +37,7 @@ class MainActivity :
     private var refreshContacts = false
     private var refreshCompanies = false
 
-    private lateinit var searchView: SearchView
+    lateinit var searchView: SearchView
     private lateinit var searchItem: MenuItem
 
     private lateinit var homeFragment: HomeFragment
@@ -78,16 +78,19 @@ class MainActivity :
             when (item.itemId) {
                 R.id.navBarHome -> {
                     goToHome()
+                    searchItem.collapseActionView()
                     true
                 }
 
                 R.id.navBarContacts -> {
                     goToContacts()
+                    searchItem.collapseActionView()
                     true
                 }
 
                 R.id.navBarCompanies -> {
                     goToCompanies()
+                    searchItem.collapseActionView()
                     true
                 }
 
@@ -103,7 +106,6 @@ class MainActivity :
         searchItem.isVisible = false
         searchView.visibility = View.GONE
         replaceFragment(homeFragment)
-        searchItem.collapseActionView()
     }
 
     private fun goToContacts() {
@@ -117,7 +119,6 @@ class MainActivity :
         searchItem.isVisible = true
         searchView.visibility = View.VISIBLE
         replaceFragment(contactsFragment)
-        searchItem.collapseActionView()
     }
 
     private fun goToCompanies() {
@@ -131,7 +132,6 @@ class MainActivity :
         searchItem.isVisible = true
         searchView.visibility = View.VISIBLE
         replaceFragment(companiesFragment)
-        searchItem.collapseActionView()
     }
 
     override fun recyclerViewContactsOnClick(circleImageView: CircleImageView, contact: Contact, hideEditButtons: Boolean) {
@@ -197,13 +197,10 @@ class MainActivity :
 
         if (refreshContacts) {
             refreshContacts = false
-            goToContacts()
-            searchView.setQuery(searchView.query, true)
-
+            replaceFragment(contactsFragment)
         } else if (refreshCompanies) {
             refreshCompanies = false
-            goToCompanies()
-            searchView.setQuery(searchView.query, true)
+            replaceFragment(companiesFragment)
         }
     }
 
@@ -272,7 +269,6 @@ class MainActivity :
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when (item?.itemId) {
-
             R.id.action_logout -> {
                 sendToLogin()
             }
