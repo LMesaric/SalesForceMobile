@@ -44,70 +44,79 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
         return view
     }
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpCompanyList()
+    }
 
+    private fun setUpCompanyList() {
         try {
             mainActivity = activity as MainActivity
         } catch (e: ClassCastException) {
 
         }
 
-        if (!hidden) {
-            activity?.fabAdd?.show()
-            activity?.fabAdd?.setOnClickListener {
-                val intent = Intent(activity, CompanyEditorActivity::class.java).apply {
-                    putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
-                }
-                activity?.startActivityForResult(intent, requestCodeRefresh)
+        activity?.fabAdd?.show()
+        activity?.fabAdd?.setOnClickListener {
+            val intent = Intent(activity, CompanyEditorActivity::class.java).apply {
+                putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
             }
+            activity?.startActivityForResult(intent, requestCodeRefresh)
+        }
 
-            recyclerViewCompanies.setHasFixedSize(true)
-            recyclerViewCompanies.layoutManager = LinearLayoutManager(activity)
+        recyclerViewCompanies.setHasFixedSize(true)
+        recyclerViewCompanies.layoutManager = LinearLayoutManager(activity)
 
-            companyList = ArrayList()
+        companyList = ArrayList()
 
-            var listenerCompanies: CompanyAdapter.RecyclerViewCompaniesOnClickListener? = null
-            try {
-                listenerCompanies = activity as MainActivity
-            } catch (e: ClassCastException) {
-                listenerCompanies = activity as ContactEditorActivity
-            } finally {
-                adapter = activity?.applicationContext?.let {
-                    CompanyAdapter(
-                            companyList,
-                            activity as Activity,
-                            arguments
-                                    ?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT))
-                                    ?: false,
-                            listenerCompanies!!
-                    )
-                }
+        var listenerCompanies: CompanyAdapter.RecyclerViewCompaniesOnClickListener? = null
+        try {
+            listenerCompanies = activity as MainActivity
+        } catch (e: ClassCastException) {
+            listenerCompanies = activity as ContactEditorActivity
+        } finally {
+            adapter = activity?.applicationContext?.let {
+                CompanyAdapter(
+                        companyList,
+                        activity as Activity,
+                        arguments
+                                ?.getBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT))
+                                ?: false,
+                        listenerCompanies!!
+                )
             }
+        }
 
-            recyclerViewCompanies.adapter = adapter
+        recyclerViewCompanies.adapter = adapter
 
-            val query: Query? = mAuth.uid?.let {
-                db.collection(getString(R.string.databaseCollectionUsers))
-                        .document(it)
-                        .collection(getString(R.string.databaseCollectionCompanies))
-                        .orderBy(getString(R.string.databaseDocumentName))
+        val query: Query? = mAuth.uid?.let {
+            db.collection(getString(R.string.databaseCollectionUsers))
+                    .document(it)
+                    .collection(getString(R.string.databaseCollectionCompanies))
+                    .orderBy(getString(R.string.databaseDocumentName))
+        }
+        query?.addSnapshotListener { p0, p1 ->
+            if (p1 != null) {
+                Log.d("ERRORS", p1.message)
             }
-            query?.addSnapshotListener { p0, p1 ->
-                if (p1 != null) {
-                    Log.d("ERRORS", p1.message)
-                }
-                if (p0 != null) {
-                    for (doc in p0.documentChanges) {
-                        if (doc.type == DocumentChange.Type.ADDED) {
-                            val newCompany = doc.document.toObject<Company>(Company::class.java)
-                            companyList.add(newCompany)
-                            adapter?.notifyDataSetChanged()
-                        }
+            if (p0 != null) {
+                for (doc in p0.documentChanges) {
+                    if (doc.type == DocumentChange.Type.ADDED) {
+                        val newCompany = doc.document.toObject<Company>(Company::class.java)
+                        companyList.add(newCompany)
+                        adapter?.notifyDataSetChanged()
                     }
-                    mainActivity?.searchView?.setQuery(mainActivity?.searchView?.query, true)
                 }
+                mainActivity?.searchView?.setQuery(mainActivity?.searchView?.query, true)
             }
+        }
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+
+        if (!hidden) {
+            setUpCompanyList()
         }
     }
 
