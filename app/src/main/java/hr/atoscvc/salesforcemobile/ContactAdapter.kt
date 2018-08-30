@@ -47,9 +47,9 @@ class ContactAdapter(
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contact: Contact = contactList[position]
 
-        val letters = contactList[position].firstName[0].toString().toUpperCase() + contactList[position].lastName[0].toString().toUpperCase()
+        val letters = contact.firstName[0].toString().toUpperCase() + contact.lastName[0].toString().toUpperCase()
 
-        val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(contactList[position].documentID))
+        val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(contact.documentID))
 
         holder.ivContactAvatar.setImageDrawable(drawable)
 

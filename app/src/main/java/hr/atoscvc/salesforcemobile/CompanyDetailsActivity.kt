@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.activity_company_details.*
 
 class CompanyDetailsActivity : AppCompatActivity() {
@@ -13,6 +15,8 @@ class CompanyDetailsActivity : AppCompatActivity() {
     companion object {
         const val requestCodeEditCompany = 6
     }
+
+    private var generator = ColorGenerator.MATERIAL
 
     private lateinit var company: Company
     private var isChanged: Boolean = false
@@ -25,6 +29,10 @@ class CompanyDetailsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        val letters = company.name[0].toString().toUpperCase()
+        val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(company.documentID))
+        ivCompanyDetailsAvatar.setImageDrawable(drawable)
 
         tvCompanyDetailsName.text = company.name
         tvCompanyDetailsStatus.text = resources.getStringArray(R.array.status_array)[company.status]

@@ -8,8 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 import de.hdodenhof.circleimageview.CircleImageView
+import hr.atoscvc.salesforcemobile.ContactsFragment.Companion.contactList
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
 class CompanyAdapter(
@@ -19,12 +23,14 @@ class CompanyAdapter(
         private val listenerCompanies: RecyclerViewCompaniesOnClickListener
 ) : RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>() {
 
+    private var generator = ColorGenerator.MATERIAL
+
     private var lastClickTime: Long = 0
 
     interface RecyclerViewCompaniesOnClickListener {
         //FILIP - sortirati listu (Companies & Contacts) i onda pozvati notifyDataSetChanged(), pa se ne treba loadati ponovno iz baze
         fun recyclerViewCompaniesOnClick(
-                circleImageView: CircleImageView,
+                imageView: ImageView,
                 company: Company,
                 hideEditButtons: Boolean
         )
@@ -41,6 +47,10 @@ class CompanyAdapter(
 
     override fun onBindViewHolder(holder: CompanyViewHolder, position: Int) {
         val company: Company = companyList[position]
+
+        val letters = company.name[0].toString().toUpperCase()
+        val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(company.documentID))
+        holder.ivCompanyAvatar.setImageDrawable(drawable)
 
         holder.tvCardCompanyName.text = company.name
         holder.tvCardCompanyCvsSegment.text = context.resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]
@@ -88,7 +98,7 @@ class CompanyAdapter(
         val tvCardCompanyCvsSegment: TextView = itemView.tvCardCompanyCvsSegment
         val tvCardCompanyStatus: TextView = itemView.tvCardCompanyStatus
 
-        val ivCompanyAvatar: CircleImageView = itemView.ivCompanyAvatar
+        val ivCompanyAvatar: ImageView = itemView.ivCompanyAvatar
         val btnCardCompanySelectCompany: Button = itemView.btnCardCompanySelectCompany
         val constraintLayoutCompanyMain: ConstraintLayout = itemView.constraintLayoutCompanyMain
     }

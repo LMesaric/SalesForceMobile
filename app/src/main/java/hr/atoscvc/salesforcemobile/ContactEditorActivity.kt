@@ -2,13 +2,12 @@ package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import de.hdodenhof.circleimageview.CircleImageView
 
 class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, CompanyAdapter.RecyclerViewCompaniesOnClickListener {
 
@@ -33,13 +32,12 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, Comp
         }
     }
 
-    override fun recyclerViewCompaniesOnClick(circleImageView: CircleImageView, company: Company, hideEditButtons: Boolean) {
+    override fun recyclerViewCompaniesOnClick(imageView: ImageView, company: Company, hideEditButtons: Boolean) {
         val companyDetailsIntent = Intent(this, CompanyDetailsActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
             putExtra(getString(R.string.EXTRA_COMPANY_HIDE_EDIT_BUTTONS), hideEditButtons)
         }
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, circleImageView, getString(R.string.transitionNameCompanyAvatar))
-        startActivityForResult(companyDetailsIntent, CompaniesFragment.requestItemRefresh, options.toBundle())
+        startActivityForResult(companyDetailsIntent, CompaniesFragment.requestItemRefresh)
     }
 
     private fun sendToLogin() {
