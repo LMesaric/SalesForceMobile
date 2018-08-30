@@ -2,20 +2,28 @@ package hr.atoscvc.salesforcemobile
 
 import android.content.Intent
 import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import de.hdodenhof.circleimageview.CircleImageView
+import hr.atoscvc.salesforcemobile.ContactsFragment.Companion.contactList
+import kotlinx.android.synthetic.main.activity_contact_details.*
+import kotlinx.android.synthetic.main.activity_contact_details.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_companies.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
@@ -33,6 +41,9 @@ class MainActivity :
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+
+    private var generator = ColorGenerator.MATERIAL
+
 
     private var refreshContacts = false
     private var refreshCompanies = false
@@ -134,13 +145,12 @@ class MainActivity :
         replaceFragment(companiesFragment)
     }
 
-    override fun recyclerViewContactsOnClick(circleImageView: CircleImageView, contact: Contact, hideEditButtons: Boolean) {
+    override fun recyclerViewContactsOnClick(imageView: ImageView, contact: Contact, hideEditButtons: Boolean) {
         val contactDetailsIntent = Intent(this, ContactDetailsActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
             putExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), hideEditButtons)
         }
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, circleImageView, getString(R.string.transitionNameContactAvatar))
-        startActivityForResult(contactDetailsIntent, ContactsFragment.requestItemRefresh, options.toBundle())
+        startActivityForResult(contactDetailsIntent, ContactsFragment.requestItemRefresh)
     }
 
     override fun recyclerViewCompaniesOnClick(circleImageView: CircleImageView, company: Company, hideEditButtons: Boolean) {

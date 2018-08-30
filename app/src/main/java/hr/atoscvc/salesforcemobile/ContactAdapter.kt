@@ -9,9 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
-import de.hdodenhof.circleimageview.CircleImageView
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.list_layout_contacts.view.*
+
 
 class ContactAdapter(
         private var contactList: ArrayList<Contact>,
@@ -20,11 +23,13 @@ class ContactAdapter(
         private val listenerContacts: RecyclerViewContactsOnClickListener
 ) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
+    private var generator = ColorGenerator.MATERIAL
+
     private var lastClickTime: Long = 0
 
     interface RecyclerViewContactsOnClickListener {
         fun recyclerViewContactsOnClick(
-                circleImageView: CircleImageView,
+                imageView: ImageView,
                 contact: Contact,
                 hideEditButtons: Boolean
         )
@@ -41,6 +46,12 @@ class ContactAdapter(
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contact: Contact = contactList[position]
+
+        val letters = contactList[position].firstName[0].toString().toUpperCase() + contactList[position].lastName[0].toString().toUpperCase()
+
+        val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(contactList[position].documentID))
+
+        holder.ivContactAvatar.setImageDrawable(drawable)
 
         holder.tvCardContactName.text = ConcatenateObjectToString.concatenateContactName(contact, context.resources, true)
         holder.tvCardContactCompany.text = contact.company?.name ?: context.getString(R.string.noCompanyFoundError)
@@ -91,7 +102,7 @@ class ContactAdapter(
         val tvCardContactCompany: TextView = itemView.tvCardContactCompany
         val tvCardContactStatus: TextView = itemView.tvCardContactStatus
 
-        val ivContactAvatar: CircleImageView = itemView.ivContactAvatar
+        val ivContactAvatar: ImageView = itemView.ivContactAvatar
         val btnCardContactSelectContact: Button = itemView.btnCardContactSelectContact
         val constraintLayoutContactMain: ConstraintLayout = itemView.constraintLayoutContactMain
     }
