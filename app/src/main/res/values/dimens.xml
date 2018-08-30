@@ -22,6 +22,7 @@
     <dimen name="toolbar_font_collapsed">21sp</dimen>
     <dimen name="toolbar_font_expanded">24sp</dimen>
     <dimen name="toolbar_height_expanded">128dp</dimen>
-    <dimen name="contactDetailsCardPadding">15dp</dimen>
+    <dimen name="contactDetailsCardPadding">12dp</dimen>
+    <dimen name="edit_text_subtitle_font">16sp</dimen>
 
 </resources>
