@@ -76,51 +76,62 @@ class MainActivity :
 
         navBar.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-
                 R.id.navBarHome -> {
-                    appBarLayout.setExpanded(false, true)
-                    appBarLayout.isActivated = false
-                    coordinator.title = resources.getString(R.string.Home)
-                    searchItem.isVisible = false
-                    searchView.visibility = View.GONE
-                    replaceFragment(homeFragment)
-                    searchItem.collapseActionView()
+                    goToHome()
                     true
                 }
 
                 R.id.navBarContacts -> {
-                    coordinator.title = resources.getString(R.string.Contacts)
-                    val bundle = Bundle()
-                    bundle.putBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), false)
-                    contactsFragment.arguments = bundle
-                    appBarLayout.setExpanded(true, true)
-                    appBarLayout.isActivated = true
-                    searchView.setOnQueryTextListener(contactsFragment)
-                    searchView.visibility = View.VISIBLE
-                    searchItem.isVisible = true
-                    replaceFragment(contactsFragment)
-                    searchItem.collapseActionView()
+                    goToContacts()
                     true
                 }
 
                 R.id.navBarCompanies -> {
-                    coordinator.title = resources.getString(R.string.Companies)
-                    val bundle = Bundle()
-                    bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), false)
-                    companiesFragment.arguments = bundle
-                    appBarLayout.setExpanded(true, true)
-                    appBarLayout.isActivated = true
-                    searchView.setOnQueryTextListener(companiesFragment)
-                    searchView.visibility = View.VISIBLE
-                    searchItem.isVisible = true
-                    replaceFragment(companiesFragment)
-                    searchItem.collapseActionView()
+                    goToCompanies()
                     true
                 }
 
                 else -> false
             }
         }
+    }
+
+    private fun goToHome() {
+        appBarLayout.setExpanded(false, true)
+        appBarLayout.isActivated = false
+        coordinator.title = resources.getString(R.string.Home)
+        searchItem.isVisible = false
+        searchView.visibility = View.GONE
+        replaceFragment(homeFragment)
+        searchItem.collapseActionView()
+    }
+
+    private fun goToContacts() {
+        coordinator.title = resources.getString(R.string.Contacts)
+        val bundle = Bundle()
+        bundle.putBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), false)
+        contactsFragment.arguments = bundle
+        appBarLayout.setExpanded(true, true)
+        appBarLayout.isActivated = true
+        searchView.setOnQueryTextListener(contactsFragment)
+        searchItem.isVisible = true
+        searchView.visibility = View.VISIBLE
+        replaceFragment(contactsFragment)
+        searchItem.collapseActionView()
+    }
+
+    private fun goToCompanies() {
+        coordinator.title = resources.getString(R.string.Companies)
+        val bundle = Bundle()
+        bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), false)
+        companiesFragment.arguments = bundle
+        appBarLayout.setExpanded(true, true)
+        appBarLayout.isActivated = true
+        searchView.setOnQueryTextListener(companiesFragment)
+        searchItem.isVisible = true
+        searchView.visibility = View.VISIBLE
+        replaceFragment(companiesFragment)
+        searchItem.collapseActionView()
     }
 
     override fun recyclerViewContactsOnClick(circleImageView: CircleImageView, contact: Contact, hideEditButtons: Boolean) {
@@ -186,22 +197,12 @@ class MainActivity :
 
         if (refreshContacts) {
             refreshContacts = false
-            val bundle = Bundle()
-            bundle.putBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT), false)
-            companiesFragment.arguments = bundle
-            appBarLayout.isActivated = true
-            coordinator.title = resources.getString(R.string.Contacts)
-            replaceFragment(contactsFragment)
+            goToContacts()
             searchView.setQuery(searchView.query, true)
 
         } else if (refreshCompanies) {
             refreshCompanies = false
-            val bundle = Bundle()
-            bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), false)
-            companiesFragment.arguments = bundle
-            appBarLayout.isActivated = true
-            coordinator.title = resources.getString(R.string.Companies)
-            replaceFragment(companiesFragment)
+            goToCompanies()
             searchView.setQuery(searchView.query, true)
         }
     }
