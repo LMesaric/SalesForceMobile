@@ -11,7 +11,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarLogin"
         android:layout_width="0dp"
-        android:layout_height="128dp"
+        android:layout_height="@dimen/toolbar_height_expanded"
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -23,7 +23,7 @@
         android:id="@+id/toolbarLoginShadow"
         android:layout_width="match_parent"
         android:layout_height="@dimen/shadow_height"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="@dimen/toolbar_height_expanded"
         android:background="@drawable/toolbar_shadow"
         android:elevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -21,5 +21,6 @@
 
     <dimen name="toolbar_font_collapsed">21sp</dimen>
     <dimen name="toolbar_font_expanded">24sp</dimen>
+    <dimen name="toolbar_height_expanded">128dp</dimen>
 
 </resources>
