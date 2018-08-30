@@ -28,6 +28,8 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
+    private var mainActivity: MainActivity? = null
+
     private var adapter: ContactAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +45,11 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
 
-        val mainActivity = activity as MainActivity
+        try {
+            mainActivity = activity as MainActivity
+        } catch (e: ClassCastException) {
+
+        }
 
         if (!hidden) {
             activity?.fabAdd?.show()
@@ -91,7 +97,7 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
                             adapter?.notifyDataSetChanged()
                         }
                     }
-                    mainActivity.searchView.setQuery(mainActivity.searchView.query, true)
+                    mainActivity?.searchView?.setQuery(mainActivity?.searchView?.query, true)
                 }
             }
         }
