@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.fragment_email_layout.*
-import kotlinx.android.synthetic.main.fragment_email_layout.view.*
+import kotlinx.android.synthetic.main.fragment_email.*
+import kotlinx.android.synthetic.main.fragment_email.view.*
 
 class EmailFragment : Fragment(), View.OnClickListener {
 

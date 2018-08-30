@@ -43,10 +43,12 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
-    <FrameLayout
+    <ScrollView
         android:id="@+id/regContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:fillViewport="false"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
