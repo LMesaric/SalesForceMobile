@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.fragment_new_name_layout.*
-import kotlinx.android.synthetic.main.fragment_new_name_layout.view.*
+import kotlinx.android.synthetic.main.fragment_new_name.*
+import kotlinx.android.synthetic.main.fragment_new_name.view.*
 
 class NewNameFragment : Fragment(), View.OnClickListener {
 

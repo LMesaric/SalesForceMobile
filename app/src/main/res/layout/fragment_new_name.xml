@@ -1,13 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="false"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
     tools:context=".NewNameFragment">
 
-    <include layout="@layout/fragment_new_name_layout" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/login_register_common_margin" />
 
-</ScrollView>
+    <android.support.constraint.Guideline
+        android:id="@+id/guideRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/login_register_common_margin" />
+
+    <TextView
+        android:id="@+id/textView1"
+        style="@style/textViewTitleLargeStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_register_title_from_top"
+        android:text="@string/CreateNewAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/textViewTitleMediumStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_register_title_from_title"
+        android:text="@string/EnterYourName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+    <EditText
+        android:id="@+id/etRegisterFirstName"
+        style="@style/editTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_register_edit_text_from_title"
+        android:ems="10"
+        android:hint="@string/FirstName"
+        android:inputType="textCapWords"
+        app:layout_constraintEnd_toEndOf="@id/guideRight"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/etRegisterLastName"
+        style="@style/editTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_register_edit_text_from_edit_text"
+        android:ems="10"
+        android:hint="@string/LastName"
+        android:inputType="textCapWords"
+        app:layout_constraintEnd_toEndOf="@id/guideRight"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/etRegisterFirstName" />
+
+    <Button
+        android:id="@+id/btnNewNameNext"
+        style="@style/mainButtonStyle"
+        android:layout_marginBottom="@dimen/login_register_title_from_top"
+        android:layout_marginTop="@dimen/login_register_button_from_first_edit_text"
+        android:text="@string/Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideRight"
+        app:layout_constraintStart_toStartOf="@id/guideLeft"
+        app:layout_constraintTop_toBottomOf="@+id/etRegisterFirstName" />
+
+</android.support.constraint.ConstraintLayout>
+

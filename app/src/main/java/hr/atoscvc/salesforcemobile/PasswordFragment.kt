@@ -13,8 +13,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import dmax.dialog.SpotsDialog
 import hr.atoscvc.salesforcemobile.CheckPasswordConstraints.checkPasswordConstraints
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.fragment_password_layout.*
-import kotlinx.android.synthetic.main.fragment_password_layout.view.*
+import kotlinx.android.synthetic.main.fragment_password.*
+import kotlinx.android.synthetic.main.fragment_password.view.*
 
 class PasswordFragment : Fragment(), View.OnClickListener {
 
