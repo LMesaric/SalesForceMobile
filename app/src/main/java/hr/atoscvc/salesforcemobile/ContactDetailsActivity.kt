@@ -8,11 +8,15 @@ import android.view.View
 import android.widget.Toast
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
-import hr.atoscvc.salesforcemobile.ContactsFragment.Companion.contactList
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
 //TODO - dodati i direct link na company details
+//LUKA - edit button mora biti invertan button
 //LUKA - export i import kontakata iz Imenika (paziti da se ne exporta vise puta)
+//FILIP - tint preko disableanog buttona
+//FILIP - padding iznad slike
+//FILIP - lampica? za active/inactive lijevo od FABova
+//FILIP - scroll donjeg dijela ekrana (shadow)
 
 class ContactDetailsActivity : AppCompatActivity() {
 
