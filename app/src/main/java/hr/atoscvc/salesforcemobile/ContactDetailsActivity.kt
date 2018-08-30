@@ -69,11 +69,11 @@ class ContactDetailsActivity : AppCompatActivity() {
 
         val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), false)
         if (shouldHideButtons) {
-            btnContactDetailsEdit.visibility = View.GONE
-            btnContactDetailsEdit.isEnabled = false
+            tvContactDetailsEdit.visibility = View.GONE
+            tvContactDetailsEdit.isEnabled = false
         } else {
-            btnContactDetailsEdit.visibility = View.VISIBLE
-            btnContactDetailsEdit.isEnabled = true
+            tvContactDetailsEdit.visibility = View.VISIBLE
+            tvContactDetailsEdit.isEnabled = true
         }
     }
 
