@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
+import hr.atoscvc.salesforcemobile.ContactsFragment.Companion.contactList
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
 //TODO - dodati i direct link na company details
@@ -16,6 +19,8 @@ class ContactDetailsActivity : AppCompatActivity() {
     companion object {
         const val requestCodeEditContact = 5
     }
+
+    private var generator = ColorGenerator.MATERIAL
 
     private lateinit var contact: Contact
     private var isChanged: Boolean = false
@@ -28,6 +33,11 @@ class ContactDetailsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        val letters = contact.firstName[0].toString().toUpperCase() + contact.lastName[0].toString().toUpperCase()
+
+        val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(contact.documentID))
+        ivContactDetailsAvatar.setImageDrawable(drawable)
 
         tvContactDetailsName.text = ConcatenateObjectToString.concatenateContactName(contact, resources, true)
         tvContactDetailsCompanyName.text = contact.company?.name

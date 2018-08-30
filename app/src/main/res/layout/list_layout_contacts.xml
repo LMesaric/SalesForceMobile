@@ -18,7 +18,8 @@
         android:layout_height="40dp"
         android:transitionName="@string/transitionNameContactAvatar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
