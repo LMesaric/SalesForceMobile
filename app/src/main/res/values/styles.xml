@@ -21,6 +21,27 @@
         <item name="floatingActionButtonStyle">@style/floatingActionButtonDetailsStyle</item>
     </style>
 
+    <style name="SearchSettingsTheme" parent="AppTheme">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textViewStyle">@style/textViewSearchSettingsStyle</item>
+        <item name="android:radioButtonStyle">@style/radioButtonSearchSettingsStyle</item>
+        <item name="android:checkboxStyle">@style/checkBoxSearchSettingsStyle</item>
+    </style>
+
+    <style name="textViewSearchSettingsStyle">
+        <item name="android:textColor">@color/colorBackgroundWhite</item>
+    </style>
+
+    <style name="radioButtonSearchSettingsStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/colorBackgroundWhite</item>
+        <item name="android:buttonTint">@color/colorBackgroundWhite</item>
+    </style>
+
+    <style name="checkBoxSearchSettingsStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:textColor">@color/colorBackgroundWhite</item>
+        <item name="android:buttonTint">@color/colorBackgroundWhite</item>
+    </style>
+
     <style name="textViewTitleMediumStyle">
         <item name="android:textColor">@color/loginRegisterTitleMedium</item>
         <item name="android:textSize">@dimen/text_view_font_title_medium</item>

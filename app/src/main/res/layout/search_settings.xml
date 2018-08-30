@@ -3,93 +3,110 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="16dp"
-    android:paddingTop="16dp">
+    android:layout_height="wrap_content">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guidelineLeft"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/settingsConstraintLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="24dp" />
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:theme="@style/SearchSettingsTheme">
 
-    <CheckBox
-        android:id="@+id/cbMatchAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Match all"
-        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toTopOf="@id/radioGroupSettings" />
-
-    <CheckBox
-        android:id="@+id/cbMatchCase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Match case"
-        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@id/cbMatchAll" />
-
-    <CheckBox
-        android:id="@+id/cbMatchWords"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Words"
-        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@id/cbMatchCase" />
-
-    <android.support.constraint.Barrier
-        android:id="@+id/barrierSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="end"
-        app:constraint_referenced_ids="cbMatchAll, cbMatchCase, cbMatchWords" />
-
-    <Space
-        android:id="@+id/spacerSettings"
-        android:layout_width="32dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/barrierSettings"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvSettingsRadioLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search only:"
-        app:layout_constraintStart_toEndOf="@id/spacerSettings"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/radioGroupSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toEndOf="@id/spacerSettings"
-        app:layout_constraintTop_toBottomOf="@id/tvSettingsRadioLabel">
-
-        <RadioButton
-            android:id="@+id/rbSettingsActive"
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Active" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
 
-        <RadioButton
-            android:id="@+id/rbSettingsInactive"
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelineRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Inactive" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
 
-        <RadioButton
-            android:id="@+id/rbSettingsAll"
+        <TextView
+            android:id="@+id/tvSettingsRadioLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="All" />
+            android:text="Search only:"
+            app:layout_constraintStart_toStartOf="@id/radioGroupSettings"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </RadioGroup>
+        <RadioGroup
+            android:id="@+id/radioGroupSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/tvSettingsRadioLabel">
+
+            <RadioButton
+                android:id="@+id/rbSettingsActive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Active" />
+
+            <RadioButton
+                android:id="@+id/rbSettingsInactive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Inactive" />
+
+            <RadioButton
+                android:id="@+id/rbSettingsAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="All" />
+
+        </RadioGroup>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/checkBoxLayoutSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+            app:layout_constraintTop_toTopOf="@id/radioGroupSettings">
+
+            <CheckBox
+                android:id="@+id/cbMatchAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Match all"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/cbMatchCase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Match case"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cbMatchAll" />
+
+            <CheckBox
+                android:id="@+id/cbMatchWords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Words"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cbMatchCase" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_height"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/toolbar_shadow"
+        app:layout_constraintTop_toBottomOf="@id/settingsConstraintLayout" />
 
 </android.support.constraint.ConstraintLayout>
