@@ -12,8 +12,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
-import de.hdodenhof.circleimageview.CircleImageView
-import hr.atoscvc.salesforcemobile.ContactsFragment.Companion.contactList
 import kotlinx.android.synthetic.main.list_layout_companies.view.*
 
 class CompanyAdapter(
