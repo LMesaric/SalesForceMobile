@@ -124,7 +124,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:id="@+id/layoutCompanyName"
+            android:id="@+id/layoutContactDetailsCompanyName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -162,7 +162,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutEmail"
+            android:id="@+id/layoutContactDetailsEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -173,7 +173,7 @@
             android:paddingTop="@dimen/contactDetailsCardPadding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutCompanyName">
+            app:layout_constraintTop_toBottomOf="@+id/layoutContactDetailsCompanyName">
 
             <TextView
                 android:id="@+id/textView10"
@@ -198,7 +198,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutPhoneNumber"
+            android:id="@+id/layoutContactDetailsPhoneNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -209,7 +209,7 @@
             android:paddingTop="@dimen/contactDetailsCardPadding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutEmail">
+            app:layout_constraintTop_toBottomOf="@+id/layoutContactDetailsEmail">
 
             <TextView
                 android:id="@+id/textView11"
@@ -234,7 +234,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutPreferredTime"
+            android:id="@+id/layoutContactDetailsPreferredTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -245,7 +245,7 @@
             android:paddingTop="@dimen/contactDetailsCardPadding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutPhoneNumber">
+            app:layout_constraintTop_toBottomOf="@+id/layoutContactDetailsPhoneNumber">
 
             <TextView
                 android:id="@+id/textView12"
@@ -271,7 +271,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutDetails"
+            android:id="@+id/layoutContactDetailsDetails"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -282,7 +282,7 @@
             android:paddingTop="@dimen/contactDetailsCardPadding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutPreferredTime">
+            app:layout_constraintTop_toBottomOf="@+id/layoutContactDetailsPreferredTime">
 
             <TextView
                 android:id="@+id/textView13"
