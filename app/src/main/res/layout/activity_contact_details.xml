@@ -19,7 +19,7 @@
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="50dp"
             android:elevation="2dp"
             android:transitionName="@string/transitionNameContactAvatar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,6 +35,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="Mr. James Smith"
+            android:textSize="20sp"
             android:textIsSelectable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +149,7 @@
                 android:layout_marginStart="8dp"
                 android:text="@string/CompanyName"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="@dimen/edit_text_subtitle_font" />
 
             <TextView
                 android:id="@+id/tvContactDetailsCompanyName"
@@ -157,6 +158,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:text="Atos CVC"
+                android:textSize="@dimen/edit_text_font_common"
                 android:textIsSelectable="true"
                 tools:ignore="HardcodedText"
                 tools:layout_editor_absoluteY="223dp" />
@@ -184,8 +186,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:text="@string/Email"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="@dimen/edit_text_subtitle_font"
+                android:textColor="@color/colorPrimary" />
 
             <TextView
                 android:id="@+id/tvContactDetailsEmail"
@@ -193,6 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:textSize="@dimen/edit_text_font_common"
                 android:text="@string/Email"
                 android:textIsSelectable="true"
                 tools:layout_editor_absoluteY="293dp" />
@@ -219,9 +222,9 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:textSize="@dimen/edit_text_subtitle_font"
                 android:text="@string/PhoneNumber"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textColor="@color/colorPrimary" />
 
             <TextView
                 android:id="@+id/tvContactDetailsPhoneNumber"
@@ -229,6 +232,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:textSize="@dimen/edit_text_font_common"
                 android:text="@string/PhoneNumber"
                 android:textIsSelectable="true"
                 tools:layout_editor_absoluteY="328dp" />
@@ -256,8 +260,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:text="@string/preferredTime"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="@dimen/edit_text_subtitle_font"
+                android:textColor="@color/colorPrimary" />
 
             <TextView
                 android:id="@+id/tvContactDetailsPrefTime"
@@ -266,6 +270,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:text="Afternoon"
+                android:textSize="@dimen/edit_text_font_common"
                 android:textIsSelectable="true"
                 tools:ignore="HardcodedText"
                 tools:layout_editor_absoluteY="363dp" />
@@ -291,10 +296,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
+                android:textSize="@dimen/edit_text_subtitle_font"
                 android:layout_marginStart="8dp"
                 android:text="@string/Details"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textColor="@color/colorPrimary" />
 
             <TextView
                 android:id="@+id/tvContactDetailsDetails"
@@ -302,6 +307,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:textSize="@dimen/edit_text_font_common"
                 android:text="@string/Details"
                 android:textIsSelectable="true"
                 tools:layout_editor_absoluteY="398dp" />
