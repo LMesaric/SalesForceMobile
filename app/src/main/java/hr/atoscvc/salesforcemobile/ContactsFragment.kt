@@ -42,64 +42,73 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
         return view
     }
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpContactList()
+    }
 
+    private fun setUpContactList() {
         try {
             mainActivity = activity as MainActivity
         } catch (e: ClassCastException) {
 
         }
 
-        if (!hidden) {
-            activity?.fabAdd?.show()
-            activity?.fabAdd?.setOnClickListener {
-                val intent = Intent(activity, ContactEditorActivity::class.java).apply {
-                    putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
-                }
-                activity?.startActivityForResult(intent, requestCodeRefresh)
+        activity?.fabAdd?.show()
+        activity?.fabAdd?.setOnClickListener {
+            val intent = Intent(activity, ContactEditorActivity::class.java).apply {
+                putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
             }
+            activity?.startActivityForResult(intent, requestCodeRefresh)
+        }
 
-            recyclerViewContacts.setHasFixedSize(true)
-            recyclerViewContacts.layoutManager = LinearLayoutManager(activity)
+        recyclerViewContacts.setHasFixedSize(true)
+        recyclerViewContacts.layoutManager = LinearLayoutManager(activity)
 
-            contactList = ArrayList()
+        contactList = ArrayList()
 
-            adapter = activity?.applicationContext?.let {
-                ContactAdapter(
-                        contactList,
-                        activity as Activity,
-                        arguments
-                                ?.getBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT))
-                                ?: false,
-                        activity as MainActivity
-                )
+        adapter = activity?.applicationContext?.let {
+            ContactAdapter(
+                    contactList,
+                    activity as Activity,
+                    arguments
+                            ?.getBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT))
+                            ?: false,
+                    activity as MainActivity
+            )
+        }
+
+        recyclerViewContacts.adapter = adapter
+
+        //TODO Bilo bi dosta lako dodati Sort By feature - samo ubaciti string u .orderBy()
+        val query: Query? = mAuth.uid?.let {
+            db.collection(getString(R.string.databaseCollectionUsers))
+                    .document(it)
+                    .collection(getString(R.string.databaseCollectionContacts))
+                    .orderBy(getString(R.string.databaseDocumentLastName))
+        }
+        query?.addSnapshotListener { p0, p1 ->
+            if (p1 != null) {
+                Log.d("ERRORS", p1.message)
             }
-
-            recyclerViewContacts.adapter = adapter
-
-            //TODO Bilo bi dosta lako dodati Sort By feature - samo ubaciti string u .orderBy()
-            val query: Query? = mAuth.uid?.let {
-                db.collection(getString(R.string.databaseCollectionUsers))
-                        .document(it)
-                        .collection(getString(R.string.databaseCollectionContacts))
-                        .orderBy(getString(R.string.databaseDocumentLastName))
-            }
-            query?.addSnapshotListener { p0, p1 ->
-                if (p1 != null) {
-                    Log.d("ERRORS", p1.message)
-                }
-                if (p0 != null) {
-                    for (doc in p0.documentChanges) {
-                        if (doc.type == DocumentChange.Type.ADDED) {
-                            val newContact = doc.document.toObject<Contact>(Contact::class.java)
-                            contactList.add(newContact)
-                            adapter?.notifyDataSetChanged()
-                        }
+            if (p0 != null) {
+                for (doc in p0.documentChanges) {
+                    if (doc.type == DocumentChange.Type.ADDED) {
+                        val newContact = doc.document.toObject<Contact>(Contact::class.java)
+                        contactList.add(newContact)
+                        adapter?.notifyDataSetChanged()
                     }
-                    mainActivity?.searchView?.setQuery(mainActivity?.searchView?.query, true)
                 }
+                mainActivity?.searchView?.setQuery(mainActivity?.searchView?.query, true)
             }
+        }
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+
+        if (!hidden) {
+            setUpContactList()
         }
     }
 
