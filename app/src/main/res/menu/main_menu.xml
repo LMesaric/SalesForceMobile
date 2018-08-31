@@ -9,6 +9,9 @@
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="always|collapseActionView" />
     <item
+        android:id="@+id/action_advanced_search"
+        android:title="@string/AdvancedSearch" />
+    <item
         android:id="@+id/action_account_settings"
         android:title="@string/AccountSettings" />
     <item
