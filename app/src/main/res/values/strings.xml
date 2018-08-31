@@ -26,8 +26,17 @@
     <string name="login">Login</string>
 
     <string name="Search">Search</string>
+    <string name="AdvancedSearch">Advanced Search</string>
     <string name="AccountSettings">Account Settings</string>
     <string name="logout">Logout</string>
+
+    <string name="searchOnly">Search only:</string>
+    <string name="Active">Active</string>
+    <string name="Inactive">Inactive</string>
+    <string name="All">All</string>
+    <string name="MatchAll">Match all</string>
+    <string name="MatchCase">Match case</string>
+    <string name="Words">Words</string>
 
     <string name="Password">Password</string>
     <string name="ConfirmPassword">Confirm Password</string>
@@ -35,6 +44,7 @@
     <string name="LastName">Last Name</string>
     <string name="PhoneNumber">Phone Number</string>
     <string name="Email">E-mail</string>
+    <string name="preferredTime">Preferred Time</string>
     <string name="Details">Details</string>
     <string name="Company">Company</string>
     <string name="CompanyName">Company Name</string>
@@ -225,6 +235,5 @@
     <string name="EXTRA_COMPANY_PHONE" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_PHONE</string>
     <string name="EXTRA_COMPANY_INCOME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_INCOME</string>
     <string name="EXTRA_COMPANY_DETAILS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DETAILS</string>
-    <string name="preferredTime">Preferred Time</string>
 
 </resources>
