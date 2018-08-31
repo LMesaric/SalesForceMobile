@@ -205,6 +205,8 @@
     <string name="transitionNameContactAvatar">contactAvatar</string>
     <string name="transitionNameCompanyAvatar">companyAvatar</string>
 
+    <string name="SHARED_PREFERENCES_SEARCH_SETTINGS" translatable="false">hr.atoscvc.salesforcemobile.SHARED_PREFERENCES_SEARCH_SETTINGS</string>
+
     <string name="EXTRA_IS_EDITOR_FOR_NEW_ITEM" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_IS_EDITOR_FOR_NEW_ITEM</string>
 
     <string name="EXTRA_CONTACT_ENTIRE_OBJECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_ENTIRE_OBJECT</string>
