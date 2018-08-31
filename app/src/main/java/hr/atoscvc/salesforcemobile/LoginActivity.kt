@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.reset_password.view.*
 //LUKA - Loading dialogs
 //LUKA - urediti login i register screen, staviti animacije + trimmati sve inpute za login i register - dodati ikonice i onfucus listenere
 //LUKA - change color for onFocus PNGs
+//LUKA - preseliti search_icon i action_add u drawable (usage!!)
 //FILIP - reset password stranica ima jako strgani background image na mobitelu - https://imgur.com/a/9yk4E08
 //FILIP - dodati Remember Me feature
 
