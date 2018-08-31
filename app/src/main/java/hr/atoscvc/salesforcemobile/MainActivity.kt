@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
+import android.transition.Slide
+import android.transition.TransitionManager
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -18,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_companies.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
-
+import kotlinx.android.synthetic.main.search_settings.*
 
 //TODO MainActivity napraviti kao tabbedActivity ?
 //FIXME SVAKI PUT KAD CREATEAMO FRAGMENT ON OSTAJE SAVEAN, KAO I ONAJ STARI (MEMORIJA RASTE DO 370 MB) - REUSE https://stackoverflow.com/questions/19219458/fragment-on-screen-rotation
@@ -264,17 +267,20 @@ class MainActivity :
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-
         when (item?.itemId) {
+
             R.id.action_logout -> {
                 sendToLogin()
             }
-
             R.id.action_account_settings -> {
                 val intent = Intent(this, ChangePasswordActivity::class.java)
                 startActivity(intent)
             }
-
+            R.id.action_advanced_search -> {
+                val state = searchSettingsContainer.visibility
+                TransitionManager.beginDelayedTransition(searchSettingsContainer, Slide(Gravity.TOP).setDuration(600))
+                searchSettingsContainer.visibility = if (state != View.VISIBLE) View.VISIBLE else View.GONE
+            }
         }
         return true
     }

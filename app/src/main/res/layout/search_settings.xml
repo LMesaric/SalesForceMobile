@@ -32,7 +32,7 @@
             android:id="@+id/tvSettingsRadioLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search only:"
+            android:text="@string/searchOnly"
             app:layout_constraintStart_toStartOf="@id/radioGroupSettings"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,21 +50,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Active" />
+                android:text="@string/Active" />
 
             <RadioButton
                 android:id="@+id/rbSettingsInactive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Inactive" />
+                android:text="@string/Inactive" />
 
             <RadioButton
                 android:id="@+id/rbSettingsAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="All" />
+                android:text="@string/All" />
 
         </RadioGroup>
 
@@ -79,7 +79,7 @@
                 android:id="@+id/cbMatchAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Match all"
+                android:text="@string/MatchAll"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,7 +87,7 @@
                 android:id="@+id/cbMatchCase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Match case"
+                android:text="@string/MatchCase"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cbMatchAll" />
 
@@ -95,7 +95,7 @@
                 android:id="@+id/cbMatchWords"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Words"
+                android:text="@string/Words"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cbMatchCase" />
 
@@ -106,8 +106,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/shadow_height"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/toolbar_shadow"
-        app:layout_constraintTop_toBottomOf="@id/settingsConstraintLayout" />
+        app:layout_constraintTop_toBottomOf="@id/settingsConstraintLayout"
+        android:background="@drawable/toolbar_shadow" />
 
 </android.support.constraint.ConstraintLayout>

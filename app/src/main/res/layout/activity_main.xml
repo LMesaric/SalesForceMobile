@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="8dp"
             android:elevation="1dp"
-            app:layout_anchor="@id/coordinator"
+            app:layout_anchor="@id/appBarLayout"
             app:layout_anchorGravity="bottom">
 
             <View
@@ -70,13 +70,27 @@
                 android:layout_height="@dimen/shadow_height"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/toolbar_shadow" />
+
         </RelativeLayout>
 
         <FrameLayout
-            android:id="@+id/mainContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <FrameLayout
+                android:id="@+id/mainContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <include
+                layout="@layout/search_settings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+        </FrameLayout>
 
     </android.support.design.widget.CoordinatorLayout>
 
