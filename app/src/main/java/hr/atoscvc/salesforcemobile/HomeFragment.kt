@@ -12,7 +12,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        //testingSettings.isClickable = isExpanded   //LUKA - testirati forwardiranje clicka za View.INVISIBLE
+        //LUKA - zatvoriti search setting na fling up
         //LUKA - recyclerview item - na klik podizanje i expand layouta iznad svega
         //LUKA - settings layout -> Preferences
 
