@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/searchSettingsContainer"
     android:layout_width="match_parent"
@@ -106,8 +106,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/shadow_height"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/toolbar_shadow"
-        app:layout_constraintTop_toBottomOf="@id/settingsConstraintLayout" />
+        android:background="@drawable/toolbar_shadow" />
 
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>
