@@ -210,30 +210,9 @@
     <string name="EXTRA_CONTACT_ENTIRE_OBJECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_ENTIRE_OBJECT</string>
     <string name="EXTRA_CONTACT_IS_LIST_FOR_SELECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_IS_LIST_FOR_SELECT</string>
     <string name="EXTRA_CONTACT_HIDE_EDIT_BUTTONS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_HIDE_EDIT_BUTTONS</string>
-    <string name="EXTRA_CONTACT_DOCUMENT_ID" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DOCUMENT_ID</string>
-    <string name="EXTRA_CONTACT_STATUS_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_STATUS_SPINNER_INDEX</string>
-    <string name="EXTRA_CONTACT_TITLE_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_TITLE_SPINNER_INDEX</string>
-    <string name="EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_PREF_TIME_SPINNER_INDEX</string>
-    <string name="EXTRA_CONTACT_FIRST_NAME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_FIRST_NAME</string>
-    <string name="EXTRA_CONTACT_LAST_NAME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_LAST_NAME</string>
-    <string name="EXTRA_CONTACT_COMPANY" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_COMPANY</string>
-    <string name="EXTRA_CONTACT_PHONE" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_PHONE</string>
-    <string name="EXTRA_CONTACT_EMAIL" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_EMAIL</string>
-    <string name="EXTRA_CONTACT_DETAILS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_DETAILS</string>
 
     <string name="EXTRA_COMPANY_ENTIRE_OBJECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_ENTIRE_OBJECT</string>
     <string name="EXTRA_COMPANY_IS_LIST_FOR_SELECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_IS_LIST_FOR_SELECT</string>
     <string name="EXTRA_COMPANY_HIDE_EDIT_BUTTONS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_HIDE_EDIT_BUTTONS</string>
-    <string name="EXTRA_COMPANY_DOCUMENT_ID" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DOCUMENT_ID</string>
-    <string name="EXTRA_COMPANY_STATUS_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_STATUS_SPINNER_INDEX</string>
-    <string name="EXTRA_COMPANY_CVS_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_CVS_SPINNER_INDEX</string>
-    <string name="EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_COMMUNICATION_TYPE_SPINNER_INDEX</string>
-    <string name="EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_EMPLOYEES_SPINNER_INDEX</string>
-    <string name="EXTRA_COMPANY_NAME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_NAME</string>
-    <string name="EXTRA_COMPANY_OIB" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_OIB</string>
-    <string name="EXTRA_COMPANY_WEB_PAGE" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_WEB_PAGE</string>
-    <string name="EXTRA_COMPANY_PHONE" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_PHONE</string>
-    <string name="EXTRA_COMPANY_INCOME" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_INCOME</string>
-    <string name="EXTRA_COMPANY_DETAILS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_DETAILS</string>
 
 </resources>
