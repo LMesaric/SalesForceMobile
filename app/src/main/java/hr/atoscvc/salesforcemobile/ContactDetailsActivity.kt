@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.amulyakhare.textdrawable.TextDrawable
@@ -29,10 +31,17 @@ class ContactDetailsActivity : AppCompatActivity() {
     private lateinit var contact: Contact
     private var isChanged: Boolean = false
 
+    private lateinit var editItem: MenuItem
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_details)
         contact = intent.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as Contact
+        setSupportActionBar(toolBarContactDetails)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
     }
 
     override fun onResume() {
@@ -82,7 +91,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         }
 
         val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), false)
-        tvContactDetailsEdit.isEnabled = !shouldHideButtons
+
     }
 
     fun onContactEmail(@Suppress("UNUSED_PARAMETER") view: View) {
@@ -135,7 +144,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         }
     }
 
-    fun onEditContactDetails(@Suppress("UNUSED_PARAMETER") view: View) {
+    private fun onEditContactDetails() {
         val intentEdit = Intent(this, ContactEditorActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
             putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
@@ -153,6 +162,27 @@ class ContactDetailsActivity : AppCompatActivity() {
         }
         super.onBackPressed()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.contact_details_menu, menu)
+        editItem = menu?.findItem(R.id.action_edit)!!
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when (item?.itemId) {
+            android.R.id.home -> {
+                finish()
+            }
+            R.id.action_edit -> {
+                onEditContactDetails()
+            }
+
+        }
+        return true
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == ContactDetailsActivity.requestCodeEditContact) {
