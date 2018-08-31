@@ -48,20 +48,34 @@
             app:layout_constraintTop_toBottomOf="@+id/ivContactDetailsAvatar">
 
             <TextView
+                android:id="@+id/tvContactDetailsStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="ACTIVE"
+                android:textIsSelectable="true"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
+
+            <TextView
                 android:id="@+id/tvContactDetailsName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="Mr. James Smith"
                 android:textIsSelectable="true"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="HardcodedText"
-                tools:layout_editor_absoluteY="188dp" />
+                app:layout_constraintTop_toBottomOf="@+id/tvContactDetailsStatus"
+                tools:ignore="HardcodedText" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fabContactDetailsSendEmail"
@@ -319,18 +333,6 @@
 
     </ScrollView>
 
-
-    <TextView
-        android:id="@+id/tvContactDetailsStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:text="ACTIVE"
-        android:textIsSelectable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="HardcodedText" />
 
 </android.support.constraint.ConstraintLayout>
 
