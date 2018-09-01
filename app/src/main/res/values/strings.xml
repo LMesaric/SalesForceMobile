@@ -202,10 +202,14 @@
     <string name="databaseDocumentFirstName" translatable="false">firstName</string>
     <string name="databaseDocumentLastName" translatable="false">lastName</string>
 
-    <string name="transitionNameContactAvatar">contactAvatar</string>
-    <string name="transitionNameCompanyAvatar">companyAvatar</string>
+    <string name="transitionNameContactAvatar" translatable="false">contactAvatar</string>
+    <string name="transitionNameCompanyAvatar" translatable="false">companyAvatar</string>
 
     <string name="SHARED_PREFERENCES_SEARCH_SETTINGS" translatable="false">hr.atoscvc.salesforcemobile.SHARED_PREFERENCES_SEARCH_SETTINGS</string>
+    <string name="SHARED_PREFERENCES_RADIO_BUTTON_SELECTED_ID" translatable="false">SHARED_PREFERENCES_RADIO_BUTTON_SELECTED_ID</string>
+    <string name="SHARED_PREFERENCES_CHECK_BOX_MATCH_ALL" translatable="false">SHARED_PREFERENCES_CHECK_BOX_MATCH_ALL</string>
+    <string name="SHARED_PREFERENCES_CHECK_BOX_MATCH_CASE" translatable="false">SHARED_PREFERENCES_CHECK_BOX_MATCH_CASE</string>
+    <string name="SHARED_PREFERENCES_CHECK_BOX_MATCH_WORDS" translatable="false">SHARED_PREFERENCES_CHECK_BOX_MATCH_WORDS</string>
 
     <string name="EXTRA_IS_EDITOR_FOR_NEW_ITEM" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_IS_EDITOR_FOR_NEW_ITEM</string>
 
