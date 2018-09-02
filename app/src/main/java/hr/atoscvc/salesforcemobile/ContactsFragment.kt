@@ -125,7 +125,7 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun filter(query: String?) {
         val filteredList = ArrayList<Contact>()
         for (contact: Contact in contactList) {
-            if (SearchFilter.satisfiesQuery(query, contact, false, false, true, false, resources)) {
+            if (SearchFilter.satisfiesQuery(query, contact, activity?.applicationContext!!)) {
                 filteredList.add(contact)
             }
         }

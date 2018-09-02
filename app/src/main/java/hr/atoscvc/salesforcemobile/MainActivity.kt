@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_companies.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.search_settings.*
 
+//FILIP - aplikacija se rusi: pokreni, stisni back (izadje van), vrati se unutra (srusi se)
 //TODO MainActivity napraviti kao tabbedActivity ?
 //FIXME SVAKI PUT KAD CREATEAMO FRAGMENT ON OSTAJE SAVEAN, KAO I ONAJ STARI (MEMORIJA RASTE DO 370 MB) - REUSE https://stackoverflow.com/questions/19219458/fragment-on-screen-rotation
 
@@ -356,7 +357,7 @@ class MainActivity :
                 getString(R.string.SHARED_PREFERENCES_SEARCH_SETTINGS),
                 Context.MODE_PRIVATE
         )
-        //LUKA extract default values
+        //LUKA extract default values kod R.string.SHARED_PREFERENCES_RADIO_BUTTON_SELECTED_ID
         val selectedRadioId: Int = sharedPref.getInt(
                 getString(R.string.SHARED_PREFERENCES_RADIO_BUTTON_SELECTED_ID),
                 R.id.rbSettingsActive
@@ -374,7 +375,11 @@ class MainActivity :
 
     private fun searchSettingsChanged() {
         //FIXME - na poziv ove funkcije treba se refreshati search aktivnog fragmenta
-        //LUKA - koristiti Preferences za SearchFilter.satisfiesQuery - dodati funkciju u SearchFilter i parametar je li promijenjeno (zovemo odavdje) koja cita iz Shared Preferences
+        //LUKA - zatvoriti search setting na fling up
+        //LUKA - recyclerview item - na klik podizanje i expand layouta iznad svega
+
+        SearchFilter.preferencesChanged = true
+
         val sharedPref = getSharedPreferences(
                 getString(R.string.SHARED_PREFERENCES_SEARCH_SETTINGS),
                 Context.MODE_PRIVATE
