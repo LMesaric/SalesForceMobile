@@ -2,7 +2,8 @@
 <resources>
     <!--   color for the app bar and other primary UI elements -->
     <color name="colorPrimary">#6200ee</color>
-    <color name="colorPrimaryRipple">#8b62e6</color>
+    <color name="colorPrimaryRippleDark">#8b62e6</color>
+    <color name="colorPrimaryRippleLight">#baa4ea</color>
 
     <!--   a darker variant of the primary color, used for
            the status bar (on Android 5.0+) and contextual app bars -->

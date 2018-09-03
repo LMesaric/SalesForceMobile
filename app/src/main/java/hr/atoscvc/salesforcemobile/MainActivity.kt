@@ -339,11 +339,18 @@ class MainActivity :
     }
 
     override fun onBackPressed() {
+        // Function will not be called when keyboard is open or when searchView has focus.
+        // Most likely cannot be fixed in any simple way.
         if (!toggleSearchSettings(true)) {
             super.onBackPressed()
         }
     }
 
+    /**
+     * Collapses or expands the Search Settings depending on current visibility. Animation lasts 600 ms, slides from top.
+     * @param onlyClose False by default. Use true if you only want to collapse the View.
+     * @return True if visibility was toggled, false if nothing was changed.
+     */
     private fun toggleSearchSettings(onlyClose: Boolean = false): Boolean {
         val state = searchSettingsContainer.visibility
         return if (onlyClose && state != View.VISIBLE) {
