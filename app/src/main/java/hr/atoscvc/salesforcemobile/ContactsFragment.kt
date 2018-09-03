@@ -114,12 +114,12 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         filter(query)
-        return false
+        return true
     }
 
     override fun onQueryTextChange(query: String?): Boolean {
         filter(query)
-        return false
+        return true
     }
 
     private fun filter(query: String?) {

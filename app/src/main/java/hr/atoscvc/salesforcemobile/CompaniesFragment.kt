@@ -19,8 +19,8 @@ import kotlinx.android.synthetic.main.fragment_companies.*
 
 class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
 
-    //TODO Implementirati Search funkcionalnost - Active / Inactive / Both opcije -> indexers Status_other
-    //TODO - poruka da je popis Contacts/Companies empty kad nema nista - TextView u centru ekrana
+    //FILIP - indexers Status_lastName i Status_firstName za citanje iz baze
+    //LUKA - poruka da je popis Contacts/Companies empty kad nema nista - TextView u centru ekrana
     companion object RequestCodesCompany {
         const val requestCodeRefresh = 1
         const val requestItemRefresh = 2
@@ -122,15 +122,14 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         filter(query)
-        return false
+        return true
     }
 
     override fun onQueryTextChange(query: String?): Boolean {
         filter(query)
-        return false
+        return true
     }
 
-    //TODO dodati sve potrebne checkboxove!
     private fun filter(query: String?) {
         val filteredList = ArrayList<Company>()
         for (company: Company in companyList) {
