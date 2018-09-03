@@ -82,7 +82,7 @@
         <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:background">@drawable/button_flat_drawable</item>
+        <item name="android:background">@drawable/button_flat_background</item>
     </style>
 
     <style name="editTextStyle">
