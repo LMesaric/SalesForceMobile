@@ -3,6 +3,7 @@ package hr.atoscvc.salesforcemobile
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.design.widget.AppBarLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -11,6 +12,7 @@ import android.widget.Toast
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.activity_contact_details.*
+
 
 //TODO - dodati i direct link na company details
 //LUKA - edit button mora biti invertan button
@@ -39,8 +41,6 @@ class ContactDetailsActivity : AppCompatActivity() {
         setSupportActionBar(toolBarContactDetails)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-
     }
 
     override fun onResume() {
@@ -48,12 +48,23 @@ class ContactDetailsActivity : AppCompatActivity() {
 
         val letters = contact.firstName[0].toString().toUpperCase() + contact.lastName[0].toString().toUpperCase()
         //Integer.toHexString(generator.getColor(contact.documentID))
-        val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(contact.documentID))
-        ivContactDetailsAvatar.setImageDrawable(drawable)
+        val drawable: TextDrawable = TextDrawable.builder().buildRect(letters, generator.getColor(contact.documentID))
+        expandedAvatarContactDetails.setImageDrawable(drawable)
+
+        collapsingToolbarContactDetails.setBackgroundColor(generator.getColor(contact.documentID))
+
+        appBarContactDetails.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, _ ->
+            val offsetAlpha = (appBarLayout.y / appBarContactDetails.totalScrollRange)
+            expandedAvatarContactDetails.alpha = 1 - (offsetAlpha * -1)
+        })
+
 
         // ivContactDetailsAvatar.setImageDrawable(drawable)
 
-        tvContactDetailsName.text = ConcatenateObjectToString.concatenateContactName(contact, resources, true)
+        appBarContactDetails.setExpanded(true, true)
+        appBarContactDetails.isActivated = true
+        collapsingToolbarContactDetails.title = ConcatenateObjectToString.concatenateContactName(contact, resources, true)
+
         tvContactDetailsCompanyName.text = contact.company?.name
         tvContactDetailsStatus.text = resources.getStringArray(R.array.status_array)[contact.status]
 
