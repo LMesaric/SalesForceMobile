@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Toast
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.activity_company_details.*
@@ -106,7 +105,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
     fun onCompanyWebPage(@Suppress("UNUSED_PARAMETER") view: View) {
         var webPage: String? = company.webPage?.trim()
         if (webPage.isNullOrBlank()) {
-            Toast.makeText(this, getString(R.string.wrongWebPage), Toast.LENGTH_SHORT).show()
+            SnackbarCustom.showAutoClose(tvCompanyDetailsWebPage, R.string.wrongWebPage)
         } else {
             webPage?.let {
                 if (it.startsWith("www.", true)) {
@@ -120,7 +119,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(webIntent, getString(R.string.openWebChooser)))
             } catch (e: Exception) {
                 // Most of the times, if not always, app chooser will display a similar message.
-                Toast.makeText(this, getString(R.string.noSuitableAppFound), Toast.LENGTH_LONG).show()
+                SnackbarCustom.showAutoClose(tvCompanyDetailsWebPage, R.string.noSuitableAppFound)
             }
         }
     }
@@ -128,14 +127,14 @@ class CompanyDetailsActivity : AppCompatActivity() {
     fun onCompanyCall(@Suppress("UNUSED_PARAMETER") view: View) {
         val phone: String? = company.phone?.trim()
         if (phone.isNullOrBlank()) {
-            Toast.makeText(this, getString(R.string.wrongPhoneNumber), Toast.LENGTH_SHORT).show()
+            SnackbarCustom.showAutoClose(tvCompanyDetailsPhoneNumber, R.string.wrongPhoneNumber)
         } else {
             val dialIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone"))
             try {
                 startActivity(Intent.createChooser(dialIntent, getString(R.string.dialPhoneChooser)))
             } catch (e: Exception) {
                 // Most of the times, if not always, app chooser will display a similar message.
-                Toast.makeText(this, getString(R.string.noSuitableAppFound), Toast.LENGTH_LONG).show()
+                SnackbarCustom.showAutoClose(tvCompanyDetailsPhoneNumber, R.string.noSuitableAppFound)
             }
         }
     }
@@ -143,7 +142,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
     fun onCompanyText(@Suppress("UNUSED_PARAMETER") view: View) {
         val phone: String? = company.phone?.trim()
         if (phone.isNullOrBlank()) {
-            Toast.makeText(this, getString(R.string.wrongPhoneNumber), Toast.LENGTH_SHORT).show()
+            SnackbarCustom.showAutoClose(tvCompanyDetailsPhoneNumber, R.string.wrongPhoneNumber)
         } else {
             val smsIntent = Intent(Intent.ACTION_VIEW, Uri.parse("smsto:$phone")).apply {
                 putExtra("sms_body", "${company.name}, \n")
@@ -152,7 +151,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(smsIntent, getString(R.string.sendTextChooser)))
             } catch (e: Exception) {
                 // Most of the times, if not always, app chooser will display a similar message.
-                Toast.makeText(this, getString(R.string.noSuitableAppFound), Toast.LENGTH_LONG).show()
+                SnackbarCustom.showAutoClose(tvCompanyDetailsPhoneNumber, R.string.noSuitableAppFound)
             }
         }
     }
@@ -193,6 +192,10 @@ class CompanyDetailsActivity : AppCompatActivity() {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 company = data?.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as Company
                 intent.putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
+                val message: String? = data.getStringExtra(getString(R.string.EXTRA_SNACKBAR_TEXT))
+                if (message != null) {
+                    SnackbarCustom.showAutoClose(tvCompanyDetailsName, message)
+                }
                 isChanged = true
             }
         }

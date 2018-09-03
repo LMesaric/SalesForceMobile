@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dmax.dialog.SpotsDialog
@@ -73,7 +72,7 @@ class PasswordFragment : Fragment(), View.OnClickListener {
                         if (task.isSuccessful) {
                             addUserToDatabase()
                         } else {
-                            Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
+                            SnackbarCustom.showIndefinite(etRegisterPassword, task.exception?.message)
                         }
                     }
         }
@@ -98,18 +97,17 @@ class PasswordFragment : Fragment(), View.OnClickListener {
                                         .sendEmailVerification()
                                         .addOnCompleteListener { task2 ->
                                             if (!task2.isSuccessful) {
-                                                Toast.makeText(
-                                                        activity,
-                                                        "${getString(R.string.verificationEmailErrorPrefix)} ${task2.exception?.message}",
-                                                        Toast.LENGTH_LONG
-                                                ).show()
+                                                SnackbarCustom.showIndefinite(
+                                                        etRegisterPassword,
+                                                        "${getString(R.string.verificationEmailErrorPrefix)} ${task2.exception?.message}"
+                                                )
                                             }
                                             sendToVerify()
                                         }
                             } else {
                                 ActiveUserSingleton.user = null
                                 mAuth.signOut()
-                                Toast.makeText(activity, "Error: ${task.exception?.message.toString()}", Toast.LENGTH_LONG).show()
+                                SnackbarCustom.showIndefinite(etRegisterPassword, "Error: ${task.exception?.message}")
                             }
                         }
             }

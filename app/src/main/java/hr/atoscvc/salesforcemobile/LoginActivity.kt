@@ -3,12 +3,10 @@ package hr.atoscvc.salesforcemobile
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -112,22 +110,21 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                                                         .sendEmailVerification()
                                                         .addOnCompleteListener { task ->
                                                             if (!task.isSuccessful) {
-                                                                Toast.makeText(
-                                                                        this,
-                                                                        "${getString(R.string.verificationEmailErrorPrefix)} ${task.exception?.message}",
-                                                                        Toast.LENGTH_LONG
-                                                                ).show()
+                                                                SnackbarCustom.showIndefinite(
+                                                                        etLoginEmail,
+                                                                        "${getString(R.string.verificationEmailErrorPrefix)} ${task.exception?.message}"
+                                                                )
                                                             }
                                                             sendToVerify()
                                                         }
                                             }
                                         } else {
-                                            Toast.makeText(this, getString(R.string.noUserFound), Toast.LENGTH_LONG).show()
+                                            SnackbarCustom.showAutoClose(etLoginEmail, R.string.noUserFound)
                                             dialog?.dismiss()
                                         }
                                     }
                         } else {
-                            Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+                            SnackbarCustom.showIndefinite(etLoginEmail, task.exception?.message)
                             dialog?.dismiss()
                         }
 
@@ -163,7 +160,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         resetPasswordView.etEmailPassReset.requestFocus()
     }
 
-    fun onSendEmail() {
+    private fun onSendEmail() {
         val email: String = resetPasswordView.etEmailPassReset.text.toString().trim()
 
         if (!email.isBlank()) {
@@ -174,11 +171,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         if (task.isSuccessful) {
                             alertDialog.dismiss()
                             dialog?.dismiss()
-//                            Toast.makeText(this, getString(R.string.checkYourEmail), Toast.LENGTH_LONG).show()
-                            Snackbar.make(etLoginEmail, getString(R.string.checkYourEmail), Snackbar.LENGTH_INDEFINITE)
-                                    .setAction("Dismiss") {}    // There must be an empty OnClickListener for Dismiss to work
-                                    .show()
-                            // LUKA - zamijeniti sve toastove? -> napraviti static funkciju, extract resource
+                            SnackbarCustom.showIndefinite(etLoginEmail, R.string.checkYourEmail)
                         } else {
                             resetPasswordView.etEmailPassReset.error = task.exception?.message
                             dialog?.dismiss()
@@ -188,15 +181,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             resetPasswordView.etEmailPassReset.error = getString(R.string.emailEmptyMessage)
             dialog?.dismiss()
         }
-
     }
 
-    override fun onClick(p0: View) {
+    override fun onClick(v: View) {
         if (SystemClock.elapsedRealtime() - lastClickTime < 1000) {
             return
         }
         lastClickTime = SystemClock.elapsedRealtime()
-        pressedOnClick(p0)
+        pressedOnClick(v)
     }
 
     private fun pressedOnClick(v: View) {
@@ -205,7 +197,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.tvRegister -> onCreateNewAccount()
             R.id.tvForgotPassword -> onForgotPassword()
         }
-
     }
 
     private fun onCreateNewAccount() {

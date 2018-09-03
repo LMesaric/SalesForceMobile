@@ -8,10 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_company_edit.*
 import kotlinx.android.synthetic.main.fragment_company_edit.view.*
 
 //TODO - Valuta za income
@@ -93,16 +93,16 @@ class CompanyEditFragment : Fragment() {
                     company?.documentID = docRef?.id
                     company?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(activity, getString(R.string.newCompanyCreated), Toast.LENGTH_SHORT).show()
                             activity?.setResult(
                                     AppCompatActivity.RESULT_OK,
                                     Intent().apply {
                                         putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
+                                        putExtra(getString(R.string.EXTRA_SNACKBAR_TEXT), getString(R.string.newCompanyCreated))    //LUKA ovo se ne prikazuje jer je krivi activity
                                     }
                             )
                             activity?.finish()
                         } else {
-                            Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
+                            SnackbarCustom.showIndefinite(etCompanyName, task.exception?.message)
                         }
                     }
                 } else {
@@ -116,16 +116,16 @@ class CompanyEditFragment : Fragment() {
                         }
                     }?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(activity, getString(R.string.companyUpdated), Toast.LENGTH_LONG).show()
                             activity?.setResult(
                                     AppCompatActivity.RESULT_OK,
                                     Intent().apply {
                                         putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
+                                        putExtra(getString(R.string.EXTRA_SNACKBAR_TEXT), getString(R.string.companyUpdated))
                                     }
                             )
                             activity?.finish()
                         } else {
-                            Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
+                            SnackbarCustom.showIndefinite(etCompanyName, task.exception?.message)
                         }
                     }
                 }
