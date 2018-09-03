@@ -28,7 +28,7 @@
         android:layout_marginStart="16dp"
         android:background="@drawable/list_border"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivContactAvatar"
+        app:layout_constraintStart_toEndOf="@id/ivContactAvatar"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -46,8 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Atos CVC"
-            app:layout_constraintStart_toStartOf="@+id/tvCardContactName"
-            app:layout_constraintTop_toBottomOf="@+id/tvCardContactName"
+            app:layout_constraintStart_toStartOf="@id/tvCardContactName"
+            app:layout_constraintTop_toBottomOf="@id/tvCardContactName"
             tools:ignore="HardcodedText" />
 
         <TextView
@@ -56,19 +56,17 @@
             android:layout_height="wrap_content"
             android:text="ACTIVE"
             app:layout_constraintStart_toStartOf="@id/tvCardContactCompany"
-            app:layout_constraintTop_toBottomOf="@+id/tvCardContactCompany"
+            app:layout_constraintTop_toBottomOf="@id/tvCardContactCompany"
             tools:ignore="HardcodedText" />
 
-        <!-- LUKA - ovo mora biti invertani button -> style -->
         <Button
             android:id="@+id/btnCardContactSelectContact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/flatButtonStyle"
             android:layout_marginEnd="8dp"
             android:text="@string/Select"
-            app:layout_constraintBottom_toBottomOf="@+id/tvCardContactStatus"
+            app:layout_constraintBottom_toBottomOf="@id/tvCardContactStatus"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvCardContactName" />
+            app:layout_constraintTop_toTopOf="@id/tvCardContactName" />
 
     </android.support.constraint.ConstraintLayout>
 
