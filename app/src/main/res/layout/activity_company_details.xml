@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- TODO - napraviti company_avatar(_small) -->
         <ImageView
             android:id="@+id/ivCompanyDetailsAvatar"
             android:layout_width="80dp"
@@ -145,7 +144,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsCommunicationType" />
 
-        <!-- LUKA - promijeniti ikonicu -->
+        <!-- LUKA - promijeniti ikonicu (globus) -->
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabCompanyDetailsOpenWebPage"
             android:layout_width="wrap_content"

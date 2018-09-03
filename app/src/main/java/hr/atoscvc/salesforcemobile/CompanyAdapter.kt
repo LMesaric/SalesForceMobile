@@ -26,7 +26,6 @@ class CompanyAdapter(
     private var lastClickTime: Long = 0
 
     interface RecyclerViewCompaniesOnClickListener {
-        //FILIP - sortirati listu (Companies & Contacts) i onda pozvati notifyDataSetChanged(), pa se ne treba loadati ponovno iz baze
         fun recyclerViewCompaniesOnClick(
                 imageView: ImageView,
                 company: Company,

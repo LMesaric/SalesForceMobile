@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etContactFirstName" />
 
     <!-- Uneditable EditText used instead of TextView to keep the same appearance. -->
-    <!-- TODO - broken error message for this field (text not showing, only icon) -->
+    <!-- LUKA - broken error message for this field (text not showing, only icon - SNACKBAR) -->
     <EditText
         android:id="@+id/etContactCompanyName"
         android:layout_width="0dp"

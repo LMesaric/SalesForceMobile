@@ -44,7 +44,7 @@ class ContactEditFragment : Fragment() {
         }
 
         view.btnContactChooseCompany.setOnClickListener {
-            //TODO Osim biranja Companyja, trebalo bi omoguciti i kreiranje novog u istom prozoru -> problem vracanja podatka onome koji poziva
+            //FILIP Osim biranja Companyja, trebalo bi omoguciti i kreiranje novog u istom prozoru -> problem vracanja podatka onome koji poziva - uopce nema searcha!!
             val companiesFragment = CompaniesFragment()
             val bundle = Bundle()
             bundle.putBoolean(getString(R.string.EXTRA_COMPANY_IS_LIST_FOR_SELECT), true)

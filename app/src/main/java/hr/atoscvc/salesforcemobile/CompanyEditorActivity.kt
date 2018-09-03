@@ -8,9 +8,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
-//TODO Ovako se dobiva string iz indeksa u bazi:  resources.getStringArray(R.array.contactTitle_array)[index]
-//TODO Ovako se dobiva indeks selektiranog u spinneru:  spTitleContact.selectedItemPosition.toString()
-
 //TODO Za Company i Contact Editor staviti alert dialog na back button
 
 class CompanyEditorActivity : AppCompatActivity(), ReplaceFragmentListener {

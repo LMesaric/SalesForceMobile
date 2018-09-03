@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,14 +12,12 @@ import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
-
 //TODO - dodati i direct link na company details
 //LUKA - edit button mora biti invertan button
-//LUKA - export i import kontakata iz Imenika (paziti da se ne exporta vise puta)
+//LUKA - export i import kontakata iz Imenika (paziti da se ne exporta vise puta - disable za taj create activityja?)
 //FILIP - tint preko disableanog buttona
-//FILIP - padding iznad slike
 //FILIP - lampica? za active/inactive lijevo od FABova
-//FILIP - scroll donjeg dijela ekrana (shadow)
+//FILIP - collapsing toolbar za dio sa slikom, imenom i action gumbima (landscape je prelos)
 
 class ContactDetailsActivity : AppCompatActivity() {
 
@@ -50,7 +47,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         super.onResume()
 
         val letters = contact.firstName[0].toString().toUpperCase() + contact.lastName[0].toString().toUpperCase()
-        Log.i("Testing", Integer.toHexString(generator.getColor(contact.documentID)))
+        //Integer.toHexString(generator.getColor(contact.documentID))
         val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(contact.documentID))
         ivContactDetailsAvatar.setImageDrawable(drawable)
 
