@@ -76,7 +76,7 @@
             app:layout_constraintTop_toTopOf="@id/radioGroupSettings">
 
             <CheckBox
-                android:id="@+id/cbMatchAll"
+                android:id="@+id/cbSettingsMatchAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/MatchAll"
@@ -84,20 +84,20 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <CheckBox
-                android:id="@+id/cbMatchCase"
+                android:id="@+id/cbSettingsMatchCase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/MatchCase"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cbMatchAll" />
+                app:layout_constraintTop_toBottomOf="@id/cbSettingsMatchAll" />
 
             <CheckBox
-                android:id="@+id/cbMatchWords"
+                android:id="@+id/cbSettingsMatchWords"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Words"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cbMatchCase" />
+                app:layout_constraintTop_toBottomOf="@id/cbSettingsMatchCase" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -106,7 +106,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/shadow_height"
-        app:layout_constraintTop_toBottomOf="@id/settingsConstraintLayout"
-        android:background="@drawable/toolbar_shadow" />
+        android:background="@drawable/toolbar_shadow"
+        app:layout_constraintTop_toBottomOf="@id/settingsConstraintLayout" />
 
 </android.support.constraint.ConstraintLayout>

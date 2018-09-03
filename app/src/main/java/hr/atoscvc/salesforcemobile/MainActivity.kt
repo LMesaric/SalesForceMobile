@@ -1,5 +1,6 @@
 package hr.atoscvc.salesforcemobile
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_companies.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.search_settings.*
 
+//FILIP - aplikacija se rusi: pokreni, stisni back (izadje van), vrati se unutra (srusi se)
 //TODO MainActivity napraviti kao tabbedActivity ?
 //FIXME SVAKI PUT KAD CREATEAMO FRAGMENT ON OSTAJE SAVEAN, KAO I ONAJ STARI (MEMORIJA RASTE DO 370 MB) - REUSE https://stackoverflow.com/questions/19219458/fragment-on-screen-rotation
 
@@ -47,10 +49,6 @@ class MainActivity :
     private lateinit var companiesFragment: CompaniesFragment
 
     private lateinit var currentFragment: Fragment
-
-    private var mKeyboardVisible: Boolean = false
-
-    //TODO tuning icon search - dropdown, checkbox, and/or search
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,12 +97,21 @@ class MainActivity :
                 else -> false
             }
         }
+
+        setSearchSettingsSelection()
+
+        rbSettingsActive.setOnClickListener { searchSettingsChanged() }
+        rbSettingsInactive.setOnClickListener { searchSettingsChanged() }
+        rbSettingsAll.setOnClickListener { searchSettingsChanged() }
+        cbSettingsMatchAll.setOnClickListener { searchSettingsChanged() }
+        cbSettingsMatchCase.setOnClickListener { searchSettingsChanged() }
+        cbSettingsMatchWords.setOnClickListener { searchSettingsChanged() }
     }
 
     private fun goToHome() {
+        coordinator.title = resources.getString(R.string.Home)
         appBarLayout.setExpanded(false, true)
         appBarLayout.isActivated = false
-        coordinator.title = resources.getString(R.string.Home)
         searchItem.isVisible = false
         searchView.visibility = View.GONE
         replaceFragment(homeFragment)
@@ -152,6 +159,7 @@ class MainActivity :
         startActivityForResult(companyDetailsIntent, CompaniesFragment.requestItemRefresh)
     }
 
+    private var mKeyboardVisible: Boolean = false
     private val mLayoutKeyboardVisibilityListener = {
         val rectangle = Rect()
         //error getContentView
@@ -277,9 +285,7 @@ class MainActivity :
                 startActivity(intent)
             }
             R.id.action_advanced_search -> {
-                val state = searchSettingsContainer.visibility
-                TransitionManager.beginDelayedTransition(searchSettingsContainer, Slide(Gravity.TOP).setDuration(600))
-                searchSettingsContainer.visibility = if (state != View.VISIBLE) View.VISIBLE else View.GONE
+                toggleSearchSettings()
             }
         }
         return true
@@ -327,5 +333,71 @@ class MainActivity :
         verifyIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(verifyIntent)
         finish()
+    }
+
+    override fun onBackPressed() {
+        if (!toggleSearchSettings(true)) {
+            super.onBackPressed()
+        }
+    }
+
+    private fun toggleSearchSettings(onlyClose: Boolean = false): Boolean {
+        val state = searchSettingsContainer.visibility
+        return if (onlyClose && state != View.VISIBLE) {
+            false
+        } else {
+            TransitionManager.beginDelayedTransition(searchSettingsContainer, Slide(Gravity.TOP).setDuration(600))
+            searchSettingsContainer.visibility = if (state != View.VISIBLE) View.VISIBLE else View.GONE
+            true
+        }
+    }
+
+    private fun setSearchSettingsSelection() {
+        val sharedPref = getSharedPreferences(
+                getString(R.string.SHARED_PREFERENCES_SEARCH_SETTINGS),
+                Context.MODE_PRIVATE
+        )
+        //LUKA extract default values kod R.string.SHARED_PREFERENCES_RADIO_BUTTON_SELECTED_ID
+        val selectedRadioId: Int = sharedPref.getInt(
+                getString(R.string.SHARED_PREFERENCES_RADIO_BUTTON_SELECTED_ID),
+                R.id.rbSettingsActive
+        )
+        when (selectedRadioId) {
+            R.id.rbSettingsActive -> rbSettingsActive.isChecked = true
+            R.id.rbSettingsInactive -> rbSettingsInactive.isChecked = true
+            R.id.rbSettingsAll -> rbSettingsAll.isChecked = true
+        }
+
+        cbSettingsMatchAll.isChecked = sharedPref.getBoolean(getString(R.string.SHARED_PREFERENCES_CHECK_BOX_MATCH_ALL), false)
+        cbSettingsMatchCase.isChecked = sharedPref.getBoolean(getString(R.string.SHARED_PREFERENCES_CHECK_BOX_MATCH_CASE), false)
+        cbSettingsMatchWords.isChecked = sharedPref.getBoolean(getString(R.string.SHARED_PREFERENCES_CHECK_BOX_MATCH_WORDS), false)
+    }
+
+    private fun searchSettingsChanged() {
+        //FIXME - na poziv ove funkcije treba se refreshati search aktivnog fragmenta
+        //LUKA - zatvoriti search setting na fling up
+        //LUKA - recyclerview item - na klik podizanje i expand layouta iznad svega
+
+        SearchFilter.preferencesChanged = true
+
+        val sharedPref = getSharedPreferences(
+                getString(R.string.SHARED_PREFERENCES_SEARCH_SETTINGS),
+                Context.MODE_PRIVATE
+        )
+        with(sharedPref.edit()) {
+            putInt(
+                    getString(R.string.SHARED_PREFERENCES_RADIO_BUTTON_SELECTED_ID),
+                    when {
+                        rbSettingsActive.isChecked -> R.id.rbSettingsActive
+                        rbSettingsInactive.isChecked -> R.id.rbSettingsInactive
+                        rbSettingsAll.isChecked -> R.id.rbSettingsAll
+                        else -> R.id.rbSettingsActive
+                    }
+            )
+            putBoolean(getString(R.string.SHARED_PREFERENCES_CHECK_BOX_MATCH_ALL), cbSettingsMatchAll.isChecked)
+            putBoolean(getString(R.string.SHARED_PREFERENCES_CHECK_BOX_MATCH_CASE), cbSettingsMatchCase.isChecked)
+            putBoolean(getString(R.string.SHARED_PREFERENCES_CHECK_BOX_MATCH_WORDS), cbSettingsMatchWords.isChecked)
+            apply()
+        }
     }
 }

@@ -134,7 +134,7 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun filter(query: String?) {
         val filteredList = ArrayList<Company>()
         for (company: Company in companyList) {
-            if (SearchFilter.satisfiesQuery(query, company, false, false, true, false, resources)) {
+            if (SearchFilter.satisfiesQuery(query, company, activity?.applicationContext!!)) {
                 filteredList.add(company)
             }
         }
