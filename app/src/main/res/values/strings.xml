@@ -5,25 +5,24 @@
 
     <string name="app_name">Sales Force Mobile</string>
 
-    <string name="WelcomeTo">Welcome to</string>
+    <string name="login">Login</string>
     <string name="rememberMe">Remember me</string>
-    <string name="forgotPassword"><a href="">Forgot your password?</a></string>
     <string name="clickHereToRegister"><a href="">Register</a></string>
+    <string name="forgotPassword"><a href="">Forgot your password?</a></string>
 
+    <string name="WelcomeTo">Welcome to</string>
     <string name="CreateNewAccount">Create new\naccount</string>
     <string name="EnterYourName">Enter your name</string>
-
     <string name="HowYouWillSignIn">How you will\nsign in</string>
     <string name="EnterYourEmail">Enter your email</string>
-
     <string name="ProtectYourInformation">Protect your\ninformation</string>
     <string name="CreatePassword">Create a password</string>
+
+    <string name="dismiss">Dismiss</string>
 
     <string name="resetPassword">Reset Password</string>
     <string name="reset">Reset</string>
     <string name="resetPasswordDescriptionLabel">We will send you an email with a link to reset your password. Please check your Spam folder.</string>
-
-    <string name="login">Login</string>
 
     <string name="Search">Search</string>
     <string name="AdvancedSearch">Advanced Search</string>
@@ -210,6 +209,8 @@
     <string name="SHARED_PREFERENCES_CHECK_BOX_MATCH_ALL" translatable="false">SHARED_PREFERENCES_CHECK_BOX_MATCH_ALL</string>
     <string name="SHARED_PREFERENCES_CHECK_BOX_MATCH_CASE" translatable="false">SHARED_PREFERENCES_CHECK_BOX_MATCH_CASE</string>
     <string name="SHARED_PREFERENCES_CHECK_BOX_MATCH_WORDS" translatable="false">SHARED_PREFERENCES_CHECK_BOX_MATCH_WORDS</string>
+
+    <string name="EXTRA_SNACKBAR_TEXT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_SNACKBAR_TEXT</string>
 
     <string name="EXTRA_IS_EDITOR_FOR_NEW_ITEM" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_IS_EDITOR_FOR_NEW_ITEM</string>
 
