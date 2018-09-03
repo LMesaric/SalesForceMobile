@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
+import android.text.InputType
 import android.transition.Slide
 import android.transition.TransitionManager
 import android.view.Gravity
@@ -26,7 +27,7 @@ import kotlinx.android.synthetic.main.search_settings.*
 
 //FILIP - aplikacija se rusi: pokreni, stisni back (izadje van), vrati se unutra (srusi se)
 //TODO MainActivity napraviti kao tabbedActivity ?
-//FIXME SVAKI PUT KAD CREATEAMO FRAGMENT ON OSTAJE SAVEAN, KAO I ONAJ STARI (MEMORIJA RASTE DO 370 MB) - REUSE https://stackoverflow.com/questions/19219458/fragment-on-screen-rotation
+//LUKA SVAKI PUT KAD CREATEAMO FRAGMENT ON OSTAJE SAVEAN, KAO I ONAJ STARI (MEMORIJA RASTE DO 370 MB) - REUSE https://stackoverflow.com/questions/19219458/fragment-on-screen-rotation
 
 class MainActivity :
         AppCompatActivity(),
@@ -249,6 +250,8 @@ class MainActivity :
         val searchEditText = searchView.findViewById<View>(android.support.v7.appcompat.R.id.search_src_text) as EditText
         searchEditText.setTextColor(ContextCompat.getColor(this, R.color.colorBackgroundWhite))
 
+        searchView.inputType = InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE
+
         searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
                 appBarLayout.setExpanded(false, true)
@@ -398,6 +401,10 @@ class MainActivity :
             putBoolean(getString(R.string.SHARED_PREFERENCES_CHECK_BOX_MATCH_CASE), cbSettingsMatchCase.isChecked)
             putBoolean(getString(R.string.SHARED_PREFERENCES_CHECK_BOX_MATCH_WORDS), cbSettingsMatchWords.isChecked)
             apply()
+        }
+
+        if (!searchView.isIconified) {
+            searchView.setQuery(searchView.query, true)
         }
     }
 }
