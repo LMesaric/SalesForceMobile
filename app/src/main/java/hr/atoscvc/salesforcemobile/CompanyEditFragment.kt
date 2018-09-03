@@ -98,6 +98,8 @@ class CompanyEditFragment : Fragment() {
                                     Intent().apply {
                                         putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
                                         putExtra(getString(R.string.EXTRA_SNACKBAR_TEXT), getString(R.string.newCompanyCreated))    //LUKA ovo se ne prikazuje jer je krivi activity
+                                        //LUKA dovrsiti snackbarove
+                                        //FILIP contact details scroll bi se trebalo malo nastaviti nakon pustanja prsta
                                     }
                             )
                             activity?.finish()
