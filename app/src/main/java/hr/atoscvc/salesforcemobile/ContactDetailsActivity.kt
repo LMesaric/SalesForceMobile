@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.Toast
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.activity_contact_details.*
+
 
 //TODO - dodati i direct link na company details
 //LUKA - edit button mora biti invertan button
@@ -48,9 +50,11 @@ class ContactDetailsActivity : AppCompatActivity() {
         super.onResume()
 
         val letters = contact.firstName[0].toString().toUpperCase() + contact.lastName[0].toString().toUpperCase()
-
+        Log.i("Testing", Integer.toHexString(generator.getColor(contact.documentID)))
         val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(contact.documentID))
         ivContactDetailsAvatar.setImageDrawable(drawable)
+
+        // ivContactDetailsAvatar.setImageDrawable(drawable)
 
         tvContactDetailsName.text = ConcatenateObjectToString.concatenateContactName(contact, resources, true)
         tvContactDetailsCompanyName.text = contact.company?.name
