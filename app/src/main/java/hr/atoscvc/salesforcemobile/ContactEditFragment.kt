@@ -56,7 +56,7 @@ class ContactEditFragment : Fragment() {
 
             val status: Int = view.spContactStatus.selectedItemPosition
             val title: Int = view.spContactTitle.selectedItemPosition
-            val prefTime: Int = view.spContactPreferredTime.selectedItemPosition
+            val prefTime: Int = view.spContactPreferredTime.selectedIndex
 
             val firstName: String = view.etContactFirstName.text.toString().trim()
             val lastName: String = view.etContactLastName.text.toString().trim()
@@ -156,11 +156,18 @@ class ContactEditFragment : Fragment() {
                 R.layout.simple_spinner_dropdown_item
         )
 
-        view.spContactPreferredTime.adapter = ArrayAdapter.createFromResource(
+        view.spContactPreferredTime.setAdapter(ArrayAdapter.createFromResource(
                 activity?.baseContext!!,
                 R.array.contactPreferredTime_array,
                 R.layout.simple_spinner_dropdown_item
-        )
+        ))
+
+
+        /*view.spContactPreferredTime.adapter = ArrayAdapter.createFromResource(
+                activity?.baseContext!!,
+                R.array.contactPreferredTime_array,
+                R.layout.simple_spinner_dropdown_item
+        )*/
 
         view.etContactFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
@@ -199,7 +206,7 @@ class ContactEditFragment : Fragment() {
 
         view.spContactTitle.setSelection(contact?.title ?: 0)
         view.spContactStatus.setSelection(contact?.status ?: 0)
-        view.spContactPreferredTime.setSelection(contact?.preferredTime ?: 0)
+        view.spContactPreferredTime.selectedIndex = (contact?.preferredTime ?: 0)
         view.etContactFirstName.setText(contact?.firstName)
         view.etContactLastName.setText(contact?.lastName)
         view.etContactCompanyName.setText(chosenCompany?.name)
