@@ -1,6 +1,9 @@
 package hr.atoscvc.salesforcemobile
 
+import android.animation.Animator
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
@@ -68,6 +71,28 @@ class ContactDetailsActivity : AppCompatActivity() {
         tvContactDetailsCompanyName.text = contact.company?.name
         tvContactDetailsStatus.text = resources.getStringArray(R.array.status_array)[contact.status]
 
+        fabContactDetailsCallSecondary.visibility = View.VISIBLE
+        fabContactDetailsCallSecondary.show()
+        fabContactDetailsCallSecondary.hide()
+
+        fabContactDetailsCall.addOnHideAnimationListener(object: Animator.AnimatorListener {
+            override fun onAnimationRepeat(p0: Animator?) {}
+            override fun onAnimationEnd(p0: Animator?) {}
+            override fun onAnimationCancel(p0: Animator?) {}
+            override fun onAnimationStart(p0: Animator?) {
+                fabContactDetailsCallSecondary.show()
+            }
+        })
+
+        fabContactDetailsCall.addOnShowAnimationListener(object: Animator.AnimatorListener {
+            override fun onAnimationRepeat(p0: Animator?) {}
+            override fun onAnimationEnd(p0: Animator?) {}
+            override fun onAnimationCancel(p0: Animator?) {}
+            override fun onAnimationStart(p0: Animator?) {
+                fabContactDetailsCallSecondary.hide()
+            }
+        })
+
         if (contact.email.isNullOrBlank()) {
             layoutContactDetailsEmail.visibility = View.GONE
             fabContactDetailsSendEmail.isEnabled = false
@@ -80,11 +105,13 @@ class ContactDetailsActivity : AppCompatActivity() {
         if (contact.phone.isNullOrBlank()) {
             layoutContactDetailsPhoneNumber.visibility = View.GONE
             fabContactDetailsCall.isClickable = false
+            fabContactDetailsCallSecondary.isClickable = false
             fabContactDetailsSendText.isEnabled = false
         } else {
             tvContactDetailsPhoneNumber.text = contact.phone
             layoutContactDetailsPhoneNumber.visibility = View.VISIBLE
             fabContactDetailsCall.isClickable = true
+            fabContactDetailsCallSecondary.isClickable = true
             fabContactDetailsSendText.isEnabled = true
         }
 

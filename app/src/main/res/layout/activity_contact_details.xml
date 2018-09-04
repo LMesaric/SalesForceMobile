@@ -8,6 +8,20 @@
     android:theme="@style/PreviewDetailsTheme"
     tools:context=".ContactDetailsActivity">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabContactDetailsCallSecondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onContactCall"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/sym_action_call" />
+
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayoutContactDetails"
         android:layout_width="0dp"
@@ -63,7 +77,7 @@
             android:clickable="true"
             android:focusable="true"
             android:onClick="onContactCall"
-            android:elevation="10dp"
+            android:elevation="2dp"
             app:fabSize="auto"
             app:layout_anchor="@id/appBarContactDetails"
             app:layout_anchorGravity="bottom|left|start"
