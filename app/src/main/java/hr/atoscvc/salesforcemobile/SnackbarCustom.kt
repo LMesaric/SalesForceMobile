@@ -1,7 +1,6 @@
 package hr.atoscvc.salesforcemobile
 
 import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ object SnackbarCustom {
 //        params.setMargins(margin, margin, margin, margin)
         this.view.layoutParams = params
         //this.view.background = this.view.context.getDrawable(R.drawable.snackbar_background)
-        this.setActionTextColor(ContextCompat.getColor(this.view.context, R.color.colorSnackbarAction))
+        //this.setActionTextColor(ContextCompat.getColor(this.view.context, R.color.colorSnackbarAction))
         ViewCompat.setElevation(this.view, 6f)
         return this
     }
