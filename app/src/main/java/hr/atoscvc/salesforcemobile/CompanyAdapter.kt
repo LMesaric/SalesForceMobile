@@ -56,11 +56,7 @@ class CompanyAdapter(
         holder.constraintLayoutCompanyMain.setOnClickListener {
             if (SystemClock.elapsedRealtime() - lastClickTime >= 2000) {
                 lastClickTime = SystemClock.elapsedRealtime()
-                listenerCompanies.recyclerViewCompaniesOnClick(
-                        holder.ivCompanyAvatar,
-                        companyList[position],
-                        isForSelect
-                )
+                listenerCompanies.recyclerViewCompaniesOnClick(holder.ivCompanyAvatar, company, isForSelect)
             }
         }
 
