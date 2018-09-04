@@ -79,12 +79,12 @@ class ContactDetailsActivity : AppCompatActivity() {
 
         if (contact.phone.isNullOrBlank()) {
             layoutContactDetailsPhoneNumber.visibility = View.GONE
-            fabContactDetailsCall.isEnabled = false
+            fabContactDetailsCall.isClickable = false
             fabContactDetailsSendText.isEnabled = false
         } else {
             tvContactDetailsPhoneNumber.text = contact.phone
             layoutContactDetailsPhoneNumber.visibility = View.VISIBLE
-            fabContactDetailsCall.isEnabled = true
+            fabContactDetailsCall.isClickable = true
             fabContactDetailsSendText.isEnabled = true
         }
 
