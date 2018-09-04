@@ -47,7 +47,7 @@
                 app:expandedTitleGravity="center|bottom"
                 app:expandedTitleMarginBottom="30dp"
                 app:expandedTitleTextAppearance="@style/expandedToolbar"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                 <ImageView
                     android:id="@+id/expandedAvatarContactDetails"
