@@ -11,6 +11,7 @@ import android.support.v7.widget.SearchView
 import android.text.InputType
 import android.transition.Slide
 import android.transition.TransitionManager
+import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -42,7 +43,7 @@ class MainActivity :
     private var refreshContacts = false
     private var refreshCompanies = false
 
-    lateinit var searchView: SearchView
+    var searchView: SearchView? = null
     private lateinit var searchItem: MenuItem
 
     private lateinit var homeFragment: HomeFragment
@@ -114,7 +115,7 @@ class MainActivity :
         appBarLayout.setExpanded(false, true)
         appBarLayout.isActivated = false
         searchItem.isVisible = false
-        searchView.visibility = View.GONE
+        searchView?.visibility = View.GONE
         replaceFragment(homeFragment)
     }
 
@@ -125,9 +126,9 @@ class MainActivity :
         contactsFragment.arguments = bundle
         appBarLayout.setExpanded(true, true)
         appBarLayout.isActivated = true
-        searchView.setOnQueryTextListener(contactsFragment)
+        searchView?.setOnQueryTextListener(contactsFragment)
         searchItem.isVisible = true
-        searchView.visibility = View.VISIBLE
+        searchView?.visibility = View.VISIBLE
         replaceFragment(contactsFragment)
     }
 
@@ -138,9 +139,9 @@ class MainActivity :
         companiesFragment.arguments = bundle
         appBarLayout.setExpanded(true, true)
         appBarLayout.isActivated = true
-        searchView.setOnQueryTextListener(companiesFragment)
+        searchView?.setOnQueryTextListener(companiesFragment)
         searchItem.isVisible = true
-        searchView.visibility = View.VISIBLE
+        searchView?.visibility = View.VISIBLE
         replaceFragment(companiesFragment)
     }
 
@@ -244,13 +245,13 @@ class MainActivity :
         searchView = searchItem.actionView as SearchView
 
         searchItem.isVisible = false
-        searchView.visibility = View.GONE
+        searchView?.visibility = View.GONE
         searchItem.collapseActionView()
 
-        val searchEditText = searchView.findViewById<View>(android.support.v7.appcompat.R.id.search_src_text) as EditText
+        val searchEditText = searchView?.findViewById<View>(android.support.v7.appcompat.R.id.search_src_text) as EditText
         searchEditText.setTextColor(ContextCompat.getColor(this, R.color.colorBackgroundWhite))
 
-        searchView.inputType = InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE
+        searchView?.inputType = InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE
 
         searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
@@ -410,8 +411,8 @@ class MainActivity :
             apply()
         }
 
-        if (!searchView.isIconified) {
-            searchView.setQuery(searchView.query, true)
+        if (searchView?.isIconified == false) {
+            searchView?.setQuery(searchView?.query, true)
         }
     }
 }
