@@ -35,15 +35,14 @@
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarContactDetails"
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="wrap_content"
             android:fitsSystemWindows="true">
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/collapsingToolbarContactDetails"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="230dp"
                 android:fitsSystemWindows="true"
-                android:elevation="5dp"
                 app:collapsedTitleTextAppearance="@style/collapsedToolbar"
                 app:expandedTitleGravity="center|bottom"
                 app:expandedTitleMarginBottom="30dp"
@@ -62,8 +61,7 @@
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolBarContactDetails"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:minHeight="?attr/actionBarSize"
+                    android:layout_height="?attr/actionBarSize"
                     android:theme="@style/MenuTheme"
                     app:layout_collapseMode="pin" />
             </android.support.design.widget.CollapsingToolbarLayout>
@@ -101,7 +99,6 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="false"
             android:nestedScrollingEnabled="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
