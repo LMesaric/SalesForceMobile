@@ -1,6 +1,7 @@
 package hr.atoscvc.salesforcemobile
 
 import android.app.Activity
+import android.support.v4.content.ContextCompat
 import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.ViewGroup
@@ -37,6 +38,7 @@ object ToastExtension {
         )
 
         val v = t.view.findViewById(android.R.id.message) as TextView
+        v.setTextColor(ContextCompat.getColor(activity, android.R.color.white))
         v.gravity = Gravity.CENTER_VERTICAL or Gravity.START
         t.setGravity(Gravity.BOTTOM, 0, margin)
 
