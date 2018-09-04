@@ -11,7 +11,6 @@ import android.support.v7.widget.SearchView
 import android.text.InputType
 import android.transition.Slide
 import android.transition.TransitionManager
-import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -26,7 +25,6 @@ import kotlinx.android.synthetic.main.fragment_companies.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.search_settings.*
 
-//FILIP - aplikacija se rusi: pokreni, stisni back (izadje van), vrati se unutra (srusi se)
 //TODO MainActivity napraviti kao tabbedActivity ?
 //LUKA SVAKI PUT KAD CREATEAMO FRAGMENT ON OSTAJE SAVEAN, KAO I ONAJ STARI (MEMORIJA RASTE DO 370 MB) - REUSE https://stackoverflow.com/questions/19219458/fragment-on-screen-rotation
 
