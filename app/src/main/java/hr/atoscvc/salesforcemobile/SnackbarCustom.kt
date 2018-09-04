@@ -13,11 +13,11 @@ object SnackbarCustom {
      * @return Snackbar object it was called on to allow chaining methods.
      */
     private fun Snackbar.beautify(): Snackbar {
-        val margin = this.view.resources.getDimension(R.dimen.snackbar_margin).toInt()
+//        val margin = this.view.resources.getDimension(R.dimen.snackbar_margin).toInt()
         val params = this.view.layoutParams as ViewGroup.MarginLayoutParams
-        params.setMargins(margin, margin, margin, margin)
+//        params.setMargins(margin, margin, margin, margin)
         this.view.layoutParams = params
-        this.view.background = this.view.context.getDrawable(R.drawable.snackbar_background)
+        //this.view.background = this.view.context.getDrawable(R.drawable.snackbar_background)
         this.setActionTextColor(ContextCompat.getColor(this.view.context, R.color.colorSnackbarAction))
         ViewCompat.setElevation(this.view, 6f)
         return this

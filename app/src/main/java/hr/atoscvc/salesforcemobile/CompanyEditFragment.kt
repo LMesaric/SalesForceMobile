@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.fragment_company_edit.*
 import kotlinx.android.synthetic.main.fragment_company_edit.view.*
 
 //TODO - Valuta za income
@@ -93,18 +92,17 @@ class CompanyEditFragment : Fragment() {
                     company?.documentID = docRef?.id
                     company?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            ToastExtension.makeText(requireActivity(), R.string.newCompanyCreated)
                             activity?.setResult(
                                     AppCompatActivity.RESULT_OK,
                                     Intent().apply {
                                         putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-                                        putExtra(getString(R.string.EXTRA_SNACKBAR_TEXT), getString(R.string.newCompanyCreated))    //LUKA ovo se ne prikazuje jer je krivi activity
-                                        //LUKA dovrsiti snackbarove
                                         //FILIP contact details scroll bi se trebalo malo nastaviti nakon pustanja prsta
                                     }
                             )
                             activity?.finish()
                         } else {
-                            SnackbarCustom.showIndefinite(etCompanyName, task.exception?.message)
+                            ToastExtension.makeText(requireActivity(), task.exception?.message.toString())
                         }
                     }
                 } else {
@@ -118,16 +116,16 @@ class CompanyEditFragment : Fragment() {
                         }
                     }?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            ToastExtension.makeText(requireActivity(), R.string.companyUpdated)
                             activity?.setResult(
                                     AppCompatActivity.RESULT_OK,
                                     Intent().apply {
                                         putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-                                        putExtra(getString(R.string.EXTRA_SNACKBAR_TEXT), getString(R.string.companyUpdated))
                                     }
                             )
                             activity?.finish()
                         } else {
-                            SnackbarCustom.showIndefinite(etCompanyName, task.exception?.message)
+                            ToastExtension.makeText(requireActivity(), task.exception?.message.toString())
                         }
                     }
                 }

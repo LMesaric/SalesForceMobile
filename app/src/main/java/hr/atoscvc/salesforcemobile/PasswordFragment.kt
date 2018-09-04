@@ -72,7 +72,7 @@ class PasswordFragment : Fragment(), View.OnClickListener {
                         if (task.isSuccessful) {
                             addUserToDatabase()
                         } else {
-                            SnackbarCustom.showIndefinite(etRegisterPassword, task.exception?.message)
+                            ToastExtension.makeText(requireActivity(), task.exception?.message.toString())
                         }
                     }
         }
@@ -97,8 +97,8 @@ class PasswordFragment : Fragment(), View.OnClickListener {
                                         .sendEmailVerification()
                                         .addOnCompleteListener { task2 ->
                                             if (!task2.isSuccessful) {
-                                                SnackbarCustom.showIndefinite(
-                                                        etRegisterPassword,
+                                                ToastExtension.makeText(
+                                                        requireActivity(),
                                                         "${getString(R.string.verificationEmailErrorPrefix)} ${task2.exception?.message}"
                                                 )
                                             }
@@ -107,7 +107,7 @@ class PasswordFragment : Fragment(), View.OnClickListener {
                             } else {
                                 ActiveUserSingleton.user = null
                                 mAuth.signOut()
-                                SnackbarCustom.showIndefinite(etRegisterPassword, "Error: ${task.exception?.message}")
+                                ToastExtension.makeText(requireActivity(), "Error: ${task.exception?.message}")
                             }
                         }
             }

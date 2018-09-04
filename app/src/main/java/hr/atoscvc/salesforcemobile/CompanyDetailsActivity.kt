@@ -105,7 +105,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
     fun onCompanyWebPage(@Suppress("UNUSED_PARAMETER") view: View) {
         var webPage: String? = company.webPage?.trim()
         if (webPage.isNullOrBlank()) {
-            SnackbarCustom.showAutoClose(tvCompanyDetailsWebPage, R.string.wrongWebPage)
+            ToastExtension.makeText(this, R.string.wrongWebPage)
         } else {
             webPage?.let {
                 if (it.startsWith("www.", true)) {
@@ -119,7 +119,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(webIntent, getString(R.string.openWebChooser)))
             } catch (e: Exception) {
                 // Most of the times, if not always, app chooser will display a similar message.
-                SnackbarCustom.showAutoClose(tvCompanyDetailsWebPage, R.string.noSuitableAppFound)
+                ToastExtension.makeText(this, R.string.noSuitableAppFound)
             }
         }
     }
@@ -127,14 +127,14 @@ class CompanyDetailsActivity : AppCompatActivity() {
     fun onCompanyCall(@Suppress("UNUSED_PARAMETER") view: View) {
         val phone: String? = company.phone?.trim()
         if (phone.isNullOrBlank()) {
-            SnackbarCustom.showAutoClose(tvCompanyDetailsPhoneNumber, R.string.wrongPhoneNumber)
+            ToastExtension.makeText(this, R.string.wrongPhoneNumber)
         } else {
             val dialIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone"))
             try {
                 startActivity(Intent.createChooser(dialIntent, getString(R.string.dialPhoneChooser)))
             } catch (e: Exception) {
                 // Most of the times, if not always, app chooser will display a similar message.
-                SnackbarCustom.showAutoClose(tvCompanyDetailsPhoneNumber, R.string.noSuitableAppFound)
+                ToastExtension.makeText(this, R.string.noSuitableAppFound)
             }
         }
     }
@@ -142,7 +142,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
     fun onCompanyText(@Suppress("UNUSED_PARAMETER") view: View) {
         val phone: String? = company.phone?.trim()
         if (phone.isNullOrBlank()) {
-            SnackbarCustom.showAutoClose(tvCompanyDetailsPhoneNumber, R.string.wrongPhoneNumber)
+            ToastExtension.makeText(this, R.string.wrongPhoneNumber)
         } else {
             val smsIntent = Intent(Intent.ACTION_VIEW, Uri.parse("smsto:$phone")).apply {
                 putExtra("sms_body", "${company.name}, \n")
@@ -151,7 +151,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(smsIntent, getString(R.string.sendTextChooser)))
             } catch (e: Exception) {
                 // Most of the times, if not always, app chooser will display a similar message.
-                SnackbarCustom.showAutoClose(tvCompanyDetailsPhoneNumber, R.string.noSuitableAppFound)
+                ToastExtension.makeText(this, R.string.noSuitableAppFound)
             }
         }
     }
@@ -192,10 +192,6 @@ class CompanyDetailsActivity : AppCompatActivity() {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 company = data?.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as Company
                 intent.putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-                val message: String? = data.getStringExtra(getString(R.string.EXTRA_SNACKBAR_TEXT))
-                if (message != null) {
-                    SnackbarCustom.showAutoClose(tvCompanyDetailsName, message)
-                }
                 isChanged = true
             }
         }

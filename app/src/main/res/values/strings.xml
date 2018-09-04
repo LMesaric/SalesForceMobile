@@ -210,8 +210,6 @@
     <string name="SHARED_PREFERENCES_CHECK_BOX_MATCH_CASE" translatable="false">SHARED_PREFERENCES_CHECK_BOX_MATCH_CASE</string>
     <string name="SHARED_PREFERENCES_CHECK_BOX_MATCH_WORDS" translatable="false">SHARED_PREFERENCES_CHECK_BOX_MATCH_WORDS</string>
 
-    <string name="EXTRA_SNACKBAR_TEXT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_SNACKBAR_TEXT</string>
-
     <string name="EXTRA_IS_EDITOR_FOR_NEW_ITEM" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_IS_EDITOR_FOR_NEW_ITEM</string>
 
     <string name="EXTRA_CONTACT_ENTIRE_OBJECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_CONTACT_ENTIRE_OBJECT</string>

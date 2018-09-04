@@ -13,7 +13,11 @@
     <dimen name="login_register_edit_text_from_edit_text">8dp</dimen>
     <dimen name="login_register_button_from_first_edit_text">90dp</dimen>
 
-    <dimen name="snackbar_margin">24dp</dimen>
+    <dimen name="toast_radius">4dp</dimen>
+    <dimen name="toast_padding_left">16dp</dimen>
+    <dimen name="toast_padding_right">16dp</dimen>
+    <dimen name="toast_padding_top">4dp</dimen>
+    <dimen name="toast_padding_bottom">4dp</dimen>
 
     <dimen name="button_radius_large">5dp</dimen>
 

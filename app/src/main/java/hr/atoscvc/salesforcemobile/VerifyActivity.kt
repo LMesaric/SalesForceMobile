@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_verify.*
 
@@ -59,9 +58,9 @@ class VerifyActivity : AppCompatActivity(), View.OnClickListener {
         mAuth.currentUser!!.sendEmailVerification()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, "Verification email sent", Toast.LENGTH_LONG).show()
+                        ToastExtension.makeText(this, "Verification email sent")
                     } else {
-                        Toast.makeText(this, "${getString(R.string.verificationEmailErrorPrefix)} ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        ToastExtension.makeText(this, "${getString(R.string.verificationEmailErrorPrefix)} ${task.exception?.message}")
                     }
                 }
     }
@@ -71,7 +70,7 @@ class VerifyActivity : AppCompatActivity(), View.OnClickListener {
         if (mAuth.currentUser!!.isEmailVerified) {
             sendToMain()
         } else {
-            Toast.makeText(this, "Email is still not verified!" + mAuth.currentUser!!.isEmailVerified, Toast.LENGTH_LONG).show()
+            ToastExtension.makeText(this, "Email is still not verified!" + mAuth.currentUser!!.isEmailVerified)
         }
     }
 

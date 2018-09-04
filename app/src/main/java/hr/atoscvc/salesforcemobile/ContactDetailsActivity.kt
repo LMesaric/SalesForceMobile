@@ -2,8 +2,6 @@ package hr.atoscvc.salesforcemobile
 
 import android.animation.Animator
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
@@ -11,7 +9,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.activity_contact_details.*
@@ -70,7 +67,7 @@ class ContactDetailsActivity : AppCompatActivity() {
 
         fabContactDetailsCallSecondary.hide()
 
-        fabContactDetailsCall.addOnHideAnimationListener(object: Animator.AnimatorListener {
+        fabContactDetailsCall.addOnHideAnimationListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(p0: Animator?) {}
             override fun onAnimationEnd(p0: Animator?) {}
             override fun onAnimationCancel(p0: Animator?) {}
@@ -79,7 +76,7 @@ class ContactDetailsActivity : AppCompatActivity() {
             }
         })
 
-        fabContactDetailsCall.addOnShowAnimationListener(object: Animator.AnimatorListener {
+        fabContactDetailsCall.addOnShowAnimationListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(p0: Animator?) {}
             override fun onAnimationEnd(p0: Animator?) {}
             override fun onAnimationCancel(p0: Animator?) {}
@@ -128,7 +125,7 @@ class ContactDetailsActivity : AppCompatActivity() {
     fun onContactEmail(@Suppress("UNUSED_PARAMETER") view: View) {
         val email: String? = contact.email?.trim()
         if (email.isNullOrBlank()) {
-            Toast.makeText(this, getString(R.string.wrongEmail), Toast.LENGTH_SHORT).show()
+            ToastExtension.makeText(this, R.string.wrongEmail)
         } else {
             val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:")).apply {
                 putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
@@ -138,7 +135,7 @@ class ContactDetailsActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(emailIntent, getString(R.string.sendEmailChooser)))
             } catch (e: Exception) {
                 // Most of the times, if not always, app chooser will display a similar message.
-                Toast.makeText(this, getString(R.string.noSuitableEmailAppFound), Toast.LENGTH_LONG).show()
+                ToastExtension.makeText(this, R.string.noSuitableEmailAppFound)
             }
         }
     }
@@ -146,14 +143,14 @@ class ContactDetailsActivity : AppCompatActivity() {
     fun onContactCall(@Suppress("UNUSED_PARAMETER") view: View) {
         val phone: String? = contact.phone?.trim()
         if (phone.isNullOrBlank()) {
-            Toast.makeText(this, getString(R.string.wrongPhoneNumber), Toast.LENGTH_SHORT).show()
+            ToastExtension.makeText(this, R.string.wrongPhoneNumber)
         } else {
             val dialIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone"))
             try {
                 startActivity(Intent.createChooser(dialIntent, getString(R.string.dialPhoneChooser)))
             } catch (e: Exception) {
                 // Most of the times, if not always, app chooser will display a similar message.
-                Toast.makeText(this, getString(R.string.noSuitableAppFound), Toast.LENGTH_LONG).show()
+                ToastExtension.makeText(this, R.string.noSuitableAppFound)
             }
         }
     }
@@ -161,7 +158,7 @@ class ContactDetailsActivity : AppCompatActivity() {
     fun onContactText(@Suppress("UNUSED_PARAMETER") view: View) {
         val phone: String? = contact.phone?.trim()
         if (phone.isNullOrBlank()) {
-            Toast.makeText(this, getString(R.string.wrongPhoneNumber), Toast.LENGTH_SHORT).show()
+            ToastExtension.makeText(this, R.string.wrongPhoneNumber)
         } else {
             val smsIntent = Intent(Intent.ACTION_VIEW, Uri.parse("smsto:$phone")).apply {
                 putExtra("sms_body", "${getString(R.string.smsGreeting)} ${ConcatenateObjectToString.concatenateContactName(contact, resources, false)}, \n")
@@ -170,7 +167,7 @@ class ContactDetailsActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(smsIntent, getString(R.string.sendTextChooser)))
             } catch (e: Exception) {
                 // Most of the times, if not always, app chooser will display a similar message.
-                Toast.makeText(this, getString(R.string.noSuitableAppFound), Toast.LENGTH_LONG).show()
+                ToastExtension.makeText(this, R.string.noSuitableAppFound)
             }
         }
     }

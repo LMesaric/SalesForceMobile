@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -105,13 +104,16 @@ class ContactEditFragment : Fragment() {
                     contact = chosenCompany?.let { Contact(docRef?.id, status, title, firstName, lastName, it, phone, email, prefTime, details) }
                     contact?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(activity, getString(R.string.newContactCreated), Toast.LENGTH_SHORT).show()
-                            val resultIntent = Intent()
-                            resultIntent.putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-                            activity?.setResult(AppCompatActivity.RESULT_OK, resultIntent)
+                            ToastExtension.makeText(requireActivity(), R.string.newContactCreated)
+                            activity?.setResult(
+                                    AppCompatActivity.RESULT_OK,
+                                    Intent().apply {
+                                        putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                                    }
+                            )
                             activity?.finish()
                         } else {
-                            Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
+                            ToastExtension.makeText(requireActivity(), task.exception?.message.toString())
                         }
                     }
                 } else {
@@ -126,13 +128,16 @@ class ContactEditFragment : Fragment() {
                         }
                     }?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(activity, getString(R.string.contactUpdated), Toast.LENGTH_LONG).show()
-                            val resultIntent = Intent()
-                            resultIntent.putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-                            activity?.setResult(AppCompatActivity.RESULT_OK, resultIntent)
+                            ToastExtension.makeText(requireActivity(), R.string.contactUpdated)
+                            activity?.setResult(
+                                    AppCompatActivity.RESULT_OK,
+                                    Intent().apply {
+                                        putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                                    }
+                            )
                             activity?.finish()
                         } else {
-                            Toast.makeText(activity, task.exception?.message, Toast.LENGTH_LONG).show()
+                            ToastExtension.makeText(requireActivity(), task.exception?.message.toString())
                         }
                     }
                 }

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Toast
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -89,7 +88,7 @@ class ChangePasswordActivity : AppCompatActivity() {
                                 mAuth.currentUser?.updatePassword(HashSHA3.getHashedValue(passwordNew))
                                         ?.addOnCompleteListener { task2 ->
                                             if (task2.isSuccessful) {
-                                                Toast.makeText(this, getString(R.string.passChangeSuccess), Toast.LENGTH_SHORT).show()
+                                                ToastExtension.makeText(this, R.string.passChangeSuccess)
                                                 finish()
                                             } else {
                                                 etPasswordNew.error = task2.exception?.message.toString()

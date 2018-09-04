@@ -110,8 +110,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                                                         .sendEmailVerification()
                                                         .addOnCompleteListener { task ->
                                                             if (!task.isSuccessful) {
-                                                                SnackbarCustom.showIndefinite(
-                                                                        etLoginEmail,
+                                                                ToastExtension.makeText(
+                                                                        this,
                                                                         "${getString(R.string.verificationEmailErrorPrefix)} ${task.exception?.message}"
                                                                 )
                                                             }
@@ -119,12 +119,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                                                         }
                                             }
                                         } else {
-                                            SnackbarCustom.showAutoClose(etLoginEmail, R.string.noUserFound)
+                                            ToastExtension.makeText(this, R.string.noUserFound)
                                             dialog?.dismiss()
                                         }
                                     }
                         } else {
-                            SnackbarCustom.showIndefinite(etLoginEmail, task.exception?.message)
+                            ToastExtension.makeText(this, task.exception?.message.toString())
                             dialog?.dismiss()
                         }
 
@@ -171,7 +171,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         if (task.isSuccessful) {
                             alertDialog.dismiss()
                             dialog?.dismiss()
-                            SnackbarCustom.showIndefinite(etLoginEmail, R.string.checkYourEmail)
+                            ToastExtension.makeText(this, R.string.checkYourEmail)
                         } else {
                             resetPasswordView.etEmailPassReset.error = task.exception?.message
                             dialog?.dismiss()
