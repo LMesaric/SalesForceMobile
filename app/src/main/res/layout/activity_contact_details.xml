@@ -29,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
+                android:elevation="5dp"
                 app:collapsedTitleTextAppearance="@style/collapsedToolbar"
                 app:expandedTitleGravity="center|bottom"
                 app:expandedTitleMarginBottom="30dp"
@@ -62,11 +63,26 @@
             android:clickable="true"
             android:focusable="true"
             android:onClick="onContactCall"
+            android:elevation="10dp"
             app:fabSize="auto"
             app:layout_anchor="@id/appBarContactDetails"
             app:layout_anchorGravity="bottom|left|start"
             app:srcCompat="@android:drawable/sym_action_call" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:elevation="1dp"
+            android:layout_height="8dp"
+            app:layout_anchor="@id/appBarContactDetails"
+            app:layout_anchorGravity="bottom">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/shadow_height"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/toolbar_shadow" />
+
+        </RelativeLayout>
 
         <ScrollView
             android:layout_width="match_parent"
