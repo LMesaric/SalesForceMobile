@@ -61,9 +61,6 @@ class ContactDetailsActivity : AppCompatActivity() {
             expandedAvatarContactDetails.alpha = 1 - (offsetAlpha * -1)
         })
 
-
-        // ivContactDetailsAvatar.setImageDrawable(drawable)
-
         appBarContactDetails.setExpanded(true, true)
         appBarContactDetails.isActivated = true
         collapsingToolbarContactDetails.title = ConcatenateObjectToString.concatenateContactName(contact, resources, true)
@@ -71,8 +68,6 @@ class ContactDetailsActivity : AppCompatActivity() {
         tvContactDetailsCompanyName.text = contact.company?.name
         tvContactDetailsStatus.text = resources.getStringArray(R.array.status_array)[contact.status]
 
-        fabContactDetailsCallSecondary.visibility = View.VISIBLE
-        fabContactDetailsCallSecondary.show()
         fabContactDetailsCallSecondary.hide()
 
         fabContactDetailsCall.addOnHideAnimationListener(object: Animator.AnimatorListener {
@@ -128,9 +123,6 @@ class ContactDetailsActivity : AppCompatActivity() {
             tvContactDetailsPrefTime.text = resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
             layoutContactDetailsPreferredTime.visibility = View.VISIBLE
         }
-
-        val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), false)
-
     }
 
     fun onContactEmail(@Suppress("UNUSED_PARAMETER") view: View) {
@@ -205,6 +197,8 @@ class ContactDetailsActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.contact_details_menu, menu)
         editItem = menu?.findItem(R.id.action_edit)!!
+        val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), false)
+        editItem.isVisible = !shouldHideButtons
         return true
     }
 
