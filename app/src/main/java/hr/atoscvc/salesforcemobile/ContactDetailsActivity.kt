@@ -13,7 +13,6 @@ import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
-
 //TODO - dodati i direct link na company details
 //LUKA - edit button mora biti invertan button
 //LUKA - export i import kontakata iz Imenika (paziti da se ne exporta vise puta - disable za taj create activityja?)
@@ -65,26 +64,6 @@ class ContactDetailsActivity : AppCompatActivity() {
         tvContactDetailsCompanyName.text = contact.company?.name
         tvContactDetailsStatus.text = resources.getStringArray(R.array.status_array)[contact.status]
 
-        fabContactDetailsCallSecondary.hide()
-
-        fabContactDetailsCall.addOnHideAnimationListener(object : Animator.AnimatorListener {
-            override fun onAnimationRepeat(p0: Animator?) {}
-            override fun onAnimationEnd(p0: Animator?) {}
-            override fun onAnimationCancel(p0: Animator?) {}
-            override fun onAnimationStart(p0: Animator?) {
-                fabContactDetailsCallSecondary.show()
-            }
-        })
-
-        fabContactDetailsCall.addOnShowAnimationListener(object : Animator.AnimatorListener {
-            override fun onAnimationRepeat(p0: Animator?) {}
-            override fun onAnimationEnd(p0: Animator?) {}
-            override fun onAnimationCancel(p0: Animator?) {}
-            override fun onAnimationStart(p0: Animator?) {
-                fabContactDetailsCallSecondary.hide()
-            }
-        })
-
         if (contact.email.isNullOrBlank()) {
             layoutContactDetailsEmail.visibility = View.GONE
             fabContactDetailsSendEmail.isEnabled = false
@@ -120,6 +99,26 @@ class ContactDetailsActivity : AppCompatActivity() {
             tvContactDetailsPrefTime.text = resources.getStringArray(R.array.contactPreferredTime_array)[contact.preferredTime]
             layoutContactDetailsPreferredTime.visibility = View.VISIBLE
         }
+
+        fabContactDetailsCallSecondary.hide()
+
+        fabContactDetailsCall.addOnHideAnimationListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(p0: Animator?) {}
+            override fun onAnimationEnd(p0: Animator?) {}
+            override fun onAnimationCancel(p0: Animator?) {}
+            override fun onAnimationStart(p0: Animator?) {
+                fabContactDetailsCallSecondary.show()
+            }
+        })
+
+        fabContactDetailsCall.addOnShowAnimationListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(p0: Animator?) {}
+            override fun onAnimationEnd(p0: Animator?) {}
+            override fun onAnimationCancel(p0: Animator?) {}
+            override fun onAnimationStart(p0: Animator?) {
+                fabContactDetailsCallSecondary.hide()
+            }
+        })
     }
 
     fun onContactEmail(@Suppress("UNUSED_PARAMETER") view: View) {
@@ -202,17 +201,11 @@ class ContactDetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when (item?.itemId) {
-            android.R.id.home -> {
-                finish()
-            }
-            R.id.action_edit -> {
-                onEditContactDetails()
-            }
-
+            android.R.id.home -> finish()
+            R.id.action_edit -> onEditContactDetails()
         }
         return true
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == ContactDetailsActivity.requestCodeEditContact) {
