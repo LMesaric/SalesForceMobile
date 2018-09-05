@@ -14,11 +14,9 @@ import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
 //TODO - dodati i direct link na company details
-//LUKA - edit button mora biti invertan button
 //LUKA - export i import kontakata iz Imenika (paziti da se ne exporta vise puta - disable za taj create activityja?)
 //FILIP - tint preko disableanog buttona
 //FILIP - lampica? za active/inactive lijevo od FABova
-//FILIP - collapsing toolbar za dio sa slikom, imenom i action gumbima (landscape je prelos)
 
 class ContactDetailsActivity : AppCompatActivity() {
 
