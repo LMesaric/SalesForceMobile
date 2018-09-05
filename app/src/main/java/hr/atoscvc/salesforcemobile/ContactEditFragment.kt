@@ -42,30 +42,30 @@ class ContactEditFragment : Fragment() {
 
         contact = activity?.intent?.getSerializableExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT)) as? Contact
 
-        var letters: String
-        //Integer.toHexString(generator.getColor(contact.documentID))
-        var drawable: TextDrawable
+        val keyId: String
+        var letters = ""
 
         if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
+            activity?.title = getString(R.string.newContact)
+
             docRef = mAuth.uid?.let {
                 db.collection(getString(R.string.databaseCollectionUsers))
                         .document(it)
                         .collection(getString(R.string.databaseCollectionContacts))
                         .document()
             }
-            drawable = TextDrawable.builder().buildRound("", generator.getColor(docRef?.id))
-        } else {
-            letters = contact?.firstName?.get(0).toString().toUpperCase() + contact?.lastName?.get(0).toString().toUpperCase()
-            drawable = TextDrawable.builder().buildRound(letters, generator.getColor(contact?.documentID))
-        }
-
-        view.ivContactEditAvatar.setImageDrawable(drawable)
-
-        if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
-            activity?.title = getString(R.string.newContact)
+            keyId = docRef!!.id
         } else {
             activity?.title = getString(R.string.editContact)
+
+            keyId = contact!!.documentID!!
+            letters = contact?.firstName?.get(0).toString().toUpperCase() + contact?.lastName?.get(0).toString().toUpperCase()
         }
+
+        view.ivContactEditAvatar.setImageDrawable(TextDrawable.builder().buildRound(letters, generator.getColor(keyId)))
+
+        view.etContactFirstName.addTextChangedListener(DrawableTextWatcher(view.ivContactEditAvatar, keyId, view.etContactFirstName, view.etContactLastName))
+        view.etContactLastName.addTextChangedListener(DrawableTextWatcher(view.ivContactEditAvatar, keyId, view.etContactFirstName, view.etContactLastName))
 
         view.btnContactEditChooseCompany.setOnClickListener {
             //FILIP Osim biranja Companyja, trebalo bi omoguciti i kreiranje novog u istom prozoru -> problem vracanja podatka onome koji poziva - uopce nema searcha!!
@@ -76,65 +76,31 @@ class ContactEditFragment : Fragment() {
         }
 
         view.spContactTitle.setAdapter(ArrayAdapter.createFromResource(
-                activity?.baseContext!!,
+                activity!!.baseContext,
                 R.array.contactTitle_array,
                 R.layout.simple_spinner_dropdown_item
         ))
 
         view.spContactStatus.setAdapter(ArrayAdapter.createFromResource(
-                activity?.baseContext!!,
+                activity!!.baseContext,
                 R.array.status_array,
                 R.layout.simple_spinner_dropdown_item
         ))
 
         view.spContactPreferredTime.setAdapter(ArrayAdapter.createFromResource(
-                activity?.baseContext!!,
+                activity!!.baseContext,
                 R.array.contactPreferredTime_array,
                 R.layout.simple_spinner_dropdown_item
         ))
 
         view.etContactFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            var firstNameLetter = ""
-            var lastNameLetter = ""
             if (!hasFocus) {
-                if (!view.etContactFirstName.text.toString().trim().isBlank()) {
-                    firstNameLetter = view.etContactFirstName.text.toString()[0].toString().toUpperCase()
-                }
-                if (!view.etContactLastName.text.toString().trim().isBlank()) {
-                    lastNameLetter = view.etContactLastName.text.toString()[0].toString().toUpperCase()
-                }
-                letters = firstNameLetter + lastNameLetter
-                //Integer.toHexString(generator.getColor(contact.documentID))
-                drawable = if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
-                    TextDrawable.builder().buildRound(letters, generator.getColor(docRef?.id))
-                } else {
-                    TextDrawable.builder().buildRound(letters, generator.getColor(contact?.documentID))
-                }
-
-                view.ivContactEditAvatar.setImageDrawable(drawable)
                 view.etContactFirstName.setText(view.etContactFirstName.text.toString().trim())
             }
         }
         view.etContactLastName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            var firstNameLetter = ""
-            var lastNameLetter = ""
             if (!hasFocus) {
-                if (!view.etContactFirstName.text.toString().trim().isBlank()) {
-                    firstNameLetter = view.etContactFirstName.text.toString()[0].toString().toUpperCase()
-                }
-                if (!view.etContactLastName.text.toString().trim().isBlank()) {
-                    lastNameLetter = view.etContactLastName.text.toString()[0].toString().toUpperCase()
-                }
-                letters = firstNameLetter + lastNameLetter
-                //Integer.toHexString(generator.getColor(contact.documentID))
-                drawable = if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
-                    TextDrawable.builder().buildRound(letters, generator.getColor(docRef?.id))
-                } else {
-                    TextDrawable.builder().buildRound(letters, generator.getColor(contact?.documentID))
-                }
-
-                view.ivContactEditAvatar.setImageDrawable(drawable)
-                view.etContactFirstName.setText(view.etContactFirstName.text.toString().trim())
+                view.etContactLastName.setText(view.etContactLastName.text.toString().trim())
             }
         }
         view.etContactPhone.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -147,12 +113,15 @@ class ContactEditFragment : Fragment() {
                 view.etContactEmail.setText(view.etContactEmail.text.toString().trim())
             }
         }
+        view.etContactDetails.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                view.etContactDetails.setText(view.etContactDetails.text.toString().trim())
+            }
+        }
 
-        //LUKA Listener for Details
-
-        view.spContactTitle.selectedIndex = (contact?.title ?: 0)
-        view.spContactStatus.selectedIndex = (contact?.status ?: 0)
-        view.spContactPreferredTime.selectedIndex = (contact?.preferredTime ?: 0)
+        view.spContactTitle.selectedIndex = contact?.title ?: 0
+        view.spContactStatus.selectedIndex = contact?.status ?: 0
+        view.spContactPreferredTime.selectedIndex = contact?.preferredTime ?: 0
         view.etContactFirstName.setText(contact?.firstName)
         view.etContactLastName.setText(contact?.lastName)
         view.etContactCompanyName.setText(chosenCompany?.name)
@@ -202,6 +171,7 @@ class ContactEditFragment : Fragment() {
         }
         if (chosenCompany == null) {
             etContactCompanyName.error = getString(R.string.noCompanyChosenMessage)
+            ToastExtension.makeText(requireActivity(), R.string.noCompanyChosenMessage)
             thereAreNoErrors = false
         }
 
