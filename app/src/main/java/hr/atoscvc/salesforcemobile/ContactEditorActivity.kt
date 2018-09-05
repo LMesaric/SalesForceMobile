@@ -29,7 +29,6 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, Comp
         setSupportActionBar(toolbarContactEdit)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         replaceFragment(contactEditFragment)
     }
