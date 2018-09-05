@@ -80,7 +80,7 @@ class ContactEditFragment : Fragment() {
                 R.array.contactTitle_array,
                 R.layout.simple_spinner_dropdown_item
         ))
-
+        //FILIP - druga opcija ne moze se selectati
         view.spContactStatus.setAdapter(ArrayAdapter.createFromResource(
                 activity!!.baseContext,
                 R.array.status_array,
