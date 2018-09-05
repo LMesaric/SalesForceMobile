@@ -54,8 +54,8 @@ class ContactEditFragment : Fragment() {
         view.btnContactSave.setOnClickListener { _ ->
             var thereAreNoErrors = true
 
-            val status: Int = view.spContactStatus.selectedItemPosition
-            val title: Int = view.spContactTitle.selectedItemPosition
+            val status: Int = view.spContactStatus.selectedIndex
+            val title: Int = view.spContactTitle.selectedIndex
             val prefTime: Int = view.spContactPreferredTime.selectedIndex
 
             val firstName: String = view.etContactFirstName.text.toString().trim()
@@ -144,17 +144,17 @@ class ContactEditFragment : Fragment() {
             }
         }
 
-        view.spContactTitle.adapter = ArrayAdapter.createFromResource(
+        view.spContactTitle.setAdapter(ArrayAdapter.createFromResource(
                 activity?.baseContext!!,
                 R.array.contactTitle_array,
                 R.layout.simple_spinner_dropdown_item
-        )
+        ))
 
-        view.spContactStatus.adapter = ArrayAdapter.createFromResource(
+        view.spContactStatus.setAdapter(ArrayAdapter.createFromResource(
                 activity?.baseContext!!,
                 R.array.status_array,
                 R.layout.simple_spinner_dropdown_item
-        )
+        ))
 
         view.spContactPreferredTime.setAdapter(ArrayAdapter.createFromResource(
                 activity?.baseContext!!,
@@ -204,8 +204,8 @@ class ContactEditFragment : Fragment() {
 
         //LUKA Listener for Details
 
-        view.spContactTitle.setSelection(contact?.title ?: 0)
-        view.spContactStatus.setSelection(contact?.status ?: 0)
+        view.spContactTitle.selectedIndex = (contact?.title ?: 0)
+        view.spContactStatus.selectedIndex = (contact?.status ?: 0)
         view.spContactPreferredTime.selectedIndex = (contact?.preferredTime ?: 0)
         view.etContactFirstName.setText(contact?.firstName)
         view.etContactLastName.setText(contact?.lastName)

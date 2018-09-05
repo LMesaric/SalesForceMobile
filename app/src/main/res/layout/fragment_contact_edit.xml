@@ -15,66 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/spContactStatus"
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spContactTitle"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Spinner
-        android:id="@+id/spContactTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="@+id/etContactFirstName"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etContactFirstName"
-        android:layout_width="0dp"
-        android:visibility="gone"
-
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="8dp"
-        android:drawablePadding="8dp"
-        android:drawableStart="@drawable/ic_action_smile"
-        android:ems="10"
-        android:hint="@string/FirstName"
-        android:inputType="textCapWords"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spContactTitle" />
-
-    <EditText
-        android:visibility="gone"
-
-        android:id="@+id/etContactLastName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="8dp"
-        android:drawablePadding="8dp"
-        android:drawableStart="@drawable/ic_action_smile"
-        android:ems="10"
-        android:hint="@string/LastName"
-        android:inputType="textCapWords"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etContactFirstName" />
-
     <!-- Uneditable EditText used instead of TextView to keep the same appearance. -->
     <!-- LUKA - broken error message for this field (text not showing, only icon - SNACKBAR) -->
 
@@ -122,16 +62,101 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:background="@drawable/list_border"
+                android:id="@+id/spContactTitle"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="@dimen/edit_text_subtitle_font"/>
+
             <LinearLayout
-                android:id="@+id/layoutContactDetailsCompanyName"
+                android:id="@+id/layoutContactEditFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/list_border"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/contactDetailsCardPadding"
-                android:paddingTop="36dp">
+                android:paddingBottom="@dimen/contactDetailsCardPadding">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/FirstName"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
+
+                <EditText
+                    style="@style/editTextStyle"
+                    android:id="@+id/etContactFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:clickable="false"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/FirstName"
+                    android:inputType="textCapWords"
+                    android:longClickable="false" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutContactEditLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/LastName"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
+
+                <EditText
+                    style="@style/editTextStyle"
+                    android:id="@+id/etContactLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:clickable="false"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/LastName"
+                    android:inputType="textCapWords"
+                    android:longClickable="false" />
+            </LinearLayout>
+
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:background="@drawable/list_border"
+                android:id="@+id/spContactStatus"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="@dimen/edit_text_subtitle_font"/>
+
+            <LinearLayout
+                android:id="@+id/layoutContactEditCompanyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding">
 
                 <TextView
                     android:id="@+id/textView9"
@@ -159,7 +184,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutContactDetailsEmail"
+                android:id="@+id/layoutContactEditEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -191,7 +216,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutContactDetailsPhoneNumber"
+                android:id="@+id/layoutContactEditPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -233,7 +258,7 @@
                 android:textSize="@dimen/edit_text_subtitle_font"/>
 
             <LinearLayout
-                android:id="@+id/layoutContactDetailsDetails"
+                android:id="@+id/layoutContactEditDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
