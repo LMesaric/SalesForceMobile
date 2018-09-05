@@ -19,15 +19,15 @@
         <item name="android:textColorSecondary">@color/colorBackgroundWhite</item>
     </style>
 
-    <style name="ContactDetailsTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="ContactEditTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textAllCaps">false</item>
         <item name="android:paddingRight">8dp</item>
         <item name="android:textSize">16sp</item>
-        <item name="colorPrimary">@color/colorBackgroundWhite</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:actionMenuTextColor">@color/colorBackgroundWhite</item>
-        <item name="android:textColorSecondary">@color/colorBackgroundWhite</item>
+        <item name="android:actionMenuTextColor">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/colorPrimary</item>
     </style>
 
     <style name="PreviewDetailsTheme" parent="AppTheme">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="edit_text_font_common">18sp</dimen>
-    <dimen name="edit_text_padding_horizontal">6dp</dimen>
+    <dimen name="edit_text_padding_horizontal">4dp</dimen>
 
     <dimen name="text_view_font_title_medium">22sp</dimen>
     <dimen name="text_view_font_title_large">30sp</dimen>
