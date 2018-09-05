@@ -15,7 +15,6 @@ import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.list_layout_contacts.view.*
 
-
 class ContactAdapter(
         private var contactList: ArrayList<Contact>,
         private val context: Activity,
