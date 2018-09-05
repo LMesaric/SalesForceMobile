@@ -10,18 +10,18 @@ import android.widget.Toast
 import kotlin.math.roundToInt
 
 object ToastExtension {
-    fun makeText(activity: Activity, resId: Int) {
+    fun makeText(activity: Activity, resId: Int, duration: Int = Toast.LENGTH_LONG) {
         val text = activity.resources.getText(resId)
-        makeText(activity, text)
+        makeText(activity, text, duration)
     }
 
-    fun makeText(activity: Activity, text: CharSequence) {
+    fun makeText(activity: Activity, text: CharSequence, duration: Int = Toast.LENGTH_LONG) {
         val outMetrics = DisplayMetrics()
         activity.windowManager.defaultDisplay.getMetrics(outMetrics)
         val pxWidth = outMetrics.widthPixels
         val margin = (pxWidth * 0.05).roundToInt()
 
-        val t: Toast = Toast.makeText(activity, text, Toast.LENGTH_LONG)
+        val t: Toast = Toast.makeText(activity, text, duration)
         val viewGroup = t.view as ViewGroup
         viewGroup.background = activity.getDrawable(R.drawable.toast_background)
 
