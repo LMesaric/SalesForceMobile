@@ -203,7 +203,7 @@ class ContactDetailsActivity : AppCompatActivity() {
 
         when (item?.itemId) {
             android.R.id.home -> {
-                finish()
+                onBackPressed()
             }
             R.id.action_edit -> {
                 onEditContactDetails()
