@@ -7,9 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ContactEditFragment">
 
-    <!-- Uneditable EditText used instead of TextView to keep the same appearance. -->
-    <!-- LUKA - broken error message for this field (text not showing, only icon - SNACKBAR) -->
-
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -30,7 +27,8 @@
                 android:layout_height="80dp"
                 android:layout_marginStart="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:id="@+id/layoutSpContactTitle"
@@ -49,6 +47,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/edit_text_subtitle_font" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -85,6 +84,7 @@
                     android:hint="@string/FirstName"
                     android:inputType="textCapWords"
                     android:longClickable="false" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -120,6 +120,7 @@
                     android:hint="@string/LastName"
                     android:inputType="textCapWords"
                     android:longClickable="false" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -143,7 +144,6 @@
                     android:textSize="@dimen/edit_text_subtitle_font" />
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:id="@+id/layoutContactEditCompanyName"
@@ -170,6 +170,7 @@
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/edit_text_subtitle_font" />
 
+                <!-- Uneditable EditText used instead of TextView to keep the same appearance. -->
                 <EditText
                     android:id="@+id/etContactCompanyName"
                     style="@style/editTextStyle"
@@ -194,6 +195,7 @@
                     android:paddingStart="8dp"
                     android:text="@string/chooseCompany"
                     android:textAllCaps="false" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -230,6 +232,7 @@
                     android:ems="10"
                     android:hint="@string/Email"
                     android:inputType="textEmailAddress" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -266,6 +269,7 @@
                     android:ems="10"
                     android:hint="@string/PhoneNumber"
                     android:inputType="phone" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -322,8 +326,11 @@
                     android:layout_marginStart="4dp"
                     android:hint="@string/Details"
                     android:inputType="textMultiLine|textCapSentences" />
+
             </LinearLayout>
+
         </android.support.constraint.ConstraintLayout>
+
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
