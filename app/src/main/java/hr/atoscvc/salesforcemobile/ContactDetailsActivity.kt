@@ -199,9 +199,8 @@ class ContactDetailsActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-
         when (item?.itemId) {
-            android.R.id.home -> finish()
+            android.R.id.home -> onBackPressed()
             R.id.action_edit -> onEditContactDetails()
         }
         return true

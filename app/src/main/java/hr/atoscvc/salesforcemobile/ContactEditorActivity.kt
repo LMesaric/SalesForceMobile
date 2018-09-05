@@ -4,15 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_contact_editor.*
 
 class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, CompanyAdapter.RecyclerViewCompaniesOnClickListener {
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    private var contactEditFragment = ContactEditFragment()
+    var companiesFragment = CompaniesFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +26,12 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, Comp
         mAuth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        replaceFragment(ContactEditFragment())
+        setSupportActionBar(toolbarContactEdit)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        replaceFragment(contactEditFragment)
     }
 
     override fun onResume() {
@@ -45,6 +55,24 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, Comp
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(loginIntent)
         finish()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.contact_edit_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when (item?.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+            }
+            R.id.action_done -> {
+                contactEditFragment.save()
+            }
+        }
+        return true
     }
 
     override fun onUserInteraction() {
