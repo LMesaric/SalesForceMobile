@@ -8,24 +8,13 @@
         <item name="android:windowContentTransitions">true</item>
     </style>
 
-    <style name="MenuTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textAllCaps">false</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="android:paddingRight">8dp</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textSize">16sp</item>
+    <style name="MenuTheme" parent="AppTheme">
         <item name="android:actionMenuTextColor">@color/colorBackgroundWhite</item>
         <item name="android:textColorSecondary">@color/colorBackgroundWhite</item>
     </style>
 
-    <style name="ContactEditTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:paddingRight">8dp</item>
+    <style name="ContactEditTheme" parent="AppTheme">
         <item name="android:textSize">16sp</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:actionMenuTextColor">@color/colorPrimary</item>
         <item name="android:textColorSecondary">@color/colorPrimary</item>
     </style>
@@ -35,6 +24,8 @@
         <item name="android:buttonStyle">@style/mainButtonStyle</item>
         <item name="floatingActionButtonStyle">@style/floatingActionButtonDetailsStyle</item>
     </style>
+
+    <!-- [START] Search Settings Theme -->
 
     <style name="SearchSettingsTheme" parent="AppTheme">
         <item name="android:background">@color/colorPrimary</item>
@@ -57,9 +48,12 @@
         <item name="android:buttonTint">@color/colorBackgroundWhite</item>
     </style>
 
+    <!-- [END] Search Settings Theme -->
+
     <style name="textViewTitleMediumStyle">
         <item name="android:textColor">@color/loginRegisterTitleMedium</item>
         <item name="android:textSize">@dimen/text_view_font_title_medium</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="textViewTitleLargeStyle">
@@ -112,15 +106,11 @@
         <item name="android:padding">5dp</item>
     </style>
 
-    <style name="collapsedToolbar">
-        <item name="android:textSize">@dimen/toolbar_font_collapsed</item>
-        <item name="android:textStyle">bold</item>
+    <style name="collapsedToolbar" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/colorBackgroundWhite</item>
     </style>
 
-    <style name="expandedToolbar">
-        <item name="android:textSize">@dimen/toolbar_font_expanded</item>
-        <item name="android:textStyle">bold</item>
+    <style name="expandedToolbar" parent="TextAppearance.AppCompat.Headline">
         <item name="android:textColor">@color/colorBackgroundWhite</item>
     </style>
 
