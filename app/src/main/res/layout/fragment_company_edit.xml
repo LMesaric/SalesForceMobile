@@ -159,42 +159,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutCompanyEditEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/list_border"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/contactDetailsCardPadding"
-                android:paddingTop="@dimen/contactDetailsCardPadding"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutSpCompanyStatus">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/Email"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/edit_text_subtitle_font" />
-
-                <EditText
-                    android:id="@+id/etCompanyEmail"
-                    style="@style/editTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:ems="10"
-                    android:hint="@string/Email"
-                    android:inputType="textEmailAddress" />
-
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/layoutCompanyEditPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -207,7 +171,7 @@
                 android:paddingTop="@dimen/contactDetailsCardPadding"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutCompanyEditEmail">
+                app:layout_constraintTop_toBottomOf="@id/layoutSpCompanyStatus">
 
                 <TextView
                     android:layout_width="match_parent"
