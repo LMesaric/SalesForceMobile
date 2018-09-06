@@ -436,37 +436,45 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/layoutCompanyDetailsStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Status"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/edit_text_subtitle_font" />
+
+                    <TextView
+                        android:id="@+id/tvCompanyDetailsStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="ACTIVE"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/edit_text_font_common"
+                        tools:ignore="HardcodedText"
+                        tools:layout_editor_absoluteY="398dp" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </ScrollView>
 
     </android.support.design.widget.CoordinatorLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tvCompanyDetailsStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="ACTIVE"
-            android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="HardcodedText" />
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/layoutCompanyDetailsButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-        </android.support.constraint.ConstraintLayout>
-
-    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

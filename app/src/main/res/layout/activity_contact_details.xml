@@ -315,7 +315,6 @@
                     android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
-                        android:id="@+id/textView13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -338,24 +337,46 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/layoutContactDetailsStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Status"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/edit_text_subtitle_font" />
+
+                    <TextView
+                        android:id="@+id/tvContactDetailsStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="ACTIVE"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/edit_text_font_common"
+                        tools:layout_editor_absoluteY="398dp"
+                        tools:ignore="HardcodedText"/>
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </ScrollView>
 
     </android.support.design.widget.CoordinatorLayout>
-
-    <TextView
-        android:id="@+id/tvContactDetailsStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ACTIVE"
-        android:textIsSelectable="true"
-        android:textSize="18sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
 
 </android.support.constraint.ConstraintLayout>
 
