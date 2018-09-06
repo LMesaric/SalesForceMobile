@@ -101,6 +101,18 @@
     <string name="emailGreeting">Dear</string>
     <string name="smsGreeting">Hi</string>
 
+    <string name="formattingWorksAt">Works at</string>
+    <string name="formattingWeb">Web</string>
+    <string name="formattingOib">OIB</string>
+    <string name="formattingPhone">Phone</string>
+    <string name="formattingEmail">Email</string>
+    <string name="formattingCvs">CVS Segment</string>
+    <string name="formattingEmployees">Employees</string>
+    <string name="formattingIncome">Income</string>
+    <string name="formattingPrefTime">Preferred time to contact</string>
+    <string name="formattingCommType">Preferred communication type</string>
+    <string name="formattingDetails">Details</string>
+
     <string name="wrongEmail">E-mail is empty</string>
     <string name="wrongPhoneNumber">Phone number is empty</string>
     <string name="wrongWebPage">Web page is empty</string>
@@ -110,6 +122,7 @@
 
     <string name="Save">Save</string>
     <string name="Edit">Edit</string>
+    <string name="Share">Share</string>
     <string name="Next">Next</string>
     <string name="Finish">Finish</string>
     <string name="Select">Select</string>
