@@ -37,8 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:orientation="vertical"
                 android:background="@drawable/list_border"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="@+id/ivContactEditAvatar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivContactEditAvatar">
@@ -84,8 +84,7 @@
                     android:layout_marginStart="4dp"
                     android:ems="10"
                     android:hint="@string/FirstName"
-                    android:inputType="textCapWords"
-                    android:longClickable="false" />
+                    android:inputType="textCapWords" />
 
             </LinearLayout>
 
@@ -120,8 +119,7 @@
                     android:layout_marginStart="4dp"
                     android:ems="10"
                     android:hint="@string/LastName"
-                    android:inputType="textCapWords"
-                    android:longClickable="false" />
+                    android:inputType="textCapWords" />
 
             </LinearLayout>
 
@@ -131,10 +129,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
-                android:orientation="vertical"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/list_border"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutContactEditLastName">
@@ -142,10 +140,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Status"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
@@ -221,6 +219,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                 </android.support.constraint.ConstraintLayout>
 
             </LinearLayout>
@@ -305,9 +304,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:orientation="vertical"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/list_border"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutContactEditPhoneNumber">
@@ -315,10 +314,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/preferredTime"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
