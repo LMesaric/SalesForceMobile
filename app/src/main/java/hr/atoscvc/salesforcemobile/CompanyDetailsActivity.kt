@@ -191,6 +191,19 @@ class CompanyDetailsActivity : AppCompatActivity() {
         startActivityForResult(intentEdit, CompanyDetailsActivity.requestCodeEditCompany)
     }
 
+    private fun onShareCompany() {
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            putExtra(Intent.EXTRA_TEXT, company.toFormattedString(resources))
+            type = "text/plain"
+        }
+        try {
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.shareChooser)))
+        } catch (e: Exception) {
+            // Most of the times, if not always, app chooser will display a similar message.
+            ToastExtension.makeText(this, R.string.noSuitableAppFound)
+        }
+    }
+
     private fun onAddContactCompanyDetails() {
         val intent = Intent(this, ContactEditorActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
@@ -226,7 +239,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.company_details_menu, menu)
-        editItem = menu?.findItem(R.id.action_edit)!!
+        editItem = menu?.findItem(R.id.action_company_edit)!!
         val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), false)
         editItem.isVisible = !shouldHideButtons
         return true
@@ -235,7 +248,8 @@ class CompanyDetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> onBackPressed()
-            R.id.action_edit -> onEditCompanyDetails()
+            R.id.action_company_edit -> onEditCompanyDetails()
+            R.id.action_company_share -> onShareCompany()
             R.id.action_view_contacts -> onViewContactsCompanyDetails()
             R.id.action_add_contact -> onAddContactCompanyDetails()
         }

@@ -11,8 +11,13 @@
         android:title="View contacts" />
 
     <item
-        android:id="@+id/action_edit"
+        android:id="@+id/action_company_edit"
         android:title="@string/Edit"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_company_share"
+        android:title="@string/Share"
+        app:showAsAction="ifRoom" />
 
 </menu>
