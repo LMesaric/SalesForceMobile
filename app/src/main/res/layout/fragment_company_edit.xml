@@ -147,7 +147,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Status"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/spCompanyStatus"
@@ -251,7 +251,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Communication Type"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/spCompanyCommunicationType"
@@ -318,7 +318,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Employees"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/spCompanyEmployees"

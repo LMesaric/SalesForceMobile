@@ -146,7 +146,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Status"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/spContactStatus"
@@ -319,7 +319,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/preferredTime"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/spContactPreferredTime"

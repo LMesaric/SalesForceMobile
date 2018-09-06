@@ -368,7 +368,7 @@
                         android:textIsSelectable="true"
                         android:textSize="@dimen/edit_text_font_common"
                         tools:layout_editor_absoluteY="398dp"
-                        tools:ignore="HardcodedText"/>
+                        tools:ignore="HardcodedText" />
 
                 </LinearLayout>
 
