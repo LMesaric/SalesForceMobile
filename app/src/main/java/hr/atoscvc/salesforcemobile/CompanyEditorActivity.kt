@@ -57,12 +57,8 @@ class CompanyEditorActivity : AppCompatActivity(), ReplaceFragmentListener {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-            }
-            R.id.action_done -> {
-                companyEditFragment.save()
-            }
+            android.R.id.home -> onBackPressed()
+            R.id.action_done -> companyEditFragment.save()
         }
         return true
     }

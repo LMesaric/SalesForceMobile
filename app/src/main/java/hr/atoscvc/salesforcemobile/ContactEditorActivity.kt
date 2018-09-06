@@ -63,12 +63,8 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, Comp
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-            }
-            R.id.action_done -> {
-                contactEditFragment.save()
-            }
+            android.R.id.home -> onBackPressed()
+            R.id.action_done -> contactEditFragment.save()
         }
         return true
     }
