@@ -57,10 +57,10 @@ class CompanyDetailsActivity : AppCompatActivity() {
         tvCompanyDetailsOib.text = company.OIB
 
         if (company.cvsSegment == 0) {
-            layoutDetailsCompanyCvsSegment.visibility = View.GONE
+            layoutCompanyDetailsCvsSegment.visibility = View.GONE
         } else {
             tvCompanyDetailsCvsSegment.text = resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]
-            layoutDetailsCompanyCvsSegment.visibility = View.VISIBLE
+            layoutCompanyDetailsCvsSegment.visibility = View.VISIBLE
         }
 
         if (company.communicationType == 0) {
