@@ -106,11 +106,13 @@
         <item name="android:padding">5dp</item>
     </style>
 
-    <style name="collapsedToolbar" parent="TextAppearance.AppCompat.Title">
+    <style name="collapsedToolbar" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textSize">@dimen/toolbar_font_collapsed</item>
         <item name="android:textColor">@color/colorBackgroundWhite</item>
     </style>
 
     <style name="expandedToolbar" parent="TextAppearance.AppCompat.Headline">
+        <item name="android:textSize">@dimen/toolbar_font_expanded</item>
         <item name="android:textColor">@color/colorBackgroundWhite</item>
     </style>
 
