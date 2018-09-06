@@ -62,7 +62,6 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, Comp
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-
         when (item?.itemId) {
             android.R.id.home -> {
                 onBackPressed()
@@ -80,7 +79,7 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, Comp
 
     override fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        if (fragment.javaClass == ContactEditFragment().javaClass) {
+        if (fragment.javaClass == contactEditFragment.javaClass) {
             fragmentTransaction.replace(R.id.contactEditorContainer, fragment)
         } else {
             fragmentTransaction.replace(R.id.contactEditorContainer, fragment).addToBackStack("tag")

@@ -4,150 +4,406 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".CompanyEditFragment">
 
-    <Spinner
-        android:id="@+id/spCompanyStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spCompanyCvsSegment"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Spinner
-        android:id="@+id/spCompanyCvsSegment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="@+id/etCompanyOIB"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etCompanyName"
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/CompanyName"
-        android:inputType="textCapSentences"
+        android:layout_height="0dp"
+        android:fillViewport="false"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spCompanyCvsSegment" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/etCompanyOIB"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/OIB"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCompanyName" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/etCompanyWebPage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/WebPage"
-        android:inputType="textWebEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCompanyOIB" />
+            <ImageView
+                android:id="@+id/ivCompanyEditAvatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
 
-    <EditText
-        android:id="@+id/etCompanyPhone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="8dp"
-        android:drawablePadding="8dp"
-        android:drawableStart="@drawable/ic_action_phone"
-        android:ems="10"
-        android:hint="@string/PhoneNumber"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCompanyWebPage" />
+            <LinearLayout
+                android:id="@+id/layoutSpCompanyCvsSegment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/list_border"
+                app:layout_constraintBottom_toBottomOf="@id/ivCompanyEditAvatar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivCompanyEditAvatar">
 
-    <MultiAutoCompleteTextView
-        android:id="@+id/etCompanyDetails"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="8dp"
-        android:hint="@string/Details"
-        android:inputType="textMultiLine|textCapSentences"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCompanyPhone" />
+                <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:id="@+id/spCompanyCvsSegment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
 
-    <EditText
-        android:id="@+id/etCompanyIncome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/Income"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCompanyDetails" />
+            </LinearLayout>
 
-    <Spinner
-        android:id="@+id/spCompanyCommunicationType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/etCompanyIncome"
-        app:layout_constraintTop_toBottomOf="@+id/etCompanyIncome" />
+            <LinearLayout
+                android:id="@+id/layoutCompanyEditName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutSpCompanyCvsSegment">
 
-    <Spinner
-        android:id="@+id/spCompanyEmployees"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/spCompanyCommunicationType"
-        app:layout_constraintStart_toEndOf="@+id/spCompanyCommunicationType" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/CompanyName"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
 
-    <Button
-        android:id="@+id/btnCompanySave"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/Save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spCompanyCommunicationType" />
+                <EditText
+                    android:id="@+id/etCompanyName"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:ems="10"
+                    android:hint="@string/CompanyName"
+                    android:inputType="textCapWords"
+                    android:longClickable="false" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyEditOIB"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutCompanyEditName">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/OIB"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
+
+                <EditText
+                    android:id="@+id/etCompanyOIB"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:ems="10"
+                    android:hint="@string/OIB"
+                    android:inputType="number"
+                    android:longClickable="false" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutSpCompanyStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/list_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutCompanyEditOIB">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Status"
+                    android:textSize="16sp"/>
+
+                <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:id="@+id/spCompanyStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyEditEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutSpCompanyStatus">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Email"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
+
+                <EditText
+                    android:id="@+id/etCompanyEmail"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:ems="10"
+                    android:hint="@string/Email"
+                    android:inputType="textEmailAddress" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyEditPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutCompanyEditEmail">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/PhoneNumber"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
+
+                <EditText
+                    android:id="@+id/etCompanyPhone"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:ems="10"
+                    android:hint="@string/PhoneNumber"
+                    android:inputType="phone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyEditWebPage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutCompanyEditPhoneNumber">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/WebPage"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
+
+                <EditText
+                    android:id="@+id/etCompanyWebPage"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:ems="10"
+                    android:hint="@string/WebPage"
+                    android:inputType="textWebEmailAddress"
+                    android:longClickable="false" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutSpCompanyCommunicationType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/list_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutCompanyEditWebPage">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Communication Type"
+                    android:textSize="16sp"/>
+
+                <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:id="@+id/spCompanyCommunicationType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyEditIncome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutSpCompanyCommunicationType">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Income"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
+
+                <EditText
+                    android:id="@+id/etCompanyIncome"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:ems="10"
+                    android:hint="@string/Income"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutSpCompanyEmployees"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/list_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutCompanyEditIncome">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Employees"
+                    android:textSize="16sp"/>
+
+                <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:id="@+id/spCompanyEmployees"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyEditDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutSpCompanyEmployees">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Details"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/edit_text_subtitle_font" />
+
+                <MultiAutoCompleteTextView
+                    android:id="@+id/etCompanyDetails"
+                    style="@style/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:hint="@string/Details"
+                    android:inputType="textMultiLine|textCapSentences" />
+
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
