@@ -13,8 +13,7 @@
         <item name="android:textColorSecondary">@color/colorBackgroundWhite</item>
     </style>
 
-    <style name="ContactEditTheme" parent="AppTheme">
-        <item name="android:textSize">16sp</item>
+    <style name="EditorToolbarTheme" parent="AppTheme">
         <item name="android:actionMenuTextColor">@color/colorPrimary</item>
         <item name="android:textColorSecondary">@color/colorPrimary</item>
     </style>
