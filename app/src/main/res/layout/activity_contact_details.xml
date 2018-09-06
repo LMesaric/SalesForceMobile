@@ -152,31 +152,57 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:background="@drawable/list_border"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/contactDetailsCardPadding"
-                    android:paddingTop="@dimen/contactDetailsCardPadding">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textView10"
+                    <android.support.constraint.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:text="@string/Email"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:layout_height="match_parent"
+                        android:paddingBottom="@dimen/contactDetailsCardPadding"
+                        android:paddingTop="@dimen/contactDetailsCardPadding">
 
-                    <TextView
-                        android:id="@+id/tvContactDetailsEmail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:text="@string/Email"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
-                        tools:layout_editor_absoluteY="293dp" />
+                        <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/Email"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/edit_text_subtitle_font"
+                            app:layout_constraintEnd_toStartOf="@id/fabContactDetailsSendEmail"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvContactDetailsEmail"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/Email"
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/edit_text_font_common"
+                            app:layout_constraintEnd_toStartOf="@id/fabContactDetailsSendEmail"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textView10"
+                            tools:layout_editor_absoluteY="293dp" />
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/fabContactDetailsSendEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="onContactEmail"
+                            app:fabSize="mini"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@android:drawable/sym_action_email" />
+
+                    </android.support.constraint.ConstraintLayout>
 
                 </LinearLayout>
 
@@ -187,31 +213,57 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:background="@drawable/list_border"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/contactDetailsCardPadding"
-                    android:paddingTop="@dimen/contactDetailsCardPadding">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textView11"
+                    <android.support.constraint.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:text="@string/PhoneNumber"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:layout_height="match_parent"
+                        android:paddingBottom="@dimen/contactDetailsCardPadding"
+                        android:paddingTop="@dimen/contactDetailsCardPadding">
 
-                    <TextView
-                        android:id="@+id/tvContactDetailsPhoneNumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:text="@string/PhoneNumber"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
-                        tools:layout_editor_absoluteY="328dp" />
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/PhoneNumber"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/edit_text_subtitle_font"
+                            app:layout_constraintEnd_toStartOf="@id/fabContactDetailsSendText"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvContactDetailsPhoneNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/PhoneNumber"
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/edit_text_font_common"
+                            app:layout_constraintEnd_toStartOf="@id/fabContactDetailsSendText"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textView11"
+                            tools:layout_editor_absoluteY="328dp" />
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/fabContactDetailsSendText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="onContactText"
+                            app:fabSize="mini"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@android:drawable/sym_action_chat" />
+
+                    </android.support.constraint.ConstraintLayout>
 
                 </LinearLayout>
 
@@ -263,7 +315,6 @@
                     android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
-                        android:id="@+id/textView13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -286,48 +337,46 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/layoutContactDetailsStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Status"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/edit_text_subtitle_font" />
+
+                    <TextView
+                        android:id="@+id/tvContactDetailsStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="ACTIVE"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/edit_text_font_common"
+                        tools:layout_editor_absoluteY="398dp"
+                        tools:ignore="HardcodedText"/>
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </ScrollView>
 
     </android.support.design.widget.CoordinatorLayout>
-
-    <TextView
-        android:id="@+id/tvContactDetailsStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ACTIVE"
-        android:textIsSelectable="true"
-        android:textSize="18sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabContactDetailsSendEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="onContactEmail"
-        android:visibility="gone"
-        app:fabSize="mini"
-        app:srcCompat="@android:drawable/sym_action_email" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabContactDetailsSendText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="onContactText"
-        android:visibility="gone"
-        app:fabSize="mini"
-        app:srcCompat="@android:drawable/sym_action_email" />
 
 </android.support.constraint.ConstraintLayout>
 

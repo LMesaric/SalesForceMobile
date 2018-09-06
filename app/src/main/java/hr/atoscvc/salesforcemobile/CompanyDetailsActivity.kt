@@ -1,9 +1,13 @@
 package hr.atoscvc.salesforcemobile
 
+import android.animation.Animator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.design.widget.AppBarLayout
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
@@ -20,10 +24,15 @@ class CompanyDetailsActivity : AppCompatActivity() {
     private lateinit var company: Company
     private var isChanged: Boolean = false
 
+    private lateinit var editItem: MenuItem
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_company_details)
         company = intent.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as Company
+        setSupportActionBar(toolBarCompanyDetails)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onResume() {
@@ -31,75 +40,93 @@ class CompanyDetailsActivity : AppCompatActivity() {
 
         val letters = company.name[0].toString().toUpperCase()
         val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(company.documentID))
-        ivCompanyDetailsAvatar.setImageDrawable(drawable)
+        expandedAvatarCompanyDetails.setImageDrawable(drawable)
 
-        tvCompanyDetailsName.text = company.name
+        collapsingToolbarCompanyDetails.setBackgroundColor(generator.getColor(company.documentID))
+
+        appBarCompanyDetails.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, _ ->
+            val offsetAlpha = (appBarLayout.y / appBarCompanyDetails.totalScrollRange)
+            expandedAvatarCompanyDetails.alpha = 1 - (offsetAlpha * -1)
+        })
+
+        appBarCompanyDetails.setExpanded(true, true)
+        appBarCompanyDetails.isActivated = true
+        collapsingToolbarCompanyDetails.title = company.name
+
         tvCompanyDetailsStatus.text = resources.getStringArray(R.array.status_array)[company.status]
         tvCompanyDetailsOib.text = company.OIB
 
         if (company.cvsSegment == 0) {
-            tvCompanyDetailsCvsSegment.visibility = View.GONE
+            layoutDetailsCompanyCvsSegment.visibility = View.GONE
         } else {
             tvCompanyDetailsCvsSegment.text = resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]
-            tvCompanyDetailsCvsSegment.visibility = View.VISIBLE
+            layoutDetailsCompanyCvsSegment.visibility = View.VISIBLE
         }
 
         if (company.communicationType == 0) {
-            tvCompanyDetailsCommunicationType.visibility = View.GONE
+            layoutCompanyDetailsCommunicationType.visibility = View.GONE
         } else {
             tvCompanyDetailsCommunicationType.text = resources.getStringArray(R.array.companyCommunicationType_array)[company.communicationType]
-            tvCompanyDetailsCommunicationType.visibility = View.VISIBLE
+            layoutCompanyDetailsCommunicationType.visibility = View.VISIBLE
         }
 
         if (company.employees == 0) {
-            tvCompanyDetailsEmployees.visibility = View.GONE
+            layoutCompanyDetailsEmployees.visibility = View.GONE
         } else {
             tvCompanyDetailsEmployees.text = resources.getStringArray(R.array.companyEmployees_array)[company.employees]
-            tvCompanyDetailsEmployees.visibility = View.VISIBLE
+            layoutCompanyDetailsEmployees.visibility = View.VISIBLE
         }
 
         if (company.webPage.isNullOrBlank()) {
-            tvCompanyDetailsWebPage.visibility = View.GONE
-            fabCompanyDetailsOpenWebPage.hide()
+            layoutCompanyDetailsWebPage.visibility = View.GONE
         } else {
             tvCompanyDetailsWebPage.text = company.webPage
-            tvCompanyDetailsWebPage.visibility = View.VISIBLE
-            fabCompanyDetailsOpenWebPage.show()
+            layoutCompanyDetailsWebPage.visibility = View.VISIBLE
         }
 
         if (company.phone.isNullOrBlank()) {
-            tvCompanyDetailsPhoneNumber.visibility = View.GONE
-            fabCompanyDetailsCall.hide()
-            fabCompanyDetailsSendText.hide()
+            layoutCompanyDetailsPhoneNumber.visibility = View.GONE
+            fabCompanyDetailsCall.isClickable = false
         } else {
             tvCompanyDetailsPhoneNumber.text = company.phone
-            tvCompanyDetailsPhoneNumber.visibility = View.VISIBLE
-            fabCompanyDetailsCall.show()
-            fabCompanyDetailsSendText.show()
+            layoutCompanyDetailsPhoneNumber.visibility = View.VISIBLE
+            fabCompanyDetailsCall.isClickable = true
         }
 
         if (company.income.isNullOrBlank()) {
-            tvCompanyDetailsIncome.visibility = View.GONE
+            layoutCompanyDetailsIncome.visibility = View.GONE
         } else {
             tvCompanyDetailsIncome.text = company.income
-            tvCompanyDetailsIncome.visibility = View.VISIBLE
+            layoutCompanyDetailsIncome.visibility = View.VISIBLE
         }
 
         if (company.details.isNullOrBlank()) {
-            tvCompanyDetailsDetails.visibility = View.GONE
+            layoutCompanyDetailsDetails.visibility = View.GONE
         } else {
             tvCompanyDetailsDetails.text = company.details
-            tvCompanyDetailsDetails.visibility = View.VISIBLE
+            layoutCompanyDetailsDetails.visibility = View.VISIBLE
         }
 
-        val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_COMPANY_HIDE_EDIT_BUTTONS), false)
-        if (shouldHideButtons) {
-            layoutCompanyDetailsButtons.visibility = View.GONE
-            allButtonsEnabledStatus(false)
-        } else {
-            layoutCompanyDetailsButtons.visibility = View.VISIBLE
-            allButtonsEnabledStatus(true)
-        }
+        fabCompanyDetailsCallSecondary.hide()
+
+        fabCompanyDetailsCall.addOnHideAnimationListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(p0: Animator?) {}
+            override fun onAnimationEnd(p0: Animator?) {}
+            override fun onAnimationCancel(p0: Animator?) {}
+            override fun onAnimationStart(p0: Animator?) {
+                fabCompanyDetailsCallSecondary.show()
+            }
+        })
+
+        fabCompanyDetailsCall.addOnShowAnimationListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(p0: Animator?) {}
+            override fun onAnimationEnd(p0: Animator?) {}
+            override fun onAnimationCancel(p0: Animator?) {}
+            override fun onAnimationStart(p0: Animator?) {
+                fabCompanyDetailsCallSecondary.hide()
+            }
+        })
+
     }
 
     fun onCompanyWebPage(@Suppress("UNUSED_PARAMETER") view: View) {
@@ -156,7 +183,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
         }
     }
 
-    fun onEditCompanyDetails(@Suppress("UNUSED_PARAMETER") view: View) {
+    private fun onEditCompanyDetails() {
         val intentEdit = Intent(this, CompanyEditorActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false)
             putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
@@ -164,7 +191,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
         startActivityForResult(intentEdit, CompanyDetailsActivity.requestCodeEditCompany)
     }
 
-    fun onAddContactCompanyDetails(@Suppress("UNUSED_PARAMETER") view: View) {
+    private fun onAddContactCompanyDetails() {
         val intent = Intent(this, ContactEditorActivity::class.java).apply {
             putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
             putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
@@ -173,7 +200,7 @@ class CompanyDetailsActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun onViewContactsCompanyDetails(@Suppress("UNUSED_PARAMETER") view: View) {
+    private fun onViewContactsCompanyDetails() {
         //FILIP - pregled svih kontakata za ovaj company
     }
 
@@ -197,9 +224,21 @@ class CompanyDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun allButtonsEnabledStatus(status: Boolean) {
-        btnCompanyDetailsEdit.isEnabled = status
-        btnCompanyDetailsAddContact.isEnabled = status
-        btnCompanyDetailsViewContacts.isEnabled = status
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.company_details_menu, menu)
+        editItem = menu?.findItem(R.id.action_edit)!!
+        val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), false)
+        editItem.isVisible = !shouldHideButtons
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> onBackPressed()
+            R.id.action_edit -> onEditCompanyDetails()
+            R.id.action_view_contacts -> onViewContactsCompanyDetails()
+            R.id.action_add_contact -> onAddContactCompanyDetails()
+        }
+        return true
     }
 }

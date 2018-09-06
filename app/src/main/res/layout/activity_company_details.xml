@@ -1,228 +1,480 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="false"
-    android:orientation="vertical"
     android:theme="@style/PreviewDetailsTheme"
     tools:context=".CompanyDetailsActivity">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabCompanyDetailsCallSecondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onCompanyCall"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/sym_action_call" />
 
-        <ImageView
-            android:id="@+id/ivCompanyDetailsAvatar"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="120dp"
-            android:transitionName="@string/transitionNameCompanyAvatar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayoutCompanyDetails"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:expandedTitleGravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tvCompanyDetailsName"
-            android:layout_width="wrap_content"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarCompanyDetails"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:text="Atos CVC"
-            android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivCompanyDetailsAvatar"
-            tools:ignore="HardcodedText" />
+            android:fitsSystemWindows="true">
 
-        <TextView
-            android:id="@+id/tvCompanyDetailsCvsSegment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Platinum"
-            android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsName"
-            tools:ignore="HardcodedText" />
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarCompanyDetails"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:fitsSystemWindows="true"
+                app:collapsedTitleTextAppearance="@style/collapsedToolbar"
+                app:expandedTitleGravity="center|bottom"
+                app:expandedTitleMarginBottom="30dp"
+                app:expandedTitleTextAppearance="@style/expandedToolbar"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
-        <TextView
-            android:id="@+id/tvCompanyDetailsStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="ACTIVE"
-            android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsCvsSegment"
-            tools:ignore="HardcodedText" />
+                <ImageView
+                    android:id="@+id/expandedAvatarCompanyDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"
+                    tools:ignore="ContentDescription" />
 
-        <TextView
-            android:id="@+id/tvCompanyDetailsWebPage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/WebPage"
-            android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsStatus" />
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolBarCompanyDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:theme="@style/MenuTheme"
+                    app:layout_collapseMode="pin" />
 
-        <TextView
-            android:id="@+id/tvCompanyDetailsPhoneNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/PhoneNumber"
-            android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsWebPage" />
+            </android.support.design.widget.CollapsingToolbarLayout>
 
-        <TextView
-            android:id="@+id/tvCompanyDetailsOib"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Afternoon"
-            android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsPhoneNumber"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/tvCompanyDetailsIncome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="120000"
-            android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsOib"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/tvCompanyDetailsEmployees"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="100-199"
-            android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsIncome"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/tvCompanyDetailsCommunicationType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Phone"
-            android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsEmployees"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/tvCompanyDetailsDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/Details"
-            android:textIsSelectable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCompanyDetailsCommunicationType" />
-
-        <!-- LUKA - promijeniti ikonicu (globus) -->
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabCompanyDetailsOpenWebPage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="onCompanyWebPage"
-            app:layout_constraintBottom_toBottomOf="@+id/tvCompanyDetailsWebPage"
-            app:layout_constraintStart_toEndOf="@+id/tvCompanyDetailsWebPage"
-            app:layout_constraintTop_toTopOf="@+id/tvCompanyDetailsWebPage"
-            app:srcCompat="@android:drawable/sym_action_email" />
+        </android.support.design.widget.AppBarLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabCompanyDetailsCall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:clickable="true"
+            android:elevation="2dp"
             android:focusable="true"
             android:onClick="onCompanyCall"
-            app:layout_constraintBottom_toBottomOf="@+id/tvCompanyDetailsPhoneNumber"
-            app:layout_constraintStart_toEndOf="@+id/tvCompanyDetailsPhoneNumber"
-            app:layout_constraintTop_toTopOf="@+id/tvCompanyDetailsPhoneNumber"
+            app:fabSize="auto"
+            app:layout_anchor="@id/appBarCompanyDetails"
+            app:layout_anchorGravity="bottom|left|start"
             app:srcCompat="@android:drawable/sym_action_call" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabCompanyDetailsSendText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="onCompanyText"
-            app:layout_constraintBottom_toBottomOf="@+id/fabCompanyDetailsCall"
-            app:layout_constraintStart_toEndOf="@+id/fabCompanyDetailsCall"
-            app:layout_constraintTop_toTopOf="@+id/fabCompanyDetailsCall"
-            app:srcCompat="@android:drawable/sym_action_chat" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:elevation="1dp"
+            app:layout_anchor="@id/appBarCompanyDetails"
+            app:layout_anchorGravity="bottom">
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/layoutCompanyDetailsButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCompanyDetailsDetails">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/shadow_height"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/toolbar_shadow" />
 
-            <Button
-                android:id="@+id/btnCompanyDetailsAddContact"
-                style="@style/mainButtonStyle"
-                android:layout_marginEnd="8dp"
-                android:onClick="onAddContactCompanyDetails"
-                android:text="@string/addContact"
-                app:layout_constraintBaseline_toBaselineOf="@id/btnCompanyDetailsEdit"
-                app:layout_constraintEnd_toStartOf="@id/btnCompanyDetailsEdit" />
+        </RelativeLayout>
 
-            <Button
-                android:id="@+id/btnCompanyDetailsEdit"
-                style="@style/mainButtonStyle"
-                android:onClick="onEditCompanyDetails"
-                android:text="@string/Edit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <Button
-                android:id="@+id/btnCompanyDetailsViewContacts"
-                style="@style/mainButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="8dp"
-                android:onClick="onViewContactsCompanyDetails"
-                android:text="@string/viewContacts"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnCompanyDetailsEdit" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        </android.support.constraint.ConstraintLayout>
+                <LinearLayout
+                    android:id="@+id/layoutDetailsCompanyCvsSegment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="36dp">
 
-    </android.support.constraint.ConstraintLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="CVS Segment"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/edit_text_subtitle_font" />
 
-</ScrollView>
+                    <TextView
+                        android:id="@+id/tvCompanyDetailsCvsSegment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Platinum"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/edit_text_font_common"
+                        tools:ignore="HardcodedText"
+                        tools:layout_editor_absoluteY="223dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutCompanyDetailsPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="@dimen/contactDetailsCardPadding"
+                        android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                        <TextView
+                            android:id="@+id/tvTitleCompanyDetailsPhoneNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/PhoneNumber"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/edit_text_subtitle_font"
+                            app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsSendText"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvCompanyDetailsPhoneNumber"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/PhoneNumber"
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/edit_text_font_common"
+                            app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsSendText"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvTitleCompanyDetailsPhoneNumber"
+                            tools:layout_editor_absoluteY="328dp" />
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/fabCompanyDetailsSendText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="onCompanyText"
+                            app:fabSize="mini"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@android:drawable/sym_action_chat" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutCompanyDetailsOib"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/OIB"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/edit_text_subtitle_font" />
+
+                    <TextView
+                        android:id="@+id/tvCompanyDetailsOib"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/edit_text_font_common"
+                        tools:layout_editor_absoluteY="363dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutCompanyDetailsWebPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="@dimen/contactDetailsCardPadding"
+                        android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                        <TextView
+                            android:id="@+id/tvTitleCompanyDetailsWebPage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/WebPage"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/edit_text_subtitle_font"
+                            app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsOpenWebPage"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvCompanyDetailsWebPage"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/WebPage"
+                            android:textIsSelectable="true"
+                            android:textSize="@dimen/edit_text_font_common"
+                            app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsOpenWebPage"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvTitleCompanyDetailsWebPage"
+                            tools:layout_editor_absoluteY="328dp" />
+
+                        <!-- LUKA - promijeniti ikonicu (globus) -->
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/fabCompanyDetailsOpenWebPage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="onCompanyWebPage"
+                            app:fabSize="mini"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@android:drawable/sym_action_email" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutCompanyDetailsCommunicationType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Communication Type"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/edit_text_subtitle_font" />
+
+                    <TextView
+                        android:id="@+id/tvCompanyDetailsCommunicationType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/Details"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/edit_text_font_common"
+                        tools:layout_editor_absoluteY="398dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutCompanyDetailsIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/Income"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/edit_text_subtitle_font" />
+
+                    <TextView
+                        android:id="@+id/tvCompanyDetailsIncome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/Income"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/edit_text_font_common"
+                        tools:layout_editor_absoluteY="398dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutCompanyDetailsEmployees"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Employees"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/edit_text_subtitle_font" />
+
+                    <TextView
+                        android:id="@+id/tvCompanyDetailsEmployees"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Employees"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/edit_text_font_common"
+                        tools:layout_editor_absoluteY="398dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutCompanyDetailsDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/Details"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/edit_text_subtitle_font" />
+
+                    <TextView
+                        android:id="@+id/tvCompanyDetailsDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/Details"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/edit_text_font_common"
+                        tools:layout_editor_absoluteY="398dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutCompanyDetailsStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/list_border"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Status"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/edit_text_subtitle_font" />
+
+                    <TextView
+                        android:id="@+id/tvCompanyDetailsStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="ACTIVE"
+                        android:textIsSelectable="true"
+                        android:textSize="@dimen/edit_text_font_common"
+                        tools:ignore="HardcodedText"
+                        tools:layout_editor_absoluteY="398dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</android.support.constraint.ConstraintLayout>

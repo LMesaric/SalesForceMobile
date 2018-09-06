@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:orientation="vertical"
                 android:background="@drawable/list_border"
                 app:layout_constraintBottom_toBottomOf="@+id/ivContactEditAvatar"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +47,7 @@
                     android:id="@+id/spContactTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@android:color/black"
                     android:textSize="@dimen/edit_text_subtitle_font" />
 
             </LinearLayout>
@@ -130,6 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
+                android:orientation="vertical"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/list_border"
@@ -137,63 +139,89 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutContactEditLastName">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Status"
+                    android:textSize="16sp"/>
+
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/spContactStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@android:color/black"
                     android:textSize="@dimen/edit_text_subtitle_font" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layoutContactEditCompanyName"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/list_border"
                 android:orientation="vertical"
-                android:paddingTop="@dimen/contactDetailsCardPadding"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutSpContactStatus">
 
-                <TextView
-                    android:id="@+id/textView9"
+                <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/CompanyName"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/edit_text_subtitle_font" />
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
 
-                <!-- Uneditable EditText used instead of TextView to keep the same appearance. -->
-                <EditText
-                    android:id="@+id/etContactCompanyName"
-                    style="@style/editTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:clickable="false"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:hint="@string/Company"
-                    android:inputType="text"
-                    android:longClickable="false" />
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/CompanyName"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/edit_text_subtitle_font"
+                        app:layout_constraintEnd_toStartOf="@+id/btnContactEditChooseCompany"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    android:id="@+id/btnContactEditChooseCompany"
-                    style="@style/flatButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:paddingEnd="8dp"
-                    android:paddingStart="8dp"
-                    android:text="@string/chooseCompany" />
+                    <!-- Uneditable EditText used instead of TextView to keep the same appearance. -->
+                    <EditText
+                        android:id="@+id/etContactCompanyName"
+                        style="@style/editTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="4dp"
+                        android:clickable="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/Company"
+                        android:inputType="text"
+                        android:longClickable="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnContactEditChooseCompany"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textView9" />
+
+                    <Button
+                        android:id="@+id/btnContactEditChooseCompany"
+                        style="@style/flatButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Choose"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
 
             </LinearLayout>
 
@@ -277,17 +305,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:orientation="vertical"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/list_border"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layoutContactEditPhoneNumber">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/preferredTime"
+                    android:textSize="16sp"/>
+
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/spContactPreferredTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@android:color/black"
                     android:textSize="@dimen/edit_text_subtitle_font" />
 
             </LinearLayout>
