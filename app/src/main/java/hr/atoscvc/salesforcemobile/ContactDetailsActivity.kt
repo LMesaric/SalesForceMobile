@@ -203,7 +203,7 @@ class ContactDetailsActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.contact_details_menu, menu)
-        editItem = menu?.findItem(R.id.action_edit)!!
+        editItem = menu?.findItem(R.id.action_contact_edit)!!
         val shouldHideButtons: Boolean = intent.getBooleanExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), false)
         editItem.isVisible = !shouldHideButtons
         return true
@@ -212,8 +212,8 @@ class ContactDetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> onBackPressed()
-            R.id.action_edit -> onEditContactDetails()
-            R.id.action_share -> onShareContact()
+            R.id.action_contact_edit -> onEditContactDetails()
+            R.id.action_contact_share -> onShareContact()
         }
         return true
     }
