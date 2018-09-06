@@ -44,8 +44,8 @@
                 android:layout_height="230dp"
                 android:fitsSystemWindows="true"
                 app:collapsedTitleTextAppearance="@style/collapsedToolbar"
-                app:expandedTitleGravity="center|bottom"
-                app:expandedTitleMarginBottom="30dp"
+                app:expandedTitleGravity="center_horizontal|bottom"
+                app:expandedTitleMarginBottom="26dp"
                 app:expandedTitleTextAppearance="@style/expandedToolbar"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
