@@ -178,6 +178,19 @@ class ContactDetailsActivity : AppCompatActivity() {
         startActivityForResult(intentEdit, ContactDetailsActivity.requestCodeEditContact)
     }
 
+    private fun onShareContact() {
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            putExtra(Intent.EXTRA_TEXT, contact.toFormattedString(resources))
+            type = "text/plain"
+        }
+        try {
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.shareChooser)))
+        } catch (e: Exception) {
+            // Most of the times, if not always, app chooser will display a similar message.
+            ToastExtension.makeText(this, R.string.noSuitableAppFound)
+        }
+    }
+
     override fun onBackPressed() {
         if (isChanged) {
             val intentBack = Intent().apply {
@@ -200,6 +213,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         when (item?.itemId) {
             android.R.id.home -> onBackPressed()
             R.id.action_edit -> onEditContactDetails()
+            R.id.action_share -> onShareContact()
         }
         return true
     }
