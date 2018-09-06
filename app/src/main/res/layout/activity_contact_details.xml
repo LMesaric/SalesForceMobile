@@ -109,6 +109,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+
                 <LinearLayout
                     android:id="@+id/layoutContactDetailsCompanyName"
                     android:layout_width="match_parent"
@@ -118,7 +122,7 @@
                     android:background="@drawable/list_border"
                     android:orientation="vertical"
                     android:paddingBottom="@dimen/contactDetailsCardPadding"
-                    android:paddingTop="36dp">
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
                         android:id="@+id/textView9"
@@ -367,8 +371,8 @@
                         android:text="ACTIVE"
                         android:textIsSelectable="true"
                         android:textSize="@dimen/edit_text_font_common"
-                        tools:layout_editor_absoluteY="398dp"
-                        tools:ignore="HardcodedText" />
+                        tools:ignore="HardcodedText"
+                        tools:layout_editor_absoluteY="398dp" />
 
                 </LinearLayout>
 

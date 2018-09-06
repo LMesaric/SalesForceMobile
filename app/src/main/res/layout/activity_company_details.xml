@@ -44,8 +44,8 @@
                 android:layout_height="230dp"
                 android:fitsSystemWindows="true"
                 app:collapsedTitleTextAppearance="@style/collapsedToolbar"
-                app:expandedTitleGravity="center|bottom"
-                app:expandedTitleMarginBottom="30dp"
+                app:expandedTitleGravity="center_horizontal|bottom"
+                app:expandedTitleMarginBottom="26dp"
                 app:expandedTitleTextAppearance="@style/expandedToolbar"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
@@ -109,8 +109,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+
                 <LinearLayout
-                    android:id="@+id/layoutDetailsCompanyCvsSegment"
+                    android:id="@+id/layoutCompanyDetailsCvsSegment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -118,7 +122,7 @@
                     android:background="@drawable/list_border"
                     android:orientation="vertical"
                     android:paddingBottom="@dimen/contactDetailsCardPadding"
-                    android:paddingTop="36dp">
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
                         android:layout_width="match_parent"
