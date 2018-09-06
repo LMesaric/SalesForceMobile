@@ -18,6 +18,7 @@
         <item name="android:textColorSecondary">@color/colorPrimary</item>
     </style>
 
+    <!--LUKA fixati ovu temu -->
     <style name="PreviewDetailsTheme" parent="AppTheme">
         <item name="android:textViewStyle">@style/textViewDetailsStyle</item>
         <item name="android:buttonStyle">@style/mainButtonStyle</item>
