@@ -101,6 +101,12 @@ class MainActivity :
 
         setSearchSettingsSelection()
 
+        settingsConstraintLayout.setOnTouchListener(object : OnSwipeTouchListener(this@MainActivity) {
+            override fun onSwipeUp() {
+                toggleSearchSettings(true)
+            }
+        })
+
         rbSettingsActive.setOnClickListener { searchSettingsChanged() }
         rbSettingsInactive.setOnClickListener { searchSettingsChanged() }
         rbSettingsAll.setOnClickListener { searchSettingsChanged() }
@@ -386,7 +392,6 @@ class MainActivity :
 
     private fun searchSettingsChanged() {
         //FIXME - na poziv ove funkcije treba se refreshati search aktivnog fragmenta
-        //LUKA - zatvoriti search setting na fling up
 
         SearchFilter.preferencesChanged = true
 
