@@ -10,11 +10,27 @@ import android.widget.Toast
 import kotlin.math.roundToInt
 
 object ToastExtension {
+    /**
+     * Shows a Snackbar-like Toast that is dismissed automatically after a few seconds or
+     * by touching any part of the screen.
+     *
+     * @param activity  Activity in which Toast is displayed.
+     * @param resId     ID of the resource string to be displayed as the message.   //The text to show.  Can be formatted text.
+     * @param duration  Optional parameter specifying how long to display the message.
+     */
     fun makeText(activity: Activity, resId: Int, duration: Int = Toast.LENGTH_LONG) {
         val text = activity.resources.getText(resId)
         makeText(activity, text, duration)
     }
 
+    /**
+     * Shows a Snackbar-like Toast that is dismissed automatically after a few seconds or
+     * by touching any part of the screen.
+     *
+     * @param activity  Activity in which Toast is displayed.
+     * @param text      The text to show. Can be formatted text.
+     * @param duration  Optional parameter specifying how long to display the message.
+     */
     fun makeText(activity: Activity, text: CharSequence, duration: Int = Toast.LENGTH_LONG) {
         val outMetrics = DisplayMetrics()
         activity.windowManager.defaultDisplay.getMetrics(outMetrics)
