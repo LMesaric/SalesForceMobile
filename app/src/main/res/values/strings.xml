@@ -1,5 +1,4 @@
 <resources>
-    <!-- LUKA - delete unused resources -->
 
     <!-- SEEN BY USERS (for layouts) -->
 
@@ -80,18 +79,10 @@
     <string name="newContactCreated">New Contact created</string>
     <string name="contactUpdated">Contact updated</string>
 
-    <string name="addContact">Add Contact</string>
-    <string name="addCompany">Add Company</string>
-
-    <string name="viewContacts">View all contacts</string>
-    <string name="viewCompanies">View all companies</string>
-    <string name="allContacts">All Contacts</string>
-    <string name="allCompanies">All Companies</string>
     <string name="newContact">New Contact</string>
     <string name="newCompany">New Company</string>
     <string name="editContact">Edit Contact</string>
     <string name="editCompany">Edit Company</string>
-    <string name="chooseCompany">Choose Company</string>
 
     <string name="sendEmailChooser">Send email</string>
     <string name="dialPhoneChooser">Dial phone number</string>

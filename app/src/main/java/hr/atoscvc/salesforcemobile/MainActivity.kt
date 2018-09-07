@@ -26,8 +26,6 @@ import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.search_settings.*
 
 //FILIP - Na home se toolbar moze expandati a ne bi smio
-//TODO MainActivity napraviti kao tabbedActivity ?
-//LUKA SVAKI PUT KAD CREATEAMO FRAGMENT ON OSTAJE SAVEAN, KAO I ONAJ STARI (MEMORIJA RASTE DO 370 MB) - REUSE https://stackoverflow.com/questions/19219458/fragment-on-screen-rotation
 
 class MainActivity :
         AppCompatActivity(),
