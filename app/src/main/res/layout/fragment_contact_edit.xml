@@ -36,7 +36,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:background="@drawable/list_border"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="@id/ivContactEditAvatar"
@@ -94,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/list_border"
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/contactDetailsCardPadding"
@@ -144,7 +145,7 @@
                     android:layout_marginTop="8dp"
                     android:text="Status"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/edit_text_subtitle_font" />
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/spContactStatus"
@@ -318,7 +319,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/preferredTime"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/edit_text_subtitle_font" />
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/spContactPreferredTime"
