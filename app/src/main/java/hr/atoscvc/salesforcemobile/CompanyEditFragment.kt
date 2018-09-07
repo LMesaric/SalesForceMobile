@@ -62,26 +62,27 @@ class CompanyEditFragment : Fragment() {
 
         view.etCompanyName.addTextChangedListener(DrawableTextWatcher(view.ivCompanyEditAvatar, keyId, view.etCompanyName))
 
+        //FILIP - druga opcija ne moze se selectati
         view.spCompanyStatus.setAdapter(ArrayAdapter.createFromResource(
-                activity?.baseContext!!,
+                activity!!.baseContext,
                 R.array.status_array,
                 R.layout.simple_spinner_dropdown_item
         ))
 
         view.spCompanyCvsSegment.setAdapter(ArrayAdapter.createFromResource(
-                activity?.baseContext!!,
+                activity!!.baseContext,
                 R.array.companyCVS_array,
                 R.layout.simple_spinner_dropdown_item
         ))
 
         view.spCompanyCommunicationType.setAdapter(ArrayAdapter.createFromResource(
-                activity?.baseContext!!,
+                activity!!.baseContext,
                 R.array.companyCommunicationType_array,
                 R.layout.simple_spinner_dropdown_item
         ))
 
         view.spCompanyEmployees.setAdapter(ArrayAdapter.createFromResource(
-                activity?.baseContext!!,
+                activity!!.baseContext,
                 R.array.companyEmployees_array,
                 R.layout.simple_spinner_dropdown_item
         ))
