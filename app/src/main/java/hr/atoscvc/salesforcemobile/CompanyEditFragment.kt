@@ -87,14 +87,45 @@ class CompanyEditFragment : Fragment() {
                 R.layout.simple_spinner_dropdown_item
         ))
 
-        view.spCompanyStatus.selectedIndex = (company?.status ?: 0)
-        view.spCompanyCvsSegment.selectedIndex = (company?.cvsSegment ?: 0)
-        view.spCompanyCommunicationType.selectedIndex = (company?.communicationType ?: 0)
-        view.spCompanyEmployees.selectedIndex = (company?.employees ?: 0)
+        view.etCompanyName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                view.etCompanyName.setText(view.etCompanyName.text.toString().trim())
+            }
+        }
+        view.etCompanyOIB.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                view.etCompanyOIB.setText(view.etCompanyOIB.text.toString().trim())
+            }
+        }
+        view.etCompanyPhone.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                view.etCompanyPhone.setText(view.etCompanyPhone.text.toString().trim())
+            }
+        }
+        view.etCompanyWebPage.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                view.etCompanyWebPage.setText(view.etCompanyWebPage.text.toString().trim())
+            }
+        }
+        view.etCompanyDetails.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                view.etCompanyDetails.setText(view.etCompanyDetails.text.toString().trim())
+            }
+        }
+        view.etCompanyIncome.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                view.etCompanyIncome.setText(view.etCompanyIncome.text.toString().trim())
+            }
+        }
+
+        view.spCompanyStatus.selectedIndex = company?.status ?: 0
+        view.spCompanyCvsSegment.selectedIndex = company?.cvsSegment ?: 0
+        view.spCompanyCommunicationType.selectedIndex = company?.communicationType ?: 0
+        view.spCompanyEmployees.selectedIndex = company?.employees ?: 0
         view.etCompanyName.setText(company?.name)
         view.etCompanyOIB.setText(company?.OIB)
-        view.etCompanyWebPage.setText(company?.webPage)
         view.etCompanyPhone.setText(company?.phone)
+        view.etCompanyWebPage.setText(company?.webPage)
         view.etCompanyDetails.setText(company?.details)
         view.etCompanyIncome.setText(company?.income)
 
