@@ -62,13 +62,6 @@ class CompanyEditFragment : Fragment() {
 
         view.etCompanyName.addTextChangedListener(DrawableTextWatcher(view.ivCompanyEditAvatar, keyId, view.etCompanyName))
 
-        //FILIP - ovi naslovi se trebaju negdje prikazati
-        if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
-            activity?.title = getString(R.string.newCompany)
-        } else {
-            activity?.title = getString(R.string.editCompany)
-        }
-
         view.spCompanyStatus.setAdapter(ArrayAdapter.createFromResource(
                 activity?.baseContext!!,
                 R.array.status_array,
