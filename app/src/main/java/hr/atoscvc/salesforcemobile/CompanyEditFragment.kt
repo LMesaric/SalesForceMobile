@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.google.firebase.auth.FirebaseAuth
@@ -62,30 +61,10 @@ class CompanyEditFragment : Fragment() {
 
         view.etCompanyName.addTextChangedListener(DrawableTextWatcher(view.ivCompanyEditAvatar, keyId, view.etCompanyName))
 
-        //FILIP - druga opcija ne moze se selectati
-        view.spCompanyStatus.setAdapter(ArrayAdapter.createFromResource(
-                activity!!.baseContext,
-                R.array.status_array,
-                R.layout.simple_spinner_dropdown_item
-        ))
-
-        view.spCompanyCvsSegment.setAdapter(ArrayAdapter.createFromResource(
-                activity!!.baseContext,
-                R.array.companyCVS_array,
-                R.layout.simple_spinner_dropdown_item
-        ))
-
-        view.spCompanyCommunicationType.setAdapter(ArrayAdapter.createFromResource(
-                activity!!.baseContext,
-                R.array.companyCommunicationType_array,
-                R.layout.simple_spinner_dropdown_item
-        ))
-
-        view.spCompanyEmployees.setAdapter(ArrayAdapter.createFromResource(
-                activity!!.baseContext,
-                R.array.companyEmployees_array,
-                R.layout.simple_spinner_dropdown_item
-        ))
+        view.spCompanyStatus.setItems(resources.getStringArray(R.array.status_array).toList())
+        view.spCompanyCvsSegment.setItems(resources.getStringArray(R.array.companyCVS_array).toList())
+        view.spCompanyCommunicationType.setItems(resources.getStringArray(R.array.companyCommunicationType_array).toList())
+        view.spCompanyEmployees.setItems(resources.getStringArray(R.array.companyEmployees_array).toList())
 
         view.etCompanyName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {

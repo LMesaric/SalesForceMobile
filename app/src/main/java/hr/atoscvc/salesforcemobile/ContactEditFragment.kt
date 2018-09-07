@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.google.firebase.auth.FirebaseAuth
@@ -75,23 +74,9 @@ class ContactEditFragment : Fragment() {
             replaceFragmentListener.replaceFragment((activity as ContactEditorActivity).companiesFragment)
         }
 
-        view.spContactTitle.setAdapter(ArrayAdapter.createFromResource(
-                activity!!.baseContext,
-                R.array.contactTitle_array,
-                R.layout.simple_spinner_dropdown_item
-        ))
-        //FILIP - druga opcija ne moze se selectati
-        view.spContactStatus.setAdapter(ArrayAdapter.createFromResource(
-                activity!!.baseContext,
-                R.array.status_array,
-                R.layout.simple_spinner_dropdown_item
-        ))
-
-        view.spContactPreferredTime.setAdapter(ArrayAdapter.createFromResource(
-                activity!!.baseContext,
-                R.array.contactPreferredTime_array,
-                R.layout.simple_spinner_dropdown_item
-        ))
+        view.spContactTitle.setItems(resources.getStringArray(R.array.contactTitle_array).toList())
+        view.spContactStatus.setItems(resources.getStringArray(R.array.status_array).toList())
+        view.spContactPreferredTime.setItems(resources.getStringArray(R.array.contactPreferredTime_array).toList())
 
         view.etContactFirstName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
