@@ -72,7 +72,9 @@ class ContactAdapter(
             holder.btnCardContactSelectContact.isEnabled = true
 
             holder.btnCardContactSelectContact.setOnClickListener {
-                //TODO Use this for creating opportunities
+                /*
+                 * Use this for creating opportunities.
+                 */
                 if (SystemClock.elapsedRealtime() - lastClickTime >= 2000) {
                     lastClickTime = SystemClock.elapsedRealtime()
                     val intent = Intent().apply {

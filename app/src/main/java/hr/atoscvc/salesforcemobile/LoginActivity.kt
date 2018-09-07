@@ -15,11 +15,9 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.reset_password.view.*
 
 //LUKA - prekontrolirati sve @+id na krivim mjestima
-//LUKA - styles za sve zivo
 //LUKA - dodati Remember Me feature
-//LUKA - urediti login i register screen, staviti animacije + trimmati sve inpute za login i register - dodati ikonice i onfucus listenere
-//LUKA - change color for onFocus PNGs
-//LUKA - torbe umjesto zgrade za company icon
+//LUKA - urediti login i register screen, trimmati sve inpute za login i register - dodati ikonice i onfucus listenere
+//LUKA - change color for onFocus PNGs, torbe umjesto zgrade za company icon
 //LUKA - preseliti search_icon i action_add u drawable (usage!!)
 //FILIP - Loading dialogs
 //FILIP - reset password stranica ima jako mali centralni dio na mobitelu

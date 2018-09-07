@@ -278,7 +278,7 @@
                             app:layout_constraintTop_toBottomOf="@id/tvTitleCompanyDetailsWebPage"
                             tools:layout_editor_absoluteY="328dp" />
 
-                        <!-- LUKA - promijeniti ikonicu (globus) -->
+                        <!-- FILIP - promijeniti ikonicu (globus) -->
                         <android.support.design.widget.FloatingActionButton
                             android:id="@+id/fabCompanyDetailsOpenWebPage"
                             style="@style/floatingActionButtonDetailsStyle"

@@ -19,8 +19,6 @@ import kotlinx.android.synthetic.main.fragment_companies.*
 
 class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
 
-    //FILIP - indexers Status_lastName i Status_firstName za citanje iz baze
-    //LUKA - poruka da je popis Contacts/Companies empty kad nema nista - TextView u centru ekrana
     companion object RequestCodesCompany {
         const val requestCodeRefresh = 1
         const val requestItemRefresh = 2
