@@ -185,7 +185,6 @@ class CompanyEditFragment : Fragment() {
                                 AppCompatActivity.RESULT_OK,
                                 Intent().apply {
                                     putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-                                    //FILIP contact details scroll bi se trebalo malo nastaviti nakon pustanja prsta
                                 }
                         )
                         activity?.finish()
@@ -219,5 +218,4 @@ class CompanyEditFragment : Fragment() {
             }
         }
     }
-
 }
