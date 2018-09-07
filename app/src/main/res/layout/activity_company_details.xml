@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/PreviewDetailsTheme"
     tools:context=".CompanyDetailsActivity">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabCompanyDetailsCallSecondary"
+        style="@style/floatingActionButtonDetailsStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -71,11 +71,11 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabCompanyDetailsCall"
+            style="@style/floatingActionButtonDetailsStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:clickable="true"
-            android:elevation="2dp"
             android:focusable="true"
             android:onClick="onCompanyCall"
             app:fabSize="auto"
@@ -125,24 +125,22 @@
                     android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
+                        style="@style/textViewDetailsSubtitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="CVS Segment"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:text="CVS Segment" />
 
                     <TextView
                         android:id="@+id/tvCompanyDetailsCvsSegment"
+                        style="@style/textViewDetailsDataStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:text="Platinum"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
                         tools:ignore="HardcodedText"
                         tools:layout_editor_absoluteY="223dp" />
 
@@ -165,27 +163,25 @@
 
                         <TextView
                             android:id="@+id/tvTitleCompanyDetailsPhoneNumber"
+                            style="@style/textViewDetailsSubtitleStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="8dp"
                             android:text="@string/PhoneNumber"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/edit_text_subtitle_font"
                             app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsSendText"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/tvCompanyDetailsPhoneNumber"
+                            style="@style/textViewDetailsDataStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="@string/PhoneNumber"
-                            android:textIsSelectable="true"
-                            android:textSize="@dimen/edit_text_font_common"
                             app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsSendText"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tvTitleCompanyDetailsPhoneNumber"
@@ -193,6 +189,7 @@
 
                         <android.support.design.widget.FloatingActionButton
                             android:id="@+id/fabCompanyDetailsSendText"
+                            style="@style/floatingActionButtonDetailsStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
@@ -221,23 +218,21 @@
                     android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
+                        style="@style/textViewDetailsSubtitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="@string/OIB"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:text="@string/OIB" />
 
                     <TextView
                         android:id="@+id/tvCompanyDetailsOib"
+                        style="@style/textViewDetailsDataStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
                         tools:layout_editor_absoluteY="363dp" />
 
                 </LinearLayout>
@@ -259,27 +254,25 @@
 
                         <TextView
                             android:id="@+id/tvTitleCompanyDetailsWebPage"
+                            style="@style/textViewDetailsSubtitleStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="8dp"
                             android:text="@string/WebPage"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/edit_text_subtitle_font"
                             app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsOpenWebPage"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/tvCompanyDetailsWebPage"
+                            style="@style/textViewDetailsDataStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="@string/WebPage"
-                            android:textIsSelectable="true"
-                            android:textSize="@dimen/edit_text_font_common"
                             app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsOpenWebPage"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tvTitleCompanyDetailsWebPage"
@@ -288,6 +281,7 @@
                         <!-- LUKA - promijeniti ikonicu (globus) -->
                         <android.support.design.widget.FloatingActionButton
                             android:id="@+id/fabCompanyDetailsOpenWebPage"
+                            style="@style/floatingActionButtonDetailsStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
@@ -316,24 +310,22 @@
                     android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
+                        style="@style/textViewDetailsSubtitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="Communication Type"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:text="Communication Type" />
 
                     <TextView
                         android:id="@+id/tvCompanyDetailsCommunicationType"
+                        style="@style/textViewDetailsDataStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:text="@string/Details"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
                         tools:layout_editor_absoluteY="398dp" />
 
                 </LinearLayout>
@@ -350,24 +342,22 @@
                     android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
+                        style="@style/textViewDetailsSubtitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="@string/Income"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:text="@string/Income" />
 
                     <TextView
                         android:id="@+id/tvCompanyDetailsIncome"
+                        style="@style/textViewDetailsDataStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:text="@string/Income"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
                         tools:layout_editor_absoluteY="398dp" />
 
                 </LinearLayout>
@@ -384,24 +374,22 @@
                     android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
+                        style="@style/textViewDetailsSubtitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="Employees"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:text="Employees" />
 
                     <TextView
                         android:id="@+id/tvCompanyDetailsEmployees"
+                        style="@style/textViewDetailsDataStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:text="Employees"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
                         tools:layout_editor_absoluteY="398dp" />
 
                 </LinearLayout>
@@ -418,24 +406,22 @@
                     android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
+                        style="@style/textViewDetailsSubtitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="@string/Details"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:text="@string/Details" />
 
                     <TextView
                         android:id="@+id/tvCompanyDetailsDetails"
+                        style="@style/textViewDetailsDataStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:text="@string/Details"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
                         tools:layout_editor_absoluteY="398dp" />
 
                 </LinearLayout>
@@ -452,24 +438,22 @@
                     android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
+                        style="@style/textViewDetailsSubtitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="Status"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:text="Status" />
 
                     <TextView
                         android:id="@+id/tvCompanyDetailsStatus"
+                        style="@style/textViewDetailsDataStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:text="ACTIVE"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
                         tools:ignore="HardcodedText"
                         tools:layout_editor_absoluteY="398dp" />
 

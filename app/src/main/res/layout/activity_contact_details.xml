@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/PreviewDetailsTheme"
     tools:context=".ContactDetailsActivity">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabContactDetailsCallSecondary"
+        style="@style/floatingActionButtonDetailsStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -71,11 +71,11 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabContactDetailsCall"
+            style="@style/floatingActionButtonDetailsStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:clickable="true"
-            android:elevation="2dp"
             android:focusable="true"
             android:onClick="onContactCall"
             app:fabSize="auto"
@@ -126,24 +126,22 @@
 
                     <TextView
                         android:id="@+id/textView9"
+                        style="@style/textViewDetailsSubtitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="@string/CompanyName"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:text="@string/CompanyName" />
 
                     <TextView
                         android:id="@+id/tvContactDetailsCompanyName"
+                        style="@style/textViewDetailsDataStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:text="Atos CVC"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
                         tools:ignore="HardcodedText"
                         tools:layout_editor_absoluteY="223dp" />
 
@@ -166,27 +164,25 @@
 
                         <TextView
                             android:id="@+id/textView10"
+                            style="@style/textViewDetailsSubtitleStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="8dp"
                             android:text="@string/Email"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/edit_text_subtitle_font"
                             app:layout_constraintEnd_toStartOf="@id/fabContactDetailsSendEmail"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/tvContactDetailsEmail"
+                            style="@style/textViewDetailsDataStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="@string/Email"
-                            android:textIsSelectable="true"
-                            android:textSize="@dimen/edit_text_font_common"
                             app:layout_constraintEnd_toStartOf="@id/fabContactDetailsSendEmail"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/textView10"
@@ -194,6 +190,7 @@
 
                         <android.support.design.widget.FloatingActionButton
                             android:id="@+id/fabContactDetailsSendEmail"
+                            style="@style/floatingActionButtonDetailsStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
@@ -227,27 +224,25 @@
 
                         <TextView
                             android:id="@+id/textView11"
+                            style="@style/textViewDetailsSubtitleStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="8dp"
                             android:text="@string/PhoneNumber"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/edit_text_subtitle_font"
                             app:layout_constraintEnd_toStartOf="@id/fabContactDetailsSendText"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/tvContactDetailsPhoneNumber"
+                            style="@style/textViewDetailsDataStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="@string/PhoneNumber"
-                            android:textIsSelectable="true"
-                            android:textSize="@dimen/edit_text_font_common"
                             app:layout_constraintEnd_toStartOf="@id/fabContactDetailsSendText"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/textView11"
@@ -255,6 +250,7 @@
 
                         <android.support.design.widget.FloatingActionButton
                             android:id="@+id/fabContactDetailsSendText"
+                            style="@style/floatingActionButtonDetailsStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
@@ -284,24 +280,22 @@
 
                     <TextView
                         android:id="@+id/textView12"
+                        style="@style/textViewDetailsSubtitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="@string/preferredTime"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:text="@string/preferredTime" />
 
                     <TextView
                         android:id="@+id/tvContactDetailsPrefTime"
+                        style="@style/textViewDetailsDataStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:text="Afternoon"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
                         tools:ignore="HardcodedText"
                         tools:layout_editor_absoluteY="363dp" />
 
@@ -319,24 +313,22 @@
                     android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
+                        style="@style/textViewDetailsSubtitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="@string/Details"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:text="@string/Details" />
 
                     <TextView
                         android:id="@+id/tvContactDetailsDetails"
+                        style="@style/textViewDetailsDataStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:text="@string/Details"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
                         tools:layout_editor_absoluteY="398dp" />
 
                 </LinearLayout>
@@ -353,24 +345,22 @@
                     android:paddingTop="@dimen/contactDetailsCardPadding">
 
                     <TextView
+                        style="@style/textViewDetailsSubtitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="Status"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/edit_text_subtitle_font" />
+                        android:text="Status" />
 
                     <TextView
                         android:id="@+id/tvContactDetailsStatus"
+                        style="@style/textViewDetailsDataStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:text="ACTIVE"
-                        android:textIsSelectable="true"
-                        android:textSize="@dimen/edit_text_font_common"
                         tools:ignore="HardcodedText"
                         tools:layout_editor_absoluteY="398dp" />
 

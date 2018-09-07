@@ -18,14 +18,7 @@
         <item name="android:textColorSecondary">@color/colorPrimary</item>
     </style>
 
-    <!--LUKA fixati ovu temu -->
-    <style name="PreviewDetailsTheme" parent="AppTheme">
-        <item name="android:textViewStyle">@style/textViewDetailsStyle</item>
-        <item name="android:buttonStyle">@style/mainButtonStyle</item>
-        <item name="floatingActionButtonStyle">@style/floatingActionButtonDetailsStyle</item>
-    </style>
-
-    <!-- [START] Search Settings Theme -->
+    <!-- [START] Search Settings Dropdown Theme -->
 
     <style name="SearchSettingsTheme" parent="AppTheme">
         <item name="android:background">@color/colorPrimary</item>
@@ -48,7 +41,7 @@
         <item name="android:buttonTint">@color/colorBackgroundWhite</item>
     </style>
 
-    <!-- [END] Search Settings Theme -->
+    <!-- [END] Search Settings Dropdown Theme -->
 
     <style name="textViewTitleMediumStyle">
         <item name="android:textColor">@color/loginRegisterTitleMedium</item>
@@ -89,15 +82,25 @@
         <item name="android:paddingRight">@dimen/edit_text_padding_horizontal</item>
     </style>
 
-    <style name="textViewDetailsStyle">
-        <item name="android:textSize">20sp</item>
+    <!-- [START] Preview Details Styles -->
+
+    <style name="textViewDetailsSubtitleStyle">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/edit_text_subtitle_font</item>
+    </style>
+
+    <style name="textViewDetailsDataStyle">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/edit_text_font_common</item>
+        <item name="android:textIsSelectable">true</item>
     </style>
 
     <style name="floatingActionButtonDetailsStyle" parent="Widget.Design.FloatingActionButton">
         <item name="elevation">@dimen/fab_elevation_small</item>
-        <item name="fabSize">mini</item>
         <item name="backgroundTint">@color/colorBackgroundWhite</item>
     </style>
+
+    <!-- [END] Preview Details Styles -->
 
     <style name="textViewHyperlinkStyle">
         <item name="android:textColor">@color/colorPrimary</item>
