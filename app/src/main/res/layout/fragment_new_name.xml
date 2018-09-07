@@ -41,7 +41,7 @@
         android:text="@string/EnterYourName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+        app:layout_constraintTop_toBottomOf="@id/textView1" />
 
     <EditText
         android:id="@+id/etRegisterFirstName"
@@ -54,7 +54,7 @@
         android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="@id/guideRight"
         app:layout_constraintStart_toStartOf="@id/guideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@id/textView4" />
 
     <EditText
         android:id="@+id/etRegisterLastName"
@@ -67,7 +67,7 @@
         android:inputType="textCapWords"
         app:layout_constraintEnd_toEndOf="@id/guideRight"
         app:layout_constraintStart_toStartOf="@id/guideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/etRegisterFirstName" />
+        app:layout_constraintTop_toBottomOf="@id/etRegisterFirstName" />
 
     <Button
         android:id="@+id/btnNewNameNext"
@@ -78,7 +78,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideRight"
         app:layout_constraintStart_toStartOf="@id/guideLeft"
-        app:layout_constraintTop_toBottomOf="@+id/etRegisterFirstName" />
+        app:layout_constraintTop_toBottomOf="@id/etRegisterFirstName" />
 
 </android.support.constraint.ConstraintLayout>
 

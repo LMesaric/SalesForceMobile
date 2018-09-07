@@ -39,7 +39,7 @@
                 android:layout_marginStart="8dp"
                 android:background="@drawable/list_border"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/ivContactEditAvatar"
+                app:layout_constraintBottom_toBottomOf="@id/ivContactEditAvatar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivContactEditAvatar">
 
@@ -183,7 +183,7 @@
                         android:text="@string/CompanyName"
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/edit_text_subtitle_font"
-                        app:layout_constraintEnd_toStartOf="@+id/btnContactEditChooseCompany"
+                        app:layout_constraintEnd_toStartOf="@id/btnContactEditChooseCompany"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -203,7 +203,7 @@
                         android:inputType="text"
                         android:longClickable="false"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btnContactEditChooseCompany"
+                        app:layout_constraintEnd_toStartOf="@id/btnContactEditChooseCompany"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/textView9" />
 

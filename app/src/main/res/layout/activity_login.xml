@@ -52,7 +52,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarLogin">
+        app:layout_constraintTop_toBottomOf="@id/toolbarLogin">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -92,7 +92,7 @@
                 android:text="@string/app_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@id/textView2" />
 
             <EditText
                 android:id="@+id/etLoginEmail"
@@ -106,7 +106,7 @@
                 android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="@id/guideRight"
                 app:layout_constraintStart_toStartOf="@id/guideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@id/textView" />
 
             <EditText
                 android:id="@+id/etLoginPassword"
@@ -119,7 +119,7 @@
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="@id/guideRight"
                 app:layout_constraintStart_toStartOf="@id/guideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/etLoginEmail" />
+                app:layout_constraintTop_toBottomOf="@id/etLoginEmail" />
 
             <Button
                 android:id="@+id/btnLogin"
@@ -128,7 +128,7 @@
                 android:text="@string/login"
                 app:layout_constraintEnd_toEndOf="@id/guideRight"
                 app:layout_constraintStart_toStartOf="@id/guideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/etLoginEmail" />
+                app:layout_constraintTop_toBottomOf="@id/etLoginEmail" />
 
             <TextView
                 android:id="@+id/tvForgotPassword"
@@ -141,7 +141,7 @@
                 android:text="@string/forgotPassword"
                 app:layout_constraintEnd_toEndOf="@id/guideRight"
                 app:layout_constraintStart_toStartOf="@id/guideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+                app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
             <ImageView
                 android:id="@+id/ivOr"
@@ -149,7 +149,7 @@
                 android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="@id/guideRight"
                 app:layout_constraintStart_toStartOf="@id/guideLeft"
-                app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword"
+                app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
                 app:srcCompat="@drawable/or_label"
                 tools:ignore="ContentDescription" />
 
