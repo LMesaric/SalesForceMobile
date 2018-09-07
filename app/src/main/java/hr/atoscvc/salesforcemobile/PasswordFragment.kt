@@ -44,7 +44,7 @@ class PasswordFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        if (SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+        if (SystemClock.elapsedRealtime() - lastClickTime < 400) {
             return
         }
         lastClickTime = SystemClock.elapsedRealtime()

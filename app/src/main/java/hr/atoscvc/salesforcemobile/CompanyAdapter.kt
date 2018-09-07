@@ -54,7 +54,7 @@ class CompanyAdapter(
         holder.tvCardCompanyStatus.text = context.resources.getStringArray(R.array.status_array)[company.status]
 
         holder.constraintLayoutCompanyMain.setOnClickListener {
-            if (SystemClock.elapsedRealtime() - lastClickTime >= 2000) {
+            if (SystemClock.elapsedRealtime() - lastClickTime >= 400) {
                 lastClickTime = SystemClock.elapsedRealtime()
                 listenerCompanies.recyclerViewCompaniesOnClick(holder.ivCompanyAvatar, company, isForSelect)
             }
@@ -65,7 +65,7 @@ class CompanyAdapter(
             holder.btnCardCompanySelectCompany.isEnabled = true
 
             holder.btnCardCompanySelectCompany.setOnClickListener {
-                if (SystemClock.elapsedRealtime() - lastClickTime >= 2000) {
+                if (SystemClock.elapsedRealtime() - lastClickTime >= 400) {
                     lastClickTime = SystemClock.elapsedRealtime()
                     ContactEditFragment.chosenCompany = company
                     context.onBackPressed()

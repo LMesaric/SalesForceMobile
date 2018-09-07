@@ -34,7 +34,7 @@ class VerifyActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View) {
-        if (SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+        if (SystemClock.elapsedRealtime() - lastClickTime < 400) {
             return
         }
         lastClickTime = SystemClock.elapsedRealtime()
@@ -51,7 +51,7 @@ class VerifyActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun onVerifySend() {
-        if (SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+        if (SystemClock.elapsedRealtime() - lastClickTime < 400) {
             return
         }
         lastClickTime = SystemClock.elapsedRealtime()

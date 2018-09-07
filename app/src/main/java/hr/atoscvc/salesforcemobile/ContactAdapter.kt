@@ -57,7 +57,7 @@ class ContactAdapter(
         holder.tvCardContactStatus.text = context.resources.getStringArray(R.array.status_array)[contact.status]
 
         holder.constraintLayoutContactMain.setOnClickListener {
-            if (SystemClock.elapsedRealtime() - lastClickTime >= 2000) {
+            if (SystemClock.elapsedRealtime() - lastClickTime >= 400) {
                 lastClickTime = SystemClock.elapsedRealtime()
                 listenerContacts.recyclerViewContactsOnClick(
                         holder.ivContactAvatar,
@@ -75,7 +75,7 @@ class ContactAdapter(
                 /*
                  * Use this for creating opportunities.
                  */
-                if (SystemClock.elapsedRealtime() - lastClickTime >= 2000) {
+                if (SystemClock.elapsedRealtime() - lastClickTime >= 400) {
                     lastClickTime = SystemClock.elapsedRealtime()
                     val intent = Intent().apply {
                         putExtra(context.getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)

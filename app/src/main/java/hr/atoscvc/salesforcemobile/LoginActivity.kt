@@ -182,7 +182,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        if (SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+        if (SystemClock.elapsedRealtime() - lastClickTime < 400) {
             return
         }
         lastClickTime = SystemClock.elapsedRealtime()
