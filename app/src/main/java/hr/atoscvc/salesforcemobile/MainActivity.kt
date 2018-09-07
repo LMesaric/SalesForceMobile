@@ -376,6 +376,7 @@ class MainActivity :
             R.id.rbSettingsActive -> rbSettingsActive.isChecked = true
             R.id.rbSettingsInactive -> rbSettingsInactive.isChecked = true
             R.id.rbSettingsAll -> rbSettingsAll.isChecked = true
+            else -> rbSettingsActive.isChecked = true
         }
 
         cbSettingsMatchAll.isChecked = sharedPref.getBoolean(getString(R.string.SHARED_PREFERENCES_CHECK_BOX_MATCH_ALL), false)
@@ -386,7 +387,6 @@ class MainActivity :
     private fun searchSettingsChanged() {
         //FIXME - na poziv ove funkcije treba se refreshati search aktivnog fragmenta
         //LUKA - zatvoriti search setting na fling up
-        //LUKA - recyclerview item - na klik podizanje i expand layouta iznad svega
 
         SearchFilter.preferencesChanged = true
 
