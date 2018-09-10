@@ -131,7 +131,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="CVS Segment" />
+                        android:text="@string/CvsSegment" />
 
                     <TextView
                         android:id="@+id/tvCompanyDetailsCvsSegment"
@@ -316,7 +316,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="Communication Type" />
+                        android:text="@string/CommunicationType" />
 
                     <TextView
                         android:id="@+id/tvCompanyDetailsCommunicationType"
@@ -325,7 +325,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="@string/Details"
+                        android:text="@string/CommunicationType"
                         tools:layout_editor_absoluteY="398dp" />
 
                 </LinearLayout>
@@ -380,7 +380,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="Employees" />
+                        android:text="@string/Employees" />
 
                     <TextView
                         android:id="@+id/tvCompanyDetailsEmployees"
@@ -389,7 +389,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="Employees"
+                        android:text="@string/Employees"
                         tools:layout_editor_absoluteY="398dp" />
 
                 </LinearLayout>
@@ -444,7 +444,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:text="Status" />
+                        android:text="@string/Status" />
 
                     <TextView
                         android:id="@+id/tvCompanyDetailsStatus"

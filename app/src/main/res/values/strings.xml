@@ -41,12 +41,16 @@
     <string name="PhoneNumber">Phone Number</string>
     <string name="Email">E-mail</string>
     <string name="preferredTime">Preferred Time</string>
+    <string name="Status">Status</string>
     <string name="Details">Details</string>
     <string name="Company">Company</string>
     <string name="CompanyName">Company Name</string>
     <string name="OIB">OIB</string>
     <string name="WebPage">Web Page</string>
+    <string name="CvsSegment">CVS Segment</string>
     <string name="Income">Income</string>
+    <string name="Employees">Employees</string>
+    <string name="CommunicationType">Communication Type</string>
 
     <string name="emailAlreadyInUse">Email address is already in use.</string>
 
@@ -116,6 +120,9 @@
     <string name="Next">Next</string>
     <string name="Finish">Finish</string>
     <string name="Select">Select</string>
+
+    <string name="addContact">Add contact</string>
+    <string name="viewContacts">View contacts</string>
 
     <string name="change">Change</string>
     <string name="changePassword">Change Password</string>

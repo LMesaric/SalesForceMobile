@@ -143,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Status"
+                    android:text="@string/Status"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
@@ -246,7 +246,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Communication Type"
+                    android:text="@string/CommunicationType"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
@@ -313,7 +313,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Employees"
+                    android:text="@string/Employees"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
