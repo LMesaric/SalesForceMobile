@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ViewCompanyDetailsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyDetailsCvsSegment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                <TextView
+                    style="@style/textViewDetailsSubtitleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/CvsSegment" />
+
+                <TextView
+                    android:id="@+id/tvCompanyDetailsCvsSegment"
+                    style="@style/textViewDetailsDataStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="Platinum"
+                    tools:ignore="HardcodedText"
+                    tools:layout_editor_absoluteY="223dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyDetailsPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                    <TextView
+                        android:id="@+id/tvTitleCompanyDetailsPhoneNumber"
+                        style="@style/textViewDetailsSubtitleStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/PhoneNumber"
+                        app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsSendText"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvCompanyDetailsPhoneNumber"
+                        style="@style/textViewDetailsDataStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/PhoneNumber"
+                        app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsSendText"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleCompanyDetailsPhoneNumber"
+                        tools:layout_editor_absoluteY="328dp" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fabCompanyDetailsSendText"
+                        style="@style/floatingActionButtonDetailsStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@android:drawable/sym_action_chat" />
+
+                </android.support.constraint.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyDetailsOib"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                <TextView
+                    style="@style/textViewDetailsSubtitleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/OIB" />
+
+                <TextView
+                    android:id="@+id/tvCompanyDetailsOib"
+                    style="@style/textViewDetailsDataStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    tools:layout_editor_absoluteY="363dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyDetailsWebPage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/contactDetailsCardPadding"
+                    android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                    <TextView
+                        android:id="@+id/tvTitleCompanyDetailsWebPage"
+                        style="@style/textViewDetailsSubtitleStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/WebPage"
+                        app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsOpenWebPage"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvCompanyDetailsWebPage"
+                        style="@style/textViewDetailsDataStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/WebPage"
+                        app:layout_constraintEnd_toStartOf="@id/fabCompanyDetailsOpenWebPage"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleCompanyDetailsWebPage"
+                        tools:layout_editor_absoluteY="328dp" />
+
+                    <!-- FILIP - promijeniti ikonicu (globus) -->
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fabCompanyDetailsOpenWebPage"
+                        style="@style/floatingActionButtonDetailsStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@android:drawable/sym_action_email" />
+
+                </android.support.constraint.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyDetailsCommunicationType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                <TextView
+                    style="@style/textViewDetailsSubtitleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/CommunicationType" />
+
+                <TextView
+                    android:id="@+id/tvCompanyDetailsCommunicationType"
+                    style="@style/textViewDetailsDataStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/CommunicationType"
+                    tools:layout_editor_absoluteY="398dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyDetailsIncome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                <TextView
+                    style="@style/textViewDetailsSubtitleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Income" />
+
+                <TextView
+                    android:id="@+id/tvCompanyDetailsIncome"
+                    style="@style/textViewDetailsDataStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Income"
+                    tools:layout_editor_absoluteY="398dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyDetailsEmployees"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                <TextView
+                    style="@style/textViewDetailsSubtitleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Employees" />
+
+                <TextView
+                    android:id="@+id/tvCompanyDetailsEmployees"
+                    style="@style/textViewDetailsDataStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Employees"
+                    tools:layout_editor_absoluteY="398dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyDetailsDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                <TextView
+                    style="@style/textViewDetailsSubtitleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Details" />
+
+                <TextView
+                    android:id="@+id/tvCompanyDetailsDetails"
+                    style="@style/textViewDetailsDataStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Details"
+                    tools:layout_editor_absoluteY="398dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCompanyDetailsStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/list_border"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/contactDetailsCardPadding"
+                android:paddingTop="@dimen/contactDetailsCardPadding">
+
+                <TextView
+                    style="@style/textViewDetailsSubtitleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Status" />
+
+                <TextView
+                    android:id="@+id/tvCompanyDetailsStatus"
+                    style="@style/textViewDetailsDataStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="ACTIVE"
+                    tools:ignore="HardcodedText"
+                    tools:layout_editor_absoluteY="398dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

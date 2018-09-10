@@ -5,15 +5,17 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.activity_company_details.*
 
-class CompanyDetailsActivity : AppCompatActivity() {
+class CompanyDetailsActivity : AppCompatActivity(), ContactAdapter.RecyclerViewContactsOnClickListener {
 
     companion object {
         const val requestCodeEditCompany = 6
@@ -21,18 +23,32 @@ class CompanyDetailsActivity : AppCompatActivity() {
 
     private var generator = ColorGenerator.MATERIAL
 
+    private var refreshContacts = false
+
     private lateinit var company: Company
     private var isChanged: Boolean = false
+
+    private val viewContactsFromCompanyFragment: ContactsFragment = ContactsFragment()
+    private val viewCompanyDetailsFragment: ViewCompanyDetailsFragment = ViewCompanyDetailsFragment()
 
     private lateinit var editItem: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_company_details)
+        replaceFragment(viewCompanyDetailsFragment)
         company = intent.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as Company
         setSupportActionBar(toolBarCompanyDetails)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    override fun recyclerViewContactsOnClick(imageView: ImageView, contact: Contact, hideEditButtons: Boolean) {
+        val contactDetailsIntent = Intent(this, ContactDetailsActivity::class.java).apply {
+            putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+            putExtra(getString(R.string.EXTRA_CONTACT_HIDE_EDIT_BUTTONS), hideEditButtons)
+        }
+        startActivityForResult(contactDetailsIntent, ContactsFragment.requestItemRefresh)
     }
 
     override fun onResume() {
@@ -53,60 +69,6 @@ class CompanyDetailsActivity : AppCompatActivity() {
         appBarCompanyDetails.isActivated = true
         collapsingToolbarCompanyDetails.title = company.name
 
-        tvCompanyDetailsStatus.text = resources.getStringArray(R.array.status_array)[company.status]
-        tvCompanyDetailsOib.text = company.OIB
-
-        if (company.cvsSegment == 0) {
-            layoutCompanyDetailsCvsSegment.visibility = View.GONE
-        } else {
-            tvCompanyDetailsCvsSegment.text = resources.getStringArray(R.array.companyCVS_array)[company.cvsSegment]
-            layoutCompanyDetailsCvsSegment.visibility = View.VISIBLE
-        }
-
-        if (company.communicationType == 0) {
-            layoutCompanyDetailsCommunicationType.visibility = View.GONE
-        } else {
-            tvCompanyDetailsCommunicationType.text = resources.getStringArray(R.array.companyCommunicationType_array)[company.communicationType]
-            layoutCompanyDetailsCommunicationType.visibility = View.VISIBLE
-        }
-
-        if (company.employees == 0) {
-            layoutCompanyDetailsEmployees.visibility = View.GONE
-        } else {
-            tvCompanyDetailsEmployees.text = resources.getStringArray(R.array.companyEmployees_array)[company.employees]
-            layoutCompanyDetailsEmployees.visibility = View.VISIBLE
-        }
-
-        if (company.webPage.isNullOrBlank()) {
-            layoutCompanyDetailsWebPage.visibility = View.GONE
-        } else {
-            tvCompanyDetailsWebPage.text = company.webPage
-            layoutCompanyDetailsWebPage.visibility = View.VISIBLE
-        }
-
-        if (company.phone.isNullOrBlank()) {
-            layoutCompanyDetailsPhoneNumber.visibility = View.GONE
-            fabCompanyDetailsCall.isClickable = false
-        } else {
-            tvCompanyDetailsPhoneNumber.text = company.phone
-            layoutCompanyDetailsPhoneNumber.visibility = View.VISIBLE
-            fabCompanyDetailsCall.isClickable = true
-        }
-
-        if (company.income.isNullOrBlank()) {
-            layoutCompanyDetailsIncome.visibility = View.GONE
-        } else {
-            tvCompanyDetailsIncome.text = company.income
-            layoutCompanyDetailsIncome.visibility = View.VISIBLE
-        }
-
-        if (company.details.isNullOrBlank()) {
-            layoutCompanyDetailsDetails.visibility = View.GONE
-        } else {
-            tvCompanyDetailsDetails.text = company.details
-            layoutCompanyDetailsDetails.visibility = View.VISIBLE
-        }
-
         fabCompanyDetailsCallSecondary.hide()
 
         fabCompanyDetailsCall.addOnHideAnimationListener(object : Animator.AnimatorListener {
@@ -126,61 +88,6 @@ class CompanyDetailsActivity : AppCompatActivity() {
                 fabCompanyDetailsCallSecondary.hide()
             }
         })
-
-    }
-
-    fun onCompanyWebPage(@Suppress("UNUSED_PARAMETER") view: View) {
-        var webPage: String? = company.webPage?.trim()
-        if (webPage.isNullOrBlank()) {
-            ToastExtension.makeText(this, R.string.wrongWebPage)
-        } else {
-            webPage?.let {
-                if (it.startsWith("www.", true)) {
-                    webPage = "http://$webPage"
-                } else if (!it.startsWith("http://", true) and !it.startsWith("https://", true)) {
-                    webPage = "http://www.$webPage"
-                }
-            }
-            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(webPage))
-            try {
-                startActivity(Intent.createChooser(webIntent, getString(R.string.openWebChooser)))
-            } catch (e: Exception) {
-                // Most of the times, if not always, app chooser will display a similar message.
-                ToastExtension.makeText(this, R.string.noSuitableAppFound)
-            }
-        }
-    }
-
-    fun onCompanyCall(@Suppress("UNUSED_PARAMETER") view: View) {
-        val phone: String? = company.phone?.trim()
-        if (phone.isNullOrBlank()) {
-            ToastExtension.makeText(this, R.string.wrongPhoneNumber)
-        } else {
-            val dialIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone"))
-            try {
-                startActivity(Intent.createChooser(dialIntent, getString(R.string.dialPhoneChooser)))
-            } catch (e: Exception) {
-                // Most of the times, if not always, app chooser will display a similar message.
-                ToastExtension.makeText(this, R.string.noSuitableAppFound)
-            }
-        }
-    }
-
-    fun onCompanyText(@Suppress("UNUSED_PARAMETER") view: View) {
-        val phone: String? = company.phone?.trim()
-        if (phone.isNullOrBlank()) {
-            ToastExtension.makeText(this, R.string.wrongPhoneNumber)
-        } else {
-            val smsIntent = Intent(Intent.ACTION_VIEW, Uri.parse("smsto:$phone")).apply {
-                putExtra("sms_body", "${company.name}, \n")
-            }
-            try {
-                startActivity(Intent.createChooser(smsIntent, getString(R.string.sendTextChooser)))
-            } catch (e: Exception) {
-                // Most of the times, if not always, app chooser will display a similar message.
-                ToastExtension.makeText(this, R.string.noSuitableAppFound)
-            }
-        }
     }
 
     private fun onEditCompanyDetails() {
@@ -214,7 +121,12 @@ class CompanyDetailsActivity : AppCompatActivity() {
     }
 
     private fun onViewContactsCompanyDetails() {
-        //FILIP - pregled svih kontakata za ovaj company
+        val bundle = Bundle()
+        fabCompanyDetailsCall.visibility = View.GONE
+        fabCompanyDetailsCallSecondary.visibility = View.GONE
+        bundle.putString("companyID", company.documentID)
+        viewContactsFromCompanyFragment.arguments = bundle
+        replaceFragment(viewContactsFromCompanyFragment)
     }
 
     override fun onBackPressed() {
@@ -224,6 +136,9 @@ class CompanyDetailsActivity : AppCompatActivity() {
             }
             setResult(AppCompatActivity.RESULT_OK, intentBack)
         }
+        fabCompanyDetailsCall.visibility = View.VISIBLE
+        fabCompanyDetailsCallSecondary.visibility = View.VISIBLE
+
         super.onBackPressed()
     }
 
@@ -234,6 +149,9 @@ class CompanyDetailsActivity : AppCompatActivity() {
                 intent.putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
                 isChanged = true
             }
+
+        } else if (requestCode == ContactsFragment.requestCodeRefresh) {
+            refreshContacts = true
         }
     }
 
@@ -254,5 +172,30 @@ class CompanyDetailsActivity : AppCompatActivity() {
             R.id.action_add_contact -> onAddContactCompanyDetails()
         }
         return true
+    }
+
+    fun onCompanyCall(@Suppress("UNUSED_PARAMETER") view: View) {
+        val phone: String? = company.phone?.trim()
+        if (phone.isNullOrBlank()) {
+            ToastExtension.makeText(this, R.string.wrongPhoneNumber)
+        } else {
+            val dialIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone"))
+            try {
+                startActivity(Intent.createChooser(dialIntent, getString(R.string.dialPhoneChooser)))
+            } catch (e: Exception) {
+                // Most of the times, if not always, app chooser will display a similar message.
+                ToastExtension.makeText(this, R.string.noSuitableAppFound)
+            }
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        if (fragment.javaClass == viewCompanyDetailsFragment.javaClass) {
+            fragmentTransaction.replace(R.id.companyDetailsContainer, fragment)
+        } else {
+            fragmentTransaction.replace(R.id.companyDetailsContainer, fragment).addToBackStack("tag")
+        }
+        fragmentTransaction.commit()
     }
 }

@@ -4,12 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
@@ -17,7 +19,7 @@ import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 
-class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
+class ContactsFragment : Fragment(), SearchView.OnQueryTextListener{
 
     companion object {
         const val requestCodeRefresh = 3
@@ -29,6 +31,7 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var db: FirebaseFirestore
 
     private var mainActivity: MainActivity? = null
+    private var companyDetailsActivity: CompanyDetailsActivity? = null
 
     private var adapter: ContactAdapter? = null
 
@@ -48,60 +51,103 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun setUpContactList() {
+        val companyID = arguments?.getString("companyID")
+
+        contactList = ArrayList()
+
         try {
             mainActivity = activity as MainActivity
-        } catch (e: ClassCastException) {
-
-        }
-
-        activity?.fabAdd?.show()
-        activity?.fabAdd?.setOnClickListener {
-            val intent = Intent(activity, ContactEditorActivity::class.java).apply {
-                putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
+            adapter = activity?.applicationContext?.let {
+                ContactAdapter(
+                        contactList,
+                        activity as Activity,
+                        arguments
+                                ?.getBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT))
+                                ?: false,
+                        activity as MainActivity
+                )
             }
-            activity?.startActivityForResult(intent, requestCodeRefresh)
+        } catch (e: ClassCastException) {
+            try {
+                companyDetailsActivity = activity as CompanyDetailsActivity
+                adapter = activity?.applicationContext?.let {
+                    ContactAdapter(
+                            contactList,
+                            activity as Activity,
+                            arguments
+                                    ?.getBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT))
+                                    ?: false,
+                            activity as CompanyDetailsActivity
+                    )
+                }
+            } catch (e: ClassCastException) {
+
+            }
         }
 
         recyclerViewContacts.setHasFixedSize(true)
         recyclerViewContacts.layoutManager = LinearLayoutManager(activity)
 
-        contactList = ArrayList()
-
-        adapter = activity?.applicationContext?.let {
-            ContactAdapter(
-                    contactList,
-                    activity as Activity,
-                    arguments
-                            ?.getBoolean(getString(R.string.EXTRA_CONTACT_IS_LIST_FOR_SELECT))
-                            ?: false,
-                    activity as MainActivity
-            )
-        }
-
         recyclerViewContacts.adapter = adapter
 
+        Log.i("TESTING", companyID.toString())
+
         //TODO Bilo bi dosta lako dodati Sort By feature - samo ubaciti string u .orderBy()
-        val query: Query? = mAuth.uid?.let {
-            db.collection(getString(R.string.databaseCollectionUsers))
-                    .document(it)
-                    .collection(getString(R.string.databaseCollectionContacts))
-                    .orderBy(getString(R.string.databaseDocumentLastName))
-        }
-        query?.addSnapshotListener { p0, p1 ->
-            if (p1 != null) {
-                Log.d("ERRORS", p1.message)
+
+        if (companyID == null) {
+            activity?.fabAdd?.show()
+            activity?.fabAdd?.setOnClickListener {
+                val intent = Intent(activity, ContactEditorActivity::class.java).apply {
+                    putExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), true)
+                }
+                activity?.startActivityForResult(intent, requestCodeRefresh)
             }
-            if (p0 != null) {
-                for (doc in p0.documentChanges) {
-                    if (doc.type == DocumentChange.Type.ADDED) {
-                        val newContact = doc.document.toObject<Contact>(Contact::class.java)
-                        contactList.add(newContact)
-                        adapter?.notifyDataSetChanged()
+
+            val query: Query? = mAuth.uid?.let {
+                db.collection(getString(R.string.databaseCollectionUsers))
+                        .document(it)
+                        .collection(getString(R.string.databaseCollectionContacts))
+                        .orderBy(getString(R.string.databaseDocumentLastName))
+            }
+            query?.addSnapshotListener { p0, p1 ->
+                if (p1 != null) {
+                    Log.d("ERRORS", p1.message)
+                }
+                if (p0 != null) {
+                    for (doc in p0.documentChanges) {
+                        if (doc.type == DocumentChange.Type.ADDED) {
+                            val newContact = doc.document.toObject<Contact>(Contact::class.java)
+                            contactList.add(newContact)
+                            adapter?.notifyDataSetChanged()
+                        }
+                    }
+                    mainActivity?.searchView?.setQuery(mainActivity?.searchView?.query, true)
+                }
+            }
+        } else {
+            val query: Query? = mAuth.uid?.let {
+                db.collection(getString(R.string.databaseCollectionUsers))
+                        .document(it)
+                        .collection(getString(R.string.databaseCollectionContacts))
+                        .whereEqualTo("company.documentID", companyID)
+                        .orderBy(getString(R.string.databaseDocumentLastName))
+            }
+            query?.addSnapshotListener { p0, p1 ->
+                if (p1 != null) {
+                    Log.d("ERRORS", p1.message)
+                }
+                if (p0 != null) {
+                    for (doc in p0.documentChanges) {
+                        if (doc.type == DocumentChange.Type.ADDED) {
+                            val newContact = doc.document.toObject<Contact>(Contact::class.java)
+                            contactList.add(newContact)
+                            adapter?.notifyDataSetChanged()
+                        }
                     }
                 }
-                mainActivity?.searchView?.setQuery(mainActivity?.searchView?.query, true)
             }
         }
+
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
