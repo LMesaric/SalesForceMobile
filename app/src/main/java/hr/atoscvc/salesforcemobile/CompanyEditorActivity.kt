@@ -13,8 +13,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_company_editor.*
 
 
-//TODO Za Company i Contact Editor staviti alert dialog na back button
-
 class CompanyEditorActivity : AppCompatActivity(), ReplaceFragmentListener {
 
     private lateinit var mAuth: FirebaseAuth

@@ -13,8 +13,6 @@ import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.activity_contact_details.*
 
-//FILIP - tint preko disableanog buttona
-
 class ContactDetailsActivity : AppCompatActivity() {
 
     companion object {

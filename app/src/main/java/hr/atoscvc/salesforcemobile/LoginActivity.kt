@@ -14,9 +14,6 @@ import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.reset_password.view.*
 
-//FILIP - dodati Remember Me feature
-//FILIP - reset password stranica ima jako mali centralni dio na mobitelu
-
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var db: FirebaseFirestore
