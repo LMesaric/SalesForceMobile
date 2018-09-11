@@ -14,10 +14,7 @@ import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.reset_password.view.*
 
-//LUKA - dodati Remember Me feature
-//LUKA - urediti login i register screen, trimmati sve inpute za login i register - dodati ikonice i onfucus listenere
-//LUKA - change color for onFocus PNGs, torbe umjesto zgrade za company icon
-//FILIP - Loading dialogs
+//FILIP - dodati Remember Me feature
 //FILIP - reset password stranica ima jako mali centralni dio na mobitelu
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {

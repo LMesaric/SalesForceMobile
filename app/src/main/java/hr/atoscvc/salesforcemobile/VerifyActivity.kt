@@ -74,7 +74,6 @@ class VerifyActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    //FILIP - ovo bi trebalo ici u toolbar menu
     private fun onVerifyLogout() {
         ActiveUserSingleton.user = null
         mAuth.signOut()

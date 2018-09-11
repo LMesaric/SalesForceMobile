@@ -25,8 +25,6 @@ import kotlinx.android.synthetic.main.fragment_companies.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.search_settings.*
 
-//FILIP - Na home se toolbar moze expandati a ne bi smio
-
 class MainActivity :
         AppCompatActivity(),
         LogoutListener,
@@ -371,7 +369,6 @@ class MainActivity :
                 getString(R.string.SHARED_PREFERENCES_SEARCH_SETTINGS),
                 Context.MODE_PRIVATE
         )
-        //LUKA extract default values kod R.string.SHARED_PREFERENCES_RADIO_BUTTON_SELECTED_ID
         val selectedRadioId: Int = sharedPref.getInt(
                 getString(R.string.SHARED_PREFERENCES_RADIO_BUTTON_SELECTED_ID),
                 R.id.rbSettingsActive
@@ -389,8 +386,6 @@ class MainActivity :
     }
 
     private fun searchSettingsChanged() {
-        //FIXME - na poziv ove funkcije treba se refreshati search aktivnog fragmenta
-
         SearchFilter.preferencesChanged = true
 
         val sharedPref = getSharedPreferences(
