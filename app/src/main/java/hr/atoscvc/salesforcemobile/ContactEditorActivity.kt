@@ -3,6 +3,7 @@ package hr.atoscvc.salesforcemobile
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -39,6 +40,18 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, Comp
         if (user == null) {
             sendToLogin()
         }
+    }
+
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(getString(R.string.warningForDiscardingChanges))
+                .setPositiveButton(getString(R.string.discard)) { _, _ ->
+                    super.onBackPressed()
+                }
+                .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                    dialog.cancel()
+                }
+        builder.create().show()
     }
 
     override fun recyclerViewCompaniesOnClick(imageView: ImageView, company: Company, hideEditButtons: Boolean) {

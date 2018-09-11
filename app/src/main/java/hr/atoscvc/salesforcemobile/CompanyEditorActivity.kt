@@ -3,6 +3,7 @@ package hr.atoscvc.salesforcemobile
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -10,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_company_editor.*
+
 
 //TODO Za Company i Contact Editor staviti alert dialog na back button
 
@@ -32,6 +34,18 @@ class CompanyEditorActivity : AppCompatActivity(), ReplaceFragmentListener {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         replaceFragment(companyEditFragment)
+    }
+
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(getString(R.string.warningForDiscardingChanges))
+                .setPositiveButton(getString(R.string.discard)) { _, _ ->
+                    super.onBackPressed()
+                }
+                .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                    dialog.cancel()
+                }
+        builder.create().show()
     }
 
     override fun onResume() {

@@ -54,14 +54,15 @@ class ViewCompanyDetailsFragment : Fragment() {
             if (p0 != null) {
                 for (doc in p0.documentChanges) {
                     if (doc.type == DocumentChange.Type.ADDED) {
+                        Log.i("TESTING", doc.document.toObject<Company>(Company::class.java).toString())
                         company = doc.document.toObject<Company>(Company::class.java)
-                        setFieldsCompanyDetails()
+                        setFields()
                     }
                 }
             }
         }
 
-        setFieldsCompanyDetails()
+        setFields()
 
         fabCompanyDetailsOpenWebPage.setOnClickListener {
             onCompanyWebPage()
@@ -70,9 +71,12 @@ class ViewCompanyDetailsFragment : Fragment() {
         fabCompanyDetailsSendText.setOnClickListener {
             onCompanyText()
         }
+
+
     }
 
-    private fun setFieldsCompanyDetails() {
+    private fun setFields() {
+
         val letters = company.name[0].toString().toUpperCase()
         val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(company.documentID))
         (activity as CompanyDetailsActivity).expandedAvatarCompanyDetails.setImageDrawable(drawable)
