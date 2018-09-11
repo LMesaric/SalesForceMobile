@@ -115,11 +115,14 @@
     <string name="noSuitableAppFound">Please install an application that can do what you need.</string>
 
     <string name="Save">Save</string>
+    <string name="Discard">Discard</string>
     <string name="Edit">Edit</string>
     <string name="Share">Share</string>
     <string name="Next">Next</string>
     <string name="Finish">Finish</string>
     <string name="Select">Select</string>
+
+    <string name="warningForDiscardingChanges">Save your changes or discard them?</string>
 
     <string name="addContact">Add contact</string>
     <string name="viewContacts">View contacts</string>
@@ -229,8 +232,5 @@
     <string name="EXTRA_COMPANY_ENTIRE_OBJECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_ENTIRE_OBJECT</string>
     <string name="EXTRA_COMPANY_IS_LIST_FOR_SELECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_IS_LIST_FOR_SELECT</string>
     <string name="EXTRA_COMPANY_HIDE_EDIT_BUTTONS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_HIDE_EDIT_BUTTONS</string>
-    <string name="warningForDiscardingChanges">Save your changes or discard them?</string>
-    <string name="discard">DISCARD</string>
-    <string name="cancel">CANCEL</string>
 
 </resources>

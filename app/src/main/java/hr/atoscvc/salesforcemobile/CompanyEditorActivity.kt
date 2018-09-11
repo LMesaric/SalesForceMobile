@@ -37,10 +37,10 @@ class CompanyEditorActivity : AppCompatActivity(), ReplaceFragmentListener {
     override fun onBackPressed() {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(getString(R.string.warningForDiscardingChanges))
-                .setPositiveButton(getString(R.string.discard)) { _, _ ->
+                .setPositiveButton(getString(R.string.Discard)) { _, _ ->
                     super.onBackPressed()
                 }
-                .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                .setNegativeButton(getString(android.R.string.cancel)) { dialog, _ ->
                     dialog.cancel()
                 }
         builder.create().show()
