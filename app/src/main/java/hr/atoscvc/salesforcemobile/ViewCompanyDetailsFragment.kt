@@ -5,19 +5,31 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_company_details.*
 import kotlinx.android.synthetic.main.fragment_view_company_details.*
 
 class ViewCompanyDetailsFragment : Fragment() {
 
+    private var generator = ColorGenerator.MATERIAL
+
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
     private lateinit var company: Company
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         company = activity?.intent?.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as Company
+
         return inflater.inflate(R.layout.fragment_view_company_details, container, false)
     }
 
@@ -26,6 +38,32 @@ class ViewCompanyDetailsFragment : Fragment() {
         tvCompanyDetailsStatus.text = resources.getStringArray(R.array.status_array)[company.status]
         tvCompanyDetailsOib.text = company.OIB
 
+        db = FirebaseFirestore.getInstance()
+        mAuth = FirebaseAuth.getInstance()
+
+        val query: Query? = mAuth.uid?.let {
+            db.collection(getString(R.string.databaseCollectionUsers))
+                    .document(it)
+                    .collection(getString(R.string.databaseCollectionCompanies))
+                    .whereEqualTo("documentID", company.documentID)
+        }
+        query?.addSnapshotListener { p0, p1 ->
+            if (p1 != null) {
+                Log.d("ERRORS", p1.message)
+            }
+            if (p0 != null) {
+                for (doc in p0.documentChanges) {
+                    if (doc.type == DocumentChange.Type.ADDED) {
+                        Log.i("TESTING", doc.document.toObject<Company>(Company::class.java).toString())
+                        company = doc.document.toObject<Company>(Company::class.java)
+                        setFieldsCompanyDetails()
+                    }
+                }
+            }
+        }
+
+        setFieldsCompanyDetails()
+
         fabCompanyDetailsOpenWebPage.setOnClickListener {
             onCompanyWebPage()
         }
@@ -33,6 +71,15 @@ class ViewCompanyDetailsFragment : Fragment() {
         fabCompanyDetailsSendText.setOnClickListener {
             onCompanyText()
         }
+    }
+
+    private fun setFieldsCompanyDetails() {
+        val letters = company.name[0].toString().toUpperCase()
+        val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(company.documentID))
+        (activity as CompanyDetailsActivity).expandedAvatarCompanyDetails.setImageDrawable(drawable)
+
+        (activity as CompanyDetailsActivity).collapsingToolbarCompanyDetails.setBackgroundColor(generator.getColor(company.documentID))
+        (activity as CompanyDetailsActivity).collapsingToolbarCompanyDetails.title = company.name
 
         if (company.cvsSegment == 0) {
             layoutCompanyDetailsCvsSegment.visibility = View.GONE

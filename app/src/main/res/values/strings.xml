@@ -230,7 +230,4 @@
     <string name="EXTRA_COMPANY_IS_LIST_FOR_SELECT" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_IS_LIST_FOR_SELECT</string>
     <string name="EXTRA_COMPANY_HIDE_EDIT_BUTTONS" translatable="false">hr.atoscvc.salesforcemobile.EXTRA_COMPANY_HIDE_EDIT_BUTTONS</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 </resources>

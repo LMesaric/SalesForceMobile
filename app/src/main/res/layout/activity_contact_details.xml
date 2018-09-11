@@ -120,30 +120,57 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:background="@drawable/list_border"
-                    android:orientation="vertical"
-                    android:paddingBottom="@dimen/contactDetailsCardPadding"
-                    android:paddingTop="@dimen/contactDetailsCardPadding">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textView9"
-                        style="@style/textViewDetailsSubtitleStyle"
+                    <android.support.constraint.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:text="@string/CompanyName" />
+                        android:paddingBottom="@dimen/contactDetailsCardPadding"
+                        android:paddingTop="@dimen/contactDetailsCardPadding">
 
-                    <TextView
-                        android:id="@+id/tvContactDetailsCompanyName"
-                        style="@style/textViewDetailsDataStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:text="Atos CVC"
-                        tools:ignore="HardcodedText"
-                        tools:layout_editor_absoluteY="223dp" />
+                        <TextView
+                            android:id="@+id/tvCompanyName"
+                            style="@style/textViewDetailsSubtitleStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/CompanyName"
+                            app:layout_constraintEnd_toStartOf="@id/btnContactDetailsCompanyDetails"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/tvContactDetailsCompanyName"
+                            style="@style/textViewDetailsDataStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Atos CVC"
+                            tools:ignore="HardcodedText"
+                            tools:layout_editor_absoluteY="223dp"
+                            app:layout_constraintEnd_toStartOf="@id/btnContactDetailsCompanyDetails"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvCompanyName"/>
+
+                        <Button
+                            android:id="@+id/btnContactDetailsCompanyDetails"
+                            style="@style/flatButtonStyle"
+                            android:text="@string/Details"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="onCompanyDetails"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@android:drawable/sym_action_email" />
+
+                    </android.support.constraint.ConstraintLayout>
 
                 </LinearLayout>
 

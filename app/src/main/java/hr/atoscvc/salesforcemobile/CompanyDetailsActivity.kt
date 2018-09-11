@@ -14,6 +14,7 @@ import android.widget.ImageView
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import kotlinx.android.synthetic.main.activity_company_details.*
+import kotlinx.android.synthetic.main.fragment_contacts.*
 
 class CompanyDetailsActivity : AppCompatActivity(), ContactAdapter.RecyclerViewContactsOnClickListener {
 
@@ -53,6 +54,10 @@ class CompanyDetailsActivity : AppCompatActivity(), ContactAdapter.RecyclerViewC
 
     override fun onResume() {
         super.onResume()
+
+        if (refreshContacts) {
+            viewContactsFromCompanyFragment.recyclerViewContacts?.adapter?.notifyDataSetChanged()
+        }
 
         val letters = company.name[0].toString().toUpperCase()
         val drawable: TextDrawable = TextDrawable.builder().buildRound(letters, generator.getColor(company.documentID))

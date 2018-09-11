@@ -227,4 +227,10 @@ class ContactDetailsActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun onCompanyDetails(@Suppress("UNUSED_PARAMETER") vew: View) {
+        val intent = Intent(this, CompanyDetailsActivity::class.java)
+        intent.putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), contact.company)
+        startActivity(intent)
+    }
 }
