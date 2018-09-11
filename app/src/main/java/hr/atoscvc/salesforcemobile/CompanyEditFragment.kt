@@ -15,8 +15,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_company_edit.*
 import kotlinx.android.synthetic.main.fragment_company_edit.view.*
 
-//TODO - Valuta za income
-
 class CompanyEditFragment : Fragment() {
 
     private var generator = ColorGenerator.MATERIAL
