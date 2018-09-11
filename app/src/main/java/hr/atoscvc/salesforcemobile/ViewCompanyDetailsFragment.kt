@@ -54,7 +54,6 @@ class ViewCompanyDetailsFragment : Fragment() {
             if (p0 != null) {
                 for (doc in p0.documentChanges) {
                     if (doc.type == DocumentChange.Type.ADDED) {
-                        Log.i("TESTING", doc.document.toObject<Company>(Company::class.java).toString())
                         company = doc.document.toObject<Company>(Company::class.java)
                         setFieldsCompanyDetails()
                     }
