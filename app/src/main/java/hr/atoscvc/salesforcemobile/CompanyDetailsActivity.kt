@@ -1,6 +1,7 @@
 package hr.atoscvc.salesforcemobile
 
 import android.animation.Animator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -125,6 +126,7 @@ class CompanyDetailsActivity : AppCompatActivity(), ContactAdapter.RecyclerViewC
         startActivity(intent)
     }
 
+    @SuppressLint("RestrictedApi")
     private fun onViewContactsCompanyDetails() {
         val bundle = Bundle()
         fabCompanyDetailsCall.visibility = View.GONE
@@ -134,6 +136,7 @@ class CompanyDetailsActivity : AppCompatActivity(), ContactAdapter.RecyclerViewC
         replaceFragment(viewContactsFromCompanyFragment)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onBackPressed() {
         if (isChanged) {
             val intentBack = Intent().apply {

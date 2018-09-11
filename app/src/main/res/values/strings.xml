@@ -5,7 +5,6 @@
     <string name="app_name">Sales Force Mobile</string>
 
     <string name="login">Login</string>
-    <string name="rememberMe">Remember me</string>
     <string name="clickHereToRegister"><a href="">Register</a></string>
     <string name="forgotPassword"><a href="">Forgot your password?</a></string>
 
