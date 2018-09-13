@@ -122,7 +122,7 @@
     <string name="Select">Select</string>
 
     <string name="warningForDiscardingChanges">Save your changes or discard them?</string>
-    <string name="cannotSaveNow">Please select a company and then save changes.</string>
+    <string name="cannotSaveNow">Please first select a company and then save changes.</string>
 
     <string name="addContact">Add contact</string>
     <string name="viewContacts">View contacts</string>
