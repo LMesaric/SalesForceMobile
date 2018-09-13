@@ -43,15 +43,19 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, Comp
     }
 
     override fun onBackPressed() {
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(getString(R.string.warningForDiscardingChanges))
-                .setPositiveButton(getString(R.string.Discard)) { _, _ ->
-                    super.onBackPressed()
-                }
-                .setNegativeButton(getString(android.R.string.cancel)) { dialog, _ ->
-                    dialog.cancel()
-                }
-        builder.create().show()
+        if (contactEditFragment.isVisible) {
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage(getString(R.string.warningForDiscardingChanges))
+                    .setPositiveButton(getString(R.string.Discard)) { _, _ ->
+                        super.onBackPressed()
+                    }
+                    .setNegativeButton(getString(android.R.string.cancel)) { dialog, _ ->
+                        dialog.cancel()
+                    }
+            builder.create().show()
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun recyclerViewCompaniesOnClick(imageView: ImageView, company: Company, hideEditButtons: Boolean) {
@@ -77,7 +81,11 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, Comp
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> onBackPressed()
-            R.id.action_done -> contactEditFragment.save()
+            R.id.action_done -> if (contactEditFragment.isVisible) {
+                contactEditFragment.save()
+            } else {
+                ToastExtension.makeText(this, R.string.cannotSaveNow)
+            }
         }
         return true
     }
