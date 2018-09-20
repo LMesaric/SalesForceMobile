@@ -53,7 +53,7 @@ class ContactEditorActivity : AppCompatActivity(), ReplaceFragmentListener, Comp
                     .setNegativeButton(getString(R.string.Discard)) { _, _ ->
                         super.onBackPressed()
                     }
-                    .setNeutralButton(getString(android.R.string.cancel)) {dialog, _ ->
+                    .setNeutralButton(getString(android.R.string.cancel)) { dialog, _ ->
                         dialog.cancel()
                     }
             builder.create().show()
