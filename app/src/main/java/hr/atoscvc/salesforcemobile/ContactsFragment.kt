@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 
@@ -97,51 +96,46 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
                 activity?.startActivityForResult(intent, requestCodeRefresh)
             }
 
-            val query: Query? = mAuth.uid?.let {
-                db.collection(getString(R.string.databaseCollectionUsers))
-                        .document(it)
-                        .collection(getString(R.string.databaseCollectionContacts))
-                        .orderBy(getString(R.string.databaseDocumentLastName))
-            }
-            query?.addSnapshotListener { p0, p1 ->
-                if (p1 != null) {
-                    Log.d("ERRORS", p1.message)
-                }
-                if (p0 != null) {
-                    for (doc in p0.documentChanges) {
-                        if (doc.type == DocumentChange.Type.ADDED) {
-                            val newContact = doc.document.toObject<Contact>(Contact::class.java)
-                            contactList.add(newContact)
-                            adapter?.notifyDataSetChanged()
+            db.collection(getString(R.string.databaseCollectionUsers))
+                    .document(mAuth.uid!!)
+                    .collection(getString(R.string.databaseCollectionContacts))
+                    .orderBy(getString(R.string.databaseDocumentLastName))
+                    .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                        if (firebaseFirestoreException != null) {
+                            Log.d("ERRORS", firebaseFirestoreException.message)
+                        }
+                        if (querySnapshot != null) {
+                            for (doc in querySnapshot.documentChanges) {
+                                if (doc.type == DocumentChange.Type.ADDED) {
+                                    val newContact = doc.document.toObject<Contact>(Contact::class.java)
+                                    contactList.add(newContact)
+                                    adapter?.notifyDataSetChanged()
+                                }
+                            }
+                            mainActivity?.searchView?.setQuery(mainActivity?.searchView?.query, true)
                         }
                     }
-                    mainActivity?.searchView?.setQuery(mainActivity?.searchView?.query, true)
-                }
-            }
         } else {
-            val query: Query? = mAuth.uid?.let {
-                db.collection(getString(R.string.databaseCollectionUsers))
-                        .document(it)
-                        .collection(getString(R.string.databaseCollectionContacts))
-                        .whereEqualTo("company.documentID", companyID)
-                        .orderBy(getString(R.string.databaseDocumentLastName))
-            }
-            query?.addSnapshotListener { p0, p1 ->
-                if (p1 != null) {
-                    Log.d("ERRORS", p1.message)
-                }
-                if (p0 != null) {
-                    for (doc in p0.documentChanges) {
-                        if (doc.type == DocumentChange.Type.ADDED) {
-                            val newContact = doc.document.toObject<Contact>(Contact::class.java)
-                            contactList.add(newContact)
-                            adapter?.notifyDataSetChanged()
+            db.collection(getString(R.string.databaseCollectionUsers))
+                    .document(mAuth.uid!!)
+                    .collection(getString(R.string.databaseCollectionContacts))
+                    .whereEqualTo("company.documentID", companyID)
+                    .orderBy(getString(R.string.databaseDocumentLastName))
+                    .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                        if (firebaseFirestoreException != null) {
+                            Log.d("ERRORS", firebaseFirestoreException.message)
+                        }
+                        if (querySnapshot != null) {
+                            for (doc in querySnapshot.documentChanges) {
+                                if (doc.type == DocumentChange.Type.ADDED) {
+                                    val newContact = doc.document.toObject<Contact>(Contact::class.java)
+                                    contactList.add(newContact)
+                                    adapter?.notifyDataSetChanged()
+                                }
+                            }
                         }
                     }
-                }
-            }
         }
-
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
