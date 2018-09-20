@@ -14,7 +14,6 @@ import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_company_details.*
 import kotlinx.android.synthetic.main.fragment_view_company_details.*
 
@@ -35,43 +34,34 @@ class ViewCompanyDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tvCompanyDetailsStatus.text = resources.getStringArray(R.array.status_array)[company.status]
-        tvCompanyDetailsOib.text = company.OIB
 
         db = FirebaseFirestore.getInstance()
         mAuth = FirebaseAuth.getInstance()
 
-        val query: Query? = mAuth.uid?.let {
-            db.collection(getString(R.string.databaseCollectionUsers))
-                    .document(it)
-                    .collection(getString(R.string.databaseCollectionCompanies))
-                    .whereEqualTo("documentID", company.documentID)
-        }
-        query?.addSnapshotListener { p0, p1 ->
-            if (p1 != null) {
-                Log.d("ERRORS", p1.message)
-            }
-            if (p0 != null) {
-                for (doc in p0.documentChanges) {
-                    if (doc.type == DocumentChange.Type.ADDED) {
-                        company = doc.document.toObject<Company>(Company::class.java)
-                        setFields()
+        refreshDetails()
+
+        fabCompanyDetailsOpenWebPage.setOnClickListener { onCompanyWebPage() }
+        fabCompanyDetailsSendText.setOnClickListener { onCompanyText() }
+    }
+
+    fun refreshDetails() {
+        db.collection(getString(R.string.databaseCollectionUsers))
+                .document(mAuth.uid!!)
+                .collection(getString(R.string.databaseCollectionCompanies))
+                .whereEqualTo("documentID", company.documentID)
+                .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                    if (firebaseFirestoreException != null) {
+                        Log.d("ERRORS", firebaseFirestoreException.message)
+                    }
+                    if (querySnapshot != null) {
+                        for (doc in querySnapshot.documentChanges) {
+                            if (doc.type == DocumentChange.Type.ADDED) {
+                                company = doc.document.toObject<Company>(Company::class.java)
+                                setFields()
+                            }
+                        }
                     }
                 }
-            }
-        }
-
-        setFields()
-
-        fabCompanyDetailsOpenWebPage.setOnClickListener {
-            onCompanyWebPage()
-        }
-
-        fabCompanyDetailsSendText.setOnClickListener {
-            onCompanyText()
-        }
-
-
     }
 
     private fun setFields() {
@@ -82,6 +72,10 @@ class ViewCompanyDetailsFragment : Fragment() {
 
         (activity as CompanyDetailsActivity).collapsingToolbarCompanyDetails.setBackgroundColor(generator.getColor(company.documentID))
         (activity as CompanyDetailsActivity).collapsingToolbarCompanyDetails.title = company.name
+
+        tvCompanyDetailsStatus.text = resources.getStringArray(R.array.status_array)[company.status]
+
+        tvCompanyDetailsOib.text = company.OIB
 
         if (company.cvsSegment == 0) {
             layoutCompanyDetailsCvsSegment.visibility = View.GONE
@@ -173,6 +167,4 @@ class ViewCompanyDetailsFragment : Fragment() {
             }
         }
     }
-
-
 }

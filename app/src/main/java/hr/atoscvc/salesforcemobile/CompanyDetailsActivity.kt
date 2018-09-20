@@ -30,8 +30,8 @@ class CompanyDetailsActivity : AppCompatActivity(), ContactAdapter.RecyclerViewC
     private lateinit var company: Company
     private var isChanged: Boolean = false
 
-    private val viewContactsFromCompanyFragment: ContactsFragment = ContactsFragment()
-    private val viewCompanyDetailsFragment: ViewCompanyDetailsFragment = ViewCompanyDetailsFragment()
+    private val viewContactsFromCompanyFragment = ContactsFragment()
+    private val viewCompanyDetailsFragment = ViewCompanyDetailsFragment()
 
     private lateinit var editItem: MenuItem
 
@@ -156,6 +156,7 @@ class CompanyDetailsActivity : AppCompatActivity(), ContactAdapter.RecyclerViewC
                 company = data?.getSerializableExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT)) as Company
                 intent.putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
                 isChanged = true
+                viewCompanyDetailsFragment.refreshDetails()
             }
 
         } else if (requestCode == ContactsFragment.requestCodeRefresh) {
