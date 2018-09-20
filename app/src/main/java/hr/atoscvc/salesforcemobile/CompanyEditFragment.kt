@@ -151,47 +151,36 @@ class CompanyEditFragment : Fragment() {
         }
 
         if (thereAreNoErrors) {
+            val messageId: Int
             company = Company(company?.documentID, status, oib, name, webPage, cvsSegment, details, phone, communicationType, employees, income)
 
             if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
+                messageId = R.string.newCompanyCreated
                 company?.documentID = docRef?.id
-                company?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        ToastExtension.makeText(requireActivity(), R.string.newCompanyCreated)
-                        activity?.setResult(
-                                AppCompatActivity.RESULT_OK,
-                                Intent().apply {
-                                    putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-                                }
-                        )
-                        activity?.finish()
-                    } else {
-                        ToastExtension.makeText(requireActivity(), task.exception?.message.toString())
-                    }
-                }
             } else {
-                mAuth.uid?.let {
-                    company?.let { it1 ->
-                        db.collection(getString(R.string.databaseCollectionUsers))
-                                .document(it)
-                                .collection(getString(R.string.databaseCollectionCompanies))
-                                .document(company?.documentID.toString())
-                                .set(it1)
-                    }
-                }?.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        ToastExtension.makeText(requireActivity(), R.string.companyUpdated)
-                        activity?.setResult(
-                                AppCompatActivity.RESULT_OK,
-                                Intent().apply {
-                                    putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
-                                }
-                        )
-                        activity?.finish()
-                    } else {
-                        ToastExtension.makeText(requireActivity(), task.exception?.message.toString())
-                    }
+                messageId = R.string.companyUpdated
+                docRef = db.collection(getString(R.string.databaseCollectionUsers))
+                        .document(mAuth.uid!!)
+                        .collection(getString(R.string.databaseCollectionCompanies))
+                        .document(company!!.documentID!!)
+            }
+
+            docRef?.addSnapshotListener(requireActivity()) { documentSnapshot, firebaseFirestoreException ->
+
+                if (firebaseFirestoreException != null) {
+                    ToastExtension.makeText(requireActivity(), firebaseFirestoreException.message.toString())
+                    return@addSnapshotListener
                 }
+
+                documentSnapshot?.reference?.set(company!!)
+                ToastExtension.makeText(requireActivity(), messageId)
+                activity?.setResult(
+                        AppCompatActivity.RESULT_OK,
+                        Intent().apply {
+                            putExtra(getString(R.string.EXTRA_COMPANY_ENTIRE_OBJECT), company)
+                        }
+                )
+                activity?.finish()
             }
         }
     }

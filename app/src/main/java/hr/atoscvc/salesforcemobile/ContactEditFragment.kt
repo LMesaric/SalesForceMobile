@@ -160,46 +160,36 @@ class ContactEditFragment : Fragment() {
         }
 
         if (thereAreNoErrors) {
+            val messageId: Int
+            contact = Contact(contact?.documentID, status, title, firstName, lastName, chosenCompany!!, phone, email, prefTime, details)
+
             if (activity?.intent?.getBooleanExtra(getString(R.string.EXTRA_IS_EDITOR_FOR_NEW_ITEM), false) == true) {
-                contact = chosenCompany?.let { Contact(docRef?.id, status, title, firstName, lastName, it, phone, email, prefTime, details) }
-                contact?.let { docRef?.set(it) }?.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        ToastExtension.makeText(requireActivity(), R.string.newContactCreated)
-                        activity?.setResult(
-                                AppCompatActivity.RESULT_OK,
-                                Intent().apply {
-                                    putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-                                }
-                        )
-                        activity?.finish()
-                    } else {
-                        ToastExtension.makeText(requireActivity(), task.exception?.message.toString())
-                    }
-                }
+                messageId = R.string.newContactCreated
+                contact?.documentID = docRef?.id
             } else {
-                contact = chosenCompany?.let { Contact(contact?.documentID, status, title, firstName, lastName, it, phone, email, prefTime, details) }
-                mAuth.uid?.let {
-                    contact?.let { it1 ->
-                        db.collection(getString(R.string.databaseCollectionUsers))
-                                .document(it)
-                                .collection(getString(R.string.databaseCollectionContacts))
-                                .document(contact?.documentID.toString())
-                                .set(it1)
-                    }
-                }?.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        ToastExtension.makeText(requireActivity(), R.string.contactUpdated)
-                        activity?.setResult(
-                                AppCompatActivity.RESULT_OK,
-                                Intent().apply {
-                                    putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
-                                }
-                        )
-                        activity?.finish()
-                    } else {
-                        ToastExtension.makeText(requireActivity(), task.exception?.message.toString())
-                    }
+                messageId = R.string.contactUpdated
+                docRef = db.collection(getString(R.string.databaseCollectionUsers))
+                        .document(mAuth.uid!!)
+                        .collection(getString(R.string.databaseCollectionContacts))
+                        .document(contact!!.documentID!!)
+            }
+
+            docRef?.addSnapshotListener(requireActivity()) { documentSnapshot, firebaseFirestoreException ->
+
+                if (firebaseFirestoreException != null) {
+                    ToastExtension.makeText(requireActivity(), firebaseFirestoreException.message.toString())
+                    return@addSnapshotListener
                 }
+
+                documentSnapshot?.reference?.set(contact!!)
+                ToastExtension.makeText(requireActivity(), messageId)
+                activity?.setResult(
+                        AppCompatActivity.RESULT_OK,
+                        Intent().apply {
+                            putExtra(getString(R.string.EXTRA_CONTACT_ENTIRE_OBJECT), contact)
+                        }
+                )
+                activity?.finish()
             }
         }
     }
