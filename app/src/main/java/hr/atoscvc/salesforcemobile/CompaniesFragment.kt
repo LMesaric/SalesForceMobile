@@ -87,7 +87,7 @@ class CompaniesFragment : Fragment(), SearchView.OnQueryTextListener {
         recyclerViewCompanies.adapter = adapter
 
         db.collection(getString(R.string.databaseCollectionUsers))
-                .document(mAuth.uid!!)
+                .document(mAuth.uid ?: return)
                 .collection(getString(R.string.databaseCollectionCompanies))
                 .orderBy(getString(R.string.databaseDocumentName))
                 .addSnapshotListener { querySnapshot, firebaseFirestoreException ->

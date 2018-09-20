@@ -97,7 +97,7 @@ class ContactsFragment : Fragment(), SearchView.OnQueryTextListener {
             }
 
             db.collection(getString(R.string.databaseCollectionUsers))
-                    .document(mAuth.uid!!)
+                    .document(mAuth.uid ?: return)
                     .collection(getString(R.string.databaseCollectionContacts))
                     .orderBy(getString(R.string.databaseDocumentLastName))
                     .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
