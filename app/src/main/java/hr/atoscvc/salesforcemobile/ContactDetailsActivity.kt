@@ -39,7 +39,6 @@ class ContactDetailsActivity : AppCompatActivity() {
         super.onResume()
 
         val letters = contact.firstName[0].toString().toUpperCase() + contact.lastName[0].toString().toUpperCase()
-        //Integer.toHexString(generator.getColor(contact.documentID))
         val drawable: TextDrawable = TextDrawable.builder().buildRect(letters, generator.getColor(contact.documentID))
         expandedAvatarContactDetails.setImageDrawable(drawable)
 
