@@ -128,12 +128,14 @@ class CompanyDetailsActivity : AppCompatActivity(), ContactAdapter.RecyclerViewC
 
     @SuppressLint("RestrictedApi")
     private fun onViewContactsCompanyDetails() {
-        val bundle = Bundle()
-        fabCompanyDetailsCall.visibility = View.GONE
-        fabCompanyDetailsCallSecondary.visibility = View.GONE
-        bundle.putString("companyID", company.documentID)
-        viewContactsFromCompanyFragment.arguments = bundle
-        replaceFragment(viewContactsFromCompanyFragment)
+        if (!viewContactsFromCompanyFragment.isVisible) {
+            val bundle = Bundle()
+            fabCompanyDetailsCall.visibility = View.GONE
+            fabCompanyDetailsCallSecondary.visibility = View.GONE
+            bundle.putString("companyID", company.documentID)
+            viewContactsFromCompanyFragment.arguments = bundle
+            replaceFragment(viewContactsFromCompanyFragment)
+        }
     }
 
     @SuppressLint("RestrictedApi")
